@@ -1,8 +1,6 @@
 ﻿namespace TestForGolden
 {
-    public class AppControl : IAppControl
+    public class AppControl : MappedItem
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
     }
 }

@@ -1,51 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TestForGolden
 {
     public class AppManager
     {
-        private Dictionary<string, IAppWindow> windowDict = new Dictionary<string, IAppWindow>();
-        private Dictionary<string, IAppControl> controlDict = new Dictionary<string, IAppControl>();
-        private Dictionary<string, IAppProcess> processDict = new Dictionary<string, IAppProcess>();
+        private readonly Dictionary<string, MappedItem> cachedMappedItemDict = new Dictionary<string, MappedItem>();
 
-        public IAppWindow GetAppWindow(string id)
+        public List<AppProcess> Processes { get; set; }
+
+        public AppManager()
         {
-            if (windowDict.ContainsKey(id))
-                return windowDict[id];
-
-            throw new Exception(string.Format("No window exists with id '{0}'", id));
+            Processes = new List<AppProcess>();
         }
 
-        public IAppControl GetAppControl(string id)
+        public T GetMappedItem<T>(string id) where T : MappedItem
         {
-            if (controlDict.ContainsKey(id))
-                return controlDict[id];
+            if (cachedMappedItemDict.ContainsKey(id))
+                return cachedMappedItemDict[id] as T;
 
-            throw new Exception(string.Format("No control exists with id '{0}'", id));
+            MappedItem mappedItem = FindMappedItem(id);
+
+            if (mappedItem == null)
+            {
+                throw new Exception(string.Format("No mapped item exists with id '{0}'", id));
+            }
+
+            cachedMappedItemDict[id] = mappedItem;
+
+            return mappedItem as T;
         }
 
-        public IAppProcess GetAppProcess(string id)
+        private MappedItem FindMappedItem(string id)
         {
-            if (processDict.ContainsKey(id))
-                return processDict[id];
-
-            throw new Exception(string.Format("No process exists with id '{0}'", id));
+            return Processes.Select(mappedItem => FindMappedItem(mappedItem, id))
+                .FirstOrDefault(findMappedItem => findMappedItem != null);
         }
 
-        public void SetAppWindow(IAppWindow appWindow)
+        private MappedItem FindMappedItem(MappedItem parentMappedItem, string id)
         {
-            windowDict[appWindow.Id] = appWindow;
-        }
+            if (Equals(parentMappedItem.Id, id))
+            {
+                return parentMappedItem;
+            }
 
-        public void SetAppControl(IAppControl appControl)
-        {
-            controlDict[appControl.Id] = appControl;
-        }
-
-        public void SetAppProcess(IAppProcess appProcess)
-        {
-            processDict[appProcess.Id] = appProcess;
+            return parentMappedItem.Children
+                .Select(mappedItem => FindMappedItem(mappedItem, id))
+                .FirstOrDefault(findMappedItem => findMappedItem != null);
         }
     }
 }

@@ -12,6 +12,21 @@ namespace TestForGolden
 {
     public class XmlFileWriter
     {
+        public void Write(AppManager appManager)
+        {
+            Type[] testItemTypes = Assembly.GetExecutingAssembly().GetTypes()
+                .Where(t => t.IsSubclassOf(typeof(MappedItem))).ToArray();
+
+            XmlSerializer serializer = new XmlSerializer(appManager.GetType(), testItemTypes);
+
+            using (FileStream fileStream = File.Create("saveFileAppManager.xml"))
+            {
+                serializer.Serialize(fileStream, appManager);
+
+                fileStream.Flush();
+            } 
+        }
+
         public void Write(Test test)
         {
             Type[] testItemTypes = Assembly.GetExecutingAssembly().GetTypes()
@@ -37,7 +52,20 @@ namespace TestForGolden
             using (FileStream fileStream = File.OpenRead("saveFile.xml"))
             {
                 return serializer.Deserialize(fileStream) as Test;
-            } 
+            }
+        }
+
+        public AppManager ReadAppManager()
+        {
+            Type[] testItemTypes = Assembly.GetExecutingAssembly().GetTypes()
+                .Where(t => t.IsSubclassOf(typeof(MappedItem))).ToArray();
+
+            XmlSerializer serializer = new XmlSerializer(typeof(AppManager), testItemTypes);
+
+            using (FileStream fileStream = File.OpenRead("saveFileAppManager.xml"))
+            {
+                return serializer.Deserialize(fileStream) as AppManager;
+            }
         }
     }
 }

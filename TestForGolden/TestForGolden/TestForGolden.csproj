@@ -54,7 +54,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppProcess.cs" />
-    <Compile Include="IAppProcess.cs" />
+    <Compile Include="MappedItem.cs" />
     <Compile Include="ProcessGroupViewModel.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Test.cs" />
@@ -73,8 +73,6 @@
     <Compile Include="AppControl.cs" />
     <Compile Include="AppManager.cs" />
     <Compile Include="AppWindow.cs" />
-    <Compile Include="IAppControl.cs" />
-    <Compile Include="IAppWindow.cs" />
     <Compile Include="IOnScreenActionViewModel.cs" />
     <Compile Include="ITestItemViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">

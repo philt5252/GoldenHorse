@@ -30,7 +30,7 @@ namespace TestForGolden
             if (processDict.ContainsKey(id))
                 return processDict[id];
 
-            throw new Exception(string.Format("No control exists with id '{0}'", id));
+            throw new Exception(string.Format("No process exists with id '{0}'", id));
         }
 
         public void SetAppWindow(IAppWindow appWindow)

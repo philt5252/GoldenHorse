@@ -54,7 +54,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppProcess.cs" />
+    <Compile Include="ClickOperation.cs" />
+    <Compile Include="ConstantOperationParameterValue.cs" />
     <Compile Include="MappedItem.cs" />
+    <Compile Include="Operation.cs" />
+    <Compile Include="OperationParameter.cs" />
+    <Compile Include="OperationParameterValue.cs" />
+    <Compile Include="OperationParameterValueMode.cs" />
     <Compile Include="ProcessGroupViewModel.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Test.cs" />

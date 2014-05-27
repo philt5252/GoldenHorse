@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Windows.Documents;
 
 namespace TestForGolden
@@ -23,6 +25,8 @@ namespace TestForGolden
             Test test = fileWriter.Read();
             AppManager appManager = fileWriter.ReadAppManager();
 
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             IList<ITestItemViewModel> testItemViewModels = new List<ITestItemViewModel>();
 
             ITestItemViewModel processTestItemViewModel = null;
@@ -54,11 +58,9 @@ namespace TestForGolden
                             processTestItemViewModel.Name = "Process1";
                             
                             testItemViewModels.Add(processTestItemViewModel);
-
                         }
 
                         processTestItemViewModel.ChildItems.Add(windowTestItemViewModel);
-
                     }
 
                     windowTestItemViewModel.ChildItems.Add(onScreenActionViewModel);
@@ -66,8 +68,48 @@ namespace TestForGolden
             }
 
             TestItems = testItemViewModels.ToArray();
+            stopwatch.Stop();
 
+            stopwatch.Reset();
+            stopwatch.Start();
+            List<TestItem> items = GetTestItems(testItems);
+            stopwatch.Stop();
+
+            ClickOperation operation = new ClickOperation();
             
-        } 
+        }
+
+        private List<TestItem> GetTestItems(IEnumerable<ITestItemViewModel> testItemViewModels)
+        {
+            List<TestItem> testItems = new List<TestItem>();
+
+            GetTestItems(testItemViewModels, testItems, null);
+
+            return testItems;
+        }
+
+        private void GetTestItems(IEnumerable<ITestItemViewModel> testItemViewModels, List<TestItem> testItems, TestItem parentTestItem)
+        {
+            TestItem newParentTestItem = null;
+            foreach (ITestItemViewModel testItemViewModel in testItemViewModels)
+            {
+                if (testItemViewModel.TestItem != null)
+                {
+                    testItemViewModel.TestItem.Children = new List<TestItem>();
+                    if (parentTestItem != null)
+                        parentTestItem.Children.Add(testItemViewModel.TestItem);
+                    else
+                    {
+                        newParentTestItem = testItemViewModel.TestItem;
+                        testItems.Add(newParentTestItem);
+                    }
+                }
+                else
+                {
+                    newParentTestItem = null;
+                }
+                GetTestItems(testItemViewModel.ChildItems, testItems, newParentTestItem);
+            }
+        }
     }
 }

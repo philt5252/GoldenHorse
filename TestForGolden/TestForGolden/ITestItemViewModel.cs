@@ -4,7 +4,7 @@ namespace TestForGolden
 {
     public interface ITestItemViewModel
     {
-        ITestItemViewModel Parent { get; set; }
+        TestItem TestItem { get; }
         string Name { get; set; }
         string Operation { get; set; }
         string Value { get; set; }

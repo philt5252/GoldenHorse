@@ -4,7 +4,6 @@ namespace TestForGolden
 {
     public class WindowGroupViewModel : TestItemViewModelBase
     {
-        public override ITestItemViewModel Parent { get; set; }
         public override string Name { get; set; }
         public override string Operation { get; set; }
         public override string Value { get; set; }

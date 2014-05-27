@@ -10,9 +10,8 @@ namespace TestForGolden
         public OnScreenActionViewModel(OnScreenAction onScreenAction)
         {
             this.onScreenAction = onScreenAction;
+            TestItem = onScreenAction;
         }
-
-        public override ITestItemViewModel Parent { get; set; }
 
         public override string Name
         {

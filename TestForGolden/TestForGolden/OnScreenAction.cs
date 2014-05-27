@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Controls.Primitives;
 
 namespace TestForGolden
 {
@@ -6,6 +7,6 @@ namespace TestForGolden
     {
         public string WindowId { get; set; }
         public string ControlId { get; set; }
-        public string Description { get; set; }
+        public Operation Operation { get; set; }
     }
 }

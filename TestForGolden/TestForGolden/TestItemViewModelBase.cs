@@ -7,23 +7,27 @@ namespace TestForGolden
 {
     public abstract class TestItemViewModelBase : ITestItemViewModel
     {
-        public abstract ITestItemViewModel Parent { get; set; }
-        public abstract string Name { get; set; }
-        public abstract string Operation { get; set; }
-        public abstract string Value { get; set; }
-        public abstract string Description { get; set; }
-        public abstract string AutowaitTimeout { get; set; }
+        public TestItem TestItem { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string Operation { get; set; }
+        public virtual string Value { get; set; }
+
+        public virtual string Description
+        {
+            get { return TestItem.Description; }
+            set { TestItem.Description = value; }
+        }
+
+        public virtual string AutowaitTimeout { get; set; }
         public IList<ITestItemViewModel> ChildItems { get; protected set; }
 
         protected TestItemViewModelBase()
         {
             ObservableCollection<ITestItemViewModel> testItemViewModels = new ObservableCollection<ITestItemViewModel>();
             ChildItems = testItemViewModels;
-
-            testItemViewModels.CollectionChanged += TestItemViewModelsOnCollectionChanged;
         }
 
-        private void TestItemViewModelsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+        /*private void TestItemViewModelsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
             if (args.Action == NotifyCollectionChangedAction.Add)
             {
@@ -40,6 +44,6 @@ namespace TestForGolden
                         oldItem.Parent = null;
                 }
             }
-        }
+        }*/
     }
 }

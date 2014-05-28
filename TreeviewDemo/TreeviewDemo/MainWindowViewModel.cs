@@ -22,12 +22,16 @@ namespace TreeviewDemo
                 Value = "(2, 45)"
                 
             };
+            IList<IAction> onScreenActions3 = new List<IAction>();
+            onScreenActions3.Add(action1);
             IAction action2 = new OnScreenAction
             {
                 Description = "click here at this point",
                 Item = "Button2",
                 Operation = "ClickButton",
-                Value = "(67890, 49)"
+                Value = "(67890, 49)",
+                Actions = onScreenActions3
+                
                 
             };
             IList<IAction> onScreenActions2 = new List<IAction>();
@@ -40,9 +44,13 @@ namespace TreeviewDemo
                 Operation = "SetText",
                 Value = "Hello World",
                 Actions = onScreenActions2,
-                HasPicture=true
-                
+                HasPicture = true
+
             };
+           
+           
+            
+           
             IList<IAction> onScreenActions = new List<IAction>();
             onScreenActions.Add(action1);
             onScreenActions.Add(action2);

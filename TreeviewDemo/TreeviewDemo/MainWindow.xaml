@@ -4,8 +4,33 @@
         xmlns:i="clr-namespace:TreeviewDemo"
         xmlns:local="clr-namespace:TreeviewDemo"
         Title="MainWindow" Height="350" Width="525">
-   
-    
+    <Window.Resources>
+        <local:TreeViewLineConverter x:Key="LineConverter"/>
+
+        <ControlTemplate TargetType="{x:Type TreeViewItem}" x:Key="TreeViewItemLines">
+            <Grid>
+                <Rectangle x:Name="HorLn" Margin="12,1,0,0" Height="1" Width="13" Stroke="Gray" StrokeDashCap="Square" StrokeDashArray="0,2" StrokeDashOffset="2" SnapsToDevicePixels="True"/>
+                <Rectangle x:Name="VerLn" Width="1"  Stroke="Gray" StrokeDashCap="Square" StrokeDashArray="0,2" Margin="0,0,1,0" Grid.RowSpan="2" SnapsToDevicePixels="true" Fill="White"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <!--Trigger to change last line-->
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource LineConverter}}" Value="true">
+                    <Setter TargetName="VerLn" Property="Height" Value="9"/>
+                    <Setter TargetName="VerLn" Property="VerticalAlignment" Value="Top"/>
+                </DataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <SolidColorBrush x:Key="MyBorderBrush" Color="White"></SolidColorBrush>
+
+        
+        <Style x:Key="BorderStyle" TargetType="Border">
+           <Setter Property="BorderBrush" Value="{StaticResource MyBorderBrush}"></Setter>
+           <Setter Property="BorderThickness" Value="0.3"></Setter>  
+        </Style>
+ 
+    </Window.Resources>
+
+
     <Grid x:Name="grid1" >
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
@@ -23,7 +48,7 @@
                     <GridViewColumn.CellTemplate >
                         
                         <DataTemplate>
-                            <Border BorderBrush="LightSlateGray" BorderThickness="0.3" Margin="-6,0,-6,0">
+                            <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                 <StackPanel Orientation="Horizontal" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
 
                                 <local:DebugButton Margin="0,0,0,0" Width="15" Height="15" Name="DebugButton" IsDebugging="{Binding DebugState, UpdateSourceTrigger=PropertyChanged}"></local:DebugButton>
@@ -43,27 +68,34 @@
                 </GridViewColumn>
                 <!--Create the first column containing the expand button and the type name.-->
                 <GridViewColumn Header="Item" Width="100">
-                    
-                    <GridViewColumn.CellTemplate>
+
+                    <GridViewColumn.CellTemplate >
                         <DataTemplate >
-                            <Border BorderBrush="LightSlateGray" BorderThickness="0.3" Margin="-6,0,-6,0" >
-                                <StackPanel Orientation="Horizontal" >
+                            <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
+                                <StackPanel Orientation="Horizontal">
+                                <Grid >
+                                    <local:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1" />
+                                   <!-- <TreeViewItem Template="{StaticResource TreeViewItemLines}"></TreeViewItem>-->
+                                       
+                                    </Grid>
+                                <StackPanel Orientation="Horizontal">
                                     <!--The Expander Button (can be used in any column (typically the first one))-->
-                                    <local:TreeListViewExpander Margin="0,0,0,0" />
-                                    <!--Display the name of the DataElement-->
+                                    
                                     <Image Width ="20" Height ="20"  Source="\Images\dachsund.jpg"></Image>
                                     <TextBlock Text="{Binding Item}" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
+
+
+                                </StackPanel>
                                 </StackPanel>
                             </Border>
-                        </DataTemplate>
-                            
+                        </DataTemplate>  
                     </GridViewColumn.CellTemplate> 
                 </GridViewColumn>
                 <!--Create a second column containing the number of children.-->
                 <GridViewColumn Header="Operation" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="LightSlateGray" BorderThickness="0.3" Margin="-6,0,-6,0" >
+                            <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0" >
                             <!--Display the size of the DataElement-->
                                 <TextBlock Text="{Binding Operation}" MouseLeftButtonDown="OpenOperationEditWindow" HorizontalAlignment="Right" />
                             </Border>
@@ -74,7 +106,7 @@
                 <GridViewColumn Header="Value" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="LightSlateGray" BorderThickness="0.3" Margin="-6,0,-6,0">
+                            <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                             <TextBlock Text="{Binding Value}" MouseLeftButtonDown="OpenValueEditWindow"  HorizontalAlignment="Right"/>
                             </Border>
                             </DataTemplate>
@@ -83,7 +115,7 @@
             <GridViewColumn Header="Description" Width="100">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                            <Border BorderBrush="LightSlateGray" BorderThickness="0.3" Margin="-6,0,-6,0">
+                            <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                 <TextBlock Text="{Binding Description}" HorizontalAlignment="Right"/>
                             </Border>
                     </DataTemplate>

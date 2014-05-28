@@ -48,10 +48,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Connecting Lines -->
-            <!--<Rectangle Grid.Column="2" x:Name="HorLn" Margin="9,1,0,0" Height="1" Stroke="#DCDCDC" SnapsToDevicePixels="True"/>
-            <Rectangle Grid.Column="2" x:Name="VerLn" Width="1" Stroke="#DCDCDC" Margin="0,0,1,0" Grid.RowSpan="2" SnapsToDevicePixels="true" Fill="White"/>-->
-
+            
             <!--<ToggleButton Margin="-1,0,0,0" x:Name="Expander" Style="{StaticResource ExpandCollapseToggleStyle}" 
                                           IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource Mode=FindAncestor,
                                           AncestorType=TreeViewItem}}" ClickMode="Press"/>-->
@@ -110,15 +107,16 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
+
     <!--Control Template for TreeListViewExpander's.-->
     <ControlTemplate TargetType="{x:Type local:TreeListViewExpander}" x:Key="TreeListViewExpander">
-        <StackPanel Orientation="Horizontal" x:Name="ContainerElement">
+        <StackPanel Orientation="Horizontal" x:Name="ContainerElement" Margin="0,0,0,0">
             <!--Use a FrameworkElement to indent the button-->
             <FrameworkElement Width="{Binding RelativeSource={x:Static RelativeSource.Self}, 
                 Converter={StaticResource TreeListViewConverter}}"/>
             <!--Use a standard toggle button-->
             <ToggleButton Name="Expander" Style="{StaticResource ExpandCollapseToggleStyle}" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource Mode=FindAncestor,
-                AncestorType=TreeViewItem}}"  VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                AncestorType=TreeViewItem}}"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
         </StackPanel>
         <ControlTemplate.Triggers>
             <!--Trigger used to show/hide the expand button-->
@@ -126,6 +124,7 @@
                 AncestorType=TreeViewItem}}" Value="False">
                 <Setter TargetName="ContainerElement" Property="Visibility" Value="Hidden"/>
             </DataTrigger>
+            
         </ControlTemplate.Triggers>
     </ControlTemplate>
 

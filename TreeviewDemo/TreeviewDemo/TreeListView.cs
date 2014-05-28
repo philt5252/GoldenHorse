@@ -25,6 +25,7 @@ namespace TreeviewDemo
         {
             //Override the default style and the default control template
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TreeListView), new FrameworkPropertyMetadata(typeof(TreeListView)));
+            
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace TreeviewDemo
     /// </summary>
     public class TreeListViewConverter : IValueConverter
     {
-        public const double Indentation = 10;
+        public const double Indentation = 20;
 
         #region IValueConverter Members
 

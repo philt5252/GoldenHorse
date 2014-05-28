@@ -12,26 +12,25 @@ namespace TestForGolden
 {
     public class XmlFileWriter
     {
-        private readonly Project project;
 
-        public XmlFileWriter(Project project)
+        public XmlFileWriter()
         {
-            this.project = project;
         }
 
         public void SaveProject()
         {
-            XmlSerializer serializer = new XmlSerializer(project.GetType());
-            string projectPath = Path.Combine(project.ProjectFolder, project.Name + ".ghproj");
-            Directory.CreateDirectory(project.ProjectFolder);
+            XmlSerializer serializer = new XmlSerializer(ProjectManager.CurrentProject.GetType());
+            var projectPath = ProjectManager.GetProjectPath();
 
             using (FileStream fileStream = File.Create(projectPath))
             {
-                serializer.Serialize(fileStream, project);
+                serializer.Serialize(fileStream, ProjectManager.CurrentProject);
 
                 fileStream.Flush();
             } 
         }
+
+        
 
         public void Write(AppManager appManager)
         {
@@ -41,10 +40,7 @@ namespace TestForGolden
 
             XmlSerializer serializer = new XmlSerializer(appManager.GetType(), testItemTypes);
 
-            string appManagerDir = Path.Combine(project.ProjectFolder, project.AppManagerFolder);
-            Directory.CreateDirectory(appManagerDir);
-
-            string appManagerPath = Path.Combine(appManagerDir, "AppManager.gham");
+            var appManagerPath = ProjectManager.GetAppManagerPath();
 
             using (FileStream fileStream = File.Create(appManagerPath))
             {
@@ -53,6 +49,8 @@ namespace TestForGolden
                 fileStream.Flush();
             } 
         }
+
+        
 
         public void Write(Test test)
         {
@@ -65,7 +63,7 @@ namespace TestForGolden
 
             XmlSerializer serializer = new XmlSerializer(test.GetType(), testItemTypes);
 
-            var testPath = CreateTestPath(test.Name);
+            var testPath = ProjectManager.GetTestPath(test.Name);
 
             using (FileStream fileStream = File.Create(testPath))
             {
@@ -73,16 +71,6 @@ namespace TestForGolden
 
                 fileStream.Flush();
             } 
-        }
-
-        private string CreateTestPath(string testName)
-        {
-            string testDir = Path.Combine(project.ProjectFolder, project.TestsFolder, testName);
-            if (!Directory.Exists(testDir))
-                Directory.CreateDirectory(testDir);
-
-            string testPath = Path.Combine(testDir, testName + ".ghtest");
-            return testPath;
         }
 
         public Test Read(string testName)
@@ -94,7 +82,7 @@ namespace TestForGolden
                     || t.IsSubclassOf(typeof(OperationParameterValue))
                     || t.IsSubclassOf(typeof(ScreenshotAdornment))).ToArray();
 
-            var testPath = CreateTestPath(testName);
+            var testPath = ProjectManager.GetTestPath(testName);
 
             XmlSerializer serializer = new XmlSerializer(typeof(Test), testItemTypes);
 
@@ -111,7 +99,9 @@ namespace TestForGolden
 
             XmlSerializer serializer = new XmlSerializer(typeof(AppManager), testItemTypes);
 
-            using (FileStream fileStream = File.OpenRead("saveFileAppManager.xml"))
+            var appManagerPath = ProjectManager.GetAppManagerPath();
+
+            using (FileStream fileStream = File.OpenRead(appManagerPath))
             {
                 return serializer.Deserialize(fileStream) as AppManager;
             }

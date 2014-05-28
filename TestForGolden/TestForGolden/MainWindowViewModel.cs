@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -32,7 +33,9 @@ namespace TestForGolden
             project.Name = "TestProj";
             project.ProjectFolder = @"C:\TestGhProj\" + project.Name;
 
-            XmlFileWriter fileWriter = new XmlFileWriter(project);
+            ProjectManager.CurrentProject = project;
+
+            XmlFileWriter fileWriter = new XmlFileWriter();
 
             fileWriter.SaveProject();
 
@@ -61,7 +64,7 @@ namespace TestForGolden
             action1.WindowId = window.Id;
 
             Screenshot screenShot = new Screenshot();
-            screenShot.ImagePath = @"Screenshots\screenshot1.png";
+            screenShot.ImageFile = @"screenshot1.png";
             screenShot.Adornments.Add(new ScreenshotClickAdornment { ClickX = 100, ClickY = 100 });
 
             action1.Screenshot = screenShot;
@@ -87,7 +90,7 @@ namespace TestForGolden
             action5.WindowId = window2.Id;
 
             Screenshot screenShot2 = new Screenshot();
-            screenShot2.ImagePath = @"Screenshots\screenshot2.png";
+            screenShot2.ImageFile = @"screenshot2.png";
             screenShot2.Adornments.Add(new ScreenshotClickAdornment { ClickX = 300, ClickY = 250 });
 
             action5.Screenshot = screenShot2;
@@ -138,7 +141,7 @@ namespace TestForGolden
         public MainWindowViewModel()
         {
             SetupScreenActions();
-            XmlFileWriter fileWriter = new XmlFileWriter(project);
+            XmlFileWriter fileWriter = new XmlFileWriter();
 
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -236,7 +239,7 @@ namespace TestForGolden
             {
                 if (testItemViewModel.TestItem != null)
                 {
-                    testItemViewModel.TestItem.Children = new List<TestItem>();
+                    testItemViewModel.TestItem.Children = new ObservableCollection<TestItem>();
                     if (parentTestItem != null)
                         parentTestItem.Children.Add(testItemViewModel.TestItem);
                     else

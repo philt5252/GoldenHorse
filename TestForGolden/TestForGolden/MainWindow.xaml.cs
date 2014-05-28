@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -23,11 +24,14 @@ namespace TestForGolden
 
         public MainWindow()
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             InitializeComponent();
 
             mainWindowViewModel = new MainWindowViewModel();
 
             DataContext = mainWindowViewModel;
+            sw.Stop();
         }
 
         private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

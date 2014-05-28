@@ -1,0 +1,95 @@
+﻿<Window x:Class="TreeviewDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:TreeviewDemo"
+        xmlns:local="clr-namespace:TreeviewDemo"
+        Title="MainWindow" Height="350" Width="525">
+   
+    
+    <Grid x:Name="grid1" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="300*" />
+        </Grid.RowDefinitions>
+        <local:TreeListView x:Name="treeListView" AllowsColumnReorder="True" ItemsSource="{Binding Actions}" SelectedValuePath="{Binding SelectedAction}" Grid.Row="1">
+            <!--Create an item template to specify the ItemsSource-->
+            <local:TreeListView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Actions}" />
+            </local:TreeListView.ItemTemplate>
+            <local:TreeListView.Columns >
+                
+                <GridViewColumn Header="" Width="40" >
+                    
+                    <GridViewColumn.CellTemplate >
+                        
+                        <DataTemplate>
+                            <Border BorderBrush="LightSlateGray" BorderThickness="0.3" Margin="-6,0,-6,0">
+                                <StackPanel Orientation="Horizontal" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+
+                                <local:DebugButton Margin="0,0,0,0" Width="15" Height="15" Name="DebugButton" IsDebugging="{Binding DebugState, UpdateSourceTrigger=PropertyChanged}"></local:DebugButton>
+                                <Image Name="picImage"  Height="15" Width="15" Visibility="Collapsed"></Image >
+                            </StackPanel>
+                            </Border>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding HasPicture}" Value="True">
+                                    <Setter TargetName="picImage" Property="Source" Value="Images\dachsund.jpg" />
+                                    <Setter TargetName="picImage" Property="Visibility" Value="Visible"></Setter>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                       
+                    </GridViewColumn.CellTemplate>
+                    
+                </GridViewColumn>
+                <!--Create the first column containing the expand button and the type name.-->
+                <GridViewColumn Header="Item" Width="100">
+                    
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate >
+                            <Border BorderBrush="LightSlateGray" BorderThickness="0.3" Margin="-6,0,-6,0" >
+                                <StackPanel Orientation="Horizontal" >
+                                    <!--The Expander Button (can be used in any column (typically the first one))-->
+                                    <local:TreeListViewExpander Margin="0,0,0,0" />
+                                    <!--Display the name of the DataElement-->
+                                    <Image Width ="20" Height ="20"  Source="\Images\dachsund.jpg"></Image>
+                                    <TextBlock Text="{Binding Item}" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                            
+                    </GridViewColumn.CellTemplate> 
+                </GridViewColumn>
+                <!--Create a second column containing the number of children.-->
+                <GridViewColumn Header="Operation" Width="100">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="LightSlateGray" BorderThickness="0.3" Margin="-6,0,-6,0" >
+                            <!--Display the size of the DataElement-->
+                                <TextBlock Text="{Binding Operation}" MouseLeftButtonDown="OpenOperationEditWindow" HorizontalAlignment="Right" />
+                            </Border>
+                            </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <!--Create a third column containing the brush of the material.-->
+                <GridViewColumn Header="Value" Width="100">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="LightSlateGray" BorderThickness="0.3" Margin="-6,0,-6,0">
+                            <TextBlock Text="{Binding Value}" MouseLeftButtonDown="OpenValueEditWindow"  HorizontalAlignment="Right"/>
+                            </Border>
+                            </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+            <GridViewColumn Header="Description" Width="100">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                            <Border BorderBrush="LightSlateGray" BorderThickness="0.3" Margin="-6,0,-6,0">
+                                <TextBlock Text="{Binding Description}" HorizontalAlignment="Right"/>
+                            </Border>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            </local:TreeListView.Columns>
+        </local:TreeListView>
+    </Grid>
+</Window>

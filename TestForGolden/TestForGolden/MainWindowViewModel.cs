@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Documents;
+using TestForGolden.Annotations;
 
 namespace TestForGolden
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
         private IList<ITestItemViewModel> testItems;
+        private Bitmap shownImage;
+        private ITestItemViewModel selectedTestItemViewModel;
 
         public IList<ITestItemViewModel> TestItems
         {
@@ -45,6 +50,12 @@ namespace TestForGolden
             action1.ControlId = control.Id;
             action1.WindowId = window.Id;
 
+            Screenshot screenShot = new Screenshot();
+            screenShot.ImagePath = @"C:\Users\Phil\Desktop\screenshot.png";
+            screenShot.Adornments.Add(new ScreenshotClickAdornment { ClickX = 100, ClickY = 100 });
+
+            action1.Screenshot = screenShot;
+
             OnScreenAction action2 = new OnScreenAction();
             action2.Operation = new ClickOperation();
             action2.ControlId = control.Id;
@@ -64,6 +75,12 @@ namespace TestForGolden
             action5.Operation = new ClickOperation();
             action5.ControlId = control2.Id;
             action5.WindowId = window2.Id;
+
+            Screenshot screenShot2 = new Screenshot();
+            screenShot2.ImagePath = @"C:\Users\Phil\Desktop\screenshot.png";
+            screenShot2.Adornments.Add(new ScreenshotClickAdornment { ClickX = 300, ClickY = 250 });
+
+            action5.Screenshot = screenShot2;
 
             OnScreenAction action6 = new OnScreenAction();
             action6.Operation = new ClickOperation();
@@ -85,6 +102,21 @@ namespace TestForGolden
             appManager.Processes.Add(process);
 
             fileWriter.Write(appManager);
+        }
+
+        public ITestItemViewModel SelectedTestItemViewModel
+        {
+            get { return selectedTestItemViewModel; }
+            set
+            {
+                selectedTestItemViewModel = value;
+                if(selectedTestItemViewModel.HasScreenshot)
+                    ShownImage = selectedTestItemViewModel.Screenshot.RenderImage();
+                else
+                {
+                    ShownImage = null;
+                }
+            }
         }
 
         public MainWindowViewModel()
@@ -147,8 +179,18 @@ namespace TestForGolden
             List<TestItem> items = GetTestItems(testItems);
             stopwatch.Stop();
 
-            
-            
+
+           
+        }
+
+        public Bitmap ShownImage
+        {
+            get { return shownImage; }
+            set
+            {
+                shownImage = value;
+                OnPropertyChanged("ShownImage");
+            }
         }
 
         private List<TestItem> GetTestItems(IEnumerable<ITestItemViewModel> testItemViewModels)
@@ -182,6 +224,16 @@ namespace TestForGolden
                 }
                 GetTestItems(testItemViewModel.ChildItems, testItems, newParentTestItem);
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

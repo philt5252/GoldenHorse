@@ -12,5 +12,7 @@ namespace TestForGolden
         string AutowaitTimeout { get; set; }
 
         IList<ITestItemViewModel> ChildItems { get; }
+        Screenshot Screenshot { get; }
+        bool HasScreenshot { get; }
     }
 }

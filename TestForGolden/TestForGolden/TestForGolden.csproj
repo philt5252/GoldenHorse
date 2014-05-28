@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,6 +57,7 @@
     <Compile Include="AppProcess.cs" />
     <Compile Include="ClickOperation.cs" />
     <Compile Include="ConstantOperationParameterValue.cs" />
+    <Compile Include="ImageConverter.cs" />
     <Compile Include="MappedItem.cs" />
     <Compile Include="Operation.cs" />
     <Compile Include="OperationParameter.cs" />
@@ -63,6 +65,10 @@
     <Compile Include="OperationParameterValueMode.cs" />
     <Compile Include="ProcessGroupViewModel.cs" />
     <Compile Include="Project.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Screenshot.cs" />
+    <Compile Include="ScreenshotAdornment.cs" />
+    <Compile Include="ScreenshotClickAdornment.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="TestItem.cs" />
     <Compile Include="TestItemViewModelBase.cs" />
@@ -112,6 +118,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mouse_click2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

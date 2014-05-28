@@ -34,7 +34,8 @@ namespace TestForGolden
                 .Where(t => t.IsSubclassOf(typeof(MappedItem))
                     || t.IsSubclassOf(typeof(TestItem))
                     || t.IsSubclassOf(typeof(Operation))
-                    || t.IsSubclassOf(typeof(OperationParameterValue))).ToArray();
+                    || t.IsSubclassOf(typeof(OperationParameterValue))
+                    || t.IsSubclassOf(typeof(ScreenshotAdornment))).ToArray();
 
             XmlSerializer serializer = new XmlSerializer(test.GetType(), testItemTypes);
 
@@ -52,7 +53,8 @@ namespace TestForGolden
                 .Where(t => t.IsSubclassOf(typeof(MappedItem))
                     || t.IsSubclassOf(typeof(TestItem))
                     || t.IsSubclassOf(typeof(Operation))
-                    || t.IsSubclassOf(typeof(OperationParameterValue))).ToArray();
+                    || t.IsSubclassOf(typeof(OperationParameterValue))
+                    || t.IsSubclassOf(typeof(ScreenshotAdornment))).ToArray();
 
             XmlSerializer serializer = new XmlSerializer(typeof(Test), testItemTypes);
 

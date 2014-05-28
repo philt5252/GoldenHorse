@@ -20,6 +20,8 @@ namespace TestForGolden
 
         public virtual string AutowaitTimeout { get; set; }
         public IList<ITestItemViewModel> ChildItems { get; protected set; }
+        public Screenshot Screenshot {get { return TestItem == null ? null : TestItem.Screenshot; } }
+        public bool HasScreenshot { get { return Screenshot != null; } }
 
         protected TestItemViewModelBase()
         {

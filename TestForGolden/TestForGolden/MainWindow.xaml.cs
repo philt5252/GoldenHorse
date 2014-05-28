@@ -19,13 +19,20 @@ namespace TestForGolden
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel mainWindowViewModel;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
+            mainWindowViewModel = new MainWindowViewModel();
 
             DataContext = mainWindowViewModel;
+        }
+
+        private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            mainWindowViewModel.SelectedTestItemViewModel = treeView1.SelectedItem as ITestItemViewModel;
         }
     }
 }

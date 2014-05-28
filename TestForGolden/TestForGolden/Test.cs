@@ -5,6 +5,7 @@ namespace TestForGolden
 {
     public class Test
     {
+        public string Name { get; set; }
         public List<TestItem> TestItems { get; set; }
 
         public Test()

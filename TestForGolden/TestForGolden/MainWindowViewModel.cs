@@ -16,6 +16,7 @@ namespace TestForGolden
         private IList<ITestItemViewModel> testItems;
         private Bitmap shownImage;
         private ITestItemViewModel selectedTestItemViewModel;
+        private Project project;
 
         public IList<ITestItemViewModel> TestItems
         {
@@ -25,7 +26,16 @@ namespace TestForGolden
 
         private void SetupScreenActions()
         {
-            XmlFileWriter fileWriter = new XmlFileWriter();
+
+
+            project = new Project();
+            project.Name = "TestProj";
+            project.ProjectFolder = @"C:\TestGhProj\" + project.Name;
+
+            XmlFileWriter fileWriter = new XmlFileWriter(project);
+
+            fileWriter.SaveProject();
+
             AppProcess process = new AppProcess{Name = "Process1"};
             AppWindow window = new AppWindow{Name="Window1"};
             AppWindow window2 = new AppWindow{Name="Window2"};
@@ -51,7 +61,7 @@ namespace TestForGolden
             action1.WindowId = window.Id;
 
             Screenshot screenShot = new Screenshot();
-            screenShot.ImagePath = @"C:\Users\Phil\Desktop\screenshot.png";
+            screenShot.ImagePath = @"Screenshots\screenshot1.png";
             screenShot.Adornments.Add(new ScreenshotClickAdornment { ClickX = 100, ClickY = 100 });
 
             action1.Screenshot = screenShot;
@@ -77,7 +87,7 @@ namespace TestForGolden
             action5.WindowId = window2.Id;
 
             Screenshot screenShot2 = new Screenshot();
-            screenShot2.ImagePath = @"C:\Users\Phil\Desktop\screenshot.png";
+            screenShot2.ImagePath = @"Screenshots\screenshot2.png";
             screenShot2.Adornments.Add(new ScreenshotClickAdornment { ClickX = 300, ClickY = 250 });
 
             action5.Screenshot = screenShot2;
@@ -88,16 +98,22 @@ namespace TestForGolden
             action6.WindowId = window2.Id;
 
             Test test = new Test();
+            test.Name = "Test1";
 
-            test.TestItems.Add(action1);
-            test.TestItems.Add(action2);
-            test.TestItems.Add(action3);
-            test.TestItems.Add(action4);
-            test.TestItems.Add(action5);
-            test.TestItems.Add(action6);
+            for (int i = 0; i < 50; i++)
+            {
+                test.TestItems.Add(action1);
+                test.TestItems.Add(action2);
+                test.TestItems.Add(action3);
+                test.TestItems.Add(action4);
+                test.TestItems.Add(action5);
+                test.TestItems.Add(action6);
+            }
 
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
             fileWriter.Write(test);
-
+            stopWatch.Stop();
             AppManager appManager = new AppManager();
             appManager.Processes.Add(process);
 
@@ -122,9 +138,20 @@ namespace TestForGolden
         public MainWindowViewModel()
         {
             SetupScreenActions();
-            XmlFileWriter fileWriter = new XmlFileWriter();
+            XmlFileWriter fileWriter = new XmlFileWriter(project);
 
-            Test test = fileWriter.Read();
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            Test test = fileWriter.Read("Test1");
+            sw.Stop();
+            sw.Reset();
+            sw.Start();
+            foreach (TestItem testItem in test.TestItems)
+            {
+                if (testItem.HasScreenshot)
+                    testItem.Screenshot.RenderImage();
+            }
+            sw.Stop();
             AppManager appManager = fileWriter.ReadAppManager();
 
             Stopwatch stopwatch = new Stopwatch();

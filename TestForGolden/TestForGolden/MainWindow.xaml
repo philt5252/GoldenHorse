@@ -1,16 +1,23 @@
 ﻿<Window x:Class="TestForGolden.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="762.313">
+        Title="MainWindow" Height="398.197" Width="762.313">
     <Grid>
-        <TreeView x:Name="treeView1" SelectedItemChanged="TreeView_OnSelectedItemChanged" HorizontalAlignment="Left" Height="310" Margin="10,10,0,0" VerticalAlignment="Top" Width="331" ItemsSource="{Binding TestItems}">
+        <TreeView x:Name="treeView1" SelectedItemChanged="TreeView_OnSelectedItemChanged" HorizontalAlignment="Left" Height="310" Margin="264,10,0,0" VerticalAlignment="Top" Width="208" ItemsSource="{Binding TestItems}">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding ChildItems}">
                     <TextBlock Text ="{Binding Name}"></TextBlock>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-        <Image Source="{Binding ShownImage, Converter={StaticResource ImageConverter}}" HorizontalAlignment="Left" Height="191" Margin="346,10,0,0" VerticalAlignment="Top" Width="267"/>
+        <Image Source="{Binding ShownImage, Converter={StaticResource ImageConverter}}" HorizontalAlignment="Left" Height="191" Margin="477,10,0,0" VerticalAlignment="Top" Width="267"/>
+        <TreeView x:Name="treeView1_Copy" HorizontalAlignment="Left" Height="310" Margin="51,10,0,0" VerticalAlignment="Top" Width="208" ItemsSource="{Binding Project}">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <TextBlock Text ="{Binding Name}"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
 
     </Grid>
 </Window>

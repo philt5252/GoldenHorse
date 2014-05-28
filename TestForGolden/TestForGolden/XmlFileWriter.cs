@@ -12,6 +12,27 @@ namespace TestForGolden
 {
     public class XmlFileWriter
     {
+        private readonly Project project;
+
+        public XmlFileWriter(Project project)
+        {
+            this.project = project;
+        }
+
+        public void SaveProject()
+        {
+            XmlSerializer serializer = new XmlSerializer(project.GetType());
+            string projectPath = Path.Combine(project.ProjectFolder, project.Name + ".ghproj");
+            Directory.CreateDirectory(project.ProjectFolder);
+
+            using (FileStream fileStream = File.Create(projectPath))
+            {
+                serializer.Serialize(fileStream, project);
+
+                fileStream.Flush();
+            } 
+        }
+
         public void Write(AppManager appManager)
         {
             Type[] testItemTypes = Assembly.GetExecutingAssembly().GetTypes()
@@ -20,7 +41,12 @@ namespace TestForGolden
 
             XmlSerializer serializer = new XmlSerializer(appManager.GetType(), testItemTypes);
 
-            using (FileStream fileStream = File.Create("saveFileAppManager.xml"))
+            string appManagerDir = Path.Combine(project.ProjectFolder, project.AppManagerFolder);
+            Directory.CreateDirectory(appManagerDir);
+
+            string appManagerPath = Path.Combine(appManagerDir, "AppManager.gham");
+
+            using (FileStream fileStream = File.Create(appManagerPath))
             {
                 serializer.Serialize(fileStream, appManager);
 
@@ -39,7 +65,9 @@ namespace TestForGolden
 
             XmlSerializer serializer = new XmlSerializer(test.GetType(), testItemTypes);
 
-            using (FileStream fileStream = File.Create("saveFile.xml"))
+            var testPath = CreateTestPath(test.Name);
+
+            using (FileStream fileStream = File.Create(testPath))
             {
                 serializer.Serialize(fileStream, test);
 
@@ -47,7 +75,17 @@ namespace TestForGolden
             } 
         }
 
-        public Test Read()
+        private string CreateTestPath(string testName)
+        {
+            string testDir = Path.Combine(project.ProjectFolder, project.TestsFolder, testName);
+            if (!Directory.Exists(testDir))
+                Directory.CreateDirectory(testDir);
+
+            string testPath = Path.Combine(testDir, testName + ".ghtest");
+            return testPath;
+        }
+
+        public Test Read(string testName)
         {
             Type[] testItemTypes = Assembly.GetExecutingAssembly().GetTypes()
                 .Where(t => t.IsSubclassOf(typeof(MappedItem))
@@ -56,9 +94,11 @@ namespace TestForGolden
                     || t.IsSubclassOf(typeof(OperationParameterValue))
                     || t.IsSubclassOf(typeof(ScreenshotAdornment))).ToArray();
 
+            var testPath = CreateTestPath(testName);
+
             XmlSerializer serializer = new XmlSerializer(typeof(Test), testItemTypes);
 
-            using (FileStream fileStream = File.OpenRead("saveFile.xml"))
+            using (FileStream fileStream = File.OpenRead(testPath))
             {
                 return serializer.Deserialize(fileStream) as Test;
             }

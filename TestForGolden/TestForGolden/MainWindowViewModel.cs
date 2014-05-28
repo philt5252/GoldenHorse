@@ -18,8 +18,78 @@ namespace TestForGolden
             protected set { testItems = value; }
         }
 
+        private void SetupScreenActions()
+        {
+            XmlFileWriter fileWriter = new XmlFileWriter();
+            AppProcess process = new AppProcess{Name = "Process1"};
+            AppWindow window = new AppWindow{Name="Window1"};
+            AppWindow window2 = new AppWindow{Name="Window2"};
+            AppControl control = new AppControl();
+            AppControl control2 = new AppControl();
+
+            process.Children.Add(window);
+            process.Children.Add(window2);
+            window.Children.Add(control);
+            window2.Children.Add(control2);
+
+            control.WindowId = window.Id;
+            control2.WindowId = window2.Id;
+
+            window.ProcessId = process.Id;
+            window2.ProcessId = process.Id;
+
+            OnScreenAction action1 = new OnScreenAction();
+            action1.Operation = new ClickOperation();
+            action1.Operation.Parameters[0].Value.DisplayValue = "1";
+            action1.Operation.Parameters[1].Value.DisplayValue = "2";
+            action1.ControlId = control.Id;
+            action1.WindowId = window.Id;
+
+            OnScreenAction action2 = new OnScreenAction();
+            action2.Operation = new ClickOperation();
+            action2.ControlId = control.Id;
+            action2.WindowId = window.Id;
+
+            OnScreenAction action3 = new OnScreenAction();
+            action3.Operation = new ClickOperation();
+            action3.ControlId = control.Id;
+            action3.WindowId = window.Id;
+
+            OnScreenAction action4 = new OnScreenAction();
+            action4.Operation = new ClickOperation();
+            action4.ControlId = control2.Id;
+            action4.WindowId = window2.Id;
+
+            OnScreenAction action5 = new OnScreenAction();
+            action5.Operation = new ClickOperation();
+            action5.ControlId = control2.Id;
+            action5.WindowId = window2.Id;
+
+            OnScreenAction action6 = new OnScreenAction();
+            action6.Operation = new ClickOperation();
+            action6.ControlId = control2.Id;
+            action6.WindowId = window2.Id;
+
+            Test test = new Test();
+
+            test.TestItems.Add(action1);
+            test.TestItems.Add(action2);
+            test.TestItems.Add(action3);
+            test.TestItems.Add(action4);
+            test.TestItems.Add(action5);
+            test.TestItems.Add(action6);
+
+            fileWriter.Write(test);
+
+            AppManager appManager = new AppManager();
+            appManager.Processes.Add(process);
+
+            fileWriter.Write(appManager);
+        }
+
         public MainWindowViewModel()
         {
+            SetupScreenActions();
             XmlFileWriter fileWriter = new XmlFileWriter();
 
             Test test = fileWriter.Read();
@@ -29,8 +99,8 @@ namespace TestForGolden
             stopwatch.Start();
             IList<ITestItemViewModel> testItemViewModels = new List<ITestItemViewModel>();
 
-            ITestItemViewModel processTestItemViewModel = null;
-            ITestItemViewModel windowTestItemViewModel = null;
+            ProcessGroupViewModel processTestItemViewModel = null;
+            WindowGroupViewModel windowTestItemViewModel = null;
 
             foreach (TestItem testItem in test.TestItems)
             {
@@ -44,18 +114,20 @@ namespace TestForGolden
                     AppWindow appWindow = appManager.GetMappedItem<AppWindow>(onScreenAction.WindowId);
 
                     if (windowTestItemViewModel == null
-                        || windowTestItemViewModel.Name != appWindow.Name)
+                        || windowTestItemViewModel.WindowId != appWindow.Id)
                     {
                         windowTestItemViewModel = new WindowGroupViewModel();
+                        windowTestItemViewModel.WindowId = appWindow.Id;
                         windowTestItemViewModel.Name = appWindow.Name;
 
                         AppProcess appProcess = appManager.GetMappedItem<AppProcess>(appWindow.ProcessId);
 
                         if (processTestItemViewModel == null
-                            || processTestItemViewModel.Name != appProcess.Name)
+                            || processTestItemViewModel.ProcessId != appProcess.Id)
                         {
                             processTestItemViewModel = new ProcessGroupViewModel();
                             processTestItemViewModel.Name = "Process1";
+                            processTestItemViewModel.ProcessId = appProcess.Id;
                             
                             testItemViewModels.Add(processTestItemViewModel);
                         }
@@ -75,7 +147,7 @@ namespace TestForGolden
             List<TestItem> items = GetTestItems(testItems);
             stopwatch.Stop();
 
-            ClickOperation operation = new ClickOperation();
+            
             
         }
 

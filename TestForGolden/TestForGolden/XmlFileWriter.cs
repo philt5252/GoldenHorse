@@ -15,7 +15,8 @@ namespace TestForGolden
         public void Write(AppManager appManager)
         {
             Type[] testItemTypes = Assembly.GetExecutingAssembly().GetTypes()
-                .Where(t => t.IsSubclassOf(typeof(MappedItem))).ToArray();
+                .Where(t => t.IsSubclassOf(typeof(MappedItem)) 
+                    || t.IsSubclassOf(typeof(Operation))).ToArray();
 
             XmlSerializer serializer = new XmlSerializer(appManager.GetType(), testItemTypes);
 
@@ -30,7 +31,10 @@ namespace TestForGolden
         public void Write(Test test)
         {
             Type[] testItemTypes = Assembly.GetExecutingAssembly().GetTypes()
-                .Where(t => t.IsSubclassOf(typeof(TestItem))).ToArray();
+                .Where(t => t.IsSubclassOf(typeof(MappedItem))
+                    || t.IsSubclassOf(typeof(TestItem))
+                    || t.IsSubclassOf(typeof(Operation))
+                    || t.IsSubclassOf(typeof(OperationParameterValue))).ToArray();
 
             XmlSerializer serializer = new XmlSerializer(test.GetType(), testItemTypes);
 
@@ -45,7 +49,10 @@ namespace TestForGolden
         public Test Read()
         {
             Type[] testItemTypes = Assembly.GetExecutingAssembly().GetTypes()
-                .Where(t => t.IsSubclassOf(typeof(TestItem))).ToArray();
+                .Where(t => t.IsSubclassOf(typeof(MappedItem))
+                    || t.IsSubclassOf(typeof(TestItem))
+                    || t.IsSubclassOf(typeof(Operation))
+                    || t.IsSubclassOf(typeof(OperationParameterValue))).ToArray();
 
             XmlSerializer serializer = new XmlSerializer(typeof(Test), testItemTypes);
 

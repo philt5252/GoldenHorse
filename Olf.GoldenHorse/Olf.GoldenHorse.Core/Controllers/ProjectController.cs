@@ -1,5 +1,7 @@
-﻿using Microsoft.Practices.Prism.Regions;
+﻿using System.IO;
+using Microsoft.Practices.Prism.Regions;
 using Olf.GoldenHorse.Foundation.Controllers;
+using Olf.GoldenHorse.Foundation.DataAccess;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
@@ -13,14 +15,18 @@ namespace Olf.GoldenHorse.Core.Controllers
     {
         private readonly INewProjectWindowFactory newProjectWindowFactory;
         private readonly INewProjectViewModelFactory newProjectViewModelFactory;
+        private readonly IProjectRepository projectRepository;
         private readonly IRegionManager regionManager;
+        private IWindow newProjectWindow;
 
         public ProjectController(INewProjectWindowFactory newProjectWindowFactory,
             INewProjectViewModelFactory newProjectViewModelFactory,
+            IProjectRepository projectRepository,
             IRegionManager regionManager)
         {
             this.newProjectWindowFactory = newProjectWindowFactory;
             this.newProjectViewModelFactory = newProjectViewModelFactory;
+            this.projectRepository = projectRepository;
             this.regionManager = regionManager;
         }
 
@@ -29,7 +35,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             Project project = new Project();
             ProjectManager.CurrentProject = project;
 
-            IWindow newProjectWindow = newProjectWindowFactory.Create();
+            newProjectWindow = newProjectWindowFactory.Create();
             INewProjectViewModel newProjectViewModel = newProjectViewModelFactory.Create();
 
             newProjectWindow.DataContext = newProjectViewModel;
@@ -41,6 +47,24 @@ namespace Olf.GoldenHorse.Core.Controllers
         {
             Project project = new Project();
             ProjectManager.CurrentProject = project;
+        }
+
+        public void Create(string projectPath, string projectName)
+        {
+            if (newProjectWindow != null)
+            {
+                newProjectWindow.Close();
+                newProjectWindow = null;
+            }
+
+            Project project = new Project();
+            project.ProjectFolder = Path.Combine(projectPath, projectName);
+            project.Name = projectName;
+
+            ProjectManager.CurrentProject = project;
+
+            projectRepository.Create(project);
+                
         }
     }
 }

@@ -1,15 +1,19 @@
 using System;
+using System.IO;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
+using Olf.GoldenHorse.Core.Controllers;
+using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.GoldenHorse.Foundation.ViewModels;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
     public class NewProjectViewModel : ViewModelBase, INewProjectViewModel
     {
+        private readonly IProjectController projectController;
         private string location;
-        private DelegateCommand saveCommand;
+        private DelegateCommand saveNewProjectCommand;
         private string name;
 
         public string Name
@@ -19,7 +23,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
             {
                 name = value; 
                 
-                saveCommand.RaiseCanExecuteChanged();
+                saveNewProjectCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -32,37 +36,40 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 
                 OnPropertyChanged("Location");
 
-                saveCommand.RaiseCanExecuteChanged();
+                saveNewProjectCommand.RaiseCanExecuteChanged();
             }
         }
 
         public ICommand BrowseCommand { get; protected set; }
-        public ICommand SaveCommand { get; protected set; }
-        public ICommand CancelCommand { get; protected set; }
+        public ICommand SaveNewProjectCommand { get; protected set; }
+        public ICommand CancelNewProjectCommand { get; protected set; }
 
-        public NewProjectViewModel()
+        public NewProjectViewModel(IProjectController projectController)
         {
+            this.projectController = projectController;
             BrowseCommand = new DelegateCommand(ExecuteBrowseCommand);
 
-            saveCommand = new DelegateCommand(ExecuteSaveCommand, CanExecuteSaveCommand);
-            SaveCommand = saveCommand;
+            saveNewProjectCommand = new DelegateCommand(ExecuteSaveNewProjectCommandCommand, CanExecuteSaveNewProjectCommandCommand);
+            SaveNewProjectCommand = saveNewProjectCommand;
 
-            CancelCommand = new DelegateCommand(ExecuteCancelCommand);
+            CancelNewProjectCommand = new DelegateCommand(ExecuteCancelNewProjectCommand);
+
+            Location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GoldenHorseProjects");
         }
 
-        protected virtual void ExecuteCancelCommand()
+        protected virtual void ExecuteCancelNewProjectCommand()
         {
             throw new NotImplementedException();
         }
 
-        protected virtual bool CanExecuteSaveCommand()
+        protected virtual bool CanExecuteSaveNewProjectCommandCommand()
         {
-            throw new NotImplementedException();
+            return !(string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Location));
         }
 
-        protected virtual void ExecuteSaveCommand()
+        protected virtual void ExecuteSaveNewProjectCommandCommand()
         {
-            throw new NotImplementedException();
+            projectController.Create(Location, Name);
         }
 
         protected virtual void ExecuteBrowseCommand()

@@ -7,5 +7,6 @@ namespace Olf.GoldenHorse.Foundation.DataAccess
     {
         Project Open(string filePath);
         void Save(Project project);
+        void Create(Project project);
     }
 }

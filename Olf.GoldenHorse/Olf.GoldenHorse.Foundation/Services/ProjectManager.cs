@@ -47,5 +47,6 @@ namespace Olf.GoldenHorse.Foundation.Services
             Directory.CreateDirectory(CurrentProject.ProjectFolder);
             return projectPath;
         }
+
     }
 }

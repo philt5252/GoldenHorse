@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Olf.GoldenHorse.Foundation.DataAccess;
 
 namespace Olf.GoldenHorse.Core.DataAccess.Autofac
 {
@@ -7,6 +8,8 @@ namespace Olf.GoldenHorse.Core.DataAccess.Autofac
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
+
+            builder.RegisterType<ProjectRepository>().As<IProjectRepository>().SingleInstance();
         }
     }
 }

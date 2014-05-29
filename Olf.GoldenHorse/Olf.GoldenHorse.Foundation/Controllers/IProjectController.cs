@@ -4,5 +4,6 @@
     {
         void New();
         void Open();
+        void Create(string projectPath, string project);
     }
 }

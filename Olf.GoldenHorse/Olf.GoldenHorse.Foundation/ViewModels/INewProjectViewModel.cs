@@ -10,7 +10,7 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
         string Location { get; set; }
 
         ICommand BrowseCommand { get; }
-        ICommand SaveCommand { get; }
-        ICommand CancelCommand { get; }
+        ICommand SaveNewProjectCommand { get; }
+        ICommand CancelNewProjectCommand { get; }
     }
 }

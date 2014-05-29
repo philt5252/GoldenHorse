@@ -76,7 +76,7 @@ namespace Olf.GoldenHorse.Core.Controllers
 
             projectExplorerView.DataContext = projectExplorerViewModel;
 
-            //regionManager.Regions[Regions.ProjectExplorerViewRegion].ClearAddAndActivate(projectExplorerView);
+            regionManager.Regions[Regions.ProjectExplorerViewRegion].ClearAddAndActivate(projectExplorerView);
         }
 
         public void Open()

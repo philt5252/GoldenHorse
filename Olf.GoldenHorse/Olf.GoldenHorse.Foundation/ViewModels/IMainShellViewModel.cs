@@ -4,6 +4,7 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
 {
     public interface IMainShellViewModel
     {
-        ICommand NewProjectCommand { get; } 
+        ICommand NewProjectSuiteCommand { get; }
+        ICommand OpenProjectSuiteCommand { get; } 
     }
 }

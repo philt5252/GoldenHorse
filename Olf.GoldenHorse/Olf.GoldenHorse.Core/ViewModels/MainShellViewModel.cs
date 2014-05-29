@@ -11,22 +11,22 @@ namespace Olf.GoldenHorse.Core.ViewModels
     public class MainShellViewModel : IMainShellViewModel
     {
         private readonly IProjectSuiteController projectSuiteController;
-        public ICommand NewProjectCommand { get; protected set; }
-        public ICommand OpenProjectCommand { get; protected set; }
+        public ICommand NewProjectSuiteCommand { get; protected set; }
+        public ICommand OpenProjectSuiteCommand { get; protected set; }
 
         public MainShellViewModel(IProjectSuiteController projectSuiteController)
         {
             this.projectSuiteController = projectSuiteController;
-            NewProjectCommand = new DelegateCommand(ExecuteNewProjectCommand);
-            OpenProjectCommand = new DelegateCommand(ExecuteOpenProjectCommand);
+            NewProjectSuiteCommand = new DelegateCommand(ExecuteNewProjectSuiteCommand);
+            OpenProjectSuiteCommand = new DelegateCommand(ExecuteOpenProjectSuiteCommand);
         }
 
-        private void ExecuteOpenProjectCommand()
+        private void ExecuteOpenProjectSuiteCommand()
         {
             projectSuiteController.Open();
         }
 
-        protected virtual void ExecuteNewProjectCommand()
+        protected virtual void ExecuteNewProjectSuiteCommand()
         {
             projectSuiteController.New();
         }

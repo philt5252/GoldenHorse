@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Prism.Regions;
+using Olf.GoldenHorse.Core.Helpers;
 using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels;
 using Olf.GoldenHorse.Foundation.Models;
@@ -42,11 +43,9 @@ namespace Olf.GoldenHorse.Core.Controllers
 
             window.Show();
 
-            regionManager.Regions[Regions.MainShellViewRegion].Add(mainShellView);
-            regionManager.Regions[Regions.MainShellViewRegion].Activate(mainShellView);
+            regionManager.Regions[Regions.MainShellViewRegion].AddAndActivate(mainShellView);
 
-            //regionManager.Regions[Regions.ProjectExplorerViewRegion].Add(projectExplorerView);
-            //regionManager.Regions[Regions.ProjectExplorerViewRegion].Activate(projectExplorerView);
+            regionManager.Regions[Regions.ProjectExplorerViewRegion].AddAndActivate(projectExplorerView);
         }
     }
 }

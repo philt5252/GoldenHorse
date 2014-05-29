@@ -12,6 +12,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         private string logsFolder;
         private string appManagerFolder;
         private bool init = false;
+        private List<ProjectFile> testFiles;
 
         public string Name { get; set; }
 
@@ -21,18 +22,6 @@ namespace Olf.GoldenHorse.Foundation.Models
             set
             {
                 testsFolder = value;
-
-                if (!init)
-                    return;
-
-                string projectFolder = ProjectSuiteManager.GetProjectFolder(this);
-
-                TestFiles = Directory.EnumerateFiles(Path.Combine(projectFolder, TestsFolder), "*.ghtest")
-                    .Select(f =>
-                    {
-                        FileInfo fileInfo = new FileInfo(f);
-                        return new ProjectFile {Name = fileInfo.Name, FilePath = fileInfo.FullName};
-                    }).ToList();
             }
         }
 
@@ -48,7 +37,31 @@ namespace Olf.GoldenHorse.Foundation.Models
             set { appManagerFolder = value; }
         }
 
-        public List<ProjectFile> TestFiles { get; protected set; }
+        [XmlIgnore]
+        public List<ProjectFile> TestFiles
+        {
+            get
+            {
+                if (testFiles == null)
+                {
+                    string projectFolder = ProjectSuiteManager.GetProjectFolder(this);
+
+                    string testsDir = Path.Combine(projectFolder, TestsFolder);
+
+                    if (!Directory.Exists(testsDir))
+                        Directory.CreateDirectory(testsDir);
+
+                    testFiles = Directory.EnumerateFiles(testsDir, "*.ghtest")
+                        .Select(f =>
+                        {
+                            FileInfo fileInfo = new FileInfo(f);
+                            return new ProjectFile { Name = fileInfo.Name, FilePath = fileInfo.FullName };
+                        }).ToList();
+                }
+
+                return testFiles;
+            }
+        }
 
         [XmlIgnore]
         public string ProjectFolder { get { return ProjectSuiteManager.GetProjectFolder(this); }}
@@ -58,10 +71,6 @@ namespace Olf.GoldenHorse.Foundation.Models
             TestsFolder = "Tests";
             LogsFolder = "Logs";
             AppManagerFolder = "AppManager";
-
-            TestFiles = new List<ProjectFile>();
-
-            init = true;
         }
     }
 }

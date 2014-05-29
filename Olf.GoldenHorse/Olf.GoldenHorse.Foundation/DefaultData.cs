@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Olf.GoldenHorse.Foundation
 {
@@ -9,7 +10,7 @@ namespace Olf.GoldenHorse.Foundation
         {
             get
             {
-                return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "GoldenHorseProjects";
+                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GoldenHorseProjects");
             }
         }
     }

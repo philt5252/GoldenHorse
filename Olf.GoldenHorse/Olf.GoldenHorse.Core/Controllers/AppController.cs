@@ -58,7 +58,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             regionManager.Regions[Regions.MainWorkspaceViewRegion].AddAndActivate(projectWorkspaceView);
 
 
-            regionManager.Regions[Regions.ExplorerViewRegion].AddAndActivate(projectExplorerView);
+            regionManager.Regions[Regions.ExplorerViewRegion].AddAndActivate(projectExplorerView, ViewNames.ProjectExplorerView);
 
             regionManager.Regions[Regions.WorkspaceViewRegion].AddAndActivate(workspaceView);
         }

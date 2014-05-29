@@ -1,12 +1,19 @@
 ﻿using Microsoft.Practices.Prism.Regions;
+using Olf.GoldenHorse.Foundation.Views;
 
 namespace Olf.GoldenHorse.Core.Helpers
 {
     public static class RegionHelpers
     {
-        public static void AddAndActivate(this IRegion region, object view)
+        public static void AddAndActivate(this IRegion region, object view, string viewName="")
         {
-            region.Add(view);
+            if(viewName != "")
+                region.Add(view, viewName);
+            else
+            {
+                region.Add(view);
+            }
+
             region.Activate(view);
         }
 

@@ -62,6 +62,10 @@
     <Compile Include="ViewModels\NewProjectViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Olf.GoldenHorse.Foundation.DataAccess\Olf.GoldenHorse.Foundation.DataAccess.csproj">
+      <Project>{6CF0308D-395D-482C-BE4D-16F8DF3ECFB0}</Project>
+      <Name>Olf.GoldenHorse.Foundation.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Olf.GoldenHorse.Foundation.Views\Olf.GoldenHorse.Foundation.Views.csproj">
       <Project>{4C3ABC74-3E81-4A54-AFF3-871F5A351FFC}</Project>
       <Name>Olf.GoldenHorse.Foundation.Views</Name>

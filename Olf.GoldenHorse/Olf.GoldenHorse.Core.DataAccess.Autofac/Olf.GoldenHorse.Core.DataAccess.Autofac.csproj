@@ -50,6 +50,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Olf.GoldenHorse.Core.DataAccess\Olf.GoldenHorse.Core.DataAccess.csproj">
+      <Project>{282C92C3-2EAB-422A-86FD-86AF26607CC2}</Project>
+      <Name>Olf.GoldenHorse.Core.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Olf.GoldenHorse.Foundation.DataAccess\Olf.GoldenHorse.Foundation.DataAccess.csproj">
+      <Project>{6CF0308D-395D-482C-BE4D-16F8DF3ECFB0}</Project>
+      <Name>Olf.GoldenHorse.Foundation.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

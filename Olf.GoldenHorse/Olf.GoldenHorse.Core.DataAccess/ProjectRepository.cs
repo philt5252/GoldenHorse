@@ -8,10 +8,16 @@ namespace Olf.GoldenHorse.Core.DataAccess
 {
     public class ProjectRepository : IProjectRepository
     {
+        private XmlSerializer serializer;
+        private const string extension = ".ghproj";
+
+        public ProjectRepository()
+        {
+            serializer = new XmlSerializer(typeof(Project));
+        }
+
         public Project Open(string filePath)
         {
-            XmlSerializer serializer = new XmlSerializer(ProjectManager.CurrentProject.GetType());
-
             using (FileStream fileStream = File.Create(filePath))
             {
                 Project project = serializer.Deserialize(fileStream) as Project;
@@ -21,15 +27,31 @@ namespace Olf.GoldenHorse.Core.DataAccess
 
         public void Save(Project project)
         {
-            XmlSerializer serializer = new XmlSerializer(ProjectManager.CurrentProject.GetType());
-            var projectPath = ProjectManager.GetProjectPath();
+            var projectPath =Path.Combine(project.ProjectFolder,  project.Name + extension);
 
             using (FileStream fileStream = File.Create(projectPath))
             {
-                serializer.Serialize(fileStream, ProjectManager.CurrentProject);
+                serializer.Serialize(fileStream, project);
 
                 fileStream.Flush();
             } 
+        }
+
+        public void Create(Project project)
+        {
+            var projectDir = project.ProjectFolder;
+
+            if (!Directory.Exists(projectDir))
+                Directory.CreateDirectory(projectDir);
+
+            string projectPath = Path.Combine(project.ProjectFolder, project.Name + extension);
+            using (FileStream fileStream = File.Create(projectPath))
+            {
+                serializer.Serialize(fileStream, project);
+
+                fileStream.Flush();
+            } 
+
         }
     }
 }

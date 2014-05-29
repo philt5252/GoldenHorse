@@ -3,5 +3,6 @@
     public interface IWindow : IViewWithDataContext
     {
         void Show();
+        void Close();
     }
 }

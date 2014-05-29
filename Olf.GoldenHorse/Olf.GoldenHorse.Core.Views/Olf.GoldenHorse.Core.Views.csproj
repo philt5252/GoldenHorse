@@ -86,6 +86,7 @@
     <Compile Include="Factories\NewProjectSuiteWindowFactory.cs" />
     <Compile Include="Factories\NewProjectWindowFactory.cs" />
     <Compile Include="Factories\ProjectExplorerViewFactory.cs" />
+    <Compile Include="Factories\ProjectWorkspaceViewFactory.cs" />
     <Compile Include="Factories\RecordWindowFactory.cs" />
     <Compile Include="Factories\TestMainShellViewFactory.cs" />
     <Compile Include="Factories\WorkspaceViewFactory.cs" />
@@ -103,6 +104,9 @@
     </Compile>
     <Compile Include="ProjectExplorerView.xaml.cs">
       <DependentUpon>ProjectExplorerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectWorkSpaceView.xaml.cs">
+      <DependentUpon>ProjectWorkSpaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecordWindow.xaml.cs">
@@ -155,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProjectExplorerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectWorkSpaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

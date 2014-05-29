@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
+             xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
              x:Class="Olf.GoldenHorse.Core.Views.MainShellView" 
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
@@ -12,7 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="500*"/>
             <RowDefinition Height="26"/>
         </Grid.RowDefinitions>
         <Menu>
@@ -40,14 +41,13 @@
                 </ToolBarTray>
             </ToolBar>
         </DockPanel>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"></ColumnDefinition>
-                <ColumnDefinition Width="600*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <ContentControl Grid.Column="0" Name="projectExplorerCtrl" regions:RegionManager.RegionName="ProjectExplorerViewRegion"></ContentControl>
-            <ContentControl Grid.Column="1" Name="workspaceCtrl" regions:RegionManager.RegionName="WorkspaceViewRegion"></ContentControl>
-        </Grid>
+        <xcad:DockingManager Grid.Row="2">
+            <xcad:LayoutRoot>
+                <xcad:LayoutPanel>
+                    <xcad:LayoutAnchorablePane regions:RegionManager.RegionName="MainWorkspaceRegion"></xcad:LayoutAnchorablePane>
+                </xcad:LayoutPanel>
+            </xcad:LayoutRoot>
+        </xcad:DockingManager>
 
     </Grid>
 </UserControl>

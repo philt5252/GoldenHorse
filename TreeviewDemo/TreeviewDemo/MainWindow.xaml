@@ -22,12 +22,12 @@
         </ControlTemplate>
         <SolidColorBrush x:Key="MyBorderBrush" Color="White"></SolidColorBrush>
 
-        
+
         <Style x:Key="BorderStyle" TargetType="Border">
-           <Setter Property="BorderBrush" Value="{StaticResource MyBorderBrush}"></Setter>
-           <Setter Property="BorderThickness" Value="0.3"></Setter>  
+            <Setter Property="BorderBrush" Value="{StaticResource MyBorderBrush}"></Setter>
+            <Setter Property="BorderThickness" Value="0.3"></Setter>
         </Style>
- 
+
     </Window.Resources>
 
 
@@ -42,18 +42,18 @@
                 <HierarchicalDataTemplate ItemsSource="{Binding Actions}" />
             </local:TreeListView.ItemTemplate>
             <local:TreeListView.Columns >
-                
+
                 <GridViewColumn Header="" Width="40" >
-                    
+
                     <GridViewColumn.CellTemplate >
-                        
+
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                 <StackPanel Orientation="Horizontal" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
 
-                                <local:DebugButton Margin="0,0,0,0" Width="15" Height="15" Name="DebugButton" IsDebugging="{Binding DebugState, UpdateSourceTrigger=PropertyChanged}"></local:DebugButton>
-                                <Image Name="picImage"  Height="15" Width="15" Visibility="Collapsed"></Image >
-                            </StackPanel>
+                                    <local:DebugButton Margin="0,0,0,0" Width="15" Height="15" Name="DebugButton" IsDebugging="{Binding DebugState, UpdateSourceTrigger=PropertyChanged}"></local:DebugButton>
+                                    <Image Name="picImage"  Height="15" Width="15" Visibility="Collapsed"></Image >
+                                </StackPanel>
                             </Border>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding HasPicture}" Value="True">
@@ -62,9 +62,9 @@
                                 </DataTrigger>
                             </DataTemplate.Triggers>
                         </DataTemplate>
-                       
+
                     </GridViewColumn.CellTemplate>
-                    
+
                 </GridViewColumn>
                 <!--Create the first column containing the expand button and the type name.-->
                 <GridViewColumn Header="Item" Width="100">
@@ -73,33 +73,33 @@
                         <DataTemplate >
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                 <StackPanel Orientation="Horizontal">
-                                <Grid >
-                                    <local:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1" />
-                                   <!-- <TreeViewItem Template="{StaticResource TreeViewItemLines}"></TreeViewItem>-->
-                                       
+                                    <Grid >
+                                        <local:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1" />
+                                        <!-- <TreeViewItem Template="{StaticResource TreeViewItemLines}"></TreeViewItem>-->
+
                                     </Grid>
-                                <StackPanel Orientation="Horizontal">
-                                    <!--The Expander Button (can be used in any column (typically the first one))-->
-                                    
-                                    <Image Width ="20" Height ="20"  Source="\Images\dachsund.jpg"></Image>
-                                    <TextBlock Text="{Binding Item}" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--The Expander Button (can be used in any column (typically the first one))-->
+
+                                        <Image Width ="20" Height ="20"  Source="\Images\dachsund.jpg"></Image>
+                                        <TextBlock Text="{Binding Item}" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
 
 
-                                </StackPanel>
+                                    </StackPanel>
                                 </StackPanel>
                             </Border>
-                        </DataTemplate>  
-                    </GridViewColumn.CellTemplate> 
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
                 </GridViewColumn>
                 <!--Create a second column containing the number of children.-->
                 <GridViewColumn Header="Operation" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0" >
-                            <!--Display the size of the DataElement-->
+                                <!--Display the size of the DataElement-->
                                 <TextBlock Text="{Binding Operation}" MouseLeftButtonDown="OpenOperationEditWindow" HorizontalAlignment="Right" />
                             </Border>
-                            </DataTemplate>
+                        </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
                 <!--Create a third column containing the brush of the material.-->
@@ -107,20 +107,20 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                            <TextBlock Text="{Binding Value}" MouseLeftButtonDown="OpenValueEditWindow"  HorizontalAlignment="Right"/>
+                                <TextBlock Text="{Binding Value}" MouseLeftButtonDown="OpenValueEditWindow"  HorizontalAlignment="Right"/>
                             </Border>
-                            </DataTemplate>
+                        </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
-            <GridViewColumn Header="Description" Width="100">
-                <GridViewColumn.CellTemplate>
-                    <DataTemplate>
+                <GridViewColumn Header="Description" Width="100">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                 <TextBlock Text="{Binding Description}" HorizontalAlignment="Right"/>
                             </Border>
-                    </DataTemplate>
-                </GridViewColumn.CellTemplate>
-            </GridViewColumn>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
             </local:TreeListView.Columns>
         </local:TreeListView>
     </Grid>

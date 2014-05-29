@@ -44,6 +44,7 @@
     <Compile Include="Factories\INewProjectSuiteWindowFactory.cs" />
     <Compile Include="Factories\INewProjectWindowFactory.cs" />
     <Compile Include="Factories\IProjectExplorerViewFactory.cs" />
+    <Compile Include="Factories\IProjectWorkspaceViewFactory.cs" />
     <Compile Include="Factories\IRecordWindowFactory.cs" />
     <Compile Include="Factories\IWorkspaceViewFactory.cs" />
     <Compile Include="Factories\ITestMainShellViewFactory.cs" />

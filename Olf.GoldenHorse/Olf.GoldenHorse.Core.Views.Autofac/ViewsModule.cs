@@ -31,6 +31,7 @@ namespace Olf.GoldenHorse.Core.Views.Autofac
             builder.RegisterType<TestMainShellViewFactory>().As<ITestMainShellViewFactory>().SingleInstance();
             builder.RegisterType<NewProjectSuiteWindowFactory>().As<INewProjectSuiteWindowFactory>().SingleInstance();
             builder.RegisterType<ProjectWorkspaceViewFactory>().As<IProjectWorkspaceViewFactory>().SingleInstance();
+            builder.RegisterType<WorkspaceViewFactory>().As<IWorkspaceViewFactory>().SingleInstance();
         }
     }
 }

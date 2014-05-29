@@ -15,6 +15,7 @@ using Olf.GoldenHorse.Core.DataAccess.Autofac;
 using Olf.GoldenHorse.Core.Views.Autofac;
 using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.Prism.Autofac;
+using Xceed.Wpf.AvalonDock.Layout;
 
 namespace Olf.GoldenHorse
 {
@@ -36,6 +37,8 @@ namespace Olf.GoldenHorse
             builder.RegisterModule<DataAccessModule>();
             builder.RegisterModule<PrismModule>();
 
+            builder.RegisterType<LayoutAnchorablePaneRegionAdapter>().AsSelf();
+            builder.RegisterType<LayoutDocumentPaneRegionAdapter>().AsSelf();
             container = builder.Build();
 
             ConfigureDefaultRegionBehaviors();
@@ -66,6 +69,8 @@ namespace Olf.GoldenHorse
                 regionAdapterMappings.RegisterMapping(typeof(Selector), container.Resolve<SelectorRegionAdapter>());
                 regionAdapterMappings.RegisterMapping(typeof(ItemsControl), container.Resolve<ItemsControlRegionAdapter>());
                 regionAdapterMappings.RegisterMapping(typeof(ContentControl), container.Resolve<ContentControlRegionAdapter>());
+                regionAdapterMappings.RegisterMapping(typeof(LayoutAnchorablePane), container.Resolve<LayoutAnchorablePaneRegionAdapter>());
+                regionAdapterMappings.RegisterMapping(typeof(LayoutDocumentPane), container.Resolve<LayoutDocumentPaneRegionAdapter>());
             }
 
             return regionAdapterMappings;

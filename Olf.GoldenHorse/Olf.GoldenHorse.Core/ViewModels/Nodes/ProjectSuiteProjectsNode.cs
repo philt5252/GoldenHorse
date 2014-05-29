@@ -8,7 +8,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
     {
         public override string Name
         {
-            get { return ProjectSuiteManager.CurrentProjectSuite.Name + " Projects"; }
+            get { return "Project Suite '" + ProjectSuiteManager.CurrentProjectSuite.Name + "' Projects"; }
         }
 
         public ProjectSuiteProjectsNode()

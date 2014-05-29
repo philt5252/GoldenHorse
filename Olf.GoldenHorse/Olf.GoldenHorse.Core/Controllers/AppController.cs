@@ -14,19 +14,25 @@ namespace Olf.GoldenHorse.Core.Controllers
         private readonly IMainWindowFactory mainWindowFactory;
         private readonly IMainShellViewFactory mainShellViewFactory;
         private readonly IMainShellViewModelFactory mainShellViewModelFactory;
+        private readonly IProjectWorkspaceViewFactory projectWorkspaceViewFactory;
         private readonly IProjectExplorerViewFactory projectExplorerViewFactory;
+        private readonly IWorkspaceViewFactory workspaceViewFactory;
         private readonly IRegionManager regionManager;
 
         public AppController(IMainWindowFactory mainWindowFactory,
             IMainShellViewFactory mainShellViewFactory,
             IMainShellViewModelFactory mainShellViewModelFactory,
+            IProjectWorkspaceViewFactory projectWorkspaceViewFactory,
             IProjectExplorerViewFactory projectExplorerViewFactory,
+            IWorkspaceViewFactory workspaceViewFactory,
             IRegionManager regionManager)
         {
             this.mainWindowFactory = mainWindowFactory;
             this.mainShellViewFactory = mainShellViewFactory;
             this.mainShellViewModelFactory = mainShellViewModelFactory;
+            this.projectWorkspaceViewFactory = projectWorkspaceViewFactory;
             this.projectExplorerViewFactory = projectExplorerViewFactory;
+            this.workspaceViewFactory = workspaceViewFactory;
             this.regionManager = regionManager;
         }
 
@@ -39,13 +45,19 @@ namespace Olf.GoldenHorse.Core.Controllers
 
             mainShellView.DataContext = mainShellViewModel;
 
+            IViewWithDataContext projectWorkspaceView = projectWorkspaceViewFactory.Create();
             IViewWithDataContext projectExplorerView = projectExplorerViewFactory.Create();
+            IViewWithDataContext workspaceView = workspaceViewFactory.Create();
 
             window.Show();
 
             regionManager.Regions[Regions.MainShellViewRegion].AddAndActivate(mainShellView);
 
-            regionManager.Regions[Regions.ProjectExplorerViewRegion].AddAndActivate(projectExplorerView);
+            regionManager.Regions[Regions.MainWorkspaceViewRegion].AddAndActivate(projectWorkspaceView);
+
+            regionManager.Regions[Regions.ExplorerViewRegion].AddAndActivate(projectExplorerView);
+
+            regionManager.Regions[Regions.WorkspaceViewRegion].AddAndActivate(workspaceView);
         }
     }
 }

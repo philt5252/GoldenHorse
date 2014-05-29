@@ -42,6 +42,7 @@
     <Compile Include="Factories\IMainShellViewFactory.cs" />
     <Compile Include="Factories\IMainWindowFactory.cs" />
     <Compile Include="Factories\INewProjectWindowFactory.cs" />
+    <Compile Include="Factories\IWorkspaceViewFactory.cs" />
     <Compile Include="IViewWithDataContext.cs" />
     <Compile Include="IWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

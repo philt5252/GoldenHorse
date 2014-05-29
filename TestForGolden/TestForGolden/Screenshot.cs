@@ -1,12 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Documents;
+using System.Xml.Serialization;
 
 namespace TestForGolden
 {
     public class Screenshot
     {
-        public string ImagePath { get; set; }
+        [XmlIgnore]
+        public ScreenshotOwner Owner { get; set; }
+
+        public string ImageFile { get; set; }
         public List<ScreenshotAdornment> Adornments { get; set; }
         public string DateTime { get; set; }
 
@@ -17,7 +22,8 @@ namespace TestForGolden
 
         public Bitmap RenderImage()
         {
-            Bitmap bitmap = new Bitmap(ImagePath);
+            string imagePath = Path.Combine(Owner.GetScreenshotFolder(), ImageFile);
+            Bitmap bitmap = new Bitmap(imagePath);
 
             foreach (ScreenshotAdornment screenshotAdornment in Adornments)
             {

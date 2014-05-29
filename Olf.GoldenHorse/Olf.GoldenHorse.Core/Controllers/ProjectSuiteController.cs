@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Practices.Prism.Regions;
+using Olf.GoldenHorse.Core.Helpers;
 using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.GoldenHorse.Foundation.DataAccess;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels;
@@ -15,17 +16,23 @@ namespace Olf.GoldenHorse.Core.Controllers
     {
         private readonly INewProjectSuiteWindowFactory newProjectSuiteWindowFactory;
         private readonly INewProjectSuiteViewModelFactory newProjectSuiteViewModelFactory;
+        private readonly IProjectExplorerViewFactory projectExplorerViewFactory;
+        private readonly IProjectExplorerViewModelFactory projectExplorerViewModelFactory;
         private readonly IProjectSuiteFileManager projectSuiteFileManager;
         private readonly IRegionManager regionManager;
         private IWindow newProjectSuiteWindow;
 
         public ProjectSuiteController(INewProjectSuiteWindowFactory newProjectSuiteWindowFactory,
             INewProjectSuiteViewModelFactory newProjectSuiteViewModelFactory,
+            IProjectExplorerViewFactory projectExplorerViewFactory,
+            IProjectExplorerViewModelFactory projectExplorerViewModelFactory,
             IProjectSuiteFileManager projectSuiteFileManager,
             IRegionManager regionManager)
         {
             this.newProjectSuiteWindowFactory = newProjectSuiteWindowFactory;
             this.newProjectSuiteViewModelFactory = newProjectSuiteViewModelFactory;
+            this.projectExplorerViewFactory = projectExplorerViewFactory;
+            this.projectExplorerViewModelFactory = projectExplorerViewModelFactory;
             this.projectSuiteFileManager = projectSuiteFileManager;
             this.regionManager = regionManager;
         }
@@ -56,6 +63,18 @@ namespace Olf.GoldenHorse.Core.Controllers
             projectSuiteFileManager.Create(projectSuite);
 
             CloseNewProjectSuiteWindow();
+
+            ResetForNewProjectSuite();
+        }
+
+        private void ResetForNewProjectSuite()
+        {
+            IViewWithDataContext projectExplorerView = projectExplorerViewFactory.Create();
+            IProjectExplorerViewModel projectExplorerViewModel = projectExplorerViewModelFactory.Create();
+
+            projectExplorerView.DataContext = projectExplorerViewModel;
+
+            regionManager.Regions[Regions.ProjectExplorerViewRegion].ClearAddAndActivate(projectExplorerView);
         }
 
         public void Open()

@@ -25,6 +25,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<TestScreenshotsViewModel>().As<ITestScreenshotsViewModel>();
             builder.RegisterType<TestOperationsViewModel>().As<ITestOperationsViewModel>();
             builder.RegisterType<TestDetailsViewModel>().As<ITestDetailsViewModel>();
+            builder.RegisterType<ProjectExplorerViewModel>().As<IProjectExplorerViewModel>();
 
             builder.RegisterType<MainShellViewModelFactory>().As<IMainShellViewModelFactory>().SingleInstance();
             builder.RegisterType<NewProjectSuiteSuiteViewModelFactory>().As<INewProjectSuiteViewModelFactory>().SingleInstance();
@@ -33,6 +34,8 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<TestScreenshotsViewModelFactory>().As<ITestScreenshotsViewModelFactory>().SingleInstance();
             builder.RegisterType<TestOperationsViewModelFactory>().As<ITestOperationsViewModelFactory>().SingleInstance();
             builder.RegisterType<TestDetailsViewModelFactory>().As<ITestDetailsViewModelFactory>().SingleInstance();
+            builder.RegisterType<ProjectExplorerViewModelFactory>().As<IProjectExplorerViewModelFactory>().SingleInstance();
+
         }
     }
 }

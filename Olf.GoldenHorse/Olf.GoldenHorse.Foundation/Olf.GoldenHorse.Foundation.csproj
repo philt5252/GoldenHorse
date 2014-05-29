@@ -46,6 +46,7 @@
     <Compile Include="Controllers\IProjectSuiteController.cs" />
     <Compile Include="Factories\ViewModels\IMainShellViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\INewProjectSuiteViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\IProjectExplorerViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestDetailsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestMainShellViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestOperationsViewModelFactory.cs" />
@@ -65,11 +66,13 @@
     <Compile Include="Services\ProjectManager.cs" />
     <Compile Include="ViewModels\IMainShellViewModel.cs" />
     <Compile Include="ViewModels\INewProjectSuiteViewModel.cs" />
+    <Compile Include="ViewModels\IProjectExplorerViewModel.cs" />
     <Compile Include="ViewModels\ITestDetailsViewModel.cs" />
     <Compile Include="ViewModels\ITestMainShellViewModel.cs" />
     <Compile Include="ViewModels\ITestOperationsViewModel.cs" />
     <Compile Include="ViewModels\ITestScreenshotsViewModel.cs" />
     <Compile Include="ViewModels\ITestShellViewModel.cs" />
+    <Compile Include="ViewModels\Nodes\DisplayNode.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

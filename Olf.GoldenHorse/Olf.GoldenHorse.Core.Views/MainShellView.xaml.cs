@@ -11,7 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Practices.Prism.Regions;
 using Olf.GoldenHorse.Foundation.Views;
+using Xceed.Wpf.AvalonDock.Layout;
 
 namespace Olf.GoldenHorse.Core.Views
 {
@@ -23,6 +25,9 @@ namespace Olf.GoldenHorse.Core.Views
         public MainShellView()
         {
             InitializeComponent();
+
+            RegionManager.SetRegionName(layoutDocumentPane, Regions.MainWorkspaceViewRegion);
+            RegionManager.UpdateRegions();
         }
     }
 }

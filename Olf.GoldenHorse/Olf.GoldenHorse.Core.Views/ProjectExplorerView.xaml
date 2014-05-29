@@ -5,20 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
-             Height="400" Width="200" Tag="Project Explorer">
-    <Grid Background="BlueViolet">
+             Height="400" Width="160" Tag="Project Explorer">
+    <Grid>
         <TreeView Name="projectExplorerTvw" ItemsSource="{Binding Nodes}">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                     <StackPanel Orientation="Horizontal">
-                        <TreeViewItem Header="{Binding Name}">
+                        <TreeViewItem Header="{Binding Name}" FontSize="11">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="DoubleClickMouse">
                                     <i:InvokeCommandAction Command="{Binding Path=DefaultCommand, Mode=OneWay}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </TreeViewItem>
-                        <Image Source="{Binding Icon}" Width="15" Height="15"></Image>
+                        <Image Source="Images\newProject.png" Width="15" Height="15"></Image>
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>

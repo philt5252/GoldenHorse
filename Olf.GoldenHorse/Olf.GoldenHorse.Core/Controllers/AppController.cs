@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.Prism.Regions;
+﻿using System.Collections.Specialized;
+using Microsoft.Practices.Prism.Regions;
 using Olf.GoldenHorse.Core.Helpers;
 using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels;
@@ -53,7 +54,9 @@ namespace Olf.GoldenHorse.Core.Controllers
 
             regionManager.Regions[Regions.MainShellViewRegion].AddAndActivate(mainShellView);
 
+
             regionManager.Regions[Regions.MainWorkspaceViewRegion].AddAndActivate(projectWorkspaceView);
+
 
             regionManager.Regions[Regions.ExplorerViewRegion].AddAndActivate(projectExplorerView);
 

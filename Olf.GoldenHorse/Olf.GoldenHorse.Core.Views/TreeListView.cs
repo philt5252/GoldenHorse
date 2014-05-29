@@ -76,9 +76,7 @@ namespace Olf.GoldenHorse.Core.Views
     /// </summary>
     public class TreeListViewExpander : ToggleButton { }
 
-    /// <summary>
-    /// Represents a convert that can calculate the indentation of any element in a class derived from TreeView.
-    /// </summary>
+   
    
 
 }

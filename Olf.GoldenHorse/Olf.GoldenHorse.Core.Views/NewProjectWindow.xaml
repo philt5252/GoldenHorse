@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" 
-            Title="New Project"
-             d:DesignHeight="150" d:DesignWidth="300">
+            Title="New Project" Height="150" Width="300" MaxHeight="150" MaxWidth="300" MinHeight="150" MinWidth="300">
+            
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"></RowDefinition>
@@ -21,6 +21,7 @@
             <WrapPanel>
                 <Label Content ="Location: " ></Label>
                 <TextBox Text="{Binding Location}" Height ="20" Width="200"></TextBox>
+                <Button Margin="3,0,0,0"  Width="20" Height="20" Command="{Binding BrowseCommand}"></Button>
             </WrapPanel>
         </StackPanel>
         <Button Grid.Row="2" Content="Cancel" Command="{Binding CancelNewProjectCommand}"  Width="75" Height="26" Margin="107,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Button>

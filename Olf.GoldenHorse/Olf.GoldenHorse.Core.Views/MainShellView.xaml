@@ -44,7 +44,7 @@
         <xcad:DockingManager Grid.Row="2">
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>
-                    <xcad:LayoutAnchorablePane regions:RegionManager.RegionName="MainWorkspaceViewRegion"></xcad:LayoutAnchorablePane>
+                    <xcad:LayoutDocumentPane regions:RegionManager.RegionName="MainWorkspaceViewRegion"></xcad:LayoutDocumentPane>
                 </xcad:LayoutPanel>
             </xcad:LayoutRoot>
         </xcad:DockingManager>

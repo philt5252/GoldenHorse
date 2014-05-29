@@ -11,8 +11,8 @@
         <xcad:DockingManager>
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>
-                    <xcad:LayoutAnchorablePaneGroup>
-                        <xcad:LayoutAnchorablePane DockWidth="120" regions:RegionManager.RegionName="ExplorerViewRegion"></xcad:LayoutAnchorablePane>
+                    <xcad:LayoutAnchorablePaneGroup DockWidth="120">
+                        <xcad:LayoutAnchorablePane regions:RegionManager.RegionName="ExplorerViewRegion"></xcad:LayoutAnchorablePane>
                     </xcad:LayoutAnchorablePaneGroup>
                     <xcad:LayoutDocumentPaneGroup>
                         <xcad:LayoutDocumentPane regions:RegionManager.RegionName="WorkspaceViewRegion"></xcad:LayoutDocumentPane>

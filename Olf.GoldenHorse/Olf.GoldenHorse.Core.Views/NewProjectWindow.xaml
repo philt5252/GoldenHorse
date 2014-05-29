@@ -1,8 +1,9 @@
-﻿<Window x:Class="Olf.GoldenHorse.Core.Views.NewProjectWindow"
+﻿<controls:MetroWindow x:Class="Olf.GoldenHorse.Core.Views.NewProjectWindow"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" 
             Title="New Project"
              d:DesignHeight="150" d:DesignWidth="300">
@@ -26,4 +27,4 @@
         <Button Grid.Row="2" Content="Save" Command="{Binding SaveNewProjectCommand}"  Width="75" Height="26" Margin="187,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ></Button>
 
     </Grid>
-</Window>
+</controls:MetroWindow>

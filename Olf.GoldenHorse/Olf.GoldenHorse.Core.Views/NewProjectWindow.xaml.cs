@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 using Olf.GoldenHorse.Foundation.Views;
 
 namespace Olf.GoldenHorse.Core.Views
@@ -18,7 +19,7 @@ namespace Olf.GoldenHorse.Core.Views
     /// <summary>
     /// Interaction logic for NewProjectWindow.xaml
     /// </summary>
-    public partial class NewProjectWindow : IWindow
+    public partial class NewProjectWindow : MetroWindow, IWindow
     {
         public NewProjectWindow()
         {

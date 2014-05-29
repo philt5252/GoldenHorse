@@ -3,8 +3,8 @@ using Olf.GoldenHorse.Foundation.ViewModels;
 
 namespace Olf.GoldenHorse.Foundation.Factories.ViewModels
 {
-    public interface INewProjectViewModelFactory
+    public interface ITestScreenshotsViewModelFactory
     {
-        INewProjectViewModel Create();
+        ITestScreenshotsViewModel Create();
     }
 }

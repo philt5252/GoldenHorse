@@ -9,7 +9,8 @@ namespace Olf.GoldenHorse.Core.DataAccess.Autofac
         {
             base.Load(builder);
 
-            builder.RegisterType<ProjectRepository>().As<IProjectRepository>().SingleInstance();
+            builder.RegisterType<ProjectFileManager>().As<IProjectFileManager>().SingleInstance();
+            builder.RegisterType<ProjectSuiteFileManager>().As<IProjectSuiteFileManager>().SingleInstance();
         }
     }
 }

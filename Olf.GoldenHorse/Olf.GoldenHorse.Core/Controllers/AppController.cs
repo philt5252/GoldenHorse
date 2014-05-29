@@ -17,6 +17,7 @@ namespace Olf.GoldenHorse.Core.Controllers
         public AppController(IMainWindowFactory mainWindowFactory,
             IMainShellViewFactory mainShellViewFactory,
             IMainShellViewModelFactory mainShellViewModelFactory,
+            
             IRegionManager regionManager)
         {
             this.mainWindowFactory = mainWindowFactory;

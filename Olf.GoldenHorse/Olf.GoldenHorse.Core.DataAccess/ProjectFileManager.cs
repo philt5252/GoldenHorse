@@ -6,12 +6,12 @@ using Olf.GoldenHorse.Foundation.Services;
 
 namespace Olf.GoldenHorse.Core.DataAccess
 {
-    public class ProjectRepository : IProjectRepository
+    public class ProjectFileManager : IProjectFileManager
     {
         private XmlSerializer serializer;
         private const string extension = ".ghproj";
 
-        public ProjectRepository()
+        public ProjectFileManager()
         {
             serializer = new XmlSerializer(typeof(Project));
         }
@@ -28,6 +28,9 @@ namespace Olf.GoldenHorse.Core.DataAccess
         public void Save(Project project)
         {
             var projectPath =Path.Combine(project.ProjectFolder,  project.Name + extension);
+
+            if (!Directory.Exists(project.ProjectFolder))
+                Directory.CreateDirectory(project.ProjectFolder);
 
             using (FileStream fileStream = File.Create(projectPath))
             {

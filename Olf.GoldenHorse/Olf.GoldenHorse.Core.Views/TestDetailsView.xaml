@@ -24,18 +24,20 @@
         </ControlTemplate>
         <SolidColorBrush x:Key="MyBorderBrush" Color="White"></SolidColorBrush>
 
+
         <Style x:Key="BorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="{StaticResource MyBorderBrush}"></Setter>
             <Setter Property="BorderThickness" Value="0.3"></Setter>
         </Style>
+
     </UserControl.Resources>
+
 
     <Grid x:Name="grid1" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="1" />
+            <RowDefinition Height="25" />
             <RowDefinition Height="300*" />
         </Grid.RowDefinitions>
-      
         <views:TreeListView x:Name="treeListView" AllowsColumnReorder="True" ItemsSource="{Binding Actions}" SelectedValuePath="{Binding SelectedAction}" Grid.Row="1">
             <!--Create an item template to specify the ItemsSource-->
             <views:TreeListView.ItemTemplate>
@@ -57,7 +59,7 @@
                             </Border>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding HasPicture}" Value="True">
-                                    <Setter TargetName="picImage" Property="Source" Value="Images\dachshund.jpg" />
+                                    <!--<Setter TargetName="picImage" Property="Source" Value="Images\dachshund.jpg" />-->
                                     <Setter TargetName="picImage" Property="Visibility" Value="Visible"></Setter>
                                 </DataTrigger>
                             </DataTemplate.Triggers>
@@ -81,7 +83,7 @@
                                     <StackPanel Orientation="Horizontal">
                                         <!--The Expander Button (can be used in any column (typically the first one))-->
 
-                                        <Image Width ="20" Height ="20"  Source="Images\dachshund.jpg"></Image>
+                                        <!--<Image Width ="20" Height ="20"  Source="Images\dachshund.jpg"></Image>-->
                                         <TextBlock Text="{Binding Item}" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
 
 

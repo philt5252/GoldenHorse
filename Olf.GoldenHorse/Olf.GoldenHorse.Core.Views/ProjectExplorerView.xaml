@@ -5,10 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              Height="400" Width="200">
-    <Grid>
+    <Grid Background="LightBlue">
         <TreeView Name="projectExplorerTvw" ItemsSource="{Binding Nodes}">
             <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Children}"></HierarchicalDataTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                        <Image Source="{Binding Icon}" Width="15" Height="15"></Image>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
             
         </TreeView>

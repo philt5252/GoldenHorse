@@ -5,12 +5,11 @@ namespace Olf.GoldenHorse.Foundation.Services
 {
     public static class ProjectManager
     {
-        public static Project CurrentProject { get; set; }
-
         public static string GetScreenshotsFolder(Test test)
         {
-            string screenshotsFolder = Path.Combine(CurrentProject.ProjectFolder,
-                CurrentProject.TestsFolder,
+            string screenshotsFolder = Path.Combine(
+                ProjectSuiteManager.GetProjectFolder(test.Project),
+                test.Project.TestsFolder,
                 "Screenshots",
                 test.Name);
 
@@ -19,9 +18,11 @@ namespace Olf.GoldenHorse.Foundation.Services
             return screenshotsFolder;
         }
 
-        public static string GetAppManagerPath()
+        public static string GetAppManagerPath(Project project)
         {
-            string appManagerDir = Path.Combine(CurrentProject.ProjectFolder, CurrentProject.AppManagerFolder);
+            string appManagerDir = Path.Combine(
+                ProjectSuiteManager.GetProjectFolder(project)
+                , project.AppManagerFolder);
 
             if (!Directory.Exists(appManagerDir))
                 Directory.CreateDirectory(appManagerDir);
@@ -30,7 +31,7 @@ namespace Olf.GoldenHorse.Foundation.Services
             return appManagerPath;
         }
 
-        public static string GetTestPath(string testName)
+        /*public static string GetTestPath(string testName)
         {
             string testDir = Path.Combine(CurrentProject.ProjectFolder, CurrentProject.TestsFolder);
 
@@ -39,14 +40,7 @@ namespace Olf.GoldenHorse.Foundation.Services
 
             string testPath = Path.Combine(testDir, testName + ".ghtest");
             return testPath;
-        }
-
-        public static string GetProjectPath()
-        {
-            string projectPath = Path.Combine(CurrentProject.ProjectFolder, CurrentProject.Name + ".ghproj");
-            Directory.CreateDirectory(CurrentProject.ProjectFolder);
-            return projectPath;
-        }
+        }*/
 
     }
 }

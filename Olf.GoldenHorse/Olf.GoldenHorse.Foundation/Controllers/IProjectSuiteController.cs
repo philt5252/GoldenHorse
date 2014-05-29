@@ -1,10 +1,10 @@
 ﻿namespace Olf.GoldenHorse.Foundation.Controllers
 {
-    public interface IProjectController
+    public interface IProjectSuiteController
     {
         void New();
+        void Create(string folderPath, string projectSuiteName);
         void Open();
-        void Create(string projectPath, string project);
         void CancelNew();
     }
 }

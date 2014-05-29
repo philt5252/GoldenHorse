@@ -27,7 +27,7 @@
         <DockPanel Grid.Row="1">
             <ToolBar>
                 <ToolBarTray DockPanel.Dock="Top">
-                    <ToolBar>
+                    <ToolBar Margin="0,0,0,0">
                         <Button Height="26" Width="50" Command="{Binding RecordCommand}">
                             <Ellipse Height="15" Width="15">
                                 <Ellipse.Fill>

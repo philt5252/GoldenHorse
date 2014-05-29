@@ -14,31 +14,28 @@ namespace Olf.GoldenHorse.Core.Controllers
     public class ProjectController : IProjectController
     {
         private readonly INewProjectWindowFactory newProjectWindowFactory;
-        private readonly INewProjectViewModelFactory newProjectViewModelFactory;
-        private readonly IProjectRepository projectRepository;
+        private readonly INewProjectSuiteViewModelFactory newProjectSuiteViewModelFactory;
+        private readonly IProjectFileManager projectFileManager;
         private readonly IRegionManager regionManager;
         private IWindow newProjectWindow;
 
         public ProjectController(INewProjectWindowFactory newProjectWindowFactory,
-            INewProjectViewModelFactory newProjectViewModelFactory,
-            IProjectRepository projectRepository,
+            INewProjectSuiteViewModelFactory newProjectSuiteViewModelFactory,
+            IProjectFileManager projectFileManager,
             IRegionManager regionManager)
         {
             this.newProjectWindowFactory = newProjectWindowFactory;
-            this.newProjectViewModelFactory = newProjectViewModelFactory;
-            this.projectRepository = projectRepository;
+            this.newProjectSuiteViewModelFactory = newProjectSuiteViewModelFactory;
+            this.projectFileManager = projectFileManager;
             this.regionManager = regionManager;
         }
 
         public void New()
         {
-            Project project = new Project();
-            ProjectManager.CurrentProject = project;
-
             newProjectWindow = newProjectWindowFactory.Create();
-            INewProjectViewModel newProjectViewModel = newProjectViewModelFactory.Create();
+            INewProjectSuiteViewModel newProjectSuiteViewModel = newProjectSuiteViewModelFactory.Create();
 
-            newProjectWindow.DataContext = newProjectViewModel;
+            newProjectWindow.DataContext = newProjectSuiteViewModel;
 
             newProjectWindow.Show();
         }
@@ -46,25 +43,34 @@ namespace Olf.GoldenHorse.Core.Controllers
         public void Open()
         {
             Project project = new Project();
-            ProjectManager.CurrentProject = project;
+            ProjectSuiteManager.AddProject(project);
         }
 
         public void Create(string projectPath, string projectName)
+        {
+            CloseNewProjectWindow();
+
+            Project project = new Project();
+            project.Name = projectName;
+
+            ProjectSuiteManager.AddProject(project);
+
+            projectFileManager.Create(project);
+                
+        }
+
+        public void CancelNew()
+        {
+            CloseNewProjectWindow();
+        }
+
+        private void CloseNewProjectWindow()
         {
             if (newProjectWindow != null)
             {
                 newProjectWindow.Close();
                 newProjectWindow = null;
             }
-
-            Project project = new Project();
-            project.ProjectFolder = Path.Combine(projectPath, projectName);
-            project.Name = projectName;
-
-            ProjectManager.CurrentProject = project;
-
-            projectRepository.Create(project);
-                
         }
     }
 }

@@ -3,7 +3,7 @@ using Olf.GoldenHorse.Foundation.Models;
 
 namespace Olf.GoldenHorse.Foundation.DataAccess
 {
-    public interface IProjectRepository
+    public interface IProjectFileManager
     {
         Project Open(string filePath);
         void Save(Project project);

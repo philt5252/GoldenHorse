@@ -1,11 +1,15 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Xml.Serialization;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
     public class Test
     {
         private ObservableCollection<TestItem> testItems;
+
+        [XmlIgnore]
+        public Project Project { get; set; }
 
         public string Name { get; set; }
 

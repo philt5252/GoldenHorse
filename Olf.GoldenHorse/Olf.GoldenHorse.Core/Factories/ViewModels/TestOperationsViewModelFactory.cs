@@ -5,16 +5,16 @@ using Olf.GoldenHorse.Foundation.Factories.ViewModels;
 
 namespace Olf.GoldenHorse.Core.Factories.ViewModels
 {
-    public class NewProjectViewModelFactory : INewProjectViewModelFactory
+    public class TestOperationsViewModelFactory : ITestOperationsViewModelFactory
     {
-        private Func<INewProjectViewModel> createModelFunc;
+        private Func<ITestOperationsViewModel> createModelFunc;
 
-        public NewProjectViewModelFactory(Func<INewProjectViewModel> createModelFunc)
+        public TestOperationsViewModelFactory(Func<ITestOperationsViewModel> createModelFunc)
         {
             this.createModelFunc = createModelFunc;
         }
 
-        public INewProjectViewModel Create()
+        public ITestOperationsViewModel Create()
         {
             return createModelFunc();
         }

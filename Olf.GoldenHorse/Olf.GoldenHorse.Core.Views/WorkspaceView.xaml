@@ -6,8 +6,8 @@
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
              mc:Ignorable="d" d:DesignWidth="447.16" d:DesignHeight="402.716" >
              
-    <Grid>
-        <TabControl Name="tabCtrl" regions:RegionManager.RegionName="TestMainShellViewRegion" DataContextChanged="WorkspaceView_DataContextChanged" ></TabControl>
+    <Grid Background="Blue">
+      
             
     </Grid>
 </UserControl>

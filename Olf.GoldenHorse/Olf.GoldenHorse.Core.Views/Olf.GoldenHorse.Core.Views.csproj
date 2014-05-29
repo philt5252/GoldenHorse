@@ -105,8 +105,8 @@
     <Compile Include="ProjectExplorerView.xaml.cs">
       <DependentUpon>ProjectExplorerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProjectWorkSpaceView.xaml.cs">
-      <DependentUpon>ProjectWorkSpaceView.xaml</DependentUpon>
+    <Compile Include="ProjectWorkspaceView.xaml.cs">
+      <DependentUpon>ProjectWorkspaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecordWindow.xaml.cs">
@@ -162,7 +162,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProjectWorkSpaceView.xaml">
+    <Page Include="ProjectWorkspaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

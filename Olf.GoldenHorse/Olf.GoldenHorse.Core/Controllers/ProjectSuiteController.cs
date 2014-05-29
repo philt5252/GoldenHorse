@@ -71,19 +71,20 @@ namespace Olf.GoldenHorse.Core.Controllers
 
         private void ResetForNewProjectSuite()
         {
-            IViewWithDataContext projectExplorerView = projectExplorerViewFactory.Create();
             IProjectExplorerViewModel projectExplorerViewModel = projectExplorerViewModelFactory.Create();
 
-            projectExplorerView.DataContext = projectExplorerViewModel;
+            IViewWithDataContext view = regionManager.Regions[Regions.ExplorerViewRegion].GetView(ViewNames.ProjectExplorerView)
+                as IViewWithDataContext;
 
-            regionManager.Regions[Regions.ExplorerViewRegion].ClearAddAndActivate(projectExplorerView);
+            view.DataContext = projectExplorerViewModel;
         }
 
         public void Open()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            openFileDialog.Filter = "*" + DefaultData.ProjectSuiteExtension;
+            string extension = "*" + DefaultData.ProjectSuiteExtension;
+            openFileDialog.Filter = string.Format("GH Project Suite ({0})|{0}", extension);
             openFileDialog.InitialDirectory = DefaultData.GoldenHorseProjectsLocation;
 
             DialogResult dialogResult = openFileDialog.ShowDialog();

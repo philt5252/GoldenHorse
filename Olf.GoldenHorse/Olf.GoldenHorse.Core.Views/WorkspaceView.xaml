@@ -4,9 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
-             mc:Ignorable="d" d:DesignWidth="447.16" d:DesignHeight="402.716" >
+             xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+             xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
+             mc:Ignorable="d" d:DesignHeight="402.716" Width="682.981" >
              
-    <Grid Background="Blue">
+    <Grid>
+        <xcad:DockingManager Height="403" VerticalAlignment="Top">
+            <xcad:LayoutRoot>
+                <xcad:LayoutPanel>
+                    <xcad:LayoutAnchorablePaneGroup DockWidth="120">
+                        <xcad:LayoutAnchorablePane x:Name="TestOperationsPane">
+                            <xcad:LayoutAnchorable>
+                                <views:TestOperationsView ></views:TestOperationsView>
+                            </xcad:LayoutAnchorable>                            
+                        </xcad:LayoutAnchorablePane>
+                     </xcad:LayoutAnchorablePaneGroup>
+                    <xcad:LayoutAnchorablePaneGroup>
+                        <xcad:LayoutAnchorablePane x:Name="TestDetailsPane">
+                            <xcad:LayoutAnchorable >
+                                <views:TestDetailsView></views:TestDetailsView>
+                            </xcad:LayoutAnchorable>
+                        </xcad:LayoutAnchorablePane>
+                    </xcad:LayoutAnchorablePaneGroup>
+                </xcad:LayoutPanel>
+            </xcad:LayoutRoot>
+        </xcad:DockingManager>
       
             
     </Grid>

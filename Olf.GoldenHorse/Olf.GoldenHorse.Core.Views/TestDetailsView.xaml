@@ -31,28 +31,36 @@
         </Style>
 
     </UserControl.Resources>
-
-
+   
     <Grid x:Name="grid1" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="25" />
+            <RowDefinition Height="200" />
             <RowDefinition Height="300*" />
         </Grid.RowDefinitions>
-        <views:TreeListView x:Name="treeListView" AllowsColumnReorder="True" ItemsSource="{Binding Actions}" SelectedValuePath="{Binding SelectedAction}" Grid.Row="1">
+        <views:TreeListView x:Name="DemoListView" Grid.Row="0">
+            <views:TreeListView.Columns>
+                <GridViewColumn Header="Column1" Width="40" >
+                    <GridViewColumn.CellTemplate >
+                        <DataTemplate></DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+           
+
+            </views:TreeListView.Columns>
+        </views:TreeListView>
+      
+        <views:TreeListView x:Name="treeListView" AllowsColumnReorder="True" ItemsSource="{Binding Actions}" 
+                            SelectedValuePath="{Binding SelectedAction}" Grid.Row="1">
             <!--Create an item template to specify the ItemsSource-->
             <views:TreeListView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Actions}" />
             </views:TreeListView.ItemTemplate>
             <views:TreeListView.Columns >
-
                 <GridViewColumn Header="" Width="40" >
-
                     <GridViewColumn.CellTemplate >
-
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                 <StackPanel Orientation="Horizontal" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
-
                                     <treeviewDemo:DebugButton Margin="0,0,0,0" Width="15" Height="15" Name="DebugButton" IsDebugging="{Binding DebugState, UpdateSourceTrigger=PropertyChanged}"></treeviewDemo:DebugButton>
                                     <Image Name="picImage"  Height="15" Width="15" Visibility="Collapsed"></Image >
                                 </StackPanel>

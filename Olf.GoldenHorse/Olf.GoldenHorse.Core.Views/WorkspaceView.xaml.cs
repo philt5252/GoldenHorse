@@ -26,11 +26,6 @@ namespace Olf.GoldenHorse.Core.Views
 
         }
 
-        private void WorkspaceView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            //TestMainShellViewModel testMainShellViewModel = sender as TestMainShellViewModel;
-        }
-
        
 
         

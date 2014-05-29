@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Windows.Forms;
 using Microsoft.Practices.Prism.Regions;
 using Olf.GoldenHorse.Core.Helpers;
+using Olf.GoldenHorse.Foundation;
 using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.GoldenHorse.Foundation.DataAccess;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels;
@@ -74,12 +76,24 @@ namespace Olf.GoldenHorse.Core.Controllers
 
             projectExplorerView.DataContext = projectExplorerViewModel;
 
-            regionManager.Regions[Regions.ProjectExplorerViewRegion].ClearAddAndActivate(projectExplorerView);
+            //regionManager.Regions[Regions.ProjectExplorerViewRegion].ClearAddAndActivate(projectExplorerView);
         }
 
         public void Open()
         {
-            throw new NotImplementedException();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "*" + DefaultData.ProjectSuiteExtension;
+            openFileDialog.InitialDirectory = DefaultData.GoldenHorseProjectsLocation;
+
+            DialogResult dialogResult = openFileDialog.ShowDialog();
+
+            if (dialogResult == DialogResult.OK)
+            {
+                ProjectSuite projectSuite = projectSuiteFileManager.Open(openFileDialog.FileName);
+                ProjectSuiteManager.CurrentProjectSuite = projectSuite;
+                ResetForNewProjectSuite();
+            }
         }
 
         public void CancelNew()

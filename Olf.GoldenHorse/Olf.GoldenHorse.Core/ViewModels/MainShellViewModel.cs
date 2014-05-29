@@ -12,11 +12,18 @@ namespace Olf.GoldenHorse.Core.ViewModels
     {
         private readonly IProjectSuiteController projectSuiteController;
         public ICommand NewProjectCommand { get; protected set; }
+        public ICommand OpenProjectCommand { get; protected set; }
 
         public MainShellViewModel(IProjectSuiteController projectSuiteController)
         {
             this.projectSuiteController = projectSuiteController;
             NewProjectCommand = new DelegateCommand(ExecuteNewProjectCommand);
+            OpenProjectCommand = new DelegateCommand(ExecuteOpenProjectCommand);
+        }
+
+        private void ExecuteOpenProjectCommand()
+        {
+            projectSuiteController.Open();
         }
 
         protected virtual void ExecuteNewProjectCommand()

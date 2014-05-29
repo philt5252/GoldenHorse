@@ -44,6 +44,7 @@
     <Compile Include="Controllers\IAppController.cs" />
     <Compile Include="Controllers\IProjectController.cs" />
     <Compile Include="Controllers\IProjectSuiteController.cs" />
+    <Compile Include="DefaultData.cs" />
     <Compile Include="Factories\ViewModels\IMainShellViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\INewProjectSuiteViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\IProjectExplorerViewModelFactory.cs" />
@@ -52,6 +53,16 @@
     <Compile Include="Factories\ViewModels\ITestOperationsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestScreenshotsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestShellViewModelFactory.cs" />
+    <Compile Include="Models\AppControl.cs" />
+    <Compile Include="Models\AppProcess.cs" />
+    <Compile Include="Models\AppWindow.cs" />
+    <Compile Include="Models\ConstantOperationParameterValue.cs" />
+    <Compile Include="Models\IAppManager.cs" />
+    <Compile Include="Models\MappedItem.cs" />
+    <Compile Include="Models\Operation.cs" />
+    <Compile Include="Models\OperationParameter.cs" />
+    <Compile Include="Models\OperationParameterValue.cs" />
+    <Compile Include="Models\OperationParameterValueMode.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ProjectFile.cs" />
     <Compile Include="Models\ProjectSuite.cs" />

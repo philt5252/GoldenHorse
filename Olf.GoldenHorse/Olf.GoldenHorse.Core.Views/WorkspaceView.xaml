@@ -6,7 +6,7 @@
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
              xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
-             mc:Ignorable="d" d:DesignHeight="402.716" Width="682.981" >
+             mc:Ignorable="d" d:DesignHeight="402.716" Width="682.981" Tag="Test Workspace" >
              
     <Grid>
         <xcad:DockingManager Height="403" VerticalAlignment="Top">
@@ -16,16 +16,18 @@
                         <xcad:LayoutAnchorablePane x:Name="TestOperationsPane">
                             <xcad:LayoutAnchorable>
                                 <views:TestOperationsView ></views:TestOperationsView>
-                            </xcad:LayoutAnchorable>                            
-                        </xcad:LayoutAnchorablePane>
-                     </xcad:LayoutAnchorablePaneGroup>
-                    <xcad:LayoutAnchorablePaneGroup>
-                        <xcad:LayoutAnchorablePane x:Name="TestDetailsPane">
-                            <xcad:LayoutAnchorable >
-                                <views:TestDetailsView></views:TestDetailsView>
                             </xcad:LayoutAnchorable>
                         </xcad:LayoutAnchorablePane>
                     </xcad:LayoutAnchorablePaneGroup>
+                    <xcad:LayoutDocumentPaneGroup>
+                        <xcad:LayoutDocumentPane x:Name="TestDetailsDocPane">
+                            <xcad:LayoutDocument>
+                                <views:TestOperationsView ></views:TestOperationsView>
+                            </xcad:LayoutDocument>
+                        </xcad:LayoutDocumentPane>
+                    </xcad:LayoutDocumentPaneGroup>
+                   
+                   
                 </xcad:LayoutPanel>
             </xcad:LayoutRoot>
         </xcad:DockingManager>

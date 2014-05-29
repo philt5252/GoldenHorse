@@ -6,15 +6,17 @@
              xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Tag="Project Browser">
     <Grid Background="Chartreuse">
         <xcad:DockingManager>
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>
                     <xcad:LayoutAnchorablePaneGroup>
-                        <xcad:LayoutAnchorablePane regions:RegionManager.RegionName="ExplorerViewRegion"></xcad:LayoutAnchorablePane>
-                        <xcad:LayoutAnchorablePane regions:RegionManager.RegionName="WorkspaceViewRegion"></xcad:LayoutAnchorablePane>
+                        <xcad:LayoutAnchorablePane DockWidth="120" regions:RegionManager.RegionName="ExplorerViewRegion"></xcad:LayoutAnchorablePane>
                     </xcad:LayoutAnchorablePaneGroup>
+                    <xcad:LayoutDocumentPaneGroup>
+                        <xcad:LayoutDocumentPane regions:RegionManager.RegionName="WorkspaceViewRegion"></xcad:LayoutDocumentPane>
+                    </xcad:LayoutDocumentPaneGroup>
                 </xcad:LayoutPanel>
             </xcad:LayoutRoot>
         </xcad:DockingManager>

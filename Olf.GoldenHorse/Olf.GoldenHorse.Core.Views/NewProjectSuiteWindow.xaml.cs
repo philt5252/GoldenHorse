@@ -11,28 +11,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 using Olf.GoldenHorse.Foundation.Views;
 
 namespace Olf.GoldenHorse.Core.Views
 {
     /// <summary>
-    /// Interaction logic for WorkspaceView.xaml
+    /// Interaction logic for NewProjectSuiteWindow.xaml
     /// </summary>
-    public partial class WorkspaceView : UserControl, IViewWithDataContext
+    public partial class NewProjectSuiteWindow : MetroWindow, IWindow
     {
-        public WorkspaceView()
+        public NewProjectSuiteWindow()
         {
             InitializeComponent();
-
         }
-
-        private void WorkspaceView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            //TestMainShellViewModel testMainShellViewModel = sender as TestMainShellViewModel;
-        }
-
-       
-
-        
     }
 }

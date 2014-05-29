@@ -81,15 +81,20 @@
   <ItemGroup>
     <Compile Include="Factories\MainShellViewFactory.cs" />
     <Compile Include="Factories\MainWindowFactory.cs" />
+    <Compile Include="Factories\NewProjectSuiteWindowFactory.cs" />
     <Compile Include="Factories\NewProjectWindowFactory.cs" />
     <Compile Include="Factories\ProjectExplorerViewFactory.cs" />
     <Compile Include="Factories\RecordWindowFactory.cs" />
+    <Compile Include="Factories\TestMainShellViewFactory.cs" />
     <Compile Include="Factories\WorkspaceViewFactory.cs" />
     <Compile Include="MainShellView.xaml.cs">
       <DependentUpon>MainShellView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewProjectSuiteWindow.xaml.cs">
+      <DependentUpon>NewProjectSuiteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewProjectWindow.xaml.cs">
       <DependentUpon>NewProjectWindow.xaml</DependentUpon>
@@ -100,6 +105,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecordWindow.xaml.cs">
       <DependentUpon>RecordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\DebugButton.xaml.cs">
+      <DependentUpon>DebugButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="TestDetailsView.xaml.cs">
       <DependentUpon>TestDetailsView.xaml</DependentUpon>
@@ -116,6 +124,9 @@
     <Compile Include="TestShellView.xaml.cs">
       <DependentUpon>TestShellView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TreeListView.cs" />
+    <Compile Include="TreeListViewConverter.cs" />
+    <Compile Include="TreeViewLineConverter.cs" />
     <Compile Include="WorkspaceView.xaml.cs">
       <DependentUpon>WorkspaceView.xaml</DependentUpon>
     </Compile>
@@ -129,7 +140,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewProjectWindow.xaml">
+    <Page Include="NewProjectSuiteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </CodeAnalysisDictionary>
+    <Page Include="NewProjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProjectExplorerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +159,14 @@
     <Page Include="RecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DebugButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="TestDetailsView.xaml">
       <SubType>Designer</SubType>

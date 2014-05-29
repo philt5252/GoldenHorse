@@ -41,10 +41,12 @@
   <ItemGroup>
     <Compile Include="Factories\IMainShellViewFactory.cs" />
     <Compile Include="Factories\IMainWindowFactory.cs" />
+    <Compile Include="Factories\INewProjectSuiteWindowFactory.cs" />
     <Compile Include="Factories\INewProjectWindowFactory.cs" />
     <Compile Include="Factories\IProjectExplorerViewFactory.cs" />
     <Compile Include="Factories\IRecordWindowFactory.cs" />
     <Compile Include="Factories\IWorkspaceViewFactory.cs" />
+    <Compile Include="Factories\ITestMainShellViewFactory.cs" />
     <Compile Include="IViewWithDataContext.cs" />
     <Compile Include="IWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

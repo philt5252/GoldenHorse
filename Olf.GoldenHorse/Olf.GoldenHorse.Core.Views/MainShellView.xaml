@@ -17,11 +17,9 @@
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="File">
-                <MenuItem Header="New Project" Command="{Binding NewProjectCommand}">
-                    <MenuItem.Icon>
-                        <Image Source="Images\dachshund.jpg" Width="22" Height="22"/>
-                    </MenuItem.Icon>
-                </MenuItem>
+                <MenuItem Header="New Project Suite" Command="{Binding NewProjectSuiteCommand}"></MenuItem>
+                <MenuItem Header="Open Project Suite" Command="{Binding OpenProjectSuiteCommand}"></MenuItem>
+                <MenuItem Header="Save Project Suite" Command="{Binding SaveProjectSuiteCommand}"></MenuItem>
             </MenuItem>
         </Menu>
         <DockPanel Grid.Row="1">

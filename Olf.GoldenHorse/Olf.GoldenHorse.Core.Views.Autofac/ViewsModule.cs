@@ -17,11 +17,14 @@ namespace Olf.GoldenHorse.Core.Views.Autofac
             builder.RegisterType<MainShellView>().AsSelf();
             builder.RegisterType<NewProjectWindow>().AsSelf();
             builder.RegisterType<WorkspaceView>().AsSelf();
+            builder.RegisterType<RecordWindow>().AsSelf();
+            builder.RegisterType<ProjectExplorerView>().AsSelf();
 
             builder.RegisterType<MainWindowFactory>().As<IMainWindowFactory>().SingleInstance();
             builder.RegisterType<MainShellViewFactory>().As<IMainShellViewFactory>().SingleInstance();
             builder.RegisterType<NewProjectWindowFactory>().As<INewProjectWindowFactory>().SingleInstance();
-            builder.RegisterType<WorkspaceViewFactory>().As<IWorkspaceViewFactory>().SingleInstance();
+            builder.RegisterType<RecordWindowFactory>().As<IRecordWindowFactory>().SingleInstance();
+            builder.RegisterType<ProjectExplorerViewFactory>().As<IProjectExplorerViewFactory>().SingleInstance();
         }
     }
 }

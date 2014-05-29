@@ -82,6 +82,8 @@
     <Compile Include="Factories\MainShellViewFactory.cs" />
     <Compile Include="Factories\MainWindowFactory.cs" />
     <Compile Include="Factories\NewProjectWindowFactory.cs" />
+    <Compile Include="Factories\ProjectExplorerViewFactory.cs" />
+    <Compile Include="Factories\RecordWindowFactory.cs" />
     <Compile Include="Factories\WorkspaceViewFactory.cs" />
     <Compile Include="MainShellView.xaml.cs">
       <DependentUpon>MainShellView.xaml</DependentUpon>
@@ -92,7 +94,28 @@
     <Compile Include="NewProjectWindow.xaml.cs">
       <DependentUpon>NewProjectWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProjectExplorerView.xaml.cs">
+      <DependentUpon>ProjectExplorerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecordWindow.xaml.cs">
+      <DependentUpon>RecordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestDetailsView.xaml.cs">
+      <DependentUpon>TestDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestMainShellView.xaml.cs">
+      <DependentUpon>TestMainShellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestOperationsView.xaml.cs">
+      <DependentUpon>TestOperationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestScreenshotsView.xaml.cs">
+      <DependentUpon>TestScreenshotsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestShellView.xaml.cs">
+      <DependentUpon>TestShellView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkspaceView.xaml.cs">
       <DependentUpon>WorkspaceView.xaml</DependentUpon>
     </Compile>
@@ -114,6 +137,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </CodeAnalysisDictionary>
+    <Page Include="ProjectExplorerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RecordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestMainShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestOperationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestScreenshotsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WorkspaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

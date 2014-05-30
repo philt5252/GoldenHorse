@@ -13,9 +13,6 @@ namespace Olf.GoldenHorse.Foundation.Services
         {
             get
             {
-                if(currentProjectSuite == null)
-                    throw new Exception("CurrentProjectSuite is null.  Set the ProjectSuiteManager.CurrentProjectSuite to a valid value.");
-                
                 return currentProjectSuite;
             }
             set { currentProjectSuite = value; }
@@ -39,6 +36,16 @@ namespace Olf.GoldenHorse.Foundation.Services
         public static string GetTestsFolder(Project project)
         {
             return Path.Combine(GetProjectFolder(project), project.TestsFolder);
+        }
+
+        public static string GetScreenshotsFolder(Test test)
+        {
+            string screenshotsFolder = Path.Combine(GetTestsFolder(test.Project), "Screenshots");
+
+            if (!Directory.Exists(screenshotsFolder))
+                Directory.CreateDirectory(screenshotsFolder);
+
+            return screenshotsFolder;
         }
     }
 }

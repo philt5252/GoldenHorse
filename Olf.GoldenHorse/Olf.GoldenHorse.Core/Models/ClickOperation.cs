@@ -1,4 +1,5 @@
-﻿using Olf.GoldenHorse.Foundation.Models;
+﻿using System.Drawing;
+using Olf.GoldenHorse.Foundation.Models;
 
 namespace Olf.GoldenHorse.Core.Models
 {
@@ -29,6 +30,11 @@ namespace Olf.GoldenHorse.Core.Models
         {
             clickXParam.Value = x;
             clickYParam.Value = y;
+        }
+
+        public Point GetClickPoint()
+        {
+            return new Point(int.Parse(clickXParam.GetValue()), int.Parse(clickYParam.GetValue()));
         }
     }
 }

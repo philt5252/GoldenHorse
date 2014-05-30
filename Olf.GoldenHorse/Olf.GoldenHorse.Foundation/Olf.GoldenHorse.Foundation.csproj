@@ -70,6 +70,7 @@
     <Compile Include="Models\ProjectFile.cs" />
     <Compile Include="Models\ProjectSuite.cs" />
     <Compile Include="Services\DefaultNameHelper.cs" />
+    <Compile Include="Services\ICamera.cs" />
     <Compile Include="Services\IExternalAppInfoManager.cs" />
     <Compile Include="Services\IRecorder.cs" />
     <Compile Include="Services\ProjectSuiteManager.cs" />

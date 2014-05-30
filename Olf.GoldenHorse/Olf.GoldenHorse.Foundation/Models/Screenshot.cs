@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Xml.Serialization;
@@ -12,7 +13,7 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         public string ImageFile { get; set; }
         public List<ScreenshotAdornment> Adornments { get; set; }
-        public string DateTime { get; set; }
+        public DateTime DateTime { get; set; }
 
         public Screenshot()
         {

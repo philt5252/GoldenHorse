@@ -72,6 +72,7 @@
     <Compile Include="Factories\ViewModels\TestScreenshotsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestShellViewModelFactory.cs" />
     <Compile Include="Helpers\RegionHelpers.cs" />
+    <Compile Include="Services\Camera.cs" />
     <Compile Include="Models\ClickOperation.cs" />
     <Compile Include="Models\KeyboardOperation.cs" />
     <Compile Include="Models\LeftClickOperation.cs" />

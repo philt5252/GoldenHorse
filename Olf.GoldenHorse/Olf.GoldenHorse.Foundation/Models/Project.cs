@@ -24,7 +24,7 @@ namespace Olf.GoldenHorse.Foundation.Models
             {
                 isDefaultProject = value;
 
-                if (isDefaultProject)
+                if (isDefaultProject && ProjectSuiteManager.CurrentProjectSuite != null)
                 {
                     foreach (Project project in ProjectSuiteManager.CurrentProjectSuite.Projects)
                     {

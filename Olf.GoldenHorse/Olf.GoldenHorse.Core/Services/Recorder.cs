@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
@@ -9,6 +10,7 @@ using Olf.GoldenHorse.Core.Controllers;
 using Olf.GoldenHorse.Core.Models;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
+using ICamera = Olf.GoldenHorse.Foundation.Services.ICamera;
 using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
 
@@ -25,15 +27,20 @@ namespace Olf.GoldenHorse.Core.Services
 
         private readonly Test test;
         private readonly IExternalAppInfoManager externalAppInfoManager;
+        private readonly ICamera camera;
+        private readonly IRecorder recorder;
         private GlobalHooker globalHooker;
         private KeyboardHookListener keyboardHookListener;
         private MouseHookListener mouseHookListener;
         private RecorderState CurrentRecorderState;
 
-        public Recorder(Test test, IExternalAppInfoManager externalAppInfoManager)
+        public Recorder(Test test, IExternalAppInfoManager externalAppInfoManager,
+            ICamera camera)
         {
             this.test = test;
             this.externalAppInfoManager = externalAppInfoManager;
+            this.camera = camera;
+            this.recorder = recorder;
 
             CurrentRecorderState = RecorderState.Stopped;
 
@@ -66,7 +73,26 @@ namespace Olf.GoldenHorse.Core.Services
 
             action.Operation = clickOperation;
 
+            Screenshot screenshot = GetScreenshot(action);
+
+            Point clickPoint = clickOperation.GetClickPoint();
+            screenshot.Adornments.Add(new ScreenshotClickAdornment{ClickX = clickPoint.X, ClickY=clickPoint.Y});
+            action.Screenshot = screenshot;
             test.TestItems.Add(action);
+        }
+
+        private Screenshot GetScreenshot(OnScreenAction action)
+        {
+            Screenshot screenshot = new Screenshot();
+            Bitmap bitmap = camera.Capture();
+            DateTime dateTime = DateTime.Now;
+            string screenshotName = "ghscn_" + dateTime.Ticks + ".bmp";
+            bitmap.Save(Path.Combine(ProjectSuiteManager.GetScreenshotsFolder(test), screenshotName));
+
+            screenshot.ImageFile = screenshotName;
+            screenshot.DateTime = dateTime;
+            screenshot.Owner = action;
+            return screenshot;
         }
 
         private ClickOperation CreateClickOperation(MouseEventArgs mouseEventArgs)

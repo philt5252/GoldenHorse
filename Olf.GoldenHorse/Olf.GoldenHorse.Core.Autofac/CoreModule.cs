@@ -24,6 +24,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<RecordingController>().As<IRecordingController>().SingleInstance();
 
             builder.RegisterType<Recorder>().As<IRecorder>();
+            builder.RegisterType<Camera>().As<ICamera>().SingleInstance();
             builder.RegisterType<ExternalAppInfoManager>().As<IExternalAppInfoManager>().SingleInstance();
 
             builder.RegisterType<RecorderFactory>().As<IRecorderFactory>().SingleInstance();

@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeviewDemo", "TreeviewDemo\TreeviewDemo.csproj", "{5A12F9AE-CC50-4920-A1CA-91E8A8F50291}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLibrary", "TestLibrary\TestLibrary.csproj", "{5ED44BBD-740D-4466-AE1D-11EC5BF082F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delete", "Delete\Delete.csproj", "{4AA1799F-9CFA-4588-91E6-59B30B530F96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,14 @@ Global
 		{5A12F9AE-CC50-4920-A1CA-91E8A8F50291}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A12F9AE-CC50-4920-A1CA-91E8A8F50291}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A12F9AE-CC50-4920-A1CA-91E8A8F50291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ED44BBD-740D-4466-AE1D-11EC5BF082F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED44BBD-740D-4466-AE1D-11EC5BF082F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED44BBD-740D-4466-AE1D-11EC5BF082F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED44BBD-740D-4466-AE1D-11EC5BF082F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AA1799F-9CFA-4588-91E6-59B30B530F96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AA1799F-9CFA-4588-91E6-59B30B530F96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AA1799F-9CFA-4588-91E6-59B30B530F96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AA1799F-9CFA-4588-91E6-59B30B530F96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

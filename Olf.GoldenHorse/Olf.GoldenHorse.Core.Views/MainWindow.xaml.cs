@@ -23,7 +23,7 @@ namespace Olf.GoldenHorse.Core.Views
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow, IWindow
+    public partial class MainWindow : WindowBase
     {
         private IRegionManager regionManager;
         public MainWindow()
@@ -40,16 +40,6 @@ namespace Olf.GoldenHorse.Core.Views
         private void OnClosing(object sender, CancelEventArgs cancelEventArgs)
         {
             regionManager.Regions.Remove("MainShellViewRegion");
-        }
-
-        public void Minimize()
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        public void Restore()
-        {
-            WindowState = WindowState.Normal;
         }
     }
 }

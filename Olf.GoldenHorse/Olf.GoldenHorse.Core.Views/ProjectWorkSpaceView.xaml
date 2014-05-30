@@ -7,7 +7,7 @@
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Tag="Project Browser">
-    <Grid Background="Chartreuse">
+    <Grid>
         <xcad:DockingManager>
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>

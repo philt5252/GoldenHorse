@@ -112,7 +112,7 @@
     <Compile Include="RecordWindow.xaml.cs">
       <DependentUpon>RecordWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\DebugButton.xaml.cs">
+    <Compile Include="Themes\DebugButton.xaml.cs">
       <DependentUpon>DebugButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="TestDetailsView.xaml.cs">
@@ -130,9 +130,7 @@
     <Compile Include="TestShellView.xaml.cs">
       <DependentUpon>TestShellView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TreeListView.cs" />
-    <Compile Include="TreeListViewConverter.cs" />
-    <Compile Include="TreeViewLineConverter.cs" />
+    <Compile Include="WindowBase.cs" />
     <Compile Include="WorkspaceView.xaml.cs">
       <DependentUpon>WorkspaceView.xaml</DependentUpon>
     </Compile>
@@ -150,7 +148,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <CodeAnalysisDictionary Include="Resources\Icons.xaml">
+    <CodeAnalysisDictionary Include="Themes\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </CodeAnalysisDictionary>
@@ -170,11 +168,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\DebugButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Generic.xaml">
+    <Page Include="Themes\DebugButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -204,6 +198,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Olf.GoldenHorse.CustomControls\Olf.GoldenHorse.CustomControls.csproj">
+      <Project>{c3be191d-1c68-430e-9ba3-eada12a14103}</Project>
+      <Name>Olf.GoldenHorse.CustomControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Olf.GoldenHorse.Foundation.Views\Olf.GoldenHorse.Foundation.Views.csproj">
       <Project>{4C3ABC74-3E81-4A54-AFF3-871F5A351FFC}</Project>
       <Name>Olf.GoldenHorse.Foundation.Views</Name>

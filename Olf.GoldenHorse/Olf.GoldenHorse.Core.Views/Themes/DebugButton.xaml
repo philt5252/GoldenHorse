@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Olf.GoldenHorse.Core.Views.Resources.DebugButton"
+﻿<UserControl x:Class="Olf.GoldenHorse.Core.Views.Themes.DebugButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

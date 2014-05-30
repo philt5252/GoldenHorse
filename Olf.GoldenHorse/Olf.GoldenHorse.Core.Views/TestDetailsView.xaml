@@ -4,24 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
-             xmlns:treeviewDemo="clr-namespace:Olf.GoldenHorse.Core.Views.Resources"
+             xmlns:treeview="clr-namespace:Olf.GoldenHorse.Core.Views.Themes"
+             xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls"
              Height="350" Width="525">
     <UserControl.Resources>
-        <views:TreeViewLineConverter x:Key="LineConverter"/>
+       
 
-        <ControlTemplate TargetType="{x:Type TreeViewItem}" x:Key="TreeViewItemLines">
-            <Grid>
-                <Rectangle x:Name="HorLn" Margin="12,1,0,0" Height="1" Width="13" Stroke="Gray" StrokeDashCap="Square" StrokeDashArray="0,2" StrokeDashOffset="2" SnapsToDevicePixels="True"/>
-                <Rectangle x:Name="VerLn" Width="1"  Stroke="Gray" StrokeDashCap="Square" StrokeDashArray="0,2" Margin="0,0,1,0" Grid.RowSpan="2" SnapsToDevicePixels="true" Fill="White"/>
-            </Grid>
-            <ControlTemplate.Triggers>
-                <!--Trigger to change last line-->
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource LineConverter}}" Value="true">
-                    <Setter TargetName="VerLn" Property="Height" Value="9"/>
-                    <Setter TargetName="VerLn" Property="VerticalAlignment" Value="Top"/>
-                </DataTrigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
+       
         <SolidColorBrush x:Key="MyBorderBrush" Color="White"></SolidColorBrush>
 
 
@@ -34,24 +23,24 @@
    
     <Grid x:Name="grid1" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="200" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="300*" />
         </Grid.RowDefinitions>
        
       
-        <views:TreeListView x:Name="treeListView" AllowsColumnReorder="True" ItemsSource="{Binding Actions}" 
+        <customControls:TreeListView x:Name="treeListView" AllowsColumnReorder="True" ItemsSource="{Binding Actions}" 
                             SelectedValuePath="{Binding SelectedAction}" Grid.Row="1">
             <!--Create an item template to specify the ItemsSource-->
-            <views:TreeListView.ItemTemplate>
+            <customControls:TreeListView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Actions}" />
-            </views:TreeListView.ItemTemplate>
-            <views:TreeListView.Columns >
+            </customControls:TreeListView.ItemTemplate>
+            <customControls:TreeListView.Columns >
                 <GridViewColumn Header="" Width="40" >
                     <GridViewColumn.CellTemplate >
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                 <StackPanel Orientation="Horizontal" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
-                                    <treeviewDemo:DebugButton Margin="0,0,0,0" Width="15" Height="15" Name="DebugButton" IsDebugging="{Binding DebugState, UpdateSourceTrigger=PropertyChanged}"></treeviewDemo:DebugButton>
+                                    <treeview:DebugButton Margin="0,0,0,0" Width="15" Height="15" Name="DebugButton" IsDebugging="{Binding DebugState, UpdateSourceTrigger=PropertyChanged}"></treeview:DebugButton>
                                     <Image Name="picImage"  Height="15" Width="15" Visibility="Collapsed"></Image >
                                 </StackPanel>
                             </Border>
@@ -74,7 +63,7 @@
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                 <StackPanel Orientation="Horizontal">
                                     <Grid >
-                                        <views:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1" />
+                                        <customControls:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1" />
                                         <!-- <TreeViewItem Template="{StaticResource TreeViewItemLines}"></TreeViewItem>-->
 
                                     </Grid>
@@ -121,7 +110,7 @@
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
-            </views:TreeListView.Columns>
-        </views:TreeListView>
+            </customControls:TreeListView.Columns>
+        </customControls:TreeListView>
     </Grid>
 </UserControl>

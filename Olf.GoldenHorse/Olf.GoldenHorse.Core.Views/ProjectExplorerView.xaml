@@ -11,7 +11,7 @@
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                     <StackPanel Orientation="Horizontal">
-                        <TreeViewItem Header="{Binding Name}" FontSize="11">
+                        <TreeViewItem Header="{Binding Name}" Margin="-10,0,0,0" FontSize="11">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="DoubleClickMouse">
                                     <i:InvokeCommandAction Command="{Binding Path=DefaultCommand, Mode=OneWay}"/>

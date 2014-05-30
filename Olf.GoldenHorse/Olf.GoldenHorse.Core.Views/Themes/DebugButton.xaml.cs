@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Olf.GoldenHorse.Core.Views.Resources
+namespace Olf.GoldenHorse.Core.Views.Themes
 {
     /// <summary>
     /// Interaction logic for DebugButton.xaml

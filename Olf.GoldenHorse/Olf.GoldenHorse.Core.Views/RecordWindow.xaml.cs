@@ -18,7 +18,7 @@ namespace Olf.GoldenHorse.Core.Views
     /// <summary>
     /// Interaction logic for RecordWindow.xaml
     /// </summary>
-    public partial class RecordWindow : IWindow
+    public partial class RecordWindow : WindowBase
     {
         public RecordWindow()
         {

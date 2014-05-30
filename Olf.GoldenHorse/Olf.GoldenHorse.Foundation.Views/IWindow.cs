@@ -4,5 +4,8 @@
     {
         void Show();
         void Close();
+        void Maximize();
+        void Minimize();
+        void Restore();
     }
 }

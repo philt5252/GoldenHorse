@@ -19,7 +19,7 @@ namespace Olf.GoldenHorse.Core.Views
     /// <summary>
     /// Interaction logic for NewProjectSuiteWindow.xaml
     /// </summary>
-    public partial class NewProjectSuiteWindow : MetroWindow, IWindow
+    public partial class NewProjectSuiteWindow : WindowBase
     {
         public NewProjectSuiteWindow()
         {

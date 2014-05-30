@@ -3,9 +3,10 @@
     public interface IWindow : IViewWithDataContext
     {
         void Show();
+        bool? ShowDialog();
         void Close();
-        void Maximize();
         void Minimize();
+        void Maximize();
         void Restore();
     }
 }

@@ -3,9 +3,19 @@
     public class OperationParameter
     {
         private OperationParameterValueMode mode;
+        private OperationParameterValue value;
+        
 
         public string Name { get; set; }
-        public OperationParameterValue Value { get; set; }
+
+        public object Value
+        {
+            get { return value.DisplayValue; }
+            set
+            {
+                this.value.DisplayValue = value.ToString();
+            }
+        }
 
         public OperationParameterValueMode Mode
         {
@@ -15,9 +25,9 @@
                 mode = value;
 
                 if (mode == OperationParameterValueMode.Constant
-                    && !(Value is ConstantOperationParameterValue))
+                    && !(this.value is ConstantOperationParameterValue))
                 {
-                    Value = new ConstantOperationParameterValue();
+                    this.value = new ConstantOperationParameterValue();
                 }
 
             }
@@ -30,7 +40,7 @@
 
         public string GetValue()
         {
-            return Value.GetValue();
+            return value.GetValue();
         }
     }
 }

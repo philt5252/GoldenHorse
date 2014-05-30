@@ -2,24 +2,33 @@
 
 namespace Olf.GoldenHorse.Core.Models
 {
-    public class ClickOperation : Operation
+    public abstract class ClickOperation : Operation
     {
-        public ClickOperation()
+        private OperationParameter clickXParam;
+        private OperationParameter clickYParam;
+
+        protected ClickOperation()
         {
-            OperationParameter param1 = new OperationParameter
+            clickXParam = new OperationParameter
             {
                 Name = "ClientX",
                 Mode = OperationParameterValueMode.Constant
             };
 
-            OperationParameter param2 = new OperationParameter
+            clickYParam = new OperationParameter
             {
                 Name = "ClientY",
                 Mode = OperationParameterValueMode.Constant
             };
 
-            Parameters.Add(param1);
-            Parameters.Add(param2);
+            Parameters.Add(clickXParam);
+            Parameters.Add(clickYParam);
+        }
+
+        public void SetClickPoint(int x, int y)
+        {
+            clickXParam.Value = x;
+            clickYParam.Value = y;
         }
     }
 }

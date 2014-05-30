@@ -1,10 +1,14 @@
 using System;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Olf.GoldenHorse.Core.Controllers;
+using Olf.GoldenHorse.Foundation;
 using Olf.GoldenHorse.Foundation.Controllers;
+using Olf.GoldenHorse.Foundation.Services;
 using Olf.GoldenHorse.Foundation.ViewModels;
 
 namespace Olf.GoldenHorse.Core.ViewModels
@@ -63,8 +67,15 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
             CancelNewProjectSuiteCommand = new DelegateCommand(ExecuteCancelNewProjectSuiteCommand);
 
-            Name = "Project1";
-            Location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GoldenHorseProjects");
+            
+            Location = DefaultData.GoldenHorseProjectsLocation;
+
+            string prefix = "Project";
+
+            string locationToCheck = DefaultData.GoldenHorseProjectsLocation;
+            var newName = DefaultNameHelper.GetDefaultName(locationToCheck, prefix);
+            Name = newName;
+
             autoSetLocation = false;
         }
 

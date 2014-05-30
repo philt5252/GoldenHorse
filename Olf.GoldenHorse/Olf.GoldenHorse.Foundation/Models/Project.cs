@@ -13,8 +13,29 @@ namespace Olf.GoldenHorse.Foundation.Models
         private string appManagerFolder;
         private bool init = false;
         private List<ProjectFile> testFiles;
+        private bool isDefaultProject;
 
         public string Name { get; set; }
+
+        public bool IsDefaultProject
+        {
+            get { return isDefaultProject; }
+            set
+            {
+                isDefaultProject = value;
+
+                if (isDefaultProject)
+                {
+                    foreach (Project project in ProjectSuiteManager.CurrentProjectSuite.Projects)
+                    {
+                        if (Equals(project, this))
+                            continue;
+
+                        project.IsDefaultProject = false;
+                    }
+                }
+            }
+        }
 
         public string TestsFolder
         {

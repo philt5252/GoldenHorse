@@ -28,11 +28,11 @@
         </Grid.RowDefinitions>
        
       
-        <customControls:TreeListView x:Name="treeListView" AllowsColumnReorder="True" ItemsSource="{Binding Actions}" 
-                            SelectedValuePath="{Binding SelectedAction}" Grid.Row="1">
+        <customControls:TreeListView x:Name="treeListView" AllowsColumnReorder="True" ItemsSource="{Binding TestItems}" 
+                            SelectedValuePath="{Binding SelectedTestItem}" Grid.Row="1">
             <!--Create an item template to specify the ItemsSource-->
             <customControls:TreeListView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Actions}" />
+                <HierarchicalDataTemplate ItemsSource="{Binding TestItems}" />
             </customControls:TreeListView.ItemTemplate>
             <customControls:TreeListView.Columns >
                 <GridViewColumn Header="" Width="40" >
@@ -46,7 +46,6 @@
                             </Border>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding HasPicture}" Value="True">
-                                    <!--<Setter TargetName="picImage" Property="Source" Value="Images\dachshund.jpg" />-->
                                     <Setter TargetName="picImage" Property="Visibility" Value="Visible"></Setter>
                                 </DataTrigger>
                             </DataTemplate.Triggers>

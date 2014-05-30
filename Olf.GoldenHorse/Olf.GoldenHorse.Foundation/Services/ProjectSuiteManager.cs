@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Olf.GoldenHorse.Foundation.Models;
 
 namespace Olf.GoldenHorse.Foundation.Services
@@ -28,6 +29,16 @@ namespace Olf.GoldenHorse.Foundation.Services
         public static void AddProject(Project project)
         {
             CurrentProjectSuite.Projects.Add(project);
+        }
+
+        public static Project GetDefaultProject()
+        {
+            return CurrentProjectSuite.Projects.FirstOrDefault(p => p.IsDefaultProject);
+        }
+
+        public static string GetTestsFolder(Project project)
+        {
+            return Path.Combine(GetProjectFolder(project), project.TestsFolder);
         }
     }
 }

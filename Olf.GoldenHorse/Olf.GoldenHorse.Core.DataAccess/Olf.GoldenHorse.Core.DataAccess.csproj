@@ -42,6 +42,7 @@
     <Compile Include="ProjectFileManager.cs" />
     <Compile Include="ProjectSuiteFileManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestFileManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Olf.GoldenHorse.Foundation.DataAccess\Olf.GoldenHorse.Foundation.DataAccess.csproj">

@@ -46,7 +46,7 @@ namespace Olf.GoldenHorse.Core.Controllers
 
             newProjectSuiteWindow.DataContext = newProjectSuiteViewModel;
 
-            newProjectSuiteWindow.Show();
+            newProjectSuiteWindow.ShowDialog();
         }
 
         public void Create(string folderPath, string projectSuiteName)
@@ -59,6 +59,7 @@ namespace Olf.GoldenHorse.Core.Controllers
 
             Project project = new Project();
             project.Name = projectSuiteName;
+            project.IsDefaultProject = true;
 
             projectSuite.Projects.Add(project);
 

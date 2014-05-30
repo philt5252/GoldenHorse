@@ -44,10 +44,13 @@
     <Compile Include="Controllers\IAppController.cs" />
     <Compile Include="Controllers\IProjectController.cs" />
     <Compile Include="Controllers\IProjectSuiteController.cs" />
+    <Compile Include="Controllers\IRecordingController.cs" />
     <Compile Include="DefaultData.cs" />
+    <Compile Include="Factories\Services\IRecorderFactory.cs" />
     <Compile Include="Factories\ViewModels\IMainShellViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\INewProjectSuiteViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\IProjectExplorerViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\IRecorderViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestDetailsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestMainShellViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestOperationsViewModelFactory.cs" />
@@ -66,6 +69,9 @@
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ProjectFile.cs" />
     <Compile Include="Models\ProjectSuite.cs" />
+    <Compile Include="Services\DefaultNameHelper.cs" />
+    <Compile Include="Services\IExternalAppInfoManager.cs" />
+    <Compile Include="Services\IRecorder.cs" />
     <Compile Include="Services\ProjectSuiteManager.cs" />
     <Compile Include="Models\Screenshot.cs" />
     <Compile Include="Models\ScreenshotAdornment.cs" />
@@ -78,6 +84,7 @@
     <Compile Include="ViewModels\IMainShellViewModel.cs" />
     <Compile Include="ViewModels\INewProjectSuiteViewModel.cs" />
     <Compile Include="ViewModels\IProjectExplorerViewModel.cs" />
+    <Compile Include="ViewModels\IRecorderViewModel.cs" />
     <Compile Include="ViewModels\ITestDetailsViewModel.cs" />
     <Compile Include="ViewModels\ITestMainShellViewModel.cs" />
     <Compile Include="ViewModels\ITestOperationsViewModel.cs" />
@@ -85,6 +92,12 @@
     <Compile Include="ViewModels\ITestShellViewModel.cs" />
     <Compile Include="ViewModels\Nodes\DisplayNode.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Olf.GoldenHorse.Foundation.Views\Olf.GoldenHorse.Foundation.Views.csproj">
+      <Project>{4C3ABC74-3E81-4A54-AFF3-871F5A351FFC}</Project>
+      <Name>Olf.GoldenHorse.Foundation.Views</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

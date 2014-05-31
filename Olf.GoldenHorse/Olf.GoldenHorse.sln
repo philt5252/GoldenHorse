@@ -27,13 +27,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olf.GoldenHorse.Core.Views.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olf.GoldenHorse.Core.DataAccess.Autofac", "Olf.GoldenHorse.Core.DataAccess.Autofac\Olf.GoldenHorse.Core.DataAccess.Autofac.csproj", "{D14C69CD-4991-4191-9154-B14779628168}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6BD7403A-A432-41C5-90D7-061D4FAE68A5}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olf.GoldenHorse.CustomControls", "Olf.GoldenHorse.CustomControls\Olf.GoldenHorse.CustomControls.csproj", "{C3BE191D-1C68-430E-9BA3-EADA12A14103}"
 EndProject
 Global

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -16,21 +17,29 @@ namespace Olf.GoldenHorse.Core.DataAccess
 
         public TestFileManager()
         {
-            Type[] testItemTypes = Assembly.GetExecutingAssembly().GetTypes()
-                .Where(t => t.IsSubclassOf(typeof(MappedItem))
-                    || t.IsSubclassOf(typeof(TestItem))
-                    || t.IsSubclassOf(typeof(Operation))
-                    || t.IsSubclassOf(typeof(OperationParameterValue))
-                    || t.IsSubclassOf(typeof(ScreenshotAdornment))).ToArray();
+            List<Type> types = new List<Type>();
 
-            serializer = new XmlSerializer(typeof(Test), testItemTypes);
+            FileInfo fileInfo = new FileInfo(Assembly.GetExecutingAssembly().Location);
+
+            foreach (string assemblyFile in Directory.EnumerateFiles(fileInfo.Directory.FullName)
+                .Where(f => f.EndsWith(".exe") || f.EndsWith(".dll")))
+            {
+                types.AddRange(Assembly.LoadFile(assemblyFile).GetTypes()
+                    .Where(t => t.IsSubclassOf(typeof(MappedItem))
+                        || t.IsSubclassOf(typeof(TestItem))
+                        || t.IsSubclassOf(typeof(Operation))
+                        || t.IsSubclassOf(typeof(OperationParameterValue))
+                        || t.IsSubclassOf(typeof(ScreenshotAdornment))));
+            }
+
+            serializer = new XmlSerializer(typeof(Test), types.ToArray());
         }
 
         public Test CreateTestForProject(Project project)
         {
             var testsPath = ProjectSuiteManager.GetTestsFolder(project);
 
-            string defaultTestName = DefaultNameHelper.GetDefaultName(testsPath, "Test");
+            string defaultTestName = DefaultNameHelper.GetDefaultName(testsPath, "Test", DefaultNameHelper.CheckType.File);
 
             Test test = new Test();
             test.Name = defaultTestName;
@@ -45,6 +54,27 @@ namespace Olf.GoldenHorse.Core.DataAccess
             }
 
             return test;
+        }
+
+        public void Save(Test test)
+        {
+            var testsPath = ProjectSuiteManager.GetTestsFolder(test.Project);
+
+            string filePath = Path.Combine(testsPath, test.Name + DefaultData.TestExtension);
+            using (FileStream fileStream = File.Create(filePath))
+            {
+                serializer.Serialize(fileStream, test);
+
+                fileStream.Flush();
+            }
+        }
+
+        public Test Open(string filePath)
+        {
+            using (FileStream fileStream = File.OpenRead(filePath))
+            {
+                return serializer.Deserialize(fileStream) as Test;
+            }
         }
     }
 }

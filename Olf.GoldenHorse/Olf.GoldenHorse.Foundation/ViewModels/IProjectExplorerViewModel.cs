@@ -5,6 +5,6 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
 {
     public interface IProjectExplorerViewModel
     {
-        List<DisplayNode> Nodes { get; }
+        List<IDisplayNode> Nodes { get; }
     }
 }

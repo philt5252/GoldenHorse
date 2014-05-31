@@ -40,7 +40,7 @@ namespace Olf.GoldenHorse.Foundation.Services
 
         public static string GetScreenshotsFolder(Test test)
         {
-            string screenshotsFolder = Path.Combine(GetTestsFolder(test.Project), "Screenshots");
+            string screenshotsFolder = Path.Combine(GetTestsFolder(test.Project), "Screenshots", test.Name);
 
             if (!Directory.Exists(screenshotsFolder))
                 Directory.CreateDirectory(screenshotsFolder);

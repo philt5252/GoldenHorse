@@ -13,7 +13,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TreeViewItem Header="{Binding Name}" Margin="-10,0,0,0" FontSize="11">
                             <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="DoubleClickMouse">
+                                <i:EventTrigger EventName="MouseDoubleClick">
                                     <i:InvokeCommandAction Command="{Binding Path=DefaultCommand, Mode=OneWay}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>

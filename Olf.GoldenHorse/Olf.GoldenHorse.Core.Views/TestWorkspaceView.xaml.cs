@@ -16,18 +16,13 @@ using Olf.GoldenHorse.Foundation.Views;
 namespace Olf.GoldenHorse.Core.Views
 {
     /// <summary>
-    /// Interaction logic for WorkspaceView.xaml
+    /// Interaction logic for TestWorkspaceView.xaml
     /// </summary>
-    public partial class WorkspaceView : UserControl, IViewWithDataContext
+    public partial class TestWorkspaceView : UserControl, IViewWithDataContext
     {
-        public WorkspaceView()
+        public TestWorkspaceView()
         {
             InitializeComponent();
-
         }
-
-       
-
-        
     }
 }

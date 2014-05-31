@@ -32,7 +32,10 @@ namespace Olf.GoldenHorse.Core.Views
             regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
             RegionManager.SetRegionManager(this, regionManager);
             
-            InitializeComponent();            
+            
+            InitializeComponent();
+
+            RegionManager.UpdateRegions();
 
             Closing += OnClosing;
         }

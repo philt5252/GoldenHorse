@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using Olf.GoldenHorse.Foundation.Models;
 
 namespace Olf.GoldenHorse.Core.Models
@@ -9,6 +10,22 @@ namespace Olf.GoldenHorse.Core.Models
         private OperationParameter clickYParam;
 
         protected ClickOperation()
+        {
+            
+        }
+
+        public void SetClickPoint(int x, int y)
+        {
+            clickXParam.Value = x;
+            clickYParam.Value = y;
+        }
+
+        public Point GetClickPoint()
+        {
+            return new Point(int.Parse(clickXParam.GetValue()), int.Parse(clickYParam.GetValue()));
+        }
+
+        protected override OperationParameter[] SetParameters()
         {
             clickXParam = new OperationParameter
             {
@@ -22,19 +39,7 @@ namespace Olf.GoldenHorse.Core.Models
                 Mode = OperationParameterValueMode.Constant
             };
 
-            Parameters.Add(clickXParam);
-            Parameters.Add(clickYParam);
-        }
-
-        public void SetClickPoint(int x, int y)
-        {
-            clickXParam.Value = x;
-            clickYParam.Value = y;
-        }
-
-        public Point GetClickPoint()
-        {
-            return new Point(int.Parse(clickXParam.GetValue()), int.Parse(clickYParam.GetValue()));
+            return new [] {clickXParam, clickYParam};
         }
     }
 }

@@ -41,10 +41,10 @@
                 </ToolBarTray>
             </ToolBar>
         </DockPanel>
-        <xcad:DockingManager Grid.Row="2" Background="Aquamarine">
+        <xcad:DockingManager Grid.Row="2">
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>
-                    <xcad:LayoutDocumentPane x:Name="layoutDocumentPane" regions:RegionManager.RegionName="MainWorkspaceViewRegion"></xcad:LayoutDocumentPane>
+                    <xcad:LayoutDocumentPane x:Name="layoutDocumentPane" regions:RegionManager.RegionName="MainWorkspaceViewRegion" />
                 </xcad:LayoutPanel>
             </xcad:LayoutRoot>
         </xcad:DockingManager>

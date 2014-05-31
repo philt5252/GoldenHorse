@@ -1,6 +1,6 @@
 ﻿namespace Olf.GoldenHorse.Foundation.Views.Factories
 {
-    public interface IWorkspaceViewFactory
+    public interface ITestWorkspaceViewFactory
     {
         IViewWithDataContext Create();
     }

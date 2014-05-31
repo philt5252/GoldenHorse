@@ -1,4 +1,5 @@
-﻿using Olf.GoldenHorse.Foundation.Models;
+﻿using System.Net.Mime;
+using Olf.GoldenHorse.Foundation.Models;
 
 namespace Olf.GoldenHorse.Core.Models
 {
@@ -11,7 +12,7 @@ namespace Olf.GoldenHorse.Core.Models
             get { return "Keyboard"; }
         }
 
-        public KeyboardOperation()
+        protected override OperationParameter[] SetParameters()
         {
             textParam = new OperationParameter
             {
@@ -19,8 +20,9 @@ namespace Olf.GoldenHorse.Core.Models
                 Mode = OperationParameterValueMode.Constant
             };
 
-            Parameters.Add(textParam);
+            return new []{textParam};
         }
+
 
         public void SetText(string text)
         {

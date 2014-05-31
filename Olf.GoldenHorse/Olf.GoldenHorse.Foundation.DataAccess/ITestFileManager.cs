@@ -5,5 +5,7 @@ namespace Olf.GoldenHorse.Foundation.DataAccess
     public interface ITestFileManager
     {
         Test CreateTestForProject(Project project);
+        void Save(Test currentTest);
+        Test Open(string filePath);
     }
 }

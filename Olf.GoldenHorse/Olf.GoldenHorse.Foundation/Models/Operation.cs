@@ -6,11 +6,13 @@ namespace Olf.GoldenHorse.Foundation.Models
     {
         public abstract string Name { get; }
 
-        public List<OperationParameter> Parameters { get; set; }
+        public OperationParameter[] Parameters { get; set; }
 
         protected Operation()
         {
-            Parameters = new List<OperationParameter>();
+            
         }
+
+        protected abstract OperationParameter[] SetParameters();
     }
 }

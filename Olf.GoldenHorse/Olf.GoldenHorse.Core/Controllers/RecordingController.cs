@@ -15,25 +15,33 @@ namespace Olf.GoldenHorse.Core.Controllers
         private readonly IRecordWindowFactory recordWindowFactory;
         private readonly IRecorderViewModelFactory recorderViewModelFactory;
         private readonly IRecorderFactory recorderFactory;
+        private readonly ITestFileManager testFileManager;
         private readonly IAppController appController;
         private IWindow recordingWindow;
+        private IRecorder recorder;
 
         public RecordingController(IRecordWindowFactory recordWindowFactory,
             IRecorderViewModelFactory recorderViewModelFactory,
             IRecorderFactory recorderFactory,
+            ITestFileManager testFileManager,
             IAppController appController)
         {
             this.recordWindowFactory = recordWindowFactory;
             this.recorderViewModelFactory = recorderViewModelFactory;
             this.recorderFactory = recorderFactory;
+            this.testFileManager = testFileManager;
             this.appController = appController;
         }
 
-        public void ShowRecord(Test test)
+        public void ShowRecord()
         {
+            Project defaultProject = ProjectSuiteManager.GetDefaultProject();
+
+            Test test = testFileManager.CreateTestForProject(defaultProject);
+
             recordingWindow = recordWindowFactory.Create();
 
-            IRecorder recorder = recorderFactory.Create(test);
+            recorder = recorderFactory.Create(test);
             IRecorderViewModel recorderViewModel = recorderViewModelFactory.Create(recorder);
 
             recordingWindow.DataContext = recorderViewModel;
@@ -47,6 +55,8 @@ namespace Olf.GoldenHorse.Core.Controllers
         public void StopRecord()
         {
             recordingWindow.Close();
+
+            testFileManager.Save(recorder.CurrentTest);
 
             appController.MainWindow.Restore();
         }

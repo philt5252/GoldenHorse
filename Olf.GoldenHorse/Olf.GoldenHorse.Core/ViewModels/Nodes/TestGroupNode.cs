@@ -1,4 +1,5 @@
-﻿using Olf.GoldenHorse.Foundation.Models;
+﻿using Olf.GoldenHorse.Foundation.Factories.ViewModels.Nodes;
+using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.ViewModels.Nodes;
 
 namespace Olf.GoldenHorse.Core.ViewModels.Nodes
@@ -10,11 +11,11 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
             get { return "Tests"; }
         }
 
-        public TestGroupNode(Project project)
+        public TestGroupNode(Project project, ITestNodeFactory testNodeFactory)
         {
             foreach (ProjectFile projectFile in project.TestFiles)
             {
-                Children.Add(new TestNode(projectFile));
+                Children.Add(testNodeFactory.Create(projectFile));
             }
         }
 

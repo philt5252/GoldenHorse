@@ -45,6 +45,7 @@
     <Compile Include="Controllers\IProjectController.cs" />
     <Compile Include="Controllers\IProjectSuiteController.cs" />
     <Compile Include="Controllers\IRecordingController.cs" />
+    <Compile Include="Controllers\ITestController.cs" />
     <Compile Include="DefaultData.cs" />
     <Compile Include="Factories\Services\IRecorderFactory.cs" />
     <Compile Include="Factories\ViewModels\IMainShellViewModelFactory.cs" />
@@ -56,6 +57,11 @@
     <Compile Include="Factories\ViewModels\ITestOperationsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestScreenshotsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestShellViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\Nodes\IProjectNodeFactory.cs" />
+    <Compile Include="Factories\ViewModels\Nodes\IProjectSuiteLogsNodeFactory.cs" />
+    <Compile Include="Factories\ViewModels\Nodes\IProjectSuiteProjectsNodeFactory.cs" />
+    <Compile Include="Factories\ViewModels\Nodes\ITestGroupNodeFactory.cs" />
+    <Compile Include="Factories\ViewModels\Nodes\ITestNodeFactory.cs" />
     <Compile Include="Models\AppControl.cs" />
     <Compile Include="Models\AppProcess.cs" />
     <Compile Include="Models\AppWindow.cs" />
@@ -91,7 +97,7 @@
     <Compile Include="ViewModels\ITestOperationsViewModel.cs" />
     <Compile Include="ViewModels\ITestScreenshotsViewModel.cs" />
     <Compile Include="ViewModels\ITestShellViewModel.cs" />
-    <Compile Include="ViewModels\Nodes\DisplayNode.cs" />
+    <Compile Include="ViewModels\Nodes\IDisplayNode.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>

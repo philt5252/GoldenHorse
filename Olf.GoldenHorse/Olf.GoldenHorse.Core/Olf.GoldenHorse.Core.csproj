@@ -60,10 +60,16 @@
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\ProjectSuiteController.cs" />
     <Compile Include="Controllers\RecordingController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Factories\Services\RecorderFactory.cs" />
     <Compile Include="Factories\ViewModels\MainShellViewModelFactory.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Factories\ViewModels\NewProjectSuiteSuiteViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\Nodes\ProjectNodeFactory.cs" />
+    <Compile Include="Factories\ViewModels\Nodes\ProjectSuiteLogsNodeFactory.cs" />
+    <Compile Include="Factories\ViewModels\Nodes\ProjectSuiteProjectsNodeFactory.cs" />
+    <Compile Include="Factories\ViewModels\Nodes\TestGroupNodeFactory.cs" />
+    <Compile Include="Factories\ViewModels\Nodes\TestNodeFactory.cs" />
     <Compile Include="Factories\ViewModels\ProjectExplorerViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\RecorderViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestDetailsViewModelFactory.cs" />
@@ -85,6 +91,7 @@
     <Compile Include="Services\Recorder.cs" />
     <Compile Include="ViewModels\MainShellViewModel.cs" />
     <Compile Include="ViewModels\NewProjectSuiteViewModel.cs" />
+    <Compile Include="ViewModels\Nodes\DisplayNode.cs" />
     <Compile Include="ViewModels\Nodes\ProjectNode.cs" />
     <Compile Include="ViewModels\Nodes\ProjectSuiteLogsNode.cs" />
     <Compile Include="ViewModels\Nodes\ProjectSuiteProjectsNode.cs" />

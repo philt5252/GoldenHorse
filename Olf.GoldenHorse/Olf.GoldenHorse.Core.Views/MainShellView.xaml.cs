@@ -12,7 +12,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.ServiceLocation;
 using Olf.GoldenHorse.Foundation.Views;
+using Xceed.Wpf.AvalonDock.Layout;
 
 namespace Olf.GoldenHorse.Core.Views
 {
@@ -24,6 +26,14 @@ namespace Olf.GoldenHorse.Core.Views
         public MainShellView()
         {
             InitializeComponent();
+
+            RegionAdapterMappings regionAdapterMappings = ServiceLocator.Current.GetInstance<RegionAdapterMappings>();
+            IRegionAdapter regionAdapter = regionAdapterMappings.GetMapping(typeof (LayoutDocumentPane));
+            IRegion region = regionAdapter.Initialize(layoutDocumentPane, Regions.MainWorkspaceViewRegion);
+
+            //IRegionManager regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
+            //regionManager.Regions.Add(region);
+
             RegionManager.UpdateRegions();
         }
     }

@@ -37,11 +37,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         private void ExecuteRecordCommand()
         {
-            Project defaultProject = ProjectSuiteManager.GetDefaultProject();
-
-            Test test = testFileManager.CreateTestForProject(defaultProject);
-
-            recordingController.ShowRecord(test);
+            recordingController.ShowRecord();
         }
 
         private void ExecuteOpenProjectSuiteCommand()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Windows.Data;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
 using Xceed.Wpf.AvalonDock.Layout;
@@ -10,7 +11,7 @@ namespace Olf.GoldenHorse
 {
     public class LayoutDocumentPaneRegionAdapter : RegionAdapterBase<LayoutDocumentPane>
     {
-        private Dictionary<object, LayoutDocument> anchorableDict = new Dictionary<object, LayoutDocument>();
+        private Dictionary<object, LayoutDocument> documentDict = new Dictionary<object, LayoutDocument>();
 
         public LayoutDocumentPaneRegionAdapter(IRegionBehaviorFactory regionBehaviorFactory)
             : base(regionBehaviorFactory)
@@ -21,8 +22,11 @@ namespace Olf.GoldenHorse
         {
             IRegionManager regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
 
-            region.RegionManager = regionManager;
-            regionManager.Regions.Add(region);
+            if(region.RegionManager == null)
+                region.RegionManager = regionManager;
+
+            if(!regionManager.Regions.ContainsRegionWithName(region.Name))
+                regionManager.Regions.Add(region);
 
 
             region.ActiveViews.CollectionChanged +=
@@ -32,12 +36,12 @@ namespace Olf.GoldenHorse
                     {
                         foreach (object newView in args.NewItems)
                         {
-                            if (!anchorableDict.ContainsKey(newView))
+                            if (!documentDict.ContainsKey(newView))
                             {
                                 CreateLayoutDocument(newView);
                             }
 
-                            regionTarget.Children.Add(anchorableDict[newView]);
+                            regionTarget.Children.Add(documentDict[newView]);
                         }
 
                     }
@@ -49,9 +53,9 @@ namespace Olf.GoldenHorse
                 {
                     if (args.Action == NotifyCollectionChangedAction.Add)
                     {
-                        foreach (object newItem in args.NewItems)
+                        foreach (object newView in args.NewItems)
                         {
-                            CreateLayoutDocument(newItem);
+                            CreateLayoutDocument(newView);
                         }
 
                     }
@@ -66,18 +70,15 @@ namespace Olf.GoldenHorse
                 };
         }
 
-        private void CreateLayoutDocument(object newItem)
+        private void CreateLayoutDocument(object newView)
         {
             LayoutDocument layoutDocument = new LayoutDocument();
-            layoutDocument.Title = GetTag(newItem);
-            layoutDocument.Content = newItem;
-            anchorableDict[newItem] = layoutDocument;
-        }
-
-        private string GetTag(object newItem)
-        {
-            object tag = newItem.GetType().GetProperty("Tag").GetValue(newItem, null);
-            return tag == null ? "" : tag.ToString();
+            Binding myBinding = new Binding("Tag");
+            myBinding.Source = newView;
+            BindingOperations.SetBinding(layoutDocument, LayoutDocument.TitleProperty, myBinding);
+            //layoutDocument.Title = GetTag(newItem);
+            layoutDocument.Content = newView;
+            documentDict[newView] = layoutDocument;
         }
 
         protected override IRegion CreateRegion()

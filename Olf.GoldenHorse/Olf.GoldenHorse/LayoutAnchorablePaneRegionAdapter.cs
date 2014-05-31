@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Windows.Data;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
 using Xceed.Wpf.AvalonDock.Layout;
@@ -34,10 +35,7 @@ namespace Olf.GoldenHorse
                         {
                             if (!anchorableDict.ContainsKey(newView))
                             {
-                                LayoutAnchorable layoutAnchorable = new LayoutAnchorable();
-                                layoutAnchorable.Title = GetTag(newView);
-                                layoutAnchorable.Content = newView;
-                                anchorableDict[newView] = layoutAnchorable;
+                                CreateLayoutAnchorable(newView);
                             }
                                 //throw new Exception("Could not find view " + newItem
                                 //                    + " to activate. Add it do the Views collection before activating.");
@@ -54,12 +52,9 @@ namespace Olf.GoldenHorse
                 {
                     if (args.Action == NotifyCollectionChangedAction.Add)
                     {
-                        foreach (object newItem in args.NewItems)
+                        foreach (object newView in args.NewItems)
                         {
-                            LayoutAnchorable layoutAnchorable = new LayoutAnchorable();
-                            layoutAnchorable.Title = GetTag(newItem);
-                            layoutAnchorable.Content = newItem;
-                            anchorableDict[newItem] = layoutAnchorable;
+                            CreateLayoutAnchorable(newView);
                         }
 
                     }
@@ -74,10 +69,15 @@ namespace Olf.GoldenHorse
                 };
         }
 
-        private string GetTag(object newItem)
+        private void CreateLayoutAnchorable(object newView)
         {
-            object tag = newItem.GetType().GetProperty("Tag").GetValue(newItem, null);
-            return tag == null ? "" : tag.ToString();
+            LayoutAnchorable layoutAnchorable = new LayoutAnchorable();
+            Binding myBinding = new Binding("Tag");
+            myBinding.Source = newView;
+            BindingOperations.SetBinding(layoutAnchorable, LayoutAnchorable.TitleProperty, myBinding);
+
+            layoutAnchorable.Content = newView;
+            anchorableDict[newView] = layoutAnchorable;
         }
 
         protected override IRegion CreateRegion()

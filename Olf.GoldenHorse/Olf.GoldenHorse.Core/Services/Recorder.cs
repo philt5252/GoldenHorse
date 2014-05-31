@@ -128,6 +128,11 @@ namespace Olf.GoldenHorse.Core.Services
             throw new NotImplementedException();
         }
 
+        public Test CurrentTest
+        {
+            get { return test; }
+        }
+
         public void Record()
         {
             CurrentRecorderState = RecorderState.Recording;

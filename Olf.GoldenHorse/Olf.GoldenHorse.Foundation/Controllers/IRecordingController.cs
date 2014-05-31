@@ -4,7 +4,7 @@ namespace Olf.GoldenHorse.Foundation.Controllers
 {
     public interface IRecordingController
     {
-        void ShowRecord(Test test);
+        void ShowRecord();
         void StopRecord();
     }
 }

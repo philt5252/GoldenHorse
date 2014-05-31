@@ -14,13 +14,13 @@
                 <xcad:LayoutPanel>
                     <xcad:LayoutAnchorablePane  DockWidth="160" DockHeight="300*" x:Name="TestOperationsPane">
                         <xcad:LayoutAnchorable >
-                            <views:TestOperationsView ></views:TestOperationsView>
+                            <views:TestOperationsView x:Name="testOperationsView" ></views:TestOperationsView>
                         </xcad:LayoutAnchorable>
                     </xcad:LayoutAnchorablePane>
                     <xcad:LayoutDocumentPaneGroup>
                         <xcad:LayoutDocumentPane DockWidth="300*" DockHeight="300*" x:Name="TestDetailsDocPane">
                             <xcad:LayoutDocument>
-                                <views:TestDetailsView ></views:TestDetailsView>
+                                <views:TestDetailsView x:Name="testDetailsView" ></views:TestDetailsView>
                             </xcad:LayoutDocument>
                         </xcad:LayoutDocumentPane>
                     </xcad:LayoutDocumentPaneGroup>

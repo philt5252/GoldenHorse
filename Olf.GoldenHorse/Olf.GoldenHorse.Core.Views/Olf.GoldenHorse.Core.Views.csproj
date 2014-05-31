@@ -206,6 +206,10 @@
       <Project>{4C3ABC74-3E81-4A54-AFF3-871F5A351FFC}</Project>
       <Name>Olf.GoldenHorse.Foundation.Views</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Olf.GoldenHorse.Foundation\Olf.GoldenHorse.Foundation.csproj">
+      <Project>{B020B22A-4677-42BC-9E9A-A2EDFAB0DBC8}</Project>
+      <Name>Olf.GoldenHorse.Foundation</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -28,7 +28,6 @@ namespace Olf.GoldenHorse.Core.Services
         private readonly Test test;
         private readonly IExternalAppInfoManager externalAppInfoManager;
         private readonly ICamera camera;
-        private readonly IRecorder recorder;
         private GlobalHooker globalHooker;
         private KeyboardHookListener keyboardHookListener;
         private MouseHookListener mouseHookListener;
@@ -40,7 +39,6 @@ namespace Olf.GoldenHorse.Core.Services
             this.test = test;
             this.externalAppInfoManager = externalAppInfoManager;
             this.camera = camera;
-            this.recorder = recorder;
 
             CurrentRecorderState = RecorderState.Stopped;
 
@@ -115,17 +113,17 @@ namespace Olf.GoldenHorse.Core.Services
 
         private void MouseHookListenerOnMouseDown(object sender, MouseEventArgs mouseEventArgs)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void KeyboardHookListenerOnKeyDown(object sender, KeyEventArgs keyEventArgs)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public Test CurrentTest

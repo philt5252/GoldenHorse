@@ -10,7 +10,7 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         protected Operation()
         {
-            
+            SetParameters();
         }
 
         protected abstract OperationParameter[] SetParameters();

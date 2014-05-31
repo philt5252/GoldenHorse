@@ -29,7 +29,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             IViewWithDataContext testWorkspaceView = testWorkspaceViewFactory.Create();
             ITestMainShellViewModel testMainShellViewModel = testMainShellViewModelFactory.Create(test);
 
-            testWorkspaceView.DataContext = testMainShellViewModel;
+            testWorkspaceView.DataContext = testMainShellViewModel.TestShellViewModel;
 
             regionManager.Regions[Regions.WorkspaceViewRegion].AddAndActivate(testWorkspaceView);
         }

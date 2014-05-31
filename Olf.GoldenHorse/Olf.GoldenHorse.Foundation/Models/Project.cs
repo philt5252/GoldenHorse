@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -14,6 +15,8 @@ namespace Olf.GoldenHorse.Foundation.Models
         private bool init = false;
         private List<ProjectFile> testFiles;
         private bool isDefaultProject;
+
+        public event EventHandler TestFilesChanged;
 
         public string Name { get; set; }
 
@@ -92,6 +95,19 @@ namespace Olf.GoldenHorse.Foundation.Models
             TestsFolder = "Tests";
             LogsFolder = "Logs";
             AppManagerFolder = "AppManager";
+        }
+
+        public void RefreshTestFiles()
+        {
+            testFiles = null;
+            OnTestFilesChanged();
+        }
+
+        protected virtual void OnTestFilesChanged()
+        {
+            EventHandler handler = TestFilesChanged;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
     }
 }

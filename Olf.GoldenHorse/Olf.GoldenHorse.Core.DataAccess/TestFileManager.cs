@@ -53,6 +53,8 @@ namespace Olf.GoldenHorse.Core.DataAccess
                 fileStream.Flush();
             }
 
+            project.RefreshTestFiles();
+
             return test;
         }
 
@@ -67,6 +69,8 @@ namespace Olf.GoldenHorse.Core.DataAccess
 
                 fileStream.Flush();
             }
+
+            test.Project.RefreshTestFiles();
         }
 
         public Test Open(string filePath)

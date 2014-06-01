@@ -89,7 +89,7 @@
     <Compile Include="Factories\ProjectWorkspaceViewFactory.cs" />
     <Compile Include="Factories\RecordWindowFactory.cs" />
     <Compile Include="Factories\TestMainShellViewFactory.cs" />
-    <Compile Include="Factories\TestWorkspaceViewFactory.cs" />
+    <Compile Include="Factories\TestShellViewFactory.cs" />
     <Compile Include="MainShellView.xaml.cs">
       <DependentUpon>MainShellView.xaml</DependentUpon>
     </Compile>
@@ -127,12 +127,9 @@
     <Compile Include="TestScreenshotsView.xaml.cs">
       <DependentUpon>TestScreenshotsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowBase.cs" />
     <Compile Include="TestShellView.xaml.cs">
       <DependentUpon>TestShellView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WindowBase.cs" />
-    <Compile Include="TestWorkspaceView.xaml.cs">
-      <DependentUpon>TestWorkspaceView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -189,10 +186,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TestShellView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TestWorkspaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

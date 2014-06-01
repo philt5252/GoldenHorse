@@ -28,9 +28,12 @@
         </Grid.RowDefinitions>
        
       
-        <customControls:TreeListView x:Name="treeListView" AllowsColumnReorder="True" 
+        <customControls:TreeListView x:Name="treeListView" AllowsColumnReorder="True" ItemsSource="{Binding TestItems}"
                             SelectedValuePath="{Binding SelectedTestItem}" Grid.Row="1">
             <!--Create an item template to specify the ItemsSource-->
+            <customControls:TreeListView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Items}" />
+            </customControls:TreeListView.ItemTemplate>
             <customControls:TreeListView.Columns >
                 <GridViewColumn Header="" Width="40" >
                     <GridViewColumn.CellTemplate >
@@ -63,11 +66,11 @@
                                         <!-- <TreeViewItem Template="{StaticResource TreeViewItemLines}"></TreeViewItem>-->
 
                                     </Grid>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" >
                                         <!--The Expander Button (can be used in any column (typically the first one))-->
 
                                         <!--<Image Width ="20" Height ="20"  Source="Images\dachshund.jpg"></Image>-->
-                                        <TextBlock Text="{Binding Name}" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
+                                        <TextBlock Text="{Binding Name}" MouseLeftButtonDown="OpenItemEditWindow" HorizontalAlignment="Center" ></TextBlock>
 
 
                                     </StackPanel>
@@ -82,7 +85,7 @@
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0" >
                                 <!--Display the size of the DataElement-->
-                                <TextBlock Text="{Binding Operation}" MouseLeftButtonDown="OpenOperationEditWindow" HorizontalAlignment="Right" />
+                                <TextBlock Text="{Binding Operation}" MouseLeftButtonDown="OpenOperationEditWindow" HorizontalAlignment="Center" />
                             </Border>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
@@ -92,7 +95,7 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                <TextBlock Text="{Binding Value}" MouseLeftButtonDown="OpenValueEditWindow"  HorizontalAlignment="Right"/>
+                                <TextBlock Text="{Binding Value}" MouseLeftButtonDown="OpenValueEditWindow"  HorizontalAlignment="Center"/>
                             </Border>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
@@ -101,7 +104,7 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                <TextBlock Text="{Binding Description}" HorizontalAlignment="Right"/>
+                                <TextBlock Text="{Binding Description}" HorizontalAlignment="Center"/>
                             </Border>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>

@@ -122,6 +122,6 @@
             </testLibrary:TreeListView.Columns>
             
         </testLibrary:TreeListView>
-        <Delete:CustomControl1 HorizontalAlignment="Left" Margin="110,0,0,0" TextWrapping="Wrap" Text="CustomControl1" VerticalAlignment="Top" Height="25" Width="175"/>
+       
     </Grid>
 </Window>

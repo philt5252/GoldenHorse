@@ -2,10 +2,31 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+             xmlns:regions="http://www.codeplex.com/CompositeWPF"
+             xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Tag="Test Workspace">
     <Grid>
-            
+        <xcad:DockingManager>
+            <xcad:LayoutRoot>
+                <xcad:LayoutPanel Orientation="Vertical">
+                    <xcad:LayoutDocumentPane x:Name="TestShellPane"  DockHeight="300*">
+                       <xcad:LayoutDocument>
+                           <views:TestShellView x:Name="testShellView"></views:TestShellView>
+                       </xcad:LayoutDocument>
+                    </xcad:LayoutDocumentPane>
+                    <xcad:LayoutAnchorablePane DockHeight="200">
+                        <xcad:LayoutAnchorable>
+                            <views:TestScreenshotsView x:Name="testScreenshotsView" ></views:TestScreenshotsView>
+                        </xcad:LayoutAnchorable>
+                    </xcad:LayoutAnchorablePane>
+                      
+                </xcad:LayoutPanel>
+            </xcad:LayoutRoot>
+        </xcad:DockingManager>
+    
+
     </Grid>
 </UserControl>

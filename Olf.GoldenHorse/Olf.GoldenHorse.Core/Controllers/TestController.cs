@@ -12,26 +12,26 @@ namespace Olf.GoldenHorse.Core.Controllers
     public class TestController : ITestController
     {
         private readonly IRegionManager regionManager;
-        private readonly ITestWorkspaceViewFactory testWorkspaceViewFactory;
+        private readonly ITestMainShellViewFactory testMainShellViewFactory;
         private readonly ITestMainShellViewModelFactory testMainShellViewModelFactory;
 
-        public TestController(ITestWorkspaceViewFactory testWorkspaceViewFactory,
+        public TestController(ITestMainShellViewFactory testMainShellViewFactory,
             ITestMainShellViewModelFactory testMainShellViewModelFactory,
             IRegionManager regionManager)
         {
             this.regionManager = regionManager;
-            this.testWorkspaceViewFactory = testWorkspaceViewFactory;
+            this.testMainShellViewFactory = testMainShellViewFactory;
             this.testMainShellViewModelFactory = testMainShellViewModelFactory;
         }
 
         public void ShowTest(Test test)
         {
-            IViewWithDataContext testWorkspaceView = testWorkspaceViewFactory.Create();
+            IViewWithDataContext testMainShellView = testMainShellViewFactory.Create();
             ITestMainShellViewModel testMainShellViewModel = testMainShellViewModelFactory.Create(test);
 
-            testWorkspaceView.DataContext = testMainShellViewModel.TestShellViewModel;
+            testMainShellView.DataContext = testMainShellViewModel;
 
-            regionManager.Regions[Regions.WorkspaceViewRegion].AddAndActivate(testWorkspaceView);
+            regionManager.Regions[Regions.WorkspaceViewRegion].AddAndActivate(testMainShellView);
         }
     }
 }

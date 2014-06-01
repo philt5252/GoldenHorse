@@ -4,11 +4,11 @@ using Olf.GoldenHorse.Foundation.Views.Factories;
 
 namespace Olf.GoldenHorse.Core.Views.Factories
 {
-    public class TestWorkspaceViewFactory : ITestWorkspaceViewFactory
+    public class TestShellViewFactory : ITestShellViewFactory
     {
-        private readonly Func<TestWorkspaceView> createView;
+        private readonly Func<TestShellView> createView;
 
-        public TestWorkspaceViewFactory(Func<TestWorkspaceView> createView )
+        public TestShellViewFactory(Func<TestShellView> createView )
         {
             this.createView = createView;
         }

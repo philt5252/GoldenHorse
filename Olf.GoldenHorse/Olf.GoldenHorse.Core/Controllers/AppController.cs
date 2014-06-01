@@ -17,7 +17,7 @@ namespace Olf.GoldenHorse.Core.Controllers
         private readonly IMainShellViewModelFactory mainShellViewModelFactory;
         private readonly IProjectWorkspaceViewFactory projectWorkspaceViewFactory;
         private readonly IProjectExplorerViewFactory projectExplorerViewFactory;
-        private readonly ITestWorkspaceViewFactory testWorkspaceViewFactory;
+        private readonly ITestShellViewFactory testWorkspaceViewFactory;
         private readonly IRegionManager regionManager;
 
         public IWindow MainWindow { get; set; }
@@ -27,7 +27,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             IMainShellViewModelFactory mainShellViewModelFactory,
             IProjectWorkspaceViewFactory projectWorkspaceViewFactory,
             IProjectExplorerViewFactory projectExplorerViewFactory,
-            ITestWorkspaceViewFactory testWorkspaceViewFactory,
+            ITestShellViewFactory testWorkspaceViewFactory,
             IRegionManager regionManager)
         {
             this.mainWindowFactory = mainWindowFactory;

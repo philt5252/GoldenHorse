@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Practices.Prism.Regions;
+using Olf.GoldenHorse.Foundation.ViewModels;
 using Olf.GoldenHorse.Foundation.Views;
 
 namespace Olf.GoldenHorse.Core.Views
@@ -23,6 +25,16 @@ namespace Olf.GoldenHorse.Core.Views
         public TestMainShellView()
         {
             InitializeComponent();
+        
+            DataContextChanged += OnDataContextChanged;
+        }
+
+        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            ITestMainShellViewModel testMainShellViewModel = DataContext as ITestMainShellViewModel;
+
+            testShellView.DataContext = testMainShellViewModel.TestShellViewModel;
+            testScreenshotsView.DataContext = testMainShellViewModel.TestScreenshotsViewModel;
         }
     }
 }

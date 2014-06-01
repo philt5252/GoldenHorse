@@ -1,13 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using Olf.GoldenHorse.Foundation.Models;
+using Olf.GoldenHorse.Foundation.Services;
 
 namespace Olf.GoldenHorse.Core.Models
 {
     public abstract class ClickOperation : Operation
     {
-        private OperationParameter clickXParam;
-        private OperationParameter clickYParam;
+        private OperationParameter clickXParam { get { return Parameters[0]; } }
+        private OperationParameter clickYParam { get { return Parameters[1]; } }
+
+        public override string ParametersDescription
+        {
+            get { return string.Format("{0}, {1}", clickXParam.Value, clickYParam.Value); }
+        }
 
         protected ClickOperation()
         {
@@ -25,21 +31,31 @@ namespace Olf.GoldenHorse.Core.Models
             return new Point(int.Parse(clickXParam.GetValue()), int.Parse(clickYParam.GetValue()));
         }
 
+        public override string DefaultDescription(string windowId, string controlId)
+        {
+            return string.Format("Click on {0} at ({1})", controlId, ParametersDescription);
+        }
+
+        public override void Play(string processName, string windowName, string controlName)
+        {
+            AppPlaybackService.GetControl(processName, windowName, controlName);
+        }
+
         protected override OperationParameter[] SetParameters()
         {
-            clickXParam = new OperationParameter
+            var param1 = new OperationParameter
             {
                 Name = "ClientX",
                 Mode = OperationParameterValueMode.Constant
             };
 
-            clickYParam = new OperationParameter
+            var param2 = new OperationParameter
             {
                 Name = "ClientY",
                 Mode = OperationParameterValueMode.Constant
             };
 
-            return new [] {clickXParam, clickYParam};
+            return new[] { param1, param2 };
         }
     }
 }

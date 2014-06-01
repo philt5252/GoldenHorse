@@ -64,8 +64,8 @@ namespace Olf.GoldenHorse.Core.Services
             string processName = externalAppInfoManager.GetForegroundWindowProcessName();
             string foregroundWindowName = externalAppInfoManager.GetForegroundWindowName();
 
-            action.WindowId = foregroundWindowName;
-            action.ControlId = foregroundWindowName;
+            action.WindowName = foregroundWindowName;
+            action.ControlName = foregroundWindowName;
 
             ClickOperation clickOperation = CreateClickOperation(mouseEventArgs);
 

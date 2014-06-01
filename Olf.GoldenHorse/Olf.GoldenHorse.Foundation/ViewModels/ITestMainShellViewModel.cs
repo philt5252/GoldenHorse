@@ -1,7 +1,3 @@
-
-
-using Olf.GoldenHorse.Foundation.Annotations;
-
 namespace Olf.GoldenHorse.Foundation.ViewModels
 {
     public interface ITestMainShellViewModel

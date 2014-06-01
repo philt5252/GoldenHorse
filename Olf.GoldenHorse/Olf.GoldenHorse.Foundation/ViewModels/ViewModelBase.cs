@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using Olf.GoldenHorse.Foundation.Annotations;
+using Olf.GoldenHorse.Foundation.Properties;
 
 namespace Olf.GoldenHorse.Foundation.ViewModels
 {

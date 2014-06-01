@@ -65,6 +65,7 @@
     <Compile Include="Factories\ViewModels\MainShellViewModelFactory.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Factories\ViewModels\NewProjectSuiteSuiteViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\Nodes\TestItemViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\Nodes\ProjectNodeFactory.cs" />
     <Compile Include="Factories\ViewModels\Nodes\ProjectSuiteLogsNodeFactory.cs" />
     <Compile Include="Factories\ViewModels\Nodes\ProjectSuiteProjectsNodeFactory.cs" />
@@ -97,9 +98,11 @@
     <Compile Include="ViewModels\Nodes\ProjectSuiteProjectsNode.cs" />
     <Compile Include="ViewModels\Nodes\TestGroupNode.cs" />
     <Compile Include="ViewModels\Nodes\TestNode.cs" />
+    <Compile Include="ViewModels\OnScreenActionViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorerViewModel.cs" />
     <Compile Include="ViewModels\RecorderViewModel.cs" />
     <Compile Include="ViewModels\TestDetailsViewModel.cs" />
+    <Compile Include="ViewModels\TestItemViewModelBase.cs" />
     <Compile Include="ViewModels\TestMainShellViewModel.cs" />
     <Compile Include="ViewModels\TestOperationsViewModel.cs" />
     <Compile Include="ViewModels\TestScreenshotsViewModel.cs" />

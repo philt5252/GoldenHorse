@@ -29,7 +29,6 @@
                 </xcad:LayoutPanel>
             </xcad:LayoutRoot>
         </xcad:DockingManager>
-      
-            
+
     </Grid>
 </UserControl>

@@ -28,12 +28,9 @@
         </Grid.RowDefinitions>
        
       
-        <customControls:TreeListView x:Name="treeListView" AllowsColumnReorder="True" ItemsSource="{Binding TestItems}" 
+        <customControls:TreeListView x:Name="treeListView" AllowsColumnReorder="True" 
                             SelectedValuePath="{Binding SelectedTestItem}" Grid.Row="1">
             <!--Create an item template to specify the ItemsSource-->
-            <customControls:TreeListView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding TestItems}" />
-            </customControls:TreeListView.ItemTemplate>
             <customControls:TreeListView.Columns >
                 <GridViewColumn Header="" Width="40" >
                     <GridViewColumn.CellTemplate >
@@ -70,7 +67,7 @@
                                         <!--The Expander Button (can be used in any column (typically the first one))-->
 
                                         <!--<Image Width ="20" Height ="20"  Source="Images\dachshund.jpg"></Image>-->
-                                        <TextBlock Text="{Binding Item}" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
+                                        <TextBlock Text="{Binding Name}" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
 
 
                                     </StackPanel>
@@ -111,5 +108,6 @@
                 </GridViewColumn>
             </customControls:TreeListView.Columns>
         </customControls:TreeListView>
+        <Button Content="Play" Command="{Binding PlayCommand}" Margin="443,-5,7,330" Grid.RowSpan="2"/>
     </Grid>
 </UserControl>

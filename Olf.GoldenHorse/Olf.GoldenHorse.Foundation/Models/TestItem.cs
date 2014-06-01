@@ -34,7 +34,7 @@ namespace Olf.GoldenHorse.Foundation.Models
             }
         }
 
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
 
         protected TestItem()
         {
@@ -64,5 +64,7 @@ namespace Olf.GoldenHorse.Foundation.Models
                 }
             }
         }
+
+        public abstract void Play();
     }
 }

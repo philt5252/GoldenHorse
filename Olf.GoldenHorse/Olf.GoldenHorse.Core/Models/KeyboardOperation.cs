@@ -5,22 +5,37 @@ namespace Olf.GoldenHorse.Core.Models
 {
     public class KeyboardOperation : Operation
     {
-        private OperationParameter textParam;
+        private OperationParameter textParam{ get { return Parameters[0]; } }
 
         public override string Name
         {
             get { return "Keyboard"; }
         }
 
+        public override string ParametersDescription
+        {
+            get { return textParam.Value.ToString(); }
+        }
+
         protected override OperationParameter[] SetParameters()
         {
-            textParam = new OperationParameter
+            var param1 = new OperationParameter
             {
                 Name="Text",
                 Mode = OperationParameterValueMode.Constant
             };
 
-            return new []{textParam};
+            return new[] { param1 };
+        }
+
+        public override string DefaultDescription(string windowId, string controlId)
+        {
+            return string.Format("Enters \"{0}\" int the '{1}' object", textParam.Value, controlId);
+        }
+
+        public override void Play(string processName, string windowName, string controlName)
+        {
+            throw new System.NotImplementedException();
         }
 
 

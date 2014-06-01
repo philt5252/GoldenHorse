@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using TestStack.White.UIItems;
 
 namespace Olf.GoldenHorse.Foundation.Services
 {
@@ -7,7 +8,8 @@ namespace Olf.GoldenHorse.Foundation.Services
         string GetForegroundWindowProcessName();
         string GetForegroundWindowName();
 
-        Point GetForegroundWindowLocalizedPoint()//for when window is already focused
-            ;
+        Point GetForegroundWindowLocalizedPoint();
+
+        UIItem GetControl(Point point);
     }
 }

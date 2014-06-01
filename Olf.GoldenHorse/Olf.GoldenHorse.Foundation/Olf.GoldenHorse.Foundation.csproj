@@ -73,7 +73,6 @@
     <Compile Include="Factories\ViewModels\Nodes\ITestNodeFactory.cs" />
     <Compile Include="Models\AppControl.cs" />
     <Compile Include="Models\AppProcess.cs" />
-    <Compile Include="Models\AppWindow.cs" />
     <Compile Include="Models\ConstantOperationParameterValue.cs" />
     <Compile Include="Models\IAppManager.cs" />
     <Compile Include="Models\MappedItem.cs" />

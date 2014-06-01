@@ -1,10 +1,23 @@
-﻿namespace Olf.GoldenHorse.Core.Models
+﻿using System.Drawing;
+using Olf.GoldenHorse.Foundation.Services;
+using TestStack.White.UIItems;
+
+namespace Olf.GoldenHorse.Core.Models
 {
     public class RightClickOperation : ClickOperation
     {
         public override string Name
         {
             get { return "Right Click"; }
+        }
+
+        public override void Play(string processName, string windowName, string controlName)
+        {
+            IUIItem uiItem = AppPlaybackService.GetControl(processName, windowName, controlName);
+
+            
+
+            uiItem.RightClick();
         }
     }
 }

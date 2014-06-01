@@ -13,6 +13,8 @@ namespace Olf.GoldenHorse.Foundation.Models
             set { id = value; }
         }
 
+        public string ParentId { get; set; }
+        public string Type { get; set; }
         public virtual string Name { get; set; }
         public List<MappedItem> Children { get; set; }
 

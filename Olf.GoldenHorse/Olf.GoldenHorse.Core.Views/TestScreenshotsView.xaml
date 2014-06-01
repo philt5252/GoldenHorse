@@ -11,7 +11,7 @@
         <converters:ImageConverter  x:Key="ImageConverter" />
     </UserControl.Resources>
     <Grid>
-         <ListBox ItemsSource="{Binding ScreenShots}" SelectedItem="{Binding SelectedScreenShot, Mode=TwoWay}">
+         <ListBox ItemsSource="{Binding Screenshots}" SelectedItem="{Binding SelectedScreenshot, Mode=TwoWay}">
              <ListBox.ItemTemplate>
                  <DataTemplate>
                      <StackPanel>

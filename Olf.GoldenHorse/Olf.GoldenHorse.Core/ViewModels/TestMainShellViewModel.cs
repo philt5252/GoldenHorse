@@ -26,7 +26,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
             this.testScreenshotsViewModelFactory = testScreenshotsViewModelFactory;
             this.testShellViewModelFactory = testShellViewModelFactory;
 
-            TestScreenshotsViewModel = testScreenshotsViewModelFactory.Create();
+            TestScreenshotsViewModel = testScreenshotsViewModelFactory.Create(test);
             TestShellViewModel = testShellViewModelFactory.Create(test);
         }
 

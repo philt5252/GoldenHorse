@@ -2,6 +2,7 @@
 using System.Drawing;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
+using TestStack.White.UIItems;
 
 namespace Olf.GoldenHorse.Core.Models
 {
@@ -34,11 +35,6 @@ namespace Olf.GoldenHorse.Core.Models
         public override string DefaultDescription(string windowId, string controlId)
         {
             return string.Format("Click on {0} at ({1})", controlId, ParametersDescription);
-        }
-
-        public override void Play(string processName, string windowName, string controlName)
-        {
-            AppPlaybackService.GetControl(processName, windowName, controlName);
         }
 
         protected override OperationParameter[] SetParameters()

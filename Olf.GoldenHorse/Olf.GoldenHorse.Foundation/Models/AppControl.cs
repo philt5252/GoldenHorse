@@ -1,7 +1,9 @@
-﻿namespace Olf.GoldenHorse.Foundation.Models
+﻿using System.Drawing;
+
+namespace Olf.GoldenHorse.Foundation.Models
 {
     public class AppControl : MappedItem
     {
-        public string WindowId { get; set; }
+        public Rectangle Bounds { get; set; }
     }
 }

@@ -15,6 +15,12 @@ namespace Olf.GoldenHorse.Foundation.Models
         public List<ScreenshotAdornment> Adornments { get; set; }
         public DateTime DateTime { get; set; }
 
+        [XmlIgnore]
+        public Image Image
+        {
+            get { return RenderImage(); }
+        }
+
         public Screenshot()
         {
             Adornments = new List<ScreenshotAdornment>();

@@ -3,8 +3,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Automation;
 using System.Windows.Forms;
 using Olf.GoldenHorse.Foundation.Services;
+using TestStack.White.UIItems;
+using TestStack.White.UIItems.Actions;
 
 namespace Olf.GoldenHorse.Core.Services
 {
@@ -95,5 +98,44 @@ namespace Olf.GoldenHorse.Core.Services
             public int Right;
             public int Bottom;
         }
+
+        public UIItem GetControl(Point point)//should I only make automationElement and actionListener once?
+        {
+            POINT point1 = new POINT(point.X, point.Y);
+            IntPtr myIntPtr = WindowFromPoint(point1);
+
+            AutomationElement automationElement = AutomationElement.FromHandle(myIntPtr);
+
+            automationElement = GetChildControl(point, automationElement) ?? automationElement;
+
+
+            ActionListener actionListener = new NullActionListener();
+            return new UIItem(automationElement, actionListener);
+        }
+
+        private AutomationElement GetChildControl(Point point, AutomationElement automationElement)
+        {
+            TreeWalker walker = TreeWalker.ControlViewWalker;
+
+            AutomationElement firstChild = walker.GetFirstChild(automationElement);
+
+            if (firstChild == null)
+                return null;
+
+            while (firstChild != null)
+            {
+                if (firstChild.Current.BoundingRectangle.Contains(new System.Windows.Point(point.X, point.Y)))
+                {
+                    return GetChildControl(point, firstChild) ?? firstChild;
+                }
+
+                firstChild = walker.GetNextSibling(firstChild);
+            }
+
+            return null;
+        }
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr WindowFromPoint(POINT Point);
     }
 }

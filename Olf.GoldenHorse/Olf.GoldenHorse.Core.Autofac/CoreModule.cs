@@ -10,6 +10,7 @@ using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.GoldenHorse.Foundation.Factories.Services;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels.Nodes;
+using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
 using Olf.GoldenHorse.Foundation.ViewModels;
 

@@ -95,11 +95,15 @@ namespace Olf.GoldenHorse.Foundation.Models
         [XmlIgnore]
         public string ProjectFolder { get { return ProjectSuiteManager.GetProjectFolder(this); }}
 
+        [XmlIgnore]
+        public AppManager AppManager { get; set; }
+
         public Project()
         {
             TestsFolder = "Tests";
             LogsFolder = "Logs";
             AppManagerFolder = "AppManager";
+            AppManager = new AppManager();
         }
 
         public void RefreshTestFiles()

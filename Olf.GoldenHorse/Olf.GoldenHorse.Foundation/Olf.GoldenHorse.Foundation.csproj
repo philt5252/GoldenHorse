@@ -47,6 +47,7 @@
     <Reference Include="TestStack.White">
       <HintPath>..\packages\TestStack.White.0.12.0\lib\net40\TestStack.White.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\IAppController.cs" />
@@ -72,9 +73,9 @@
     <Compile Include="Factories\ViewModels\Nodes\ITestGroupNodeFactory.cs" />
     <Compile Include="Factories\ViewModels\Nodes\ITestNodeFactory.cs" />
     <Compile Include="Models\AppControl.cs" />
+    <Compile Include="Models\AppManager.cs" />
     <Compile Include="Models\AppProcess.cs" />
     <Compile Include="Models\ConstantOperationParameterValue.cs" />
-    <Compile Include="Models\IAppManager.cs" />
     <Compile Include="Models\MappedItem.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\OperationParameter.cs" />

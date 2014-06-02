@@ -47,5 +47,15 @@ namespace Olf.GoldenHorse.Foundation.Services
 
             return screenshotsFolder;
         }
+
+        public static string GetAppManagerFolder(Project project)
+        {
+            string appManagerFolder = Path.Combine(GetProjectFolder(project), project.AppManagerFolder);
+
+            if (!Directory.Exists(appManagerFolder))
+                Directory.CreateDirectory(appManagerFolder);
+
+            return appManagerFolder;
+        }
     }
 }

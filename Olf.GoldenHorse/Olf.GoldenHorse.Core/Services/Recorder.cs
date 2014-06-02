@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Forms;
-using System.Windows.Input;
-using Microsoft.Practices.Prism.Commands;
 using MouseKeyboardActivityMonitor;
 using MouseKeyboardActivityMonitor.WinApi;
-using Olf.GoldenHorse.Core.Controllers;
 using Olf.GoldenHorse.Core.Models;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
-using TestStack.White.Factory;
 using TestStack.White.UIItems;
-using TestStack.White.UIItems.WPFUIItems;
 using ICamera = Olf.GoldenHorse.Foundation.Services.ICamera;
 using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
+using Point = System.Drawing.Point;
 
 namespace Olf.GoldenHorse.Core.Services
 {
@@ -33,6 +31,7 @@ namespace Olf.GoldenHorse.Core.Services
         private readonly Test test;
         private readonly IExternalAppInfoManager externalAppInfoManager;
         private readonly ICamera camera;
+        private AppManager appManager { get { return test.Project.AppManager; } }
         private GlobalHooker globalHooker;
         private KeyboardHookListener keyboardHookListener;
         private MouseHookListener mouseHookListener;
@@ -69,10 +68,15 @@ namespace Olf.GoldenHorse.Core.Services
             string processName = externalAppInfoManager.GetForegroundWindowProcessName();
             string foregroundWindowName = externalAppInfoManager.GetForegroundWindowName();
 
+            if (processName.Contains("Olf.GoldenHorse"))
+                return;
+
+            IUIItem whiteControl = CreateWhiteControl(mouseEventArgs.Location);
+
             action.WindowName = foregroundWindowName;
             action.ControlName = foregroundWindowName;
 
-            IUIItem whiteControl = CreateWhiteControl(mouseEventArgs.Location);
+            
 
             ClickOperation clickOperation = CreateClickOperation(mouseEventArgs);
 
@@ -174,24 +178,41 @@ namespace Olf.GoldenHorse.Core.Services
 
                 TreeWalker walker = TreeWalker.ControlViewWalker;
                 AutomationElement automationElement = uiItem.AutomationElement;
-                AutomationElement prevAutomationElement = null;
-                Stack<string> uiElementTree = new Stack<string>();
+                Stack<AutomationElement> uiElementTree = new Stack<AutomationElement>();
 
                 while (automationElement != AutomationElement.RootElement)
                 {
-                    uiElementTree.Push(automationElement.Current.AutomationId);
-                    prevAutomationElement = automationElement;
+                    uiElementTree.Push(automationElement);
                     automationElement = walker.GetParent(automationElement);
+                }
+
+                Process process = Process.GetProcessById(uiItem.AutomationElement.Current.ProcessId);
+
+                AppProcess appProcess = appManager.FindOrCreateProcess(process.ProcessName);
+                string parentId = appProcess.Id;
+
+                AutomationElement window = uiElementTree.Peek();
+
+                while (uiElementTree.Count > 0)
+                {
+                    automationElement = uiElementTree.Pop();
+                    string name = automationElement.Current.AutomationId;
+                    string type = automationElement.Current.ControlType.LocalizedControlType;
+                    Rect bounds = automationElement.Current.BoundingRectangle;
+                    bounds.X -= window.Current.BoundingRectangle.X;
+                    bounds.Y -= window.Current.BoundingRectangle.Y;
+                    MappedItem mappedItem = appManager.FindOrCreateMappedItem(parentId, name, bounds, type);
+
+                    parentId = mappedItem.Id;
                 }
 
                 //Get rid of form or window
                 //uiElementTree.Pop();
 
-                var windowLocation = prevAutomationElement.Current.BoundingRectangle.Location;
-
+                
                 while (uiElementTree.Count > 0)
                 {
-                    string pop = uiElementTree.Pop();
+                    //string pop = uiElementTree.Pop();
                 }
 
 

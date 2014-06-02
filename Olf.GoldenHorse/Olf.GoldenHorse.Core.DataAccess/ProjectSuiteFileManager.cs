@@ -23,12 +23,16 @@ namespace Olf.GoldenHorse.Core.DataAccess
             using (FileStream fileStream = File.OpenRead(filePath))
             {
                 ProjectSuite projectSuite = serializer.Deserialize(fileStream) as ProjectSuite;
+                ProjectSuiteManager.CurrentProjectSuite = projectSuite;
 
                 FileInfo fileInfo = new FileInfo(filePath);
 
                 foreach (string projectFile in projectSuite.ProjectFiles)
                 {
                     string projectFilePath = Path.Combine(fileInfo.DirectoryName, projectFile, projectFile + ".ghproj");
+                    Project project = projectFileManager.Open(projectFilePath);
+
+                    projectSuite.Projects.Add(project);
                 }
 
 

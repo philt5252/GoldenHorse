@@ -23,6 +23,7 @@ namespace Olf.GoldenHorse.Core.DataAccess
             using (FileStream fileStream = File.OpenRead(filePath))
             {
                 ProjectSuite projectSuite = serializer.Deserialize(fileStream) as ProjectSuite;
+
                 return projectSuite;
             } 
         }

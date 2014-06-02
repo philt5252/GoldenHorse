@@ -1,14 +1,27 @@
-﻿using Olf.GoldenHorse.Foundation.Models;
+﻿using System.Xml.Serialization;
+using Olf.GoldenHorse.Foundation.Models;
 
 namespace Olf.GoldenHorse.Core.Models
 {
     public class OnScreenAction : TestItem
     {
         private string description;
-        public string ProcessName { get; set; }
-        public string WindowName { get; set; }
-        public string ControlName { get; set; }
-        public Operation Operation { get; set; }
+        private MappedItem control;
+        private Operation operation;
+        public string ControlId { get; set; }
+
+        public Operation Operation
+        {
+            get { return operation; }
+            set
+            {
+                operation = value;
+                operation.TestItem = this;
+            }
+        }
+
+        [XmlIgnore]
+        public MappedItem Control { get { return control ?? (control = AppManager.GetMappedItem(ControlId)); } }
 
         public override string Description
         {
@@ -23,12 +36,12 @@ namespace Olf.GoldenHorse.Core.Models
 
         protected virtual string DefaultDescription()
         {
-            return Operation.DefaultDescription(WindowName, ControlName);
+            return Operation.DefaultDescription(Control);
         }
 
         public override void Play()
         {
-            Operation.Play(ProcessName, WindowName, ControlName);
+            Operation.Play(Control);
         }
     }
 }

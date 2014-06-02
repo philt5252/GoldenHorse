@@ -15,7 +15,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         public override string Name
         {
-            get { return onScreenAction.ControlName; }
+            get { return onScreenAction.Control.FriendlyName; }
         }
 
         public override string Operation { get { return onScreenAction.Operation.Name; }}

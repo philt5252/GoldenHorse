@@ -16,10 +16,10 @@ namespace Olf.GoldenHorse.Foundation.Models
             Processes = new List<AppProcess>();
         }
 
-        public T GetMappedItem<T>(string id) where T : MappedItem
+        public MappedItem GetMappedItem(string id)
         {
             if (cachedMappedItemDict.ContainsKey(id))
-                return cachedMappedItemDict[id] as T;
+                return cachedMappedItemDict[id];
 
             MappedItem mappedItem = FindMappedItem(id);
 
@@ -30,7 +30,7 @@ namespace Olf.GoldenHorse.Foundation.Models
 
             cachedMappedItemDict[id] = mappedItem;
 
-            return mappedItem as T;
+            return mappedItem;
         }
 
         public AppProcess FindOrCreateProcess(string processName)
@@ -42,15 +42,15 @@ namespace Olf.GoldenHorse.Foundation.Models
 
             process = new AppProcess();
             process.Name = processName;
-
+            process.Type = "process";
             Processes.Add(process);
-
+            
             return process;
         }
 
         public MappedItem FindOrCreateMappedItem(string parentId, string name, Rect bounds, string type)
         {
-            MappedItem parentMappedItem = GetMappedItem<MappedItem>(parentId);
+            MappedItem parentMappedItem = GetMappedItem(parentId);
 
             MappedItem mappedItem = parentMappedItem.Children
                 .FirstOrDefault(m => m.Name == name
@@ -92,6 +92,44 @@ namespace Olf.GoldenHorse.Foundation.Models
             return parentMappedItem.Children
                 .Select(mappedItem => FindMappedItem(mappedItem, id))
                 .FirstOrDefault(findMappedItem => findMappedItem != null);
+        }
+
+        public AppProcess GetProcess(MappedItem mappedItem)
+        {
+            if (mappedItem.Type == "process")
+                return null;
+
+            
+            MappedItem parent = GetMappedItem(mappedItem.ParentId);
+
+
+            while (parent != null)
+            {
+                if (parent.Type == "process")
+                    return parent as AppProcess;
+
+                parent = GetMappedItem(parent.ParentId);
+            }
+
+            return null;
+        }
+
+        public MappedItem GetWindow(MappedItem mappedItem)
+        {
+            if (mappedItem.Type == "window")
+                return null;
+
+            MappedItem parent = GetMappedItem(mappedItem.ParentId);
+
+            while (parent != null)
+            {
+                if (parent.Type == "window")
+                    return parent;
+
+                parent = GetMappedItem(mappedItem.ParentId);
+            }
+
+            return null;
         }
     }
 }

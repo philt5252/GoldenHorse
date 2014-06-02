@@ -32,9 +32,9 @@ namespace Olf.GoldenHorse.Core.Models
             return new Point(int.Parse(clickXParam.GetValue()), int.Parse(clickYParam.GetValue()));
         }
 
-        public override string DefaultDescription(string windowId, string controlId)
+        public override string DefaultDescription(MappedItem control)
         {
-            return string.Format("Click on {0} at ({1})", controlId, ParametersDescription);
+            return string.Format("Click on {0} at ({1})", control.FriendlyName, ParametersDescription);
         }
 
         protected override OperationParameter[] SetParameters()

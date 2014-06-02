@@ -12,6 +12,9 @@ namespace Olf.GoldenHorse.Foundation.Models
         [XmlIgnore]
         public Test Test { get; set; }
 
+        [XmlIgnore]
+        public AppManager AppManager {get { return Test.Project.AppManager; } }
+
         public ObservableCollection<TestItem> Children
         {
             get { return children; }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
@@ -9,6 +10,12 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         public OperationParameter[] Parameters { get; set; }
 
+        [XmlIgnore]
+        public TestItem TestItem { get; set; }
+
+        [XmlIgnore]
+        public AppManager AppManager{ get { return TestItem.AppManager; } }
+
         protected Operation()
         {
             Parameters = SetParameters();
@@ -16,8 +23,8 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         protected abstract OperationParameter[] SetParameters();
 
-        public abstract string DefaultDescription(string windowId, string controlId);
+        public abstract string DefaultDescription(MappedItem control);
 
-        public abstract void Play(string processName, string windowName, string controlName);
+        public abstract void Play(MappedItem control);
     }
 }

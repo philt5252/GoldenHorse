@@ -46,6 +46,9 @@
     <Reference Include="MouseKeyboardActivityMonitor">
       <HintPath>..\packages\MouseKeyboardActivityMonitor.4.0.5150.10665\lib\net20\MouseKeyboardActivityMonitor.dll</HintPath>
     </Reference>
+    <Reference Include="Olf.Automation">
+      <HintPath>..\SharedLibs\Olf.Automation.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />

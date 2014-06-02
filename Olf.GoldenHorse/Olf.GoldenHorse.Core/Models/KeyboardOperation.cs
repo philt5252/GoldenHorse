@@ -28,12 +28,12 @@ namespace Olf.GoldenHorse.Core.Models
             return new[] { param1 };
         }
 
-        public override string DefaultDescription(string windowId, string controlId)
+        public override string DefaultDescription(MappedItem mappedItem)
         {
-            return string.Format("Enters \"{0}\" int the '{1}' object", textParam.Value, controlId);
+            return string.Format("Enters \"{0}\" int the '{1}' object", textParam.Value, mappedItem.FriendlyName);
         }
 
-        public override void Play(string processName, string windowName, string controlName)
+        public override void Play(MappedItem mappedItem)
         {
             throw new System.NotImplementedException();
         }

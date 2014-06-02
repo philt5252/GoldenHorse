@@ -71,14 +71,16 @@ namespace Olf.GoldenHorse.Core.Services
             if (processName.Contains("Olf.GoldenHorse"))
                 return;
 
-            IUIItem whiteControl = CreateWhiteControl(mouseEventArgs.Location);
+            MappedItem mappedItem = null;
 
-            action.WindowName = foregroundWindowName;
-            action.ControlName = foregroundWindowName;
+            IUIItem whiteControl = CreateWhiteControl(mouseEventArgs.Location, ref mappedItem);
 
-            
+            action.ControlId = mappedItem.Id;
 
-            ClickOperation clickOperation = CreateClickOperation(mouseEventArgs);
+            int clickX = mouseEventArgs.Location.X - (int)whiteControl.Bounds.X;
+            int clickY = mouseEventArgs.Location.Y - (int)whiteControl.Bounds.Y;
+
+            ClickOperation clickOperation = CreateClickOperation(mouseEventArgs.Button, clickX, clickY);
 
             action.Operation = clickOperation;
 
@@ -104,21 +106,20 @@ namespace Olf.GoldenHorse.Core.Services
             return screenshot;
         }
 
-        private ClickOperation CreateClickOperation(MouseEventArgs mouseEventArgs)
+        private ClickOperation CreateClickOperation(MouseButtons button, int clickX, int clickY)
         {
             ClickOperation clickOperation = null;
 
-            if (mouseEventArgs.Button == MouseButtons.Left)
+            if (button == MouseButtons.Left)
             {
                 clickOperation = new LeftClickOperation();
             }
-            else if (mouseEventArgs.Button == MouseButtons.Right)
+            else if (button == MouseButtons.Right)
             {
                 clickOperation = new RightClickOperation();
             }
 
-            Point localizedPoint = externalAppInfoManager.GetForegroundWindowLocalizedPoint();
-            clickOperation.SetClickPoint(localizedPoint.X, localizedPoint.Y);
+            clickOperation.SetClickPoint(clickX, clickY);
             return clickOperation;
         }
 
@@ -163,7 +164,7 @@ namespace Olf.GoldenHorse.Core.Services
             mouseHookListener.Enabled = false;
         }
 
-        public IUIItem CreateWhiteControl(Point point)
+        public IUIItem CreateWhiteControl(Point point, ref MappedItem mappedItem)
         {
 
             //if (endurProcesses.Contains(windowState.WindowInfo.ProcessName))
@@ -189,9 +190,11 @@ namespace Olf.GoldenHorse.Core.Services
                 Process process = Process.GetProcessById(uiItem.AutomationElement.Current.ProcessId);
 
                 AppProcess appProcess = appManager.FindOrCreateProcess(process.ProcessName);
+                
                 string parentId = appProcess.Id;
 
                 AutomationElement window = uiElementTree.Peek();
+                MappedItem createdMappedItem = null;
 
                 while (uiElementTree.Count > 0)
                 {
@@ -201,40 +204,13 @@ namespace Olf.GoldenHorse.Core.Services
                     Rect bounds = automationElement.Current.BoundingRectangle;
                     bounds.X -= window.Current.BoundingRectangle.X;
                     bounds.Y -= window.Current.BoundingRectangle.Y;
-                    MappedItem mappedItem = appManager.FindOrCreateMappedItem(parentId, name, bounds, type);
+                    createdMappedItem = appManager.FindOrCreateMappedItem(parentId, name, bounds, type);
 
-                    parentId = mappedItem.Id;
+                    parentId = createdMappedItem.Id;
                 }
 
-                //Get rid of form or window
-                //uiElementTree.Pop();
+                mappedItem = createdMappedItem;
 
-                
-                while (uiElementTree.Count > 0)
-                {
-                    //string pop = uiElementTree.Pop();
-                }
-
-
-                /*IWhiteControl control = whiteControlFactory.Create();
-                control.ClassName = uiItem.AutomationElement.Current.ClassName;
-                control.Window = windowState.WindowInfo.WindowName;
-                control.Name = uiItem.Id;
-                control.Process = windowState.WindowInfo.ProcessName;
-
-                System.Windows.Point localizedUiItemLocation = new System.Windows.Point(
-                    uiItem.Bounds.X - windowLocation.X,
-                    uiItem.Bounds.Y - windowLocation.Y);
-
-                control.Bounds = new Rect(localizedUiItemLocation, uiItem.Bounds.Size);
-
-
-
-                control.ParentTree = uiElementTree.ToArray();
-                ControlManager.AddControlToDictionary(control, windowState);*/
-
-
-                //return control;
                 return uiItem;
             }
             catch (Exception ex)

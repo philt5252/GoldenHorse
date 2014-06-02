@@ -9,6 +9,7 @@ namespace Olf.GoldenHorse.Foundation.Models
     public abstract class MappedItem
     {
         private string id;
+        private string friendlyName = null;
         private Rect bounds;
 
         public virtual string Id
@@ -20,7 +21,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         public string ParentId { get; set; }
         public string Type { get; set; }
         public string Name { get; set; }
-        public string FriendlyName { get; set; }
+        public string FriendlyName { get { return friendlyName ?? Name; } }
         public double X;
         public double Y;
         public double Width;

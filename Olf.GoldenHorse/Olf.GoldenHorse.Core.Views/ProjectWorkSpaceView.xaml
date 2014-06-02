@@ -8,11 +8,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Tag="Project Browser">
     <Grid>
-        <xcad:DockingManager>
+        <xcad:DockingManager Background="Gainsboro">
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>
                     <xcad:LayoutAnchorablePane DockWidth="200" DockHeight="400" regions:RegionManager.RegionName="ExplorerViewRegion"></xcad:LayoutAnchorablePane>
-                    <xcad:LayoutDocumentPaneGroup DockWidth="400*" DockHeight="400*">
+                    <xcad:LayoutDocumentPaneGroup DockWidth="1*" DockHeight="400*">
                         <xcad:LayoutDocumentPane regions:RegionManager.RegionName="WorkspaceViewRegion"></xcad:LayoutDocumentPane>
                     </xcad:LayoutDocumentPaneGroup>
                 </xcad:LayoutPanel>

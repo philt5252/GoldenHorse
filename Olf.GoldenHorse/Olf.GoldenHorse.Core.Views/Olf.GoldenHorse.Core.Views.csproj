@@ -209,7 +209,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Images\dachshund.jpg" />
     <Content Include="Images\log.png" />
     <Content Include="Images\newProject.png" />
     <Content Include="Images\newProjectSuite.png" />

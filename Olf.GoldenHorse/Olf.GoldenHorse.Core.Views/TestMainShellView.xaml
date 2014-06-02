@@ -9,11 +9,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Tag="Test Workspace">
     <Grid>
-        <xcad:DockingManager>
+        <xcad:DockingManager Background="Gainsboro">
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel Orientation="Vertical">
                     <xcad:LayoutDocumentPane x:Name="TestShellPane"  DockHeight="300*">
-                       <xcad:LayoutDocument>
+                       <xcad:LayoutDocument >
                            <views:TestShellView x:Name="testShellView"></views:TestShellView>
                        </xcad:LayoutDocument>
                     </xcad:LayoutDocumentPane>

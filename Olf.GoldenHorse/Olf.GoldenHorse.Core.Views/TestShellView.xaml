@@ -9,7 +9,7 @@
              Tag="{Binding TestName}" >
              
     <Grid >
-        <xcad:DockingManager Height="Auto" Width="Auto" VerticalAlignment="Stretch">
+        <xcad:DockingManager Height="Auto" Width="Auto" VerticalAlignment="Stretch" Background="Gainsboro">
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>
                     <xcad:LayoutAnchorablePane  DockWidth="160" DockHeight="300*" x:Name="TestOperationsPane">
@@ -18,7 +18,7 @@
                         </xcad:LayoutAnchorable>
                     </xcad:LayoutAnchorablePane>
                     <xcad:LayoutDocumentPaneGroup>
-                        <xcad:LayoutDocumentPane DockWidth="300*" DockHeight="300*" x:Name="TestDetailsDocPane">
+                        <xcad:LayoutDocumentPane DockWidth="1*" DockHeight="300*" x:Name="TestDetailsDocPane">
                             <xcad:LayoutDocument>
                                 <views:TestDetailsView x:Name="testDetailsView" ></views:TestDetailsView>
                             </xcad:LayoutDocument>

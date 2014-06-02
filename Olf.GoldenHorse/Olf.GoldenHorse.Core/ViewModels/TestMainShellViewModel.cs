@@ -1,4 +1,5 @@
-
+using System.ComponentModel;
+using System.Linq;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.ViewModels;
@@ -28,8 +29,33 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
             TestScreenshotsViewModel = testScreenshotsViewModelFactory.Create(test);
             TestShellViewModel = testShellViewModelFactory.Create(test);
+
+            TestScreenshotsViewModel.PropertyChanged += TestScreenshotsViewModelOnPropertyChanged;
+            TestShellViewModel.TestDetailsViewModel.PropertyChanged+=TestDetailsViewModelOnPropertyChanged;
         }
 
-        
+        private void TestDetailsViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            if (args.PropertyName == "SelectedTestItem")
+            {
+                if (!TestShellViewModel.TestDetailsViewModel.SelectedTestItem.HasScreenshot)
+                    return;
+
+                TestScreenshotsViewModel.SelectedScreenshot =
+                    TestScreenshotsViewModel.Screenshots.FirstOrDefault(
+                        s => s.Owner == TestShellViewModel.TestDetailsViewModel.SelectedTestItem.TestItem);
+            }
+        }
+
+        private void TestScreenshotsViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            if (args.PropertyName == "SelectedScreenshot")
+            {
+                TestShellViewModel.TestDetailsViewModel.SelectedTestItem =
+                    TestShellViewModel.TestDetailsViewModel.TestItems.FirstOrDefault(
+                        t => t.TestItem == TestScreenshotsViewModel.SelectedScreenshot.Owner);
+
+            }
+        }
     }
 }

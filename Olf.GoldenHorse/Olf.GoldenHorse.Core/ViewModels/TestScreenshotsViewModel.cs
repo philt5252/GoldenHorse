@@ -5,11 +5,27 @@ using Olf.GoldenHorse.Foundation.ViewModels;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
-    public class TestScreenshotsViewModel : ITestScreenshotsViewModel
+    public class TestScreenshotsViewModel : ViewModelBase, ITestScreenshotsViewModel
     {
-        public Screenshot[] Screenshots { get; protected set; }
+        private Screenshot[] screenshots;
+        private Screenshot selectedScreenshot;
 
-        public Screenshot SelectedScreenshot { get; set; }
+        public Screenshot[] Screenshots
+        {
+            get { return screenshots; }
+            protected set { screenshots = value; }
+        }
+
+        public Screenshot SelectedScreenshot
+        {
+            get { return selectedScreenshot; }
+            set
+            {
+                selectedScreenshot = value; 
+                
+                OnPropertyChanged("SelectedScreenshot");
+            }
+        }
 
         public TestScreenshotsViewModel(Test test)
         {

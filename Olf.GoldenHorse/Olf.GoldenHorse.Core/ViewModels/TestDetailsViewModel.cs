@@ -11,11 +11,22 @@ using Olf.GoldenHorse.Foundation.ViewModels;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
-    public class TestDetailsViewModel : ITestDetailsViewModel
+    public class TestDetailsViewModel : ViewModelBase, ITestDetailsViewModel
     {
         private readonly Test test;
         private readonly ITestItemViewModelFactory testItemViewModelFactory;
+        private ITestItemViewModel selectedTestItem;
         public ObservableCollection<ITestItemViewModel> TestItems { get; protected set; }
+
+        public ITestItemViewModel SelectedTestItem
+        {
+            get { return selectedTestItem; }
+            set
+            {
+                selectedTestItem = value;
+                OnPropertyChanged("SelectedTestItem");
+            }
+        }
 
         public ICommand PlayCommand { get; protected set; }
  

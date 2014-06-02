@@ -16,7 +16,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         public DateTime DateTime { get; set; }
 
         [XmlIgnore]
-        public Image Image
+        public Bitmap Image
         {
             get { return RenderImage(); }
         }

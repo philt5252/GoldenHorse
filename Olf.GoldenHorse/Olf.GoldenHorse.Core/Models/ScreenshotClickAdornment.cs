@@ -13,7 +13,7 @@ namespace Olf.GoldenHorse.Core.Models
         {
             using (var graphics = Graphics.FromImage(image))
             {
-                throw new NotImplementedException("draw a picture");
+                graphics.DrawImage(Resources.mouseCursorClick, ClickX, ClickY);
             }
         }
     }

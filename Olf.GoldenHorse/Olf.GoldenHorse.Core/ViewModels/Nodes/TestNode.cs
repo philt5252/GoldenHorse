@@ -33,7 +33,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         protected virtual void ExecuteDefaultCommand()
         {
             Test test = testFileManager.Open(projectFile.FilePath);
-
+            test.Project = projectFile.Project;
             testController.ShowTest(test);
         }
     }

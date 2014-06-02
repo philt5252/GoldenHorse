@@ -79,7 +79,12 @@ namespace Olf.GoldenHorse.Foundation.Models
                         .Select(f =>
                         {
                             FileInfo fileInfo = new FileInfo(f);
-                            return new ProjectFile { Name = fileInfo.Name, FilePath = fileInfo.FullName };
+                            return new ProjectFile
+                            {
+                                Name = fileInfo.Name, 
+                                FilePath = fileInfo.FullName,
+                                Project = this
+                            };
                         }).ToList();
                 }
 

@@ -89,6 +89,11 @@
     <Compile Include="Factories\ViewModels\TestScreenshotsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestShellViewModelFactory.cs" />
     <Compile Include="Helpers\RegionHelpers.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\Camera.cs" />
     <Compile Include="Models\ClickOperation.cs" />
     <Compile Include="Models\KeyboardOperation.cs" />
@@ -135,7 +140,15 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\click-icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

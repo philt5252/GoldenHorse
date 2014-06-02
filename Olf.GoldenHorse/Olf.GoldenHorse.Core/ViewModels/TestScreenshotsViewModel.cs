@@ -7,7 +7,13 @@ namespace Olf.GoldenHorse.Core.ViewModels
 {
     public class TestScreenshotsViewModel : ITestScreenshotsViewModel
     {
-        public Screenshot[] Screenshots { get; protected set; }
+        private Screenshot[] screenshots;
+
+        public Screenshot[] Screenshots
+        {
+            get { return screenshots; }
+            protected set { screenshots = value; }
+        }
 
         public Screenshot SelectedScreenshot { get; set; }
 

@@ -28,11 +28,18 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <LinearGradientBrush x:Key="RedButtonBrush"  EndPoint="1,0" StartPoint="0,1">
+            <GradientStop Color="Red" Offset=".2"></GradientStop>
+            <GradientStop Color="DarkRed" Offset=".4"></GradientStop>
+            <GradientStop Color="DarkRed" Offset=".6"></GradientStop>
+            <GradientStop Color="IndianRed" Offset="1"></GradientStop>
+        </LinearGradientBrush>
     </UserControl.Resources>
     <Grid>
         <Button Height="20" Width="20" Style="{StaticResource NoChromeButton}" Name="debugBtn" Click="ChangeOpacity" 
                 HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0">
-            <Ellipse Height="15" Width="15" Fill="DarkRed" VerticalAlignment="Center" HorizontalAlignment="Center"></Ellipse>
+            <Ellipse Height="15" Width="15" Fill="{StaticResource RedButtonBrush}" VerticalAlignment="Center" HorizontalAlignment="Center"></Ellipse>
         </Button> 
 
     </Grid>

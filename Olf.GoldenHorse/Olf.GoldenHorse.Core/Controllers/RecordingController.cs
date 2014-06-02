@@ -16,6 +16,7 @@ namespace Olf.GoldenHorse.Core.Controllers
         private readonly IRecorderViewModelFactory recorderViewModelFactory;
         private readonly IRecorderFactory recorderFactory;
         private readonly ITestFileManager testFileManager;
+        private readonly IProjectFileManager projectFileManager;
         private readonly IAppController appController;
         private IWindow recordingWindow;
         private IRecorder recorder;
@@ -24,12 +25,14 @@ namespace Olf.GoldenHorse.Core.Controllers
             IRecorderViewModelFactory recorderViewModelFactory,
             IRecorderFactory recorderFactory,
             ITestFileManager testFileManager,
+            IProjectFileManager projectFileManager, 
             IAppController appController)
         {
             this.recordWindowFactory = recordWindowFactory;
             this.recorderViewModelFactory = recorderViewModelFactory;
             this.recorderFactory = recorderFactory;
             this.testFileManager = testFileManager;
+            this.projectFileManager = projectFileManager;
             this.appController = appController;
         }
 
@@ -57,6 +60,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             recordingWindow.Close();
 
             testFileManager.Save(recorder.CurrentTest);
+            projectFileManager.Save(recorder.CurrentTest.Project);
 
             appController.MainWindow.Restore();
         }

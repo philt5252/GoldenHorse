@@ -1,0 +1,97 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+
+namespace Olf.GoldenHorse.Foundation.Models
+{
+    public class AppManager
+    {
+        private readonly Dictionary<string, MappedItem> cachedMappedItemDict = new Dictionary<string, MappedItem>();
+
+        public List<AppProcess> Processes { get; set; }
+
+        public AppManager()
+        {
+            Processes = new List<AppProcess>();
+        }
+
+        public T GetMappedItem<T>(string id) where T : MappedItem
+        {
+            if (cachedMappedItemDict.ContainsKey(id))
+                return cachedMappedItemDict[id] as T;
+
+            MappedItem mappedItem = FindMappedItem(id);
+
+            if (mappedItem == null)
+            {
+                throw new Exception(string.Format("No mapped item exists with id '{0}'", id));
+            }
+
+            cachedMappedItemDict[id] = mappedItem;
+
+            return mappedItem as T;
+        }
+
+        public AppProcess FindOrCreateProcess(string processName)
+        {
+            AppProcess process = Processes.FirstOrDefault(p => p.Name == processName);
+
+            if (process != null)
+                return process;
+
+            process = new AppProcess();
+            process.Name = processName;
+
+            Processes.Add(process);
+
+            return process;
+        }
+
+        public MappedItem FindOrCreateMappedItem(string parentId, string name, Rect bounds, string type)
+        {
+            MappedItem parentMappedItem = GetMappedItem<MappedItem>(parentId);
+
+            MappedItem mappedItem = parentMappedItem.Children
+                .FirstOrDefault(m => m.Name == name
+                                && m.Bounds.X == bounds.X
+                                && m.Bounds.Y == bounds.Y
+                                && m.Bounds.Width == bounds.Width
+                                && m.Bounds.Height == bounds.Height
+                                && m.Type == type);
+
+            if (mappedItem != null)
+                return mappedItem;
+
+            mappedItem = new AppControl();
+            mappedItem.ParentId = parentId;
+            mappedItem.Bounds = bounds;
+            mappedItem.Name = name;
+            mappedItem.Type = type;
+
+            parentMappedItem.Children.Add(mappedItem);
+
+            cachedMappedItemDict[mappedItem.Id] = mappedItem;
+
+            return mappedItem;
+        }
+
+        private MappedItem FindMappedItem(string id)
+        {
+            return Processes.Select(mappedItem => FindMappedItem(mappedItem, id))
+                .FirstOrDefault(findMappedItem => findMappedItem != null);
+        }
+
+        private MappedItem FindMappedItem(MappedItem parentMappedItem, string id)
+        {
+            if (Equals(parentMappedItem.Id, id))
+            {
+                return parentMappedItem;
+            }
+
+            return parentMappedItem.Children
+                .Select(mappedItem => FindMappedItem(mappedItem, id))
+                .FirstOrDefault(findMappedItem => findMappedItem != null);
+        }
+    }
+}

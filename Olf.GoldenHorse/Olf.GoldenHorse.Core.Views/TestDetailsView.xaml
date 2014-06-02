@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:treeview="clr-namespace:Olf.GoldenHorse.Core.Views.Themes"
-             xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls"
-             Height="350" Width="525">
+             xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls">
     <UserControl.Resources>
        
 
@@ -55,7 +54,7 @@
 
                 </GridViewColumn>
                 <!--Create the first column containing the expand button and the type name.-->
-                <GridViewColumn Header="Item" Width="100">
+                <GridViewColumn Header="Item">
 
                     <GridViewColumn.CellTemplate >
                         <DataTemplate >
@@ -80,7 +79,7 @@
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
                 <!--Create a second column containing the number of children.-->
-                <GridViewColumn Header="Operation" Width="100">
+                <GridViewColumn Header="Operation">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0" >
@@ -91,7 +90,7 @@
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
                 <!--Create a third column containing the brush of the material.-->
-                <GridViewColumn Header="Value" Width="100">
+                <GridViewColumn Header="Value">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
@@ -100,7 +99,7 @@
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
-                <GridViewColumn Header="Description" Width="100">
+                <GridViewColumn Header="Description">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">

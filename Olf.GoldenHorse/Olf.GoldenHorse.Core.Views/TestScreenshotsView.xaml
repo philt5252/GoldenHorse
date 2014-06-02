@@ -15,7 +15,7 @@
              <ListBox.ItemTemplate>
                  <DataTemplate>
                      <StackPanel>
-                         <CheckBox Visibility="Collapsed" Checked="{Binding IsReplaceable}"></CheckBox>
+                         <!--<CheckBox Visibility="Collapsed" Checked="{Binding IsReplaceable}"></CheckBox>-->
                         <Image Margin="5,5,5,5" Source="{Binding Image, Converter={StaticResource ImageConverter}}" ></Image>
                     </StackPanel>
                  </DataTemplate>

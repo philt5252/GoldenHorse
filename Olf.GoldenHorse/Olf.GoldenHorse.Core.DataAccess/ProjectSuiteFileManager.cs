@@ -24,6 +24,14 @@ namespace Olf.GoldenHorse.Core.DataAccess
             {
                 ProjectSuite projectSuite = serializer.Deserialize(fileStream) as ProjectSuite;
 
+                FileInfo fileInfo = new FileInfo(filePath);
+
+                foreach (string projectFile in projectSuite.ProjectFiles)
+                {
+                    string projectFilePath = Path.Combine(fileInfo.DirectoryName, projectFile, projectFile + ".ghproj");
+                }
+
+
                 return projectSuite;
             } 
         }

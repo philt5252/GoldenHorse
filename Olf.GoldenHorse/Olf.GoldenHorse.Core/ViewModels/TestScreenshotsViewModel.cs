@@ -21,6 +21,9 @@ namespace Olf.GoldenHorse.Core.ViewModels
             get { return selectedScreenshot; }
             set
             {
+                if (Equals(selectedScreenshot, value))
+                    return;
+
                 selectedScreenshot = value; 
                 
                 OnPropertyChanged("SelectedScreenshot");

@@ -11,14 +11,23 @@
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                     <StackPanel Orientation="Horizontal">
-                        <TreeViewItem Header="{Binding Name}" Margin="-10,0,0,0" FontSize="11">
+                        <TreeViewItem  Margin="-10,0,0,0" FontSize="11" >
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseDoubleClick">
                                     <i:InvokeCommandAction Command="{Binding Path=DefaultCommand, Mode=OneWay}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
+                            <TreeViewItem.Template>
+                                <ControlTemplate>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Image Source="Images\newProjectSuite.png" Margin="10,0,0,0"  Width="15" Height="15"></Image>
+                                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </TreeViewItem.Template>
+                            
                         </TreeViewItem>
-                        <Image Source="Images\newProject.png" Width="15" Height="15"></Image>
+                       
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>

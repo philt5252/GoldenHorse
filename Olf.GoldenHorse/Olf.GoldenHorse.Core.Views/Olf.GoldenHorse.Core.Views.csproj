@@ -210,8 +210,12 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Images\log.png" />
-    <Content Include="Images\newProject.png" />
-    <Content Include="Images\newProjectSuite.png" />
+    <Resource Include="Images\newProject.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\newProjectSuite.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Images\projectSuiteLogs.png" />
     <Content Include="Images\projectSuiteLogs2.png" />
     <Content Include="Images\test.png" />

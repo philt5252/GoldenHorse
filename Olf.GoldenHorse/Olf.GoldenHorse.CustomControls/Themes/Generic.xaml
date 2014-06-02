@@ -129,12 +129,22 @@
     </ControlTemplate>
 
     <Style x:Key="BorderStyle" TargetType="Border">
-        <Setter Property="BorderBrush" Value="Gainsboro"></Setter>
+        <Setter Property="BorderBrush" Value="{x:Static SystemColors.ControlDarkBrush}"></Setter>
         <Setter Property="BorderThickness" Value="0.2"></Setter>
     </Style>
     <Style x:Key="BlankBorderStyle" TargetType="Border">
-        <Setter Property="BorderBrush" Value="Gainsboro"></Setter>
+        <Setter Property="BorderBrush" Value="White"></Setter>
         <Setter Property="BorderThickness" Value="0.2"></Setter>
+    </Style>
+
+    <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+        <Setter Property="Background" Value="Gray"/>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderBrush" Value="WhiteSmoke" />
+        <Setter Property="BorderThickness" Value="1,1,1,1" />
     </Style>
 
     <!--Apply this style to all controls of type 'TreeListView'.-->
@@ -172,7 +182,8 @@
                                 </Grid.RowDefinitions>
                                 <!--The header row.-->
                                 <GridViewHeaderRowPresenter Columns="{TemplateBinding Columns}"
-                                    AllowsColumnReorder="{TemplateBinding AllowsColumnReorder}"/>
+                                    AllowsColumnReorder="{TemplateBinding AllowsColumnReorder}" 
+                                    ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}"/>
                                 <!--ScrollViewer providing vertical scrolling
                                 functionality for the content.-->
                                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"

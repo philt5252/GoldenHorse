@@ -7,9 +7,9 @@
              xmlns:treeview="clr-namespace:Olf.GoldenHorse.Core.Views.Themes"
              xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls">
     <UserControl.Resources>
-       
 
-       
+      
+
         <SolidColorBrush x:Key="MyBorderBrush" Color="White"></SolidColorBrush>
 
 
@@ -17,6 +17,9 @@
             <Setter Property="BorderBrush" Value="{StaticResource MyBorderBrush}"></Setter>
             <Setter Property="BorderThickness" Value="0.3"></Setter>
         </Style>
+
+       
+
 
     </UserControl.Resources>
    
@@ -26,10 +29,11 @@
             <RowDefinition Height="300*" />
         </Grid.RowDefinitions>
 
-        <Button Content="Play" Command="{Binding PlayCommand}" Margin="533,0,0,0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" Width="69"/>
+        <Button Content="Play" Command="{Binding PlayCommand}" Margin="0,0,17,0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="0" Width="69"/>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
         <customControls:TreeListView x:Name="treeListView" AllowsColumnReorder="True" ItemsSource="{Binding TestItems}"
-                            SelectedValuePath="{Binding SelectedTestItem}" Grid.Row="1" HorizontalContentAlignment="Center" 
-                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource AccentColorBrush4}"  >
+                            SelectedValuePath="{Binding SelectedTestItem}" HorizontalContentAlignment="Center" 
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   >
             <!--Create an item template to specify the ItemsSource-->
             <customControls:TreeListView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Items}" />
@@ -64,15 +68,11 @@
                                     <Grid >
                                         <customControls:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1" />
                                         <!-- <TreeViewItem Template="{StaticResource TreeViewItemLines}"></TreeViewItem>-->
-
                                     </Grid>
                                     <StackPanel Orientation="Horizontal" >
                                         <!--The Expander Button (can be used in any column (typically the first one))-->
-
                                         <!--<Image Width ="20" Height ="20"  Source="Images\dachshund.jpg"></Image>-->
-                                        <TextBlock Text="{Binding Name}" MouseLeftButtonDown="OpenItemEditWindow" HorizontalAlignment="Center" ></TextBlock>
-
-
+                                        <TextBlock Text="{Binding Name}" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -111,6 +111,7 @@
                 </GridViewColumn>
             </customControls:TreeListView.Columns>
         </customControls:TreeListView>
-       
+        </ScrollViewer>
+
     </Grid>
 </UserControl>

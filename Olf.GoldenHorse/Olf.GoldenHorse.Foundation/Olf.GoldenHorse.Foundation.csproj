@@ -47,6 +47,7 @@
     <Reference Include="TestStack.White">
       <HintPath>..\packages\TestStack.White.0.12.0\lib\net40\TestStack.White.dll</HintPath>
     </Reference>
+    <Reference Include="UIAutomationClient" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,6 @@
-
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using Microsoft.Expression.Interactivity.Core;
 using Microsoft.Practices.Prism.Commands;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels;
 using Olf.GoldenHorse.Foundation.Models;

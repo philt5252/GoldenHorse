@@ -48,89 +48,12 @@
 
         <Button Content="Play" Command="{Binding PlayCommand}" Margin="0,0,17,0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="0" Width="69"/>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-            <tree:TreeList x:Name="treeListView"  ItemsSource="{Binding TestItems}"
-                            SelectedItem="{Binding SelectedTestItem}"  HorizontalContentAlignment="Center" 
-                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <tree:TreeList.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding ChildItems}" />
-                </tree:TreeList.ItemTemplate>
-                <tree:TreeList.View>
-                    <GridView ColumnHeaderTemplate="{StaticResource ColumnHeaderTemplate}" ColumnHeaderContainerStyle="{StaticResource GridViewColumnStyle}">
-                        <GridView.Columns>
-                            <GridViewColumn Header="" Width="40" >
-                                <GridViewColumn.CellTemplate >
-                                    <DataTemplate>
-                                        <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                            <StackPanel Orientation="Horizontal" Height="{TemplateBinding Height}">
-                                                <treeview:DebugButton Margin="0,0,0,0" Width="15" Height="15" Name="DebugButton" IsDebugging="{Binding DebugState, UpdateSourceTrigger=PropertyChanged}"></treeview:DebugButton>
-                                                <Image Name="picImage"  Height="15" Width="15" Visibility="Collapsed"></Image >
-                                            </StackPanel>
-                                        </Border>
-                                        <DataTemplate.Triggers>
-                                            <DataTrigger Binding="{Binding HasPicture}" Value="True">
-                                                <Setter TargetName="picImage" Property="Visibility" Value="Visible"></Setter>
-                                            </DataTrigger>
-                                        </DataTemplate.Triggers>
-                                    </DataTemplate>
+           
 
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Item" Width="120">
-                                    <GridViewColumn.CellTemplate >
-                                        <DataTemplate >
-                                            <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                                <StackPanel Orientation="Horizontal" >
-                                                    <Grid >
-                                                    <tree:RowExpander/>
-                                                    <!-- <TreeViewItem Template="{StaticResource TreeViewItemLines}"></TreeViewItem>-->
-                                                    </Grid>
-                                                    <StackPanel Orientation="Horizontal" >
-                                                        <!--The Expander Button (can be used in any column (typically the first one))-->
-                                                        <!--<Image Width ="20" Height ="20"  Source="Images\dachshund.jpg"></Image>-->
-                                                        <TextBlock Text="{Binding Name}" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
-                                                    </StackPanel>
-                                                </StackPanel>
-                                            </Border>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            <GridViewColumn Header="Value" Width="150" >
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                            <TextBlock  Text="{Binding Value}" MouseLeftButtonDown="OpenValueEditWindow"  HorizontalAlignment="Center"/>
-                                        </Border>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Description" Width="200">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                            <TextBlock Text="{Binding Description}" HorizontalAlignment="Stretch"/>
-                                        </Border>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Operation" Width="120">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0" >
-                                            <!--Display the size of the DataElement-->
-                                            <TextBlock Text="{Binding Operation}" MouseLeftButtonDown="OpenOperationEditWindow" HorizontalAlignment="Center" />
-                                        </Border>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView.Columns>
-                    </GridView>
-                </tree:TreeList.View>
-            </tree:TreeList>
-
-           <!-- <customControls:TreeListView  AllowsColumnReorder="True" ItemsSource="{Binding TestItems}"
-                            SelectedValuePath="SelectedTestItem"  HorizontalContentAlignment="Center" 
-                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
-            ~1~Create an item template to specify the ItemsSource@1@
+            <customControls:TreeListView  AllowsColumnReorder="True" ItemsSource="{Binding TestItems}"
+                            HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
+                            SelectedObject="{Binding SelectedTestItem, Mode=TwoWay}">
+            <!--Create an item template to specify the ItemsSource-->
             <customControls:TreeListView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Items}" />
             </customControls:TreeListView.ItemTemplate>
@@ -154,7 +77,7 @@
                     </GridViewColumn.CellTemplate>
 
                 </GridViewColumn>
-                ~1~Create the first column containing the expand button and the type name.@1@
+                <!--Create the first column containing the expand button and the type name.-->
                 <GridViewColumn Header="Item" Width="120">
 
                     <GridViewColumn.CellTemplate >
@@ -163,11 +86,11 @@
                                 <StackPanel Orientation="Horizontal" >
                                     <Grid >
                                         <customControls:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1" />
-                                        ~1~ <TreeViewItem Template="{StaticResource TreeViewItemLines}"></TreeViewItem>@1@
+                                        <!-- <TreeViewItem Template="{StaticResource TreeViewItemLines}"></TreeViewItem>-->
                                     </Grid>
                                     <StackPanel Orientation="Horizontal" >
-                                        ~1~The Expander Button (can be used in any column (typically the first one))@1@
-                                        ~1~<Image Width ="20" Height ="20"  Source="Images\dachshund.jpg"></Image>@1@
+                                        <!--The Expander Button (can be used in any column (typically the first one))-->
+                                        <!--<Image Width ="20" Height ="20"  Source="Images\dachshund.jpg"></Image>-->
                                         <TextBlock Text="{Binding Name}" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
@@ -175,18 +98,18 @@
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
-                ~1~Create a second column containing the number of children.@1@
+                <!--Create a second column containing the number of children.-->
                 <GridViewColumn Header="Operation" Width="120">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0" >
-                                ~1~Display the size of the DataElement@1@
+                                <!--Display the size of the DataElement-->
                                 <TextBlock Text="{Binding Operation}" MouseLeftButtonDown="OpenOperationEditWindow" HorizontalAlignment="Center" />
                             </Border>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
-                ~1~Create a third column containing the brush of the material.@1@
+                <!--Create a third column containing the brush of the material.-->
                 <GridViewColumn Header="Value" Width="150" >
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
@@ -206,7 +129,7 @@
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
             </customControls:TreeListView.Columns>
-        </customControls:TreeListView>-->
+        </customControls:TreeListView>
         </ScrollViewer>
 
     </Grid>

@@ -155,6 +155,10 @@
       <Project>{721B2B6F-D044-4169-8521-9D34DEABFCCA}</Project>
       <Name>Olf.GoldenHorse.Core.Views</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Olf.GoldenHorse.CustomControls\Olf.GoldenHorse.CustomControls.csproj">
+      <Project>{c3be191d-1c68-430e-9ba3-eada12a14103}</Project>
+      <Name>Olf.GoldenHorse.CustomControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Olf.GoldenHorse.Foundation\Olf.GoldenHorse.Foundation.csproj">
       <Project>{B020B22A-4677-42BC-9E9A-A2EDFAB0DBC8}</Project>
       <Name>Olf.GoldenHorse.Foundation</Name>

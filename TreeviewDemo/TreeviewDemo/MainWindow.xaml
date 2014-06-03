@@ -38,7 +38,7 @@
             <RowDefinition Height="25" />
             <RowDefinition Height="300*" />
         </Grid.RowDefinitions>
-        <testLibrary:TreeListView x:Name="treeListView" AllowsColumnReorder="True" SelectedValuePath="{Binding SelectedAction}" Grid.Row="1">
+        <testLibrary:TreeListView x:Name="treeListView" AllowsColumnReorder="True" ite SelectedValuePath="{Binding SelectedAction}" Grid.Row="1">
             <testLibrary:TreeListView.Columns >
 
                 <GridViewColumn Header="" Width="40" >

@@ -6,8 +6,9 @@
              xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
+             Tag="{Binding TestName}"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Tag="Test Workspace">
+             d:DesignHeight="300" d:DesignWidth="300" >
     <Grid>
         <xcad:DockingManager Background="Gainsboro">
             <xcad:LayoutRoot>

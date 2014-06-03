@@ -5,21 +5,38 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:treeview="clr-namespace:Olf.GoldenHorse.Core.Views.Themes"
-             xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls">
+             xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls"
+             xmlns:tree="clr-namespace:Aga.Controls.Tree;assembly=Aga.Controls">
     <UserControl.Resources>
 
-      
-
         <SolidColorBrush x:Key="MyBorderBrush" Color="White"></SolidColorBrush>
-
 
         <Style x:Key="BorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="{StaticResource MyBorderBrush}"></Setter>
             <Setter Property="BorderThickness" Value="0.3"></Setter>
         </Style>
 
-       
+        <LinearGradientBrush x:Key="ColumnBrush" StartPoint="1,0" EndPoint="1,1">
+            <GradientStop Color="Gray" Offset="0"></GradientStop>
+            <GradientStop Color="DarkGray" Offset=".8"></GradientStop>
+            <GradientStop Color="DimGray" Offset="1"></GradientStop>
+        </LinearGradientBrush>
 
+        <DataTemplate x:Key="ColumnHeaderTemplate">
+            <Label Content="{TemplateBinding Content}" Foreground="White">
+                <Label.Effect>
+                    <DropShadowEffect BlurRadius="5" 
+                                            Color="Black" 
+                                            Opacity="1" 
+                                            ShadowDepth="0" />
+                </Label.Effect>
+            </Label>
+        </DataTemplate>
+
+        <Style TargetType="GridViewColumnHeader" x:Key="GridViewColumnStyle">
+            <Setter Property="Background" Value="{StaticResource ColumnBrush}" ></Setter>
+            <Setter Property="Foreground" Value="White" ></Setter>
+        </Style>
 
     </UserControl.Resources>
    
@@ -31,15 +48,17 @@
 
         <Button Content="Play" Command="{Binding PlayCommand}" Margin="0,0,17,0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="0" Width="69"/>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-        <customControls:TreeListView x:Name="treeListView" AllowsColumnReorder="True" ItemsSource="{Binding TestItems}"
-                            SelectedValuePath="{Binding SelectedTestItem}" HorizontalContentAlignment="Center" 
-                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   >
+           
+
+            <customControls:TreeListView  AllowsColumnReorder="True" ItemsSource="{Binding TestItems}"
+                            HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
+                            SelectedObject="{Binding SelectedTestItem, Mode=TwoWay}">
             <!--Create an item template to specify the ItemsSource-->
             <customControls:TreeListView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Items}" />
             </customControls:TreeListView.ItemTemplate>
             <customControls:TreeListView.Columns >
-                <GridViewColumn Header="" Width="40" >
+                <GridViewColumn Header="" Width="40">
                     <GridViewColumn.CellTemplate >
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">

@@ -45,6 +45,13 @@ namespace Olf.GoldenHorse.CustomControls
             get { return (bool)GetValue(AllowsColumnReorderProperty); }
             set { SetValue(AllowsColumnReorderProperty, value); }
         }
+
+        protected override void OnSelectedItemChanged(RoutedPropertyChangedEventArgs<object> e)
+        {
+            base.OnSelectedItemChanged(e);
+            SelectedObject = SelectedItem;
+        }
+
         #endregion
 
         #region Static Dependency Properties
@@ -58,6 +65,65 @@ namespace Olf.GoldenHorse.CustomControls
             typeof(TreeListView),
             new UIPropertyMetadata(null));
         #endregion
+
+        public static readonly DependencyProperty SelectedObjectProperty = DependencyProperty.Register(
+            "SelectedObject", typeof (object), typeof (TreeListView), new PropertyMetadata(default(object)));
+
+        public object SelectedObject
+        {
+            get { return (object)GetValue(SelectedObjectProperty); }
+            set
+            {
+                SetValue(SelectedObjectProperty, value);
+                SelectTreeViewItem(value);
+                
+            }
+        }
+
+        private void SelectTreeViewItem(object item)
+        {
+            try
+            {
+                var tvi = GetContainerFromItem(this, item);
+
+                tvi.Focus();
+                tvi.IsSelected = true;
+
+                var selectMethod =
+                    typeof(TreeViewItem).GetMethod("Select",
+                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+                selectMethod.Invoke(tvi, new object[] { true });
+            }
+            catch { }
+        }
+
+        private TreeViewItem GetContainerFromItem(ItemsControl parent, object item)
+        {
+            var found = parent.ItemContainerGenerator.ContainerFromItem(item);
+            if (found == null)
+            {
+                for (int i = 0; i < parent.Items.Count; i++)
+                {
+                    var childContainer = parent.ItemContainerGenerator.ContainerFromIndex(i) as ItemsControl;
+                    TreeViewItem childFound = null;
+                    if (childContainer != null && childContainer.ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
+                    {
+                        childContainer.ItemContainerGenerator.StatusChanged += (o, e) =>
+                        {
+                            childFound = GetContainerFromItem(childContainer, item);
+                        };
+                    }
+                    else
+                    {
+                        childFound = GetContainerFromItem(childContainer, item);
+                    }
+                    if (childFound != null)
+                        return childFound;
+                }
+            }
+            return found as TreeViewItem;
+        }
     }
 
     /// <summary>

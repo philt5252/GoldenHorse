@@ -66,7 +66,6 @@ namespace Olf.GoldenHorse.Core.Services
             OnScreenAction action = new OnScreenAction();
 
             string processName = externalAppInfoManager.GetForegroundWindowProcessName();
-            string foregroundWindowName = externalAppInfoManager.GetForegroundWindowName();
 
             if (processName.Contains("Olf.GoldenHorse"))
                 return;
@@ -75,19 +74,29 @@ namespace Olf.GoldenHorse.Core.Services
 
             IUIItem whiteControl = CreateWhiteControl(mouseEventArgs.Location, ref mappedItem);
 
+            AutomationElement findWindowElement = whiteControl.AutomationElement;
+
+            while (findWindowElement.Current.LocalizedControlType != "window")
+            {
+                findWindowElement = TreeWalker.ControlViewWalker.GetParent(findWindowElement);
+            }
+
             action.ControlId = mappedItem.Id;
 
             int clickX = mouseEventArgs.Location.X - (int)whiteControl.Bounds.X;
             int clickY = mouseEventArgs.Location.Y - (int)whiteControl.Bounds.Y;
-
             ClickOperation clickOperation = CreateClickOperation(mouseEventArgs.Button, clickX, clickY);
 
             action.Operation = clickOperation;
 
             Screenshot screenshot = GetScreenshot(action);
 
-            Point clickPoint = clickOperation.GetClickPoint();
-            screenshot.Adornments.Add(new ScreenshotClickAdornment { ClickX = clickPoint.X, ClickY = clickPoint.Y });
+            MappedItem window = test.Project.AppManager.GetWindow(mappedItem);
+
+            int screenshotX = mouseEventArgs.Location.X - (int)findWindowElement.Current.BoundingRectangle.X;
+            int screenshotY = mouseEventArgs.Location.Y - (int)findWindowElement.Current.BoundingRectangle.Y;
+
+            screenshot.Adornments.Add(new ScreenshotClickAdornment { ClickX = screenshotX, ClickY = screenshotY });
             action.Screenshot = screenshot;
             test.TestItems.Add(action);
         }
@@ -201,10 +210,11 @@ namespace Olf.GoldenHorse.Core.Services
                     automationElement = uiElementTree.Pop();
                     string name = automationElement.Current.AutomationId;
                     string type = automationElement.Current.ControlType.LocalizedControlType;
+                    string text = automationElement.Current.Name;
                     Rect bounds = automationElement.Current.BoundingRectangle;
                     bounds.X -= window.Current.BoundingRectangle.X;
                     bounds.Y -= window.Current.BoundingRectangle.Y;
-                    createdMappedItem = appManager.FindOrCreateMappedItem(parentId, name, bounds, type);
+                    createdMappedItem = appManager.FindOrCreateMappedItem(parentId, name, bounds, type, text);
 
                     parentId = createdMappedItem.Id;
                 }

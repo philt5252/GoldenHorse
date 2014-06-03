@@ -18,6 +18,7 @@ namespace Olf.GoldenHorse.Foundation.Models
             set { id = value; }
         }
 
+        public string Text { get; set; }
         public string ParentId { get; set; }
         public string Type { get; set; }
         public string Name { get; set; }

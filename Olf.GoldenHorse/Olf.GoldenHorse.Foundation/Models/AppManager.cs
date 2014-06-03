@@ -48,7 +48,7 @@ namespace Olf.GoldenHorse.Foundation.Models
             return process;
         }
 
-        public MappedItem FindOrCreateMappedItem(string parentId, string name, Rect bounds, string type)
+        public MappedItem FindOrCreateMappedItem(string parentId, string name, Rect bounds, string type, string text)
         {
             MappedItem parentMappedItem = GetMappedItem(parentId);
 
@@ -68,6 +68,7 @@ namespace Olf.GoldenHorse.Foundation.Models
             mappedItem.Bounds = bounds;
             mappedItem.Name = name;
             mappedItem.Type = type;
+            mappedItem.Text = text;
 
             parentMappedItem.Children.Add(mappedItem);
 
@@ -126,7 +127,7 @@ namespace Olf.GoldenHorse.Foundation.Models
                 if (parent.Type == "window")
                     return parent;
 
-                parent = GetMappedItem(mappedItem.ParentId);
+                parent = GetMappedItem(parent.ParentId);
             }
 
             return null;

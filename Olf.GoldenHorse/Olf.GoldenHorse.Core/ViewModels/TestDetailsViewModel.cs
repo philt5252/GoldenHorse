@@ -23,6 +23,9 @@ namespace Olf.GoldenHorse.Core.ViewModels
             get { return selectedTestItem; }
             set
             {
+                if (Equals(selectedTestItem, value))
+                    return;
+
                 selectedTestItem = value;
                 OnPropertyChanged("SelectedTestItem");
             }

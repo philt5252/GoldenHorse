@@ -46,7 +46,7 @@ namespace Olf.GoldenHorse.Core.DataAccess
 
             string appManagerFolder = ProjectSuiteManager.GetAppManagerFolder(project);
                 
-            using (FileStream fileStream = File.OpenRead(appManagerFolder + "AppManager.gham"))
+            using (FileStream fileStream = File.OpenRead(Path.Combine(appManagerFolder, "AppManager.gham")))
             {
                 project.AppManager = appManagerSerializer.Deserialize(fileStream) as AppManager;
             }

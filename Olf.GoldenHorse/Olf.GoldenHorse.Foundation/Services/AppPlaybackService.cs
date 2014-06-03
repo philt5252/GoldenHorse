@@ -15,7 +15,7 @@ namespace Olf.GoldenHorse.Foundation.Services
 
             Window window = application.GetWindow(windowName);
 
-            return window;
+            return window.Get<Button>(controlName);
         }
     }
 }

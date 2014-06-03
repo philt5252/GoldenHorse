@@ -1,4 +1,7 @@
-﻿using Olf.GoldenHorse.Foundation.Services;
+﻿using System.Drawing;
+using Olf.Automation;
+using Olf.GoldenHorse.Foundation.Models;
+using Olf.GoldenHorse.Foundation.Services;
 using TestStack.White.UIItems;
 
 namespace Olf.GoldenHorse.Core.Models
@@ -10,11 +13,17 @@ namespace Olf.GoldenHorse.Core.Models
             get { return "Left Click"; }
         }
 
-        public override void Play(string processName, string windowName, string controlName)
+        public override void Play(MappedItem mappedItem)
         {
-            IUIItem uiItem = AppPlaybackService.GetControl(processName, windowName, controlName);
+            AppProcess process = AppManager.GetProcess(mappedItem);
+            MappedItem window = AppManager.GetWindow(mappedItem);
 
-            uiItem.Click();
+            IUIItem uiItem = AppPlaybackService.GetControl(process.Name, window.Name, mappedItem.Name);
+
+            Point clickPoint = this.GetClickPoint();
+            Cursor.LeftClick(new Point((int)uiItem.Bounds.X + clickPoint.X, (int)uiItem.Bounds.Y + clickPoint.Y));
+
+            //uiItem.Click();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
 using TestStack.White.UIItems;
 
@@ -11,13 +12,13 @@ namespace Olf.GoldenHorse.Core.Models
             get { return "Right Click"; }
         }
 
-        public override void Play(string processName, string windowName, string controlName)
+        public override void Play(MappedItem mappedItem)
         {
-            IUIItem uiItem = AppPlaybackService.GetControl(processName, windowName, controlName);
+            //IUIItem uiItem = AppPlaybackService.GetControl(processName, windowName, controlName);
 
             
 
-            uiItem.RightClick();
+            //uiItem.RightClick();
         }
     }
 }

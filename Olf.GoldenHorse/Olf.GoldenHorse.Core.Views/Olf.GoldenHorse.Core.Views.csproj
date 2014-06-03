@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aga.Controls">
-      <HintPath>..\..\..\..\Downloads\wpftreelistview\Aga.Controls\bin\Debug\Aga.Controls.dll</HintPath>
-    </Reference>
     <Reference Include="MahApps.Metro">
       <HintPath>..\packages\MahApps.Metro.0.13.1.0\lib\net40\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -83,6 +80,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\HeightConverter.cs" />
     <Compile Include="Converters\ImageConverter.cs" />
     <Compile Include="Factories\MainShellViewFactory.cs" />
     <Compile Include="Factories\MainWindowFactory.cs" />
@@ -194,6 +192,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Olf.GoldenHorse.Core\Olf.GoldenHorse.Core.csproj">
+      <Project>{03A71A49-10A2-429D-B274-04DA18609472}</Project>
+      <Name>Olf.GoldenHorse.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Olf.GoldenHorse.CustomControls\Olf.GoldenHorse.CustomControls.csproj">
       <Project>{c3be191d-1c68-430e-9ba3-eada12a14103}</Project>
       <Name>Olf.GoldenHorse.CustomControls</Name>
@@ -212,7 +214,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Images\log.png" />
+    <Resource Include="Images\log.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\newProject.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

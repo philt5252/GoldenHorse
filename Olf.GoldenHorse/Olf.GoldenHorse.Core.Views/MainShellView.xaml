@@ -17,7 +17,7 @@
             <RowDefinition Height="26"/>
         </Grid.RowDefinitions>
         <Menu>
-            <MenuItem Header="File">
+            <MenuItem Header="FILE">
                 <MenuItem Header="New Project Suite" Command="{Binding NewProjectSuiteCommand}"></MenuItem>
                 <MenuItem Header="Open Project Suite" Command="{Binding OpenProjectSuiteCommand}"></MenuItem>
                 <MenuItem Header="Save Project Suite" Command="{Binding SaveProjectSuiteCommand}"></MenuItem>

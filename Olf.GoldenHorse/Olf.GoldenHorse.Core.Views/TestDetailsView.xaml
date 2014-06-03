@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:treeview="clr-namespace:Olf.GoldenHorse.Core.Views.Themes"
-             xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls"
-             xmlns:tree="clr-namespace:Aga.Controls.Tree;assembly=Aga.Controls">
+             xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls">
     <UserControl.Resources>
 
         <SolidColorBrush x:Key="MyBorderBrush" Color="White"></SolidColorBrush>

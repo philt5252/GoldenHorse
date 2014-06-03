@@ -8,31 +8,21 @@
              Tag="Project Explorer">
     <Grid>
         <TreeView Name="projectExplorerTvw" ItemsSource="{Binding Nodes}">
+            
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                    <StackPanel Orientation="Horizontal">
-                        <TreeViewItem  Margin="-10,0,0,0" FontSize="11" >
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDoubleClick">
-                                    <i:InvokeCommandAction Command="{Binding Path=DefaultCommand, Mode=OneWay}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <TreeViewItem.Template>
-                                <ControlTemplate>
-                                    <StackPanel Orientation="Horizontal" >
-                                        <Image Source="Images\newProjectSuite.png" Margin="10,0,0,0"  Width="15" Height="15"></Image>
-                                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                                    </StackPanel>
-                                </ControlTemplate>
-                            </TreeViewItem.Template>
-                            
-                        </TreeViewItem>
-                       
+                    
+                    <StackPanel Orientation="Horizontal" MouseDown="DoubleClick">
+                        <!--<i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDown">
+                                <i:InvokeCommandAction Command="{Binding Path=DefaultCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>-->
+                        <Image Source="Images\newProjectSuite.png" Margin="5,0,0,0"  Width="15" Height="15"></Image>
+                        <TextBlock Margin="5,5,5,5" Text="{Binding Name}" Foreground="Black"></TextBlock>         
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
-            
-        </TreeView>
-            
+        </TreeView>    
     </Grid>
 </UserControl>

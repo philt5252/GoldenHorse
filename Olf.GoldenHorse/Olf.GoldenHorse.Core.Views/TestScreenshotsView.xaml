@@ -4,11 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converters="clr-namespace:Olf.GoldenHorse.Core.Views.Converters"
+             xmlns:converters1="clr-namespace:Olf.GoldenAutomation.Core.Views.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="197.619" d:DesignWidth="563.095">
 
     <UserControl.Resources>
         <converters:ImageConverter  x:Key="ImageConverter" />
+        <converters1:HeightConverter  x:Key="HeightConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.Resources>
@@ -33,16 +35,16 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
         </Grid.Resources>
-        <ListBox ItemsSource="{Binding Screenshots}" SelectedItem="{Binding SelectedScreenshot, Mode=TwoWay}" >
+        <ListBox ItemsSource="{Binding Screenshots}" SelectedItem="{Binding SelectedScreenshot, Mode=TwoWay}" Name="listBox" >
              <ListBox.ItemTemplate>
                  <DataTemplate>
-                     <StackPanel Orientation="Horizontal">
-                        <Image Margin="5,5,5,5" Source="{Binding Image, Converter={StaticResource ImageConverter}}" Width="100" Height="100" ></Image>
-                        <Separator/>
-                    </StackPanel>
-                 </DataTemplate>
+                     <Image  Source="{Binding Image, Converter={StaticResource ImageConverter}}"
+                                MinHeight="75"
+                                Height="{Binding Path=ActualHeight, Converter={StaticResource HeightConverter}, 
+                                RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}}"
+                                Width="{Binding Path=Height, RelativeSource={RelativeSource Self}}"></Image>
+                </DataTemplate>
              </ListBox.ItemTemplate>
          </ListBox>   
     </Grid>

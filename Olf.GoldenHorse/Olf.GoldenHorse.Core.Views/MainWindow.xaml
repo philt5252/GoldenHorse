@@ -7,10 +7,12 @@
              GlowBrush="{DynamicResource AccentColorBrush}"
             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
             xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
-
+            Title ="GOLDEN HORSE"
+            Icon="Images/log.ico"
             mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
+        
         <ContentControl regions:RegionManager.RegionName="MainShellViewRegion"/>
     </Grid>
 </views:WindowBase>

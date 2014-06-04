@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
     public class Log
     {
+        public string Name { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
@@ -25,9 +27,8 @@ namespace Olf.GoldenHorse.Foundation.Models
             }
         }
 
-        
-
-        public string Folder { get; set; }
+        [XmlIgnore]
+        public ILogOwner Owner { get; set; }
 
         private LogItem currentLogItem;
         private ObservableCollection<LogItem> logItems;

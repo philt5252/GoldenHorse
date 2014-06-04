@@ -7,7 +7,7 @@ using Olf.GoldenHorse.Foundation.Services;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
-    public class Project
+    public class Project : ILogOwner
     {
         private string testsFolder;
         private string logsFolder;
@@ -93,6 +93,38 @@ namespace Olf.GoldenHorse.Foundation.Models
         }
 
         [XmlIgnore]
+        public List<ProjectFile> LogFiles
+        {
+            get
+            {
+                throw new Exception();
+                if (testFiles == null)
+                {
+                    string projectFolder = ProjectSuiteManager.GetProjectFolder(this);
+
+                    string testsDir = Path.Combine(projectFolder, TestsFolder);
+
+                    if (!Directory.Exists(testsDir))
+                        Directory.CreateDirectory(testsDir);
+
+                    testFiles = Directory.EnumerateFiles(testsDir, "*.ghtest")
+                        .Select(f =>
+                        {
+                            FileInfo fileInfo = new FileInfo(f);
+                            return new ProjectFile
+                            {
+                                Name = fileInfo.Name,
+                                FilePath = fileInfo.FullName,
+                                Project = this
+                            };
+                        }).ToList();
+                }
+
+                return testFiles;
+            }
+        }
+
+        [XmlIgnore]
         public string ProjectFolder { get { return ProjectSuiteManager.GetProjectFolder(this); }}
 
         [XmlIgnore]
@@ -118,5 +150,10 @@ namespace Olf.GoldenHorse.Foundation.Models
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }
+    }
+
+    public interface ILogOwner
+    {
+        string LogsFolder { get; set; }
     }
 }

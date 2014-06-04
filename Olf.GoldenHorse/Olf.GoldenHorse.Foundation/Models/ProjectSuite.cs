@@ -7,12 +7,12 @@ using System.Xml.Serialization;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
-    public class ProjectSuite
+    public class ProjectSuite : ILogOwner
     {
         private ObservableCollection<Project> projects;
         public string Name { get; set; }
         public string ProjectSuiteFolder { get; set; }
-
+        public string LogsFolder { get; set; }
         public string[] ProjectFiles { get; set; }
 
         [XmlIgnore]
@@ -39,6 +39,9 @@ namespace Olf.GoldenHorse.Foundation.Models
         public ProjectSuite()
         {
             Projects = new ObservableCollection<Project>();
+            LogsFolder = "Logs";
         }
+
+        
     }
 }

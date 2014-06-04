@@ -28,7 +28,6 @@ namespace Olf.GoldenHorse.Foundation.Models
         }
 
         public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
         public LogItemCategory Category { get; set; }
         public string Description { get; set; }
         public ObservableCollection<LogItem> Children

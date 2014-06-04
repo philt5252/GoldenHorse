@@ -111,6 +111,8 @@
     <Compile Include="ViewModels\MainShellViewModel.cs" />
     <Compile Include="ViewModels\NewProjectSuiteViewModel.cs" />
     <Compile Include="ViewModels\Nodes\DisplayNode.cs" />
+    <Compile Include="ViewModels\Nodes\LogNode.cs" />
+    <Compile Include="ViewModels\Nodes\ProjectLogsNode.cs" />
     <Compile Include="ViewModels\Nodes\ProjectNode.cs" />
     <Compile Include="ViewModels\Nodes\ProjectSuiteLogsNode.cs" />
     <Compile Include="ViewModels\Nodes\ProjectSuiteProjectsNode.cs" />

@@ -40,7 +40,9 @@
             </Style>
         </Grid.Resources>
         <ListBox ItemsSource="{Binding Screenshots}" SelectedItem="{Binding SelectedScreenshot, Mode=TwoWay}" 
-                 Name="listBox" IsSynchronizedWithCurrentItem="True" views2:ListBoxExtenders.AutoScrollToCurrentItem="True">
+                 Name="listBox" IsSynchronizedWithCurrentItem="True" views2:ListBoxExtenders.AutoScrollToCurrentItem="True"
+                 Background="DimGray">
+            
              <ListBox.ItemTemplate>
                  <DataTemplate>
                      <Image  Source="{Binding Image, Converter={StaticResource ImageConverter}}"

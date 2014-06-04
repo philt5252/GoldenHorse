@@ -12,17 +12,17 @@
 
         <xcad:DockingManager Grid.Column="0" Height="Auto" Width="Auto" VerticalAlignment="Stretch">
             <xcad:DockingManager.Theme>
-                <xcad:AeroTheme></xcad:AeroTheme>
+                <xcad:ExpressionDarkTheme></xcad:ExpressionDarkTheme>
             </xcad:DockingManager.Theme>
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>
                     <xcad:LayoutAnchorablePane  DockWidth="160" DockHeight="300*" x:Name="TestOperationsPane">
-                        <xcad:LayoutAnchorable>
+                        <xcad:LayoutAnchorable Title="Test Operations">
                             <views:TestOperationsView x:Name="testOperationsView" ></views:TestOperationsView>
                         </xcad:LayoutAnchorable>
                     </xcad:LayoutAnchorablePane>
                     <xcad:LayoutDocumentPane>
-                        <xcad:LayoutDocument >
+                        <xcad:LayoutDocument Title="Test Details">
                             <views:TestDetailsView x:Name="testDetailsView"></views:TestDetailsView>
                         </xcad:LayoutDocument>
                     </xcad:LayoutDocumentPane>

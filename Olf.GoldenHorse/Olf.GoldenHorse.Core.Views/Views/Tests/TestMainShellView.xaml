@@ -12,7 +12,7 @@
     <Grid>
         <xcad:DockingManager>
             <xcad:DockingManager.Theme>
-                <xcad:AeroTheme></xcad:AeroTheme>
+                <xcad:ExpressionDarkTheme></xcad:ExpressionDarkTheme>
             </xcad:DockingManager.Theme>
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel Orientation="Vertical">
@@ -22,7 +22,7 @@
                        </xcad:LayoutDocument>
                     </xcad:LayoutDocumentPane>
                     <xcad:LayoutAnchorablePane DockHeight="200">
-                        <xcad:LayoutAnchorable>
+                        <xcad:LayoutAnchorable Title="Test Screenshots">
                             <views:TestScreenshotsView x:Name="testScreenshotsView" ></views:TestScreenshotsView>
                         </xcad:LayoutAnchorable>
                     </xcad:LayoutAnchorablePane>

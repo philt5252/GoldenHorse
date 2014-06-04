@@ -12,13 +12,13 @@
     <UserControl.Resources>
         
         <Style TargetType="MenuItem" x:Key="{x:Type MenuItem}">
-            <Setter Property="Background" Value="DimGray"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
         </Style>
         
        
     </UserControl.Resources>
-    <Grid Background="DimGray">
+    <Grid>
         
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -26,18 +26,18 @@
             <RowDefinition Height="500*"/>
             <RowDefinition Height="26"/>
         </Grid.RowDefinitions>
-        <Menu Background="DimGray">
+        <Menu  Background="White">
             <MenuItem Header="FILE">
                 <MenuItem Header="New Project Suite" Command="{Binding NewProjectSuiteCommand}"></MenuItem>
                 <MenuItem Header="Open Project Suite" Command="{Binding OpenProjectSuiteCommand}"></MenuItem>
                 <MenuItem Header="Save Project Suite" Command="{Binding SaveProjectSuiteCommand}"></MenuItem>
             </MenuItem>
         </Menu>
-        <DockPanel Grid.Row="1" Background="DimGray">
-            <ToolBar Background="DimGray">
-                <ToolBarTray DockPanel.Dock="Top" Background="DimGray">
-                    <ToolBar Margin="0,0,0,0" Background="DimGray">
-                        <Button Height="26" Width="50" Command="{Binding RecordCommand}" Background="DimGray">
+        <DockPanel Grid.Row="1" >
+            <ToolBar Background="White">
+                <ToolBarTray DockPanel.Dock="Top"  Background="White">
+                    <ToolBar Margin="0,0,0,0"  Background="White">
+                        <Button Height="26" Width="50" Command="{Binding RecordCommand}"  Background="White" >
                             <Ellipse Height="15" Width="15">
                                 <Ellipse.Fill>
                                     <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
@@ -53,7 +53,7 @@
         </DockPanel>
         <xcad:DockingManager Grid.Row="2">
             <xcad:DockingManager.Theme>
-                <xcad:ExpressionDarkTheme></xcad:ExpressionDarkTheme>
+                <xcad:AeroTheme></xcad:AeroTheme>
             </xcad:DockingManager.Theme>
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>

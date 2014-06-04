@@ -21,7 +21,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Separator}">
-                            <Rectangle Width="1" Height="100" Margin="4" Fill="Gray" StrokeDashArray="4 4"/>
+                            <Rectangle Width="1" Height="100" Margin="4" StrokeDashArray="4 4"/>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -41,7 +41,7 @@
         </Grid.Resources>
         <ListBox ItemsSource="{Binding Screenshots}" SelectedItem="{Binding SelectedScreenshot, Mode=TwoWay}" 
                  Name="listBox" IsSynchronizedWithCurrentItem="True" views2:ListBoxExtenders.AutoScrollToCurrentItem="True"
-                 Background="DimGray">
+                 Background="White">
             
              <ListBox.ItemTemplate>
                  <DataTemplate>

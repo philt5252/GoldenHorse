@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              
-             d:DesignHeight="300" d:DesignWidth="300" Tag="Test Operations">
+             d:DesignHeight="300" d:DesignWidth="300" Tag="Test Operations" >
 
     <UserControl.Resources>
         <Style  TargetType="{x:Type ListBoxItem}">
@@ -21,12 +21,12 @@
     </UserControl.Resources>
     <Grid>
        <ListBox ItemsSource="{Binding Operations}" SelectedItem="{Binding SelectedOperation}" 
-                AlternationCount="2" Background="DimGray">
+                AlternationCount="2" Background="White">
             <ListBoxItem Style="{StaticResource {x:Type ListBoxItem}}">
                 <DataTemplate>
                     <StackPanel>
                         <Image Source="{Binding Icon}"></Image>
-                        <TextBlock Margin="5,0,5,0" Text="{Binding Name}" Background="DimGray" Foreground="White">
+                        <TextBlock Margin="5,0,5,0" Text="{Binding Name}" Foreground="Black">
                         </TextBlock>
                     </StackPanel>
                 </DataTemplate>

@@ -45,13 +45,14 @@
             <RowDefinition Height="300*" />
         </Grid.RowDefinitions>
 
-        <Button Content="Play" Command="{Binding PlayCommand}" Margin="0,0,17,0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="0" Width="69"/>
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+        <Button Content="Play" Command="{Binding PlayCommand}" Margin="0,0,17,0" Height="25" 
+                VerticalAlignment="Top" Background="White" HorizontalAlignment="Right" Grid.Row="0" Width="69"/>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" Background="DarkGray" VerticalScrollBarVisibility="Visible">
            
 
             <customControls:TreeListView  AllowsColumnReorder="True" ItemsSource="{Binding TestItems}"
                             HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
-                            SelectedObject="{Binding SelectedTestItem, Mode=TwoWay}">
+                            SelectedObject="{Binding SelectedTestItem, Mode=TwoWay}" Background="White">
             <!--Create an item template to specify the ItemsSource-->
             <customControls:TreeListView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Items}" />
@@ -90,7 +91,7 @@
                                     <StackPanel Orientation="Horizontal" >
                                         <!--The Expander Button (can be used in any column (typically the first one))-->
                                         <!--<Image Width ="20" Height ="20"  Source="Images\dachshund.jpg"></Image>-->
-                                            <TextBlock Text="{Binding Name}" FontWeight="DemiBold" Foreground="GreenYellow" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
+                                            <TextBlock Text="{Binding Name}" FontWeight="DemiBold" Foreground="Black" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -103,7 +104,7 @@
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0" >
                                 <!--Display the size of the DataElement-->
-                                    <TextBlock Text="{Binding Operation}" FontWeight="DemiBold" Foreground="LightCoral" MouseLeftButtonDown="OpenOperationEditWindow" HorizontalAlignment="Center" >
+                                    <TextBlock Text="{Binding Operation}" FontWeight="DemiBold" Foreground="Black" MouseLeftButtonDown="OpenOperationEditWindow" HorizontalAlignment="Center" >
                                     </TextBlock>
                             </Border>
                         </DataTemplate>
@@ -114,7 +115,7 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                    <TextBlock  Text="{Binding Value}" FontWeight="DemiBold" Foreground="DeepSkyBlue" MouseLeftButtonDown="OpenValueEditWindow"  HorizontalAlignment="Center"/>
+                                    <TextBlock  Text="{Binding Value}" FontWeight="DemiBold" Foreground="Black" MouseLeftButtonDown="OpenValueEditWindow"  HorizontalAlignment="Center"/>
                             </Border>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
@@ -123,7 +124,7 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                    <TextBlock Text="{Binding Description}" Foreground="White" HorizontalAlignment="Stretch"/>
+                                    <TextBlock Text="{Binding Description}" Foreground="Black" HorizontalAlignment="Stretch"/>
                             </Border>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>

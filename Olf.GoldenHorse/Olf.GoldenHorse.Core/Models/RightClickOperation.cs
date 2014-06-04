@@ -12,7 +12,7 @@ namespace Olf.GoldenHorse.Core.Models
             get { return "Right Click"; }
         }
 
-        public override void Play(MappedItem mappedItem)
+        public override void Play(MappedItem mappedItem, Log log)
         {
             //IUIItem uiItem = AppPlaybackService.GetControl(processName, windowName, controlName);
 

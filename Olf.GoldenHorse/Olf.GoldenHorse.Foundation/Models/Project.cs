@@ -7,13 +7,14 @@ using Olf.GoldenHorse.Foundation.Services;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
-    public class Project
+    public class Project : ILogOwner
     {
         private string testsFolder;
         private string logsFolder;
         private string appManagerFolder;
         private bool init = false;
         private List<ProjectFile> testFiles;
+        private List<ProjectFile> logFiles;
         private bool isDefaultProject;
 
         public event EventHandler TestFilesChanged;
@@ -93,6 +94,37 @@ namespace Olf.GoldenHorse.Foundation.Models
         }
 
         [XmlIgnore]
+        public List<ProjectFile> LogFiles
+        {
+            get
+            {
+                if (logFiles == null)
+                {
+                    string projectFolder = ProjectSuiteManager.GetProjectFolder(this);
+
+                    string logsDir = Path.Combine(projectFolder, LogsFolder);
+
+                    if (!Directory.Exists(logsDir))
+                        Directory.CreateDirectory(logsDir);
+
+                    logFiles = Directory.EnumerateFiles(logsDir, "*.ghlog", SearchOption.AllDirectories)
+                        .Select(f =>
+                        {
+                            FileInfo fileInfo = new FileInfo(f);
+                            return new ProjectFile
+                            {
+                                Name = fileInfo.Name,
+                                FilePath = fileInfo.FullName,
+                                Project = this
+                            };
+                        }).ToList();
+                }
+
+                return logFiles;
+            }
+        }
+
+        [XmlIgnore]
         public string ProjectFolder { get { return ProjectSuiteManager.GetProjectFolder(this); }}
 
         [XmlIgnore]
@@ -118,5 +150,10 @@ namespace Olf.GoldenHorse.Foundation.Models
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }
+    }
+
+    public interface ILogOwner
+    {
+        string LogsFolder { get; set; }
     }
 }

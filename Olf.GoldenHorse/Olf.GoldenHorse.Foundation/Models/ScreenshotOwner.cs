@@ -15,7 +15,9 @@ namespace Olf.GoldenHorse.Foundation.Models
             set
             {
                 screenshot = value;
-                screenshot.Owner = this;
+
+                if(screenshot != null)
+                    screenshot.Owner = this;
             }
         }
 

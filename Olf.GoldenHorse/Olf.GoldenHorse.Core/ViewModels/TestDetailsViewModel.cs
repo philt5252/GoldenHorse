@@ -1,7 +1,9 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
+using Olf.GoldenHorse.Foundation.DataAccess;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.ViewModels;
@@ -12,6 +14,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
     {
         private readonly Test test;
         private readonly ITestItemViewModelFactory testItemViewModelFactory;
+        private readonly ILogFileManager logFileManager;
         private ITestItemViewModel selectedTestItem;
         public ObservableCollection<ITestItemViewModel> TestItems { get; protected set; }
 
@@ -30,10 +33,12 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         public ICommand PlayCommand { get; protected set; }
  
-        public TestDetailsViewModel(Test test, ITestItemViewModelFactory testItemViewModelFactory)
+        public TestDetailsViewModel(Test test, ITestItemViewModelFactory testItemViewModelFactory,
+            ILogFileManager logFileManager)
         {
             this.test = test;
             this.testItemViewModelFactory = testItemViewModelFactory;
+            this.logFileManager = logFileManager;
             TestItems = new ObservableCollection<ITestItemViewModel>(test.TestItems.Select(testItemViewModelFactory.Create));
         
             PlayCommand = new DelegateCommand(ExecutePlayCommand);
@@ -41,10 +46,22 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         private void ExecutePlayCommand()
         {
+            Log log = new Log();
+            log.Owner = test.Project;
+            DateTime dateTime = DateTime.Now;
+            log.StartTime = dateTime;
+            log.Name = string.Format("{0}_{1}_{2}_{3}_{4}_{5}",
+                dateTime.Month, dateTime.Day, dateTime.Year,
+                dateTime.Hour, dateTime.Minute, dateTime.Second);
+
             foreach (TestItem testItem in test.TestItems)
             {
-                testItem.Play();
+                testItem.Play(log);
             }
+
+            log.EndTime = DateTime.Now;
+
+            logFileManager.Save(log);
         }
     }
 }

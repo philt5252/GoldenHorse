@@ -57,5 +57,25 @@ namespace Olf.GoldenHorse.Foundation.Services
 
             return appManagerFolder;
         }
+
+        public static string GetScreenshotsFolder(Log log)
+        {
+            return GetLogFolder(log);
+        }
+
+        public static string GetLogFolder(Log log)
+        {
+            string rootFolder = "";
+
+            if (log.Owner is Project)
+                rootFolder = GetProjectFolder(log.Owner as Project);
+
+            string logFolder = Path.Combine(rootFolder, log.Owner.LogsFolder, log.Name);
+
+            if (!Directory.Exists(logFolder))
+                Directory.CreateDirectory(logFolder);
+
+            return logFolder;
+        }
     }
 }

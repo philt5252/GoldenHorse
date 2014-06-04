@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILogFileManager.cs" />
     <Compile Include="IProjectFileManager.cs" />
     <Compile Include="IProjectSuiteFileManager.cs" />
     <Compile Include="ITestFileManager.cs" />

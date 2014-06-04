@@ -7,6 +7,8 @@ namespace Olf.GoldenHorse.Foundation
     {
         public const string ProjectSuiteExtension = ".ghps";
         public const string TestExtension = ".ghtest";
+        public const string LogExtension = ".ghlog";
+
         public static string GoldenHorseProjectsLocation
         {
             get
@@ -14,5 +16,7 @@ namespace Olf.GoldenHorse.Foundation
                 return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GoldenHorseProjects");
             }
         }
+
+        
     }
 }

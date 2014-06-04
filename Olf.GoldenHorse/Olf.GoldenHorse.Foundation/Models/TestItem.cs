@@ -68,6 +68,6 @@ namespace Olf.GoldenHorse.Foundation.Models
             }
         }
 
-        public abstract void Play();
+        public abstract void Play(Log log);
     }
 }

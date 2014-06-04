@@ -25,6 +25,6 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         public abstract string DefaultDescription(MappedItem control);
 
-        public abstract void Play(MappedItem control);
+        public abstract void Play(MappedItem control, Log log);
     }
 }

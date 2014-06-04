@@ -49,8 +49,9 @@
         <StackPanel Orientation="Horizontal" Height="30">
             <CheckBox  Content="Error" Foreground="Black" IsChecked="{Binding ShowError}" Margin="5,5,10,5"></CheckBox>
             <CheckBox  Content="Warning" Foreground="Black" IsChecked="{Binding ShowWarning}" Margin="5,5,10,5"></CheckBox>
-            <CheckBox  Content="Error" Foreground="Black" IsChecked="{Binding ShowError}" Margin="5,5,10,5"></CheckBox>
-            <CheckBox  Content="Error" Foreground="Black" IsChecked="{Binding ShowError}" Margin="5,5,10,5"></CheckBox>
+            <CheckBox  Content="Event" Foreground="Black" IsChecked="{Binding ShowEvent}" Margin="5,5,10,5"></CheckBox>
+            <CheckBox  Content="Message" Foreground="Black" IsChecked="{Binding ShowMessage}" Margin="5,5,10,5"></CheckBox>
+            <CheckBox  Content="Checkpoint" Foreground="Black" IsChecked="{Binding ShowCheckpoint}" Margin="5,5,10,5"></CheckBox>
         </StackPanel>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
             <customControls:TreeListView  AllowsColumnReorder="True" ItemsSource="{Binding LogItems}"

@@ -5,6 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converters="clr-namespace:Olf.GoldenHorse.Core.Views.Converters"
              xmlns:converters1="clr-namespace:Olf.GoldenAutomation.Core.Views.Converters"
+             xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
+             xmlns:views1="clr-namespace:Olf.GoldenHorse.Core.Views"
+             xmlns:views2="clr-namespace:Olf.GoldenHorse.Core.Views.Views"
              mc:Ignorable="d" 
              d:DesignHeight="197.619" d:DesignWidth="563.095">
 
@@ -36,11 +39,12 @@
                 </Setter>
             </Style>
         </Grid.Resources>
-        <ListBox ItemsSource="{Binding Screenshots}" SelectedItem="{Binding SelectedScreenshot, Mode=TwoWay}" Name="listBox" >
+        <ListBox ItemsSource="{Binding Screenshots}" SelectedItem="{Binding SelectedScreenshot, Mode=TwoWay}" 
+                 Name="listBox" IsSynchronizedWithCurrentItem="True" views2:ListBoxExtenders.AutoScrollToCurrentItem="True">
              <ListBox.ItemTemplate>
                  <DataTemplate>
                      <Image  Source="{Binding Image, Converter={StaticResource ImageConverter}}"
-                                MinHeight="75"
+                                MinHeight="75" Margin="5,5,5,5"
                                 Height="{Binding Path=ActualHeight, Converter={StaticResource HeightConverter}, 
                                 RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}}"
                                 Width="{Binding Path=Height, RelativeSource={RelativeSource Self}}"></Image>

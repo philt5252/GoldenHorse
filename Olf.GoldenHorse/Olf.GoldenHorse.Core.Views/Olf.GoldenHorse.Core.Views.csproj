@@ -112,6 +112,10 @@
       <DependentUpon>ProjectWorkspaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ListBoxExtenders.cs" />
+    <Compile Include="Views\Logs\LogEditor\LogScreenshotComparisonView.xaml.cs">
+      <DependentUpon>LogScreenshotComparisonView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Services\RecordWindow.xaml.cs">
       <DependentUpon>RecordWindow.xaml</DependentUpon>
     </Compile>
@@ -182,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProjectWorkspaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Logs\LogEditor\LogScreenshotComparisonView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

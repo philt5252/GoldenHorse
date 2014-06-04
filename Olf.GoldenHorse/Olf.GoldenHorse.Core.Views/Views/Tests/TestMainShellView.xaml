@@ -10,7 +10,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" >
     <Grid>
-        <xcad:DockingManager Background="Gainsboro">
+        <xcad:DockingManager>
+            <xcad:DockingManager.Theme>
+                <xcad:AeroTheme></xcad:AeroTheme>
+            </xcad:DockingManager.Theme>
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel Orientation="Vertical">
                     <xcad:LayoutDocumentPane x:Name="TestShellPane"  DockHeight="300*">

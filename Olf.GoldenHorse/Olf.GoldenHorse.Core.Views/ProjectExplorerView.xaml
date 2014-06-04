@@ -18,8 +18,8 @@
                                 <i:InvokeCommandAction Command="{Binding Path=DefaultCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>-->
-                        <Image Source="Images\newProjectSuite.png" Margin="5,0,0,0"  Width="15" Height="15"></Image>
-                        <TextBlock Margin="5,5,5,5" Text="{Binding Name}" Foreground="Black"></TextBlock>         
+                        <Image Source="Images\newProjectSuite.png" Margin="5,0,0,0"  Width="12" Height="12"></Image>
+                        <TextBlock Margin="5,0,5,0" Text="{Binding Name}" Foreground="Black"></TextBlock>         
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>

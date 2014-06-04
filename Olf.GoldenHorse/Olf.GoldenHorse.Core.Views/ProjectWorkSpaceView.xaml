@@ -8,7 +8,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Tag="Project Browser">
     <Grid>
-        <xcad:DockingManager Background="Gainsboro">
+        <xcad:DockingManager>
+            <xcad:DockingManager.Theme>
+                <xcad:AeroTheme></xcad:AeroTheme>
+            </xcad:DockingManager.Theme>
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>
                     <xcad:LayoutAnchorablePane DockWidth="200" DockHeight="400" regions:RegionManager.RegionName="ExplorerViewRegion"></xcad:LayoutAnchorablePane>

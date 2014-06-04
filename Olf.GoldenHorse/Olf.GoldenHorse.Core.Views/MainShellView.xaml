@@ -42,6 +42,9 @@
             </ToolBar>
         </DockPanel>
         <xcad:DockingManager Grid.Row="2">
+            <xcad:DockingManager.Theme>
+                <xcad:AeroTheme></xcad:AeroTheme>
+            </xcad:DockingManager.Theme>
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>
                     <xcad:LayoutDocumentPane x:Name="layoutDocumentPane" regions:RegionManager.RegionName="MainWorkspaceViewRegion" />

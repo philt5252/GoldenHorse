@@ -10,7 +10,10 @@
              
     <Grid >
 
-        <xcad:DockingManager Grid.Column="0" Height="Auto" Width="Auto" VerticalAlignment="Stretch" Background="Gainsboro">
+        <xcad:DockingManager Grid.Column="0" Height="Auto" Width="Auto" VerticalAlignment="Stretch">
+            <xcad:DockingManager.Theme>
+                <xcad:AeroTheme></xcad:AeroTheme>
+            </xcad:DockingManager.Theme>
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>
                     <xcad:LayoutAnchorablePane  DockWidth="160" DockHeight="300*" x:Name="TestOperationsPane">

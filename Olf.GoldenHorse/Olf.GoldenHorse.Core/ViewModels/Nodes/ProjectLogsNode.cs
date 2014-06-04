@@ -1,4 +1,5 @@
-﻿using Olf.GoldenHorse.Foundation.Factories.ViewModels.Nodes;
+﻿using System;
+using Olf.GoldenHorse.Foundation.Factories.ViewModels.Nodes;
 using Olf.GoldenHorse.Foundation.Models;
 
 namespace Olf.GoldenHorse.Core.ViewModels.Nodes
@@ -17,6 +18,13 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         {
             this.project = project;
             this.logNodeFactory = logNodeFactory;
+            project.LogFilesChanged += ProjectOnLogFilesChanged;
+
+            RefreshLogs();
+        }
+
+        private void ProjectOnLogFilesChanged(object sender, EventArgs eventArgs)
+        {
             RefreshLogs();
         }
 

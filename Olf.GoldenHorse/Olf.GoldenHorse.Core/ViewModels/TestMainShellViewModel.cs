@@ -15,6 +15,11 @@ namespace Olf.GoldenHorse.Core.ViewModels
         public ITestScreenshotsViewModel TestScreenshotsViewModel { get; protected set; }
         public ITestShellViewModel TestShellViewModel { get; protected set; }
 
+        public Test Test
+        {
+            get { return test; }
+        }
+
         public string TestName
         {
             get { return test.Name; }

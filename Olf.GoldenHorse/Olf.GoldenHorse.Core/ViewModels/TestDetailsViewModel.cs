@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
+using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.GoldenHorse.Foundation.DataAccess;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels;
 using Olf.GoldenHorse.Foundation.Models;
@@ -15,6 +16,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private readonly Test test;
         private readonly ITestItemViewModelFactory testItemViewModelFactory;
         private readonly ILogFileManager logFileManager;
+        private readonly ILogController logController;
         private ITestItemViewModel selectedTestItem;
         public ObservableCollection<ITestItemViewModel> TestItems { get; protected set; }
 
@@ -34,11 +36,12 @@ namespace Olf.GoldenHorse.Core.ViewModels
         public ICommand PlayCommand { get; protected set; }
  
         public TestDetailsViewModel(Test test, ITestItemViewModelFactory testItemViewModelFactory,
-            ILogFileManager logFileManager)
+            ILogFileManager logFileManager, ILogController logController)
         {
             this.test = test;
             this.testItemViewModelFactory = testItemViewModelFactory;
             this.logFileManager = logFileManager;
+            this.logController = logController;
             TestItems = new ObservableCollection<ITestItemViewModel>(test.TestItems.Select(testItemViewModelFactory.Create));
         
             PlayCommand = new DelegateCommand(ExecutePlayCommand);
@@ -62,6 +65,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
             log.EndTime = DateTime.Now;
 
             logFileManager.Save(log);
+
+            logController.ShowLog(log);
         }
     }
 }

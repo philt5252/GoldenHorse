@@ -59,6 +59,11 @@
     <Compile Include="Controllers\ITestController.cs" />
     <Compile Include="DefaultData.cs" />
     <Compile Include="Factories\Services\IRecorderFactory.cs" />
+    <Compile Include="Factories\ViewModels\ILogDetailsViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\ILogItemViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\ILogMainShellViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\ILogScreenshotsViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\ILogShellViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\IMainShellViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\INewProjectSuiteViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\IProjectExplorerViewModelFactory.cs" />
@@ -80,6 +85,7 @@
     <Compile Include="Models\ConstantOperationParameterValue.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\LogItem.cs" />
+    <Compile Include="Models\LogItemCategory.cs" />
     <Compile Include="Models\MappedItem.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\OperationParameter.cs" />
@@ -102,6 +108,11 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ProjectManager.cs" />
+    <Compile Include="ViewModels\ILogDetailsViewModel.cs" />
+    <Compile Include="ViewModels\ILogItemViewModel.cs" />
+    <Compile Include="ViewModels\ILogMainShellViewModel.cs" />
+    <Compile Include="ViewModels\ILogScreenshotsViewModel.cs" />
+    <Compile Include="ViewModels\ILogShellViewModel.cs" />
     <Compile Include="ViewModels\IMainShellViewModel.cs" />
     <Compile Include="ViewModels\INewProjectSuiteViewModel.cs" />
     <Compile Include="ViewModels\IOnScreenActionViewModel.cs" />

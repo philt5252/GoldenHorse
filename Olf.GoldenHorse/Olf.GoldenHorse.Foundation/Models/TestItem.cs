@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Xml.Serialization;
 using Olf.GoldenHorse.Foundation.Services;
@@ -8,6 +9,8 @@ namespace Olf.GoldenHorse.Foundation.Models
     public abstract class TestItem : ScreenshotOwner
     {
         private ObservableCollection<TestItem> children;
+
+        public string Id { get; set; }
 
         [XmlIgnore]
         public Test Test { get; set; }
@@ -42,6 +45,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         protected TestItem()
         {
             Children = new ObservableCollection<TestItem>();
+            Id = Guid.NewGuid().ToString();
         }
 
         public override string GetScreenshotFolder()

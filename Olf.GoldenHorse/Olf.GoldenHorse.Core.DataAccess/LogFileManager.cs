@@ -32,7 +32,7 @@ namespace Olf.GoldenHorse.Core.DataAccess
                 fileStream.Flush();
             }
 
-            //test.Project.RefreshTestFiles();
+            log.Owner.RefreshLogFiles();
         }
 
         public Log Open(string filePath)

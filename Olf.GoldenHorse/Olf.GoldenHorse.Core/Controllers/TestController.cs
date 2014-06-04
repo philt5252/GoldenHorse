@@ -26,6 +26,22 @@ namespace Olf.GoldenHorse.Core.Controllers
 
         public void ShowTest(Test test)
         {
+            /*foreach (IViewWithDataContext view in regionManager.Regions[Regions.WorkspaceViewRegion].Views)
+            {
+                ITestMainShellViewModel mainShellViewModel = view.DataContext as ITestMainShellViewModel;
+
+                if (mainShellViewModel == null)
+                    continue;
+
+                if (mainShellViewModel.Test.Id == test.Id)
+                {
+                    regionManager.Regions[Regions.WorkspaceViewRegion].Remove(view);
+                    regionManager.Regions[Regions.WorkspaceViewRegion].AddAndActivate(view);
+                    return;
+                }
+                
+            }*/
+
             IViewWithDataContext testMainShellView = testMainShellViewFactory.Create();
             ITestMainShellViewModel testMainShellViewModel = testMainShellViewModelFactory.Create(test);
 

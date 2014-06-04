@@ -13,6 +13,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         public string Name { get; set; }
         public string ProjectSuiteFolder { get; set; }
         public string LogsFolder { get; set; }
+        
         public string[] ProjectFiles { get; set; }
 
         [XmlIgnore]
@@ -42,6 +43,9 @@ namespace Olf.GoldenHorse.Foundation.Models
             LogsFolder = "Logs";
         }
 
-        
+        public void RefreshLogFiles()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

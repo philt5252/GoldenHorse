@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Data;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
+using Olf.Common.Extensions.Reflection;
 using Xceed.Wpf.AvalonDock.Layout;
 
 namespace Olf.GoldenHorse
@@ -45,6 +46,19 @@ namespace Olf.GoldenHorse
                         }
 
                     }
+                    else if (args.Action == NotifyCollectionChangedAction.Remove)
+                    {
+                        foreach (object oldView in args.OldItems)
+                        {
+                            if (!documentDict.ContainsKey(oldView))
+                            {
+                                continue;
+                            }
+
+                            regionTarget.Children.Remove(documentDict[oldView]);
+                        }
+
+                    }
 
                 };
 
@@ -73,10 +87,12 @@ namespace Olf.GoldenHorse
         private void CreateLayoutDocument(object newView)
         {
             LayoutDocument layoutDocument = new LayoutDocument();
+            layoutDocument.IsSelected = true;
+
             Binding myBinding = new Binding("Tag");
             myBinding.Source = newView;
             BindingOperations.SetBinding(layoutDocument, LayoutDocument.TitleProperty, myBinding);
-            //layoutDocument.Title = GetTag(newItem);
+
             layoutDocument.Content = newView;
             documentDict[newView] = layoutDocument;
         }

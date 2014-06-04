@@ -65,6 +65,4 @@ namespace Olf.GoldenHorse.Foundation.Models
             return ProjectSuiteManager.GetScreenshotsFolder(this.Log);
         }
     }
-
-    public enum LogItemCategory { Error, Warning, Event, Message, Checkpoint }
 }

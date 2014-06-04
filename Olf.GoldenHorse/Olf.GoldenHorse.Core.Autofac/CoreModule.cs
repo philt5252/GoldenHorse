@@ -42,9 +42,14 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<TestScreenshotsViewModel>().As<ITestScreenshotsViewModel>();
             builder.RegisterType<TestOperationsViewModel>().As<ITestOperationsViewModel>();
             builder.RegisterType<TestDetailsViewModel>().As<ITestDetailsViewModel>();
+            builder.RegisterType<LogMainShellViewModel>().As<ILogMainShellViewModel>();
+            builder.RegisterType<LogShellViewModel>().As<ILogShellViewModel>();
+            builder.RegisterType<LogScreenshotsViewModel>().As<ILogScreenshotsViewModel>();
+            builder.RegisterType<LogDetailsViewModel>().As<ILogDetailsViewModel>();
             builder.RegisterType<ProjectExplorerViewModel>().As<IProjectExplorerViewModel>();
             builder.RegisterType<RecorderViewModel>().As<IRecorderViewModel>();
             builder.RegisterType<OnScreenActionViewModel>().As<IOnScreenActionViewModel>();
+            builder.RegisterType<LogItemViewModel>().As<ILogItemViewModel>();
 
             builder.RegisterType<TestNode>().AsSelf();
             builder.RegisterType<TestGroupNode>().AsSelf();
@@ -61,9 +66,14 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<TestScreenshotsViewModelFactory>().As<ITestScreenshotsViewModelFactory>().SingleInstance();
             builder.RegisterType<TestOperationsViewModelFactory>().As<ITestOperationsViewModelFactory>().SingleInstance();
             builder.RegisterType<TestDetailsViewModelFactory>().As<ITestDetailsViewModelFactory>().SingleInstance();
+            builder.RegisterType<LogMainShellViewModelFactory>().As<ILogMainShellViewModelFactory>().SingleInstance();
+            builder.RegisterType<LogShellViewModelFactory>().As<ILogShellViewModelFactory>().SingleInstance();
+            builder.RegisterType<LogScreenshotsViewModelFactory>().As<ILogScreenshotsViewModelFactory>().SingleInstance();
+            builder.RegisterType<LogDetailsViewModelFactory>().As<ILogDetailsViewModelFactory>().SingleInstance();
             builder.RegisterType<ProjectExplorerViewModelFactory>().As<IProjectExplorerViewModelFactory>().SingleInstance();
             builder.RegisterType<RecorderViewModelFactory>().As<IRecorderViewModelFactory>().SingleInstance();
             builder.RegisterType<TestItemViewModelFactory>().As<ITestItemViewModelFactory>().SingleInstance();
+            builder.RegisterType<LogItemViewModelFactory>().As<ILogItemViewModelFactory>().SingleInstance();
 
             builder.RegisterType<TestNodeFactory>().As<ITestNodeFactory>().SingleInstance();
             builder.RegisterType<TestGroupNodeFactory>().As<ITestGroupNodeFactory>().SingleInstance();

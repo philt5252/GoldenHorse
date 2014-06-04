@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Olf.GoldenHorse.Foundation.ViewModels;
 using Olf.GoldenHorse.Foundation.Views;
 
 namespace Olf.GoldenHorse.Core.Views.Views.Logs
@@ -28,10 +29,10 @@ namespace Olf.GoldenHorse.Core.Views.Views.Logs
 
         private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            //ILogMainShellViewModel logMainShellViewModel = DataContext as ILogMainShellViewModel;
+            ILogMainShellViewModel logMainShellViewModel = DataContext as ILogMainShellViewModel;
 
-            //logShellView.DataContext = logMainShellViewModel.TestShellViewModel;
-            //logScreenshotsView.DataContext = logMainShellViewModel.TestScreenshotsViewModel;
+            logShellView.DataContext = logMainShellViewModel.LogShellViewModel;
+            logScreenshotsView.DataContext = logMainShellViewModel.LogScreenshotsViewModel;
         }
     }
 }

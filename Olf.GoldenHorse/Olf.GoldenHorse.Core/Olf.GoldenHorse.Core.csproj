@@ -106,7 +106,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\Camera.cs" />
     <Compile Include="Models\ClickOperation.cs" />
     <Compile Include="Models\KeyboardOperation.cs" />
     <Compile Include="Models\LeftClickOperation.cs" />

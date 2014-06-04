@@ -1,8 +1,13 @@
-﻿using System.Drawing;
-using Olf.Automation;
+﻿using System;
+using System.Drawing;
+using System.IO;
+using System.Windows.Automation;
+using System.Windows.Forms;
+using Olf.GoldenHorse.Core.Services;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
 using TestStack.White.UIItems;
+using Cursor = Olf.Automation.Cursor;
 
 namespace Olf.GoldenHorse.Core.Models
 {
@@ -20,9 +25,35 @@ namespace Olf.GoldenHorse.Core.Models
 
             IUIItem uiItem = AppPlaybackService.GetControl(process, window, mappedItem);
             Point clickPoint = this.GetClickPoint();
-            Cursor.LeftClick(new Point((int)uiItem.Bounds.X + clickPoint.X, (int)uiItem.Bounds.Y + clickPoint.Y));
+            Point globalPoint = new Point((int)uiItem.Bounds.X + clickPoint.X, (int)uiItem.Bounds.Y + clickPoint.Y);
+            
+            Cursor.LeftClick(globalPoint);
+            Bitmap bitmap = Camera.Capture();
+            DateTime dateTime = DateTime.Now;
+            string screenshotName = "ghscn_" + dateTime.Ticks + ".bmp";
+            bitmap.Save(Path.Combine(ProjectSuiteManager.GetScreenshotsFolder(log), screenshotName));
 
-            log.CreateLogItem(LogItemCategory.Event, string.Format("The {0} was clicked with the left mouse button", mappedItem.Type));
+            Screenshot screenshot = new Screenshot();
+
+            screenshot.ImageFile = screenshotName;
+            screenshot.DateTime = dateTime;
+
+            AutomationElement findWindowElement = uiItem.AutomationElement;
+
+            while (findWindowElement.Current.LocalizedControlType != "window")
+            {
+                findWindowElement = TreeWalker.ControlViewWalker.GetParent(findWindowElement);
+            }
+
+            int screenshotX = globalPoint.X - (int)findWindowElement.Current.BoundingRectangle.X;
+            int screenshotY = globalPoint.Y - (int)findWindowElement.Current.BoundingRectangle.Y;
+
+            screenshot.Adornments.Add(new ScreenshotClickAdornment { ClickX = screenshotX, ClickY = screenshotY });
+            
+
+            string description = string.Format("The {0} was clicked with the left mouse button", mappedItem.Type);
+            
+            log.CreateLogItem(LogItemCategory.Event, description, screenshot);
             //uiItem.Click();
         }
     }

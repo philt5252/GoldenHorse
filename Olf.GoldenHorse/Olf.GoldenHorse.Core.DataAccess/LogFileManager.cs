@@ -17,7 +17,21 @@ namespace Olf.GoldenHorse.Core.DataAccess
 
         public LogFileManager()
         {
-            serializer = new XmlSerializer(typeof(Log));
+            List<Type> types = new List<Type>();
+
+            FileInfo fileInfo = new FileInfo(Assembly.GetExecutingAssembly().Location);
+
+            foreach (string assemblyFile in Directory.EnumerateFiles(fileInfo.Directory.FullName)
+                .Where(f => f.EndsWith(".exe") || f.EndsWith(".dll")))
+            {
+                if (assemblyFile.Contains("Olf.Common.Extensions"))
+                    continue;
+
+                types.AddRange(Assembly.LoadFile(assemblyFile).GetTypes()
+                    .Where(t => t.IsSubclassOf(typeof(ScreenshotAdornment))));
+            }
+
+            serializer = new XmlSerializer(typeof(Log), types.ToArray());
         }
 
         public void Save(Log log)

@@ -9,6 +9,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
     {
         private readonly LogItem logItem;
 
+        public LogItem LogItem { get { return logItem; } }
+
         public LogItemCategory Category { get { return logItem.Category; } }
         public string Description { get { return logItem.Description; } }
         public string StartTime { get { return logItem.StartTime.ToLongTimeString(); } }

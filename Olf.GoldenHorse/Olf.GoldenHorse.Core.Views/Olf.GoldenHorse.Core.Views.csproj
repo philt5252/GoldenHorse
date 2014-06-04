@@ -82,6 +82,8 @@
   <ItemGroup>
     <Compile Include="Converters\HeightConverter.cs" />
     <Compile Include="Converters\ImageConverter.cs" />
+    <Compile Include="Factories\LogMainShellViewFactory.cs" />
+    <Compile Include="Factories\LogShellViewFactory.cs" />
     <Compile Include="Factories\MainShellViewFactory.cs" />
     <Compile Include="Factories\MainWindowFactory.cs" />
     <Compile Include="Factories\NewProjectSuiteWindowFactory.cs" />
@@ -110,26 +112,47 @@
       <DependentUpon>ProjectWorkspaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecordWindow.xaml.cs">
+    <Compile Include="Views\Services\RecordWindow.xaml.cs">
       <DependentUpon>RecordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Themes\DebugButton.xaml.cs">
       <DependentUpon>DebugButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestDetailsView.xaml.cs">
+    <Compile Include="Views\Tests\TestDetailsView.xaml.cs">
       <DependentUpon>TestDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestMainShellView.xaml.cs">
+    <Compile Include="Views\Tests\TestMainShellView.xaml.cs">
       <DependentUpon>TestMainShellView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestOperationsView.xaml.cs">
+    <Compile Include="Views\Tests\TestOperationsView.xaml.cs">
       <DependentUpon>TestOperationsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestScreenshotsView.xaml.cs">
+    <Compile Include="Views\Tests\TestScreenshotsView.xaml.cs">
       <DependentUpon>TestScreenshotsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Logs\LogDetailsView.xaml.cs">
+      <DependentUpon>LogDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Logs\LogEditor\LogItemEditorWindow.xaml.cs">
+      <DependentUpon>LogItemEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Logs\LogMainShellView.xaml.cs">
+      <DependentUpon>LogMainShellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Logs\LogOperationsView.xaml.cs">
+      <DependentUpon>LogOperationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Logs\LogScreenshotsView.xaml.cs">
+      <DependentUpon>LogScreenshotsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Logs\LogShellView.xaml.cs">
+      <DependentUpon>LogShellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tests\TestEditor\TestItemEditorWindow.xaml.cs">
+      <DependentUpon>TestItemEditorWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowBase.cs" />
-    <Compile Include="TestShellView.xaml.cs">
+    <Compile Include="Views\Tests\TestShellView.xaml.cs">
       <DependentUpon>TestShellView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -162,7 +185,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RecordWindow.xaml">
+    <Page Include="Views\Services\RecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,23 +193,51 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="TestDetailsView.xaml">
+    <Page Include="Views\Tests\TestDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestMainShellView.xaml">
+    <Page Include="Views\Tests\TestMainShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestOperationsView.xaml">
+    <Page Include="Views\Tests\TestOperationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestScreenshotsView.xaml">
+    <Page Include="Views\Tests\TestScreenshotsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestShellView.xaml">
+    <Page Include="Views\Tests\TestShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Logs\LogDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Logs\LogEditor\LogItemEditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Logs\LogMainShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Logs\LogOperationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Logs\LogScreenshotsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Logs\LogShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tests\TestEditor\TestItemEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

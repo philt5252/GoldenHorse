@@ -8,6 +8,7 @@
         public const string ExplorerViewRegion = "ExplorerViewRegion";
         public const string TestShellViewRegion = "TestShellViewRegion";//testShellView has test details and operations
         public const string TestScreenshotsViewRegion = "TestScreenshotsViewRegion";//test screenshots
+       
         
     }
 }

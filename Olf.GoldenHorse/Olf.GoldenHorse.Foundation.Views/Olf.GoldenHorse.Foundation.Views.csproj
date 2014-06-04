@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\ILogMainShellViewFactory.cs" />
+    <Compile Include="Factories\ILogShellViewFactory.cs" />
     <Compile Include="Factories\IMainShellViewFactory.cs" />
     <Compile Include="Factories\IMainWindowFactory.cs" />
     <Compile Include="Factories\INewProjectSuiteWindowFactory.cs" />

@@ -11,13 +11,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Olf.GoldenHorse.Foundation.Views;
 
 namespace Olf.GoldenHorse.Core.Views.Views.Logs
 {
     /// <summary>
     /// Interaction logic for LogOperationsView.xaml
     /// </summary>
-    public partial class LogOperationsView : UserControl
+    public partial class LogOperationsView : UserControl, IViewWithDataContext
     {
         public LogOperationsView()
         {

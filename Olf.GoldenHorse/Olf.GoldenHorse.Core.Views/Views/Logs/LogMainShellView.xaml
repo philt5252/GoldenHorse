@@ -2,10 +2,29 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+             xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
+             xmlns:logs="clr-namespace:Olf.GoldenHorse.Core.Views.Views.Logs"
+              Tag="{Binding LogName}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-            
+        <xcad:DockingManager Background="Gainsboro">
+            <xcad:LayoutRoot>
+                <xcad:LayoutPanel Orientation="Vertical">
+                    <xcad:LayoutDocumentPane x:Name="LogShellPane"  DockHeight="300*">
+                        <xcad:LayoutDocument >
+                            <logs:LogShellView x:Name="logShellView"></logs:LogShellView>
+                        </xcad:LayoutDocument>
+                    </xcad:LayoutDocumentPane>
+                    <xcad:LayoutAnchorablePane DockHeight="200">
+                        <xcad:LayoutAnchorable>
+                            <logs:LogScreenshotsView x:Name="logScreenshotsView" ></logs:LogScreenshotsView>
+                        </xcad:LayoutAnchorable>
+                    </xcad:LayoutAnchorablePane>
+                </xcad:LayoutPanel>
+            </xcad:LayoutRoot>
+        </xcad:DockingManager>
     </Grid>
 </UserControl>

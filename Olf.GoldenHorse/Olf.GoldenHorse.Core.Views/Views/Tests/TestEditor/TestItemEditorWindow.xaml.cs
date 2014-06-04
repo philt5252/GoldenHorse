@@ -11,16 +11,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Olf.GoldenHorse.Foundation.Views;
 
-namespace Olf.GoldenHorse.Core.Views.Views.Logs
+namespace Olf.GoldenHorse.Core.Views.Views.Tests
 {
     /// <summary>
-    /// Interaction logic for LogScreenshotsView.xaml
+    /// Interaction logic for TestItemEditorWindow.xaml
     /// </summary>
-    public partial class LogScreenshotsView : UserControl, IViewWithDataContext
+    public partial class TestItemEditorWindow : WindowBase
     {
-        public LogScreenshotsView()
+        public TestItemEditorWindow()
         {
             InitializeComponent();
         }

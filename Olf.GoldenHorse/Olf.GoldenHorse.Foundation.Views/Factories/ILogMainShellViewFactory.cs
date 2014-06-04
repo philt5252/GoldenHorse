@@ -2,6 +2,6 @@
 {
     public interface ILogMainShellViewFactory
     {
-         
+        IViewWithDataContext Create();
     }
 }

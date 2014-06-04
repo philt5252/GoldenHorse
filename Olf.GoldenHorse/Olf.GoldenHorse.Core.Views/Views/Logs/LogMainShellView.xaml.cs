@@ -11,17 +11,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Olf.GoldenHorse.Foundation.Views;
 
 namespace Olf.GoldenHorse.Core.Views.Views.Logs
 {
     /// <summary>
     /// Interaction logic for LogMainShellView.xaml
     /// </summary>
-    public partial class LogMainShellView : UserControl
+    public partial class LogMainShellView : UserControl, IViewWithDataContext
     {
         public LogMainShellView()
         {
             InitializeComponent();
+            DataContextChanged += OnDataContextChanged;
+        }
+
+        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            //ILogMainShellViewModel logMainShellViewModel = DataContext as ILogMainShellViewModel;
+
+            //logShellView.DataContext = logMainShellViewModel.TestShellViewModel;
+            //logScreenshotsView.DataContext = logMainShellViewModel.TestScreenshotsViewModel;
         }
     }
 }

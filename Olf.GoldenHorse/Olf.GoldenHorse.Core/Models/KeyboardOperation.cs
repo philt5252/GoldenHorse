@@ -33,7 +33,7 @@ namespace Olf.GoldenHorse.Core.Models
             return string.Format("Enters \"{0}\" int the '{1}' object", textParam.Value, mappedItem.FriendlyName);
         }
 
-        public override void Play(MappedItem mappedItem)
+        public override void Play(MappedItem mappedItem, Log log)
         {
             throw new System.NotImplementedException();
         }

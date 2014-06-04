@@ -39,9 +39,9 @@ namespace Olf.GoldenHorse.Core.Models
             return Operation.DefaultDescription(Control);
         }
 
-        public override void Play()
+        public override void Play(Log log)
         {
-            Operation.Play(Control);
+            Operation.Play(Control, log);
         }
     }
 }

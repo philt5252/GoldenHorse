@@ -57,5 +57,10 @@ namespace Olf.GoldenHorse.Foundation.Services
 
             return appManagerFolder;
         }
+
+        public static string GetScreenshotsFolder(Log log)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

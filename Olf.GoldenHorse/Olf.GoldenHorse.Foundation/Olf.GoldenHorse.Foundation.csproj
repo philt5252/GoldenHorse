@@ -77,6 +77,8 @@
     <Compile Include="Models\AppManager.cs" />
     <Compile Include="Models\AppProcess.cs" />
     <Compile Include="Models\ConstantOperationParameterValue.cs" />
+    <Compile Include="Models\Log.cs" />
+    <Compile Include="Models\LogItem.cs" />
     <Compile Include="Models\MappedItem.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\OperationParameter.cs" />

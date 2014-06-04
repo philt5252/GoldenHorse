@@ -13,7 +13,7 @@ namespace Olf.GoldenHorse.Core.Models
             get { return "Left Click"; }
         }
 
-        public override void Play(MappedItem mappedItem)
+        public override void Play(MappedItem mappedItem, Log log)
         {
             AppProcess process = AppManager.GetProcess(mappedItem);
             MappedItem window = AppManager.GetWindow(mappedItem);
@@ -22,6 +22,7 @@ namespace Olf.GoldenHorse.Core.Models
             Point clickPoint = this.GetClickPoint();
             Cursor.LeftClick(new Point((int)uiItem.Bounds.X + clickPoint.X, (int)uiItem.Bounds.Y + clickPoint.Y));
 
+            log.CreateLogItem(LogItemCategory.Event, string.Format("The {0} was clicked with the left mouse button", mappedItem.Type));
             //uiItem.Click();
         }
     }

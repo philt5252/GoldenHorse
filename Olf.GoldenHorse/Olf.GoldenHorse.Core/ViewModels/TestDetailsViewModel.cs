@@ -41,9 +41,11 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         private void ExecutePlayCommand()
         {
+            Log log = new Log();
+
             foreach (TestItem testItem in test.TestItems)
             {
-                testItem.Play();
+                testItem.Play(log);
             }
         }
     }

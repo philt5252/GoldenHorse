@@ -14,6 +14,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         private string appManagerFolder;
         private bool init = false;
         private List<ProjectFile> testFiles;
+        private List<ProjectFile> logFiles;
         private bool isDefaultProject;
 
         public event EventHandler TestFilesChanged;
@@ -97,17 +98,16 @@ namespace Olf.GoldenHorse.Foundation.Models
         {
             get
             {
-                throw new Exception();
-                if (testFiles == null)
+                if (logFiles == null)
                 {
                     string projectFolder = ProjectSuiteManager.GetProjectFolder(this);
 
-                    string testsDir = Path.Combine(projectFolder, TestsFolder);
+                    string logsDir = Path.Combine(projectFolder, LogsFolder);
 
-                    if (!Directory.Exists(testsDir))
-                        Directory.CreateDirectory(testsDir);
+                    if (!Directory.Exists(logsDir))
+                        Directory.CreateDirectory(logsDir);
 
-                    testFiles = Directory.EnumerateFiles(testsDir, "*.ghtest")
+                    logFiles = Directory.EnumerateFiles(logsDir, "*.ghlog", SearchOption.AllDirectories)
                         .Select(f =>
                         {
                             FileInfo fileInfo = new FileInfo(f);
@@ -120,7 +120,7 @@ namespace Olf.GoldenHorse.Foundation.Models
                         }).ToList();
                 }
 
-                return testFiles;
+                return logFiles;
             }
         }
 

@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\IAppController.cs" />
+    <Compile Include="Controllers\ILogController.cs" />
     <Compile Include="Controllers\IProjectController.cs" />
     <Compile Include="Controllers\IProjectSuiteController.cs" />
     <Compile Include="Controllers\IRecordingController.cs" />
@@ -113,6 +114,8 @@
     <Compile Include="ViewModels\ITestScreenshotsViewModel.cs" />
     <Compile Include="ViewModels\ITestShellViewModel.cs" />
     <Compile Include="ViewModels\Nodes\IDisplayNode.cs" />
+    <Compile Include="Factories\ViewModels\Nodes\ILogNodeFactory.cs" />
+    <Compile Include="Factories\ViewModels\Nodes\IProjectLogsNodeFactory.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>

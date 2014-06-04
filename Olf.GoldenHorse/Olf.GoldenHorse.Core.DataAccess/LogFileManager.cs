@@ -34,5 +34,15 @@ namespace Olf.GoldenHorse.Core.DataAccess
 
             //test.Project.RefreshTestFiles();
         }
+
+        public Log Open(string filePath)
+        {
+            using (FileStream fileStream = File.OpenRead(filePath))
+            {
+                Log log = serializer.Deserialize(fileStream) as Log;
+
+                return log;
+            }
+        }
     }
 }

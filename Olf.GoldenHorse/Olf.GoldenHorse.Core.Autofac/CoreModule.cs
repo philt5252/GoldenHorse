@@ -27,6 +27,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<ProjectSuiteController>().As<IProjectSuiteController>().SingleInstance();
             builder.RegisterType<RecordingController>().As<IRecordingController>().SingleInstance();
             builder.RegisterType<TestController>().As<ITestController>().SingleInstance();
+            builder.RegisterType<LogController>().As<ILogController>().SingleInstance();
 
             builder.RegisterType<Recorder>().As<IRecorder>();
             builder.RegisterType<Camera>().As<ICamera>().SingleInstance();
@@ -48,6 +49,8 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<TestNode>().AsSelf();
             builder.RegisterType<TestGroupNode>().AsSelf();
             builder.RegisterType<ProjectNode>().AsSelf();
+            builder.RegisterType<ProjectLogsNode>().AsSelf();
+            builder.RegisterType<LogNode>().AsSelf();
             builder.RegisterType<ProjectSuiteLogsNode>().AsSelf();
             builder.RegisterType<ProjectSuiteProjectsNode>().AsSelf();
 
@@ -65,6 +68,8 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<TestNodeFactory>().As<ITestNodeFactory>().SingleInstance();
             builder.RegisterType<TestGroupNodeFactory>().As<ITestGroupNodeFactory>().SingleInstance();
             builder.RegisterType<ProjectNodeFactory>().As<IProjectNodeFactory>().SingleInstance();
+            builder.RegisterType<ProjectLogsNodeFactory>().As<IProjectLogsNodeFactory>().SingleInstance();
+            builder.RegisterType<LogNodeFactory>().As<ILogNodeFactory>().SingleInstance();
             builder.RegisterType<ProjectSuiteLogsNodeFactory>().As<IProjectSuiteLogsNodeFactory>().SingleInstance();
             builder.RegisterType<ProjectSuiteProjectsNodeFactory>().As<IProjectSuiteProjectsNodeFactory>().SingleInstance();
 

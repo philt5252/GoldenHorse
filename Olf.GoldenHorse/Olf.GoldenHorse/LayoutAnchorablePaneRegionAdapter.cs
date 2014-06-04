@@ -72,6 +72,7 @@ namespace Olf.GoldenHorse
         private void CreateLayoutAnchorable(object newView)
         {
             LayoutAnchorable layoutAnchorable = new LayoutAnchorable();
+            layoutAnchorable.IsSelected = true;
             Binding myBinding = new Binding("Tag");
             myBinding.Source = newView;
             BindingOperations.SetBinding(layoutAnchorable, LayoutAnchorable.TitleProperty, myBinding);

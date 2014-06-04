@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Xml.Serialization;
 
@@ -35,9 +36,12 @@ namespace Olf.GoldenHorse.Foundation.Models
             }
         }
 
+        public string Id { get; set; }
+
         public Test()
         {
             TestItems = new ObservableCollection<TestItem>();
+            Id = Guid.NewGuid().ToString();
         }
 
         private void TestItemsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)

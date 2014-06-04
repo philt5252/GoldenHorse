@@ -8,7 +8,7 @@ using Olf.GoldenHorse.Foundation.Services;
 
 namespace Olf.GoldenHorse.Core.Services
 {
-    public class Camera : ICamera
+    public static class Camera
     {
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -25,7 +25,7 @@ namespace Olf.GoldenHorse.Core.Services
             public int Bottom;
         }
 
-        public Bitmap Capture(ScreenCaptureMode screenCaptureMode = ScreenCaptureMode.Window)
+        public static Bitmap Capture(ScreenCaptureMode screenCaptureMode = ScreenCaptureMode.Window)
         {
             Rectangle bounds;
             var rect = new Rect();
@@ -69,5 +69,11 @@ namespace Olf.GoldenHorse.Core.Services
 
         }
     }
+
+    public enum ScreenCaptureMode
+    {
+        Window,
+        Screen
+    };
 
 }

@@ -12,7 +12,6 @@ using Olf.GoldenHorse.Core.Models;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
 using TestStack.White.UIItems;
-using ICamera = Olf.GoldenHorse.Foundation.Services.ICamera;
 using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
 using Point = System.Drawing.Point;
@@ -30,19 +29,16 @@ namespace Olf.GoldenHorse.Core.Services
 
         private readonly Test test;
         private readonly IExternalAppInfoManager externalAppInfoManager;
-        private readonly ICamera camera;
         private AppManager appManager { get { return test.Project.AppManager; } }
         private GlobalHooker globalHooker;
         private KeyboardHookListener keyboardHookListener;
         private MouseHookListener mouseHookListener;
         private RecorderState CurrentRecorderState;
 
-        public Recorder(Test test, IExternalAppInfoManager externalAppInfoManager,
-            ICamera camera)
+        public Recorder(Test test, IExternalAppInfoManager externalAppInfoManager)
         {
             this.test = test;
             this.externalAppInfoManager = externalAppInfoManager;
-            this.camera = camera;
 
             CurrentRecorderState = RecorderState.Stopped;
 
@@ -104,7 +100,7 @@ namespace Olf.GoldenHorse.Core.Services
         private Screenshot GetScreenshot(OnScreenAction action)
         {
             Screenshot screenshot = new Screenshot();
-            Bitmap bitmap = camera.Capture();
+            Bitmap bitmap = Camera.Capture();
             DateTime dateTime = DateTime.Now;
             string screenshotName = "ghscn_" + dateTime.Ticks + ".bmp";
             bitmap.Save(Path.Combine(ProjectSuiteManager.GetScreenshotsFolder(test), screenshotName));

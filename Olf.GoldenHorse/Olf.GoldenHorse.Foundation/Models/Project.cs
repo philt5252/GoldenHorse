@@ -18,6 +18,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         private bool isDefaultProject;
 
         public event EventHandler TestFilesChanged;
+        public event EventHandler LogFilesChanged;
 
         public string Name { get; set; }
 
@@ -144,16 +145,29 @@ namespace Olf.GoldenHorse.Foundation.Models
             OnTestFilesChanged();
         }
 
+        public void RefreshLogFiles()
+        {
+            logFiles = null;
+            OnLogFilesChanged();
+        }
+
         protected virtual void OnTestFilesChanged()
         {
             EventHandler handler = TestFilesChanged;
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }
+
+        protected virtual void OnLogFilesChanged()
+        {
+            EventHandler handler = LogFilesChanged;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
     }
 
     public interface ILogOwner
     {
         string LogsFolder { get; set; }
+        void RefreshLogFiles();
     }
 }

@@ -26,8 +26,11 @@ namespace Olf.GoldenHorse.Core.DataAccess
             FileInfo fileInfo = new FileInfo(Assembly.GetExecutingAssembly().Location);
 
             foreach (string assemblyFile in Directory.EnumerateFiles(fileInfo.Directory.FullName)
-                .Where(f => f.EndsWith(".exe") || f.EndsWith(".dll")))
+                .Where(f =>  f.EndsWith(".exe") || f.EndsWith(".dll")))
             {
+                if (assemblyFile.Contains("Olf.Common.Extensions"))
+                    continue;
+
                 types.AddRange(Assembly.LoadFile(assemblyFile).GetTypes()
                     .Where(t => t.IsSubclassOf(typeof (MappedItem))));
             }

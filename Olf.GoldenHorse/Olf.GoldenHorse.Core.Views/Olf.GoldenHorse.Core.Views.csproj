@@ -122,6 +122,9 @@
     <Compile Include="Themes\DebugButton.xaml.cs">
       <DependentUpon>DebugButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StartView.xaml.cs">
+      <DependentUpon>StartView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tests\TestDetailsView.xaml.cs">
       <DependentUpon>TestDetailsView.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,10 @@
     <Page Include="Themes\DebugButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\StartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tests\TestDetailsView.xaml">
       <SubType>Designer</SubType>

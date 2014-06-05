@@ -22,7 +22,7 @@
     <Grid>
        <ListBox ItemsSource="{Binding Operations}" SelectedItem="{Binding SelectedOperation}" 
                 AlternationCount="2" Background="White">
-            <ListBoxItem Style="{StaticResource {x:Type ListBoxItem}}">
+            <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <Image Source="{Binding Icon}"></Image>
@@ -30,7 +30,7 @@
                         </TextBlock>
                     </StackPanel>
                 </DataTemplate>
-            </ListBoxItem>
+            </ListBox.ItemTemplate>
         </ListBox>  
     </Grid>
 </UserControl>

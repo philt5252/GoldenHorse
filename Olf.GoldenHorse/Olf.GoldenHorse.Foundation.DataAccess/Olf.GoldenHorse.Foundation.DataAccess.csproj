@@ -42,6 +42,7 @@
     <Compile Include="ILogFileManager.cs" />
     <Compile Include="IProjectFileManager.cs" />
     <Compile Include="IProjectSuiteFileManager.cs" />
+    <Compile Include="IRecentFileManager.cs" />
     <Compile Include="ITestFileManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

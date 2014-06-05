@@ -149,8 +149,6 @@ namespace Olf.GoldenHorse.Core.Controllers
 
             });
 
-
-
             canvas.Children.Add(rectangle);
             window.Left = 0;
             window.Top = 0;
@@ -163,6 +161,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             window.Topmost = true;
             window.Show();
             task.Start();
+
             task.ContinueWith(t =>
             {
                 Application.Current.Dispatcher.Invoke(new Action(() => window.Close()));

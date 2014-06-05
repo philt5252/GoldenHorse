@@ -96,7 +96,9 @@
     <Compile Include="Factories\ViewModels\Nodes\TestGroupNodeFactory.cs" />
     <Compile Include="Factories\ViewModels\Nodes\TestNodeFactory.cs" />
     <Compile Include="Factories\ViewModels\ProjectExplorerViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\RecentFileViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\RecorderViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\StartPageViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestDetailsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestMainShellViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestOperationsViewModelFactory.cs" />
@@ -132,9 +134,12 @@
     <Compile Include="ViewModels\Nodes\ProjectSuiteProjectsNode.cs" />
     <Compile Include="ViewModels\Nodes\TestGroupNode.cs" />
     <Compile Include="ViewModels\Nodes\TestNode.cs" />
+    <Compile Include="ViewModels\OnScreenActionOperationViewModel.cs" />
     <Compile Include="ViewModels\OnScreenActionViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorerViewModel.cs" />
+    <Compile Include="ViewModels\RecentFileViewModel.cs" />
     <Compile Include="ViewModels\RecorderViewModel.cs" />
+    <Compile Include="ViewModels\StartPageViewModel.cs" />
     <Compile Include="ViewModels\TestDetailsViewModel.cs" />
     <Compile Include="ViewModels\TestItemViewModelBase.cs" />
     <Compile Include="ViewModels\TestMainShellViewModel.cs" />

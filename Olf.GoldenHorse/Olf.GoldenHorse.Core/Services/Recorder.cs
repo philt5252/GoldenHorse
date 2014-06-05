@@ -27,6 +27,13 @@ namespace Olf.GoldenHorse.Core.Services
             Paused
         };
 
+        protected enum InputType
+        {
+            None,
+            Mouse,
+            Keyboard
+        }
+
         private readonly Test test;
         private readonly IExternalAppInfoManager externalAppInfoManager;
         private AppManager appManager { get { return test.Project.AppManager; } }
@@ -34,6 +41,7 @@ namespace Olf.GoldenHorse.Core.Services
         private KeyboardHookListener keyboardHookListener;
         private MouseHookListener mouseHookListener;
         private RecorderState CurrentRecorderState;
+        private InputType currentInputType;
 
         public Recorder(Test test, IExternalAppInfoManager externalAppInfoManager)
         {
@@ -55,6 +63,8 @@ namespace Olf.GoldenHorse.Core.Services
 
             mouseHookListener.Enabled = false;
             mouseHookListener.Enabled = false;
+
+            currentInputType = InputType.None;
         }
 
         private void MouseHookListenerOnMouseUp(object sender, MouseEventArgs mouseEventArgs)
@@ -95,6 +105,8 @@ namespace Olf.GoldenHorse.Core.Services
             screenshot.Adornments.Add(new ScreenshotClickAdornment { ClickX = screenshotX, ClickY = screenshotY });
             action.Screenshot = screenshot;
             test.TestItems.Add(action);
+
+            currentInputType = InputType.Mouse;
         }
 
         private Screenshot GetScreenshot(OnScreenAction action)

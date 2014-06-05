@@ -49,6 +49,8 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<RecorderViewModel>().As<IRecorderViewModel>();
             builder.RegisterType<OnScreenActionViewModel>().As<IOnScreenActionViewModel>();
             builder.RegisterType<LogItemViewModel>().As<ILogItemViewModel>();
+            builder.RegisterType<StartPageViewModel>().As<IStartPageViewModel>();
+            builder.RegisterType<RecentFileViewModel>().As<IRecentFileViewModel>();
 
             builder.RegisterType<TestNode>().AsSelf();
             builder.RegisterType<TestGroupNode>().AsSelf();
@@ -73,6 +75,8 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<RecorderViewModelFactory>().As<IRecorderViewModelFactory>().SingleInstance();
             builder.RegisterType<TestItemViewModelFactory>().As<ITestItemViewModelFactory>().SingleInstance();
             builder.RegisterType<LogItemViewModelFactory>().As<ILogItemViewModelFactory>().SingleInstance();
+            builder.RegisterType<StartPageViewModelFactory>().As<IStartPageViewModelFactory>().SingleInstance();
+            builder.RegisterType<RecentFileViewModelFactory>().As<IRecentFileViewModelFactory>().SingleInstance();
 
             builder.RegisterType<TestNodeFactory>().As<ITestNodeFactory>().SingleInstance();
             builder.RegisterType<TestGroupNodeFactory>().As<ITestGroupNodeFactory>().SingleInstance();
@@ -82,6 +86,8 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<ProjectSuiteLogsNodeFactory>().As<IProjectSuiteLogsNodeFactory>().SingleInstance();
             builder.RegisterType<ProjectSuiteProjectsNodeFactory>().As<IProjectSuiteProjectsNodeFactory>().SingleInstance();
 
+
+            builder.RegisterType<OnScreenActionOperationViewModel>().As<IOperationViewModel>();
         }
     }
 }

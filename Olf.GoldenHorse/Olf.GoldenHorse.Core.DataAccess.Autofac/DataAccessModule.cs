@@ -13,6 +13,7 @@ namespace Olf.GoldenHorse.Core.DataAccess.Autofac
             builder.RegisterType<ProjectSuiteFileManager>().As<IProjectSuiteFileManager>().SingleInstance();
             builder.RegisterType<TestFileManager>().As<ITestFileManager>().SingleInstance();
             builder.RegisterType<LogFileManager>().As<ILogFileManager>().SingleInstance();
+            builder.RegisterType<RecentFileManager>().As<IRecentFileManager>().SingleInstance();
         }
     }
 }

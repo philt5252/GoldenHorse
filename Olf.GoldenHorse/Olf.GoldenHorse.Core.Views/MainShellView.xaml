@@ -43,19 +43,74 @@
             <MenuItem Header="TOOLS"></MenuItem>
             <MenuItem Header="HELP"></MenuItem>
         </Menu>
-        <DockPanel Grid.Row="1" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor25}" >
-            <ToolBar Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor25}">
-                <Button Height="25" Width="50" Command="{Binding RecordCommand}"  Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor25}" >
-                            <Ellipse Height="15" Width="15">
-                                <Ellipse.Fill>
-                                    <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
-                                        <GradientStop Color="DarkRed" Offset="0" />
-                                        <GradientStop Color="Red" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Ellipse.Fill>
-                            </Ellipse>
-                        </Button>
-                    </ToolBar>
+        <DockPanel Grid.Row="1" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+            <ToolBarTray Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+            <ToolBar Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}">
+                <Button Height="25" Width="25" Command="{Binding NewProjectSuiteCommand}" ToolTip="New Project Suite" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+                    <Image Source="Images/NewFolderHS.png"></Image>
+                </Button>
+                <Button Height="25" Width="25" Command="{Binding NewProjectCommand}" ToolTip="New Project" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+                    <Image Source="Images/NewDocumentHS.png"></Image>
+                </Button>
+                <Button Height="25" Width="25" Command="{Binding SaveCommand}" ToolTip="Save" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+                    <Image Source="Images/saveHS.png"></Image>
+                </Button>
+                <Button Height="25" Width="25" Command="{Binding SaveAllCommand}" ToolTip="Save All" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+                    <Image Source="Images/SaveAllHS.png"></Image>
+                </Button>
+             
+                    
+                </ToolBar>
+            </ToolBarTray>
+            <ToolBarTray Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}">
+                <ToolBar Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}">
+                    <Button Height="25" Width="25" Command="{Binding CopyCommand}" ToolTip="Copy" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+                        <Image Source="Images/Copy.png"></Image>
+                    </Button>
+                    <Button Height="25" Width="25" Command="{Binding CutCommand}" ToolTip="Cut" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+                        <Image Source="Images/Cut.png"></Image>
+                    </Button>
+                    <Button Height="25" Width="25" Command="{Binding PasteCommand}" ToolTip="Paste" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+                        <Image Source="Images/Paste.png"></Image>
+                    </Button>
+                    <Button Height="25" Width="25" Command="{Binding ToolBarCommand}" ToolTip="Toolbar" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+                        <Image Source="Images/Repair.png"></Image>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+            <ToolBarTray Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}">
+                <ToolBar Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}">
+                    <Button Height="25" Width="25" Command="{Binding RecordCommand}" ToolTip="Record"  Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+                        <Ellipse Height="12" Width="12">
+                            <Ellipse.Fill>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
+                                    <GradientStop Color="DarkRed" Offset="0" />
+                                    <GradientStop Color="Red" Offset="1" />
+                                </LinearGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                    </Button>
+                    <Button Height="25" Width="25" Command="{Binding ToolBarCommand}" ToolTip="Play" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+                        <Image Source="Images/Run.png"></Image>
+                    </Button>
+                    <Button Height="25" Width="25" Command="{Binding ToolBarCommand}" ToolTip="Pause" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+                        <Image Source="Images/Pause.png"></Image>
+                    </Button>
+                    <Button Height="25" Width="25" Command="{Binding ToolBarCommand}" ToolTip="Stop" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
+                        <Rectangle Height="10" Width="10">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
+                                    <GradientStop Color="DarkRed" Offset="0" />
+                                    <GradientStop Color="Red" Offset="1" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+
+            
+
         </DockPanel>
         <xcad:DockingManager Grid.Row="2">
             <xcad:DockingManager.Theme>

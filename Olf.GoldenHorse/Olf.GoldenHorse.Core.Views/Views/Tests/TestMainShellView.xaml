@@ -119,11 +119,17 @@
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel Orientation="Vertical">
                     <xcad:LayoutDocumentPane x:Name="TestShellPane"  DockHeight="300*">
-                       <xcad:LayoutDocument >
+                       <xcad:LayoutDocument Title="Test Steps">
                            <views:TestShellView x:Name="testShellView"></views:TestShellView>
                        </xcad:LayoutDocument>
+                        <xcad:LayoutDocument Title="Parameters">
+                            <TextBlock Text="Hi"/>
+                        </xcad:LayoutDocument>
+                        <xcad:LayoutDocument Title="Variables">
+                            <TextBlock Text="Hi"/>
+                        </xcad:LayoutDocument>
                     </xcad:LayoutDocumentPane>
-                    <xcad:LayoutAnchorablePane DockHeight="200">
+                    <xcad:LayoutAnchorablePane DockHeight="150">
                         <xcad:LayoutAnchorable Title="Test Screenshots">
                             <views:TestScreenshotsView x:Name="testScreenshotsView" ></views:TestScreenshotsView>
                         </xcad:LayoutAnchorable>

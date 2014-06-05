@@ -52,6 +52,10 @@ namespace Olf.GoldenHorse.Core.Views
                 if (elapsedMilliseconds <= (int)GetDoubleClickTime())
                 {
                     IDisplayNode displayNode = projectExplorerTvw.SelectedItem as IDisplayNode;
+                    if (displayNode.DefaultCommand == null)
+                    {
+                        return;
+                    }
                     displayNode.DefaultCommand.Execute(null);
                 }
             }

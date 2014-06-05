@@ -5,6 +5,7 @@ using System.Windows.Controls.Primitives;
 namespace Olf.GoldenHorse.CustomControls
 {
     /// <summary>
+    ///
     /// Represents a control that displays hierarchical data in a tree structure
     /// that has items that can expand and collapse.
     /// </summary>

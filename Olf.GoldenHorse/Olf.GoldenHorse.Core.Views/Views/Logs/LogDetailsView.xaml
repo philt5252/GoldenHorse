@@ -56,7 +56,7 @@
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
             <customControls:TreeListView  AllowsColumnReorder="True" ItemsSource="{Binding LogItems}"
                             HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
-                            SelectedObject="{Binding SelectedLogItem, Mode=TwoWay}">
+                            SelectedObject="{Binding SelectedLogItem, Mode=TwoWay}" Background="White">
                 <!--Create an item template to specify the ItemsSource-->
                 <customControls:TreeListView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Items}" />
@@ -74,7 +74,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <!--Create the first column containing the expand button and the type name.-->
-                    <GridViewColumn Header="Description" Width="250">
+                    <GridViewColumn Header="Description" Width="350">
 
                         <GridViewColumn.CellTemplate >
                             <DataTemplate >

@@ -8,7 +8,7 @@
              xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls">
     <UserControl.Resources>
 
-        <SolidColorBrush x:Key="MyBorderBrush" Color="DimGray"></SolidColorBrush>
+        <SolidColorBrush x:Key="MyBorderBrush" Color="LightGoldenrodYellow"></SolidColorBrush>
 
         <Style x:Key="BorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="{StaticResource MyBorderBrush}"></Setter>

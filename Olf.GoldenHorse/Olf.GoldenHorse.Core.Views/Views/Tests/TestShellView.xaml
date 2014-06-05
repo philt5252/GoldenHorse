@@ -7,12 +7,14 @@
              xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              Tag="{Binding TestName}" >
+    
+    
              
-    <Grid >
+    <Grid>
 
-        <xcad:DockingManager Grid.Column="0" Height="Auto" Width="Auto" VerticalAlignment="Stretch">
+        <xcad:DockingManager Grid.Column="0" Height="Auto" Width="Auto" VerticalAlignment="Stretch" >
             <xcad:DockingManager.Theme>
-                <xcad:AeroTheme></xcad:AeroTheme>
+                <xcad:VS2010Theme></xcad:VS2010Theme>
             </xcad:DockingManager.Theme>
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>

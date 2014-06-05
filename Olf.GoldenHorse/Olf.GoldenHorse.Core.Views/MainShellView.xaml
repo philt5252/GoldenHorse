@@ -10,34 +10,42 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <UserControl.Resources>
-        
-        <Style TargetType="MenuItem" x:Key="{x:Type MenuItem}">
-            <Setter Property="Background" Value="White"></Setter>
-            <Setter Property="Foreground" Value="Black"></Setter>
-        </Style>
-        
-       
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary  Source="pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2010;component/Brushes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
+    <Grid Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor1}">
+        <Grid.Resources>
+            <Style TargetType="MenuItem" x:Key="{x:Type MenuItem}">
+                <Setter Property="Background" Value="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+            </Style>
+        </Grid.Resources>
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="500*"/>
             <RowDefinition Height="26"/>
         </Grid.RowDefinitions>
-        <Menu  Background="White">
-            <MenuItem Header="FILE">
+        <Menu Grid.Row="0" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}">
+            
+            <MenuItem Header="FILE" >
                 <MenuItem Header="New Project Suite" Command="{Binding NewProjectSuiteCommand}"></MenuItem>
                 <MenuItem Header="Open Project Suite" Command="{Binding OpenProjectSuiteCommand}"></MenuItem>
                 <MenuItem Header="Save Project Suite" Command="{Binding SaveProjectSuiteCommand}"></MenuItem>
             </MenuItem>
+            <MenuItem Header="EDIT"></MenuItem>
+            <MenuItem Header="VIEW"></MenuItem>
+            <MenuItem Header="DEBUG"></MenuItem>
+            <MenuItem Header="TOOLS"></MenuItem>
+            <MenuItem Header="HELP"></MenuItem>
         </Menu>
-        <DockPanel Grid.Row="1" >
-            <ToolBar Background="White">
-                <ToolBarTray DockPanel.Dock="Top"  Background="White">
-                    <ToolBar Margin="0,0,0,0"  Background="White">
-                        <Button Height="26" Width="50" Command="{Binding RecordCommand}"  Background="White" >
+        <DockPanel Grid.Row="1" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor25}" >
+            <ToolBar Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor25}">
+                <Button Height="25" Width="50" Command="{Binding RecordCommand}"  Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor25}" >
                             <Ellipse Height="15" Width="15">
                                 <Ellipse.Fill>
                                     <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
@@ -48,12 +56,10 @@
                             </Ellipse>
                         </Button>
                     </ToolBar>
-                </ToolBarTray>
-            </ToolBar>
         </DockPanel>
         <xcad:DockingManager Grid.Row="2">
             <xcad:DockingManager.Theme>
-                <xcad:AeroTheme></xcad:AeroTheme>
+                <xcad:VS2010Theme></xcad:VS2010Theme>
             </xcad:DockingManager.Theme>
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>

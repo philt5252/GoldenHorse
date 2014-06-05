@@ -10,7 +10,7 @@
     <Grid>
         <xcad:DockingManager>
             <xcad:DockingManager.Theme>
-                <xcad:AeroTheme></xcad:AeroTheme>
+                <xcad:VS2010Theme></xcad:VS2010Theme>
             </xcad:DockingManager.Theme>
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel>

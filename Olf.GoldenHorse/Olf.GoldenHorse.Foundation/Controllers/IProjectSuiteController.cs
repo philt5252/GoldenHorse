@@ -4,7 +4,8 @@
     {
         void New();
         void Create(string folderPath, string projectSuiteName);
-        void Open();
+        void ShowOpen();
         void CancelNew();
+        void Open(string fileName);
     }
 }

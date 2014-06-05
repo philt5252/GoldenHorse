@@ -18,6 +18,7 @@ namespace Olf.GoldenHorse.Core.Controllers
         private readonly IProjectWorkspaceViewFactory projectWorkspaceViewFactory;
         private readonly IProjectExplorerViewFactory projectExplorerViewFactory;
         private readonly ITestShellViewFactory testWorkspaceViewFactory;
+        private readonly IStartPageViewModelFactory startPageViewModelFactory;
         private readonly IRegionManager regionManager;
 
         public IWindow MainWindow { get; set; }
@@ -28,6 +29,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             IProjectWorkspaceViewFactory projectWorkspaceViewFactory,
             IProjectExplorerViewFactory projectExplorerViewFactory,
             ITestShellViewFactory testWorkspaceViewFactory,
+            IStartPageViewModelFactory startPageViewModelFactory,
             IRegionManager regionManager)
         {
             this.mainWindowFactory = mainWindowFactory;
@@ -36,6 +38,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             this.projectWorkspaceViewFactory = projectWorkspaceViewFactory;
             this.projectExplorerViewFactory = projectExplorerViewFactory;
             this.testWorkspaceViewFactory = testWorkspaceViewFactory;
+            this.startPageViewModelFactory = startPageViewModelFactory;
             this.regionManager = regionManager;
         }
 
@@ -50,6 +53,7 @@ namespace Olf.GoldenHorse.Core.Controllers
 
             IViewWithDataContext projectWorkspaceView = projectWorkspaceViewFactory.Create();
             IViewWithDataContext projectExplorerView = projectExplorerViewFactory.Create();
+            IStartPageViewModel startPageViewModel = startPageViewModelFactory.Create();
             //IViewWithDataContext workspaceView = testWorkspaceViewFactory.Create();
 
             regionManager.Regions[Regions.MainShellViewRegion].AddAndActivate(mainShellView);

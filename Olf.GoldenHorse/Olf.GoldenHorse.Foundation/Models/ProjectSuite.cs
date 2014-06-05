@@ -11,6 +11,7 @@ namespace Olf.GoldenHorse.Foundation.Models
     {
         private ObservableCollection<Project> projects;
         public string Name { get; set; }
+        public string FilePath { get; set; }
         public string ProjectSuiteFolder { get; set; }
         public string LogsFolder { get; set; }
         

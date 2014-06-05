@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml.Serialization;
 using Olf.GoldenHorse.Foundation.DataAccess;
 using Olf.GoldenHorse.Foundation.Models;
@@ -24,6 +25,7 @@ namespace Olf.GoldenHorse.Core.DataAccess
             {
                 ProjectSuite projectSuite = serializer.Deserialize(fileStream) as ProjectSuite;
                 ProjectSuiteManager.CurrentProjectSuite = projectSuite;
+                projectSuite.FilePath = filePath;
 
                 FileInfo fileInfo = new FileInfo(filePath);
 
@@ -42,6 +44,8 @@ namespace Olf.GoldenHorse.Core.DataAccess
 
         public void Save()
         {
+            throw new NotImplementedException();
+
             var projectSuitePath = Path.Combine(
                 ProjectSuiteManager.CurrentProjectSuite.ProjectSuiteFolder,
                 ProjectSuiteManager.CurrentProjectSuite.Name + extension);
@@ -62,6 +66,9 @@ namespace Olf.GoldenHorse.Core.DataAccess
                 Directory.CreateDirectory(projectSuiteFolder);
 
             string projectSuitePath = Path.Combine(projectSuiteFolder, projectSuite.Name + extension);
+
+            projectSuite.FilePath = projectSuitePath;
+
             using (FileStream fileStream = File.Create(projectSuitePath))
             {
                 serializer.Serialize(fileStream, projectSuite);

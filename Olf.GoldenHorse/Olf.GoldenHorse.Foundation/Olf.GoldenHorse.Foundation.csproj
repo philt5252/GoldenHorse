@@ -68,7 +68,9 @@
     <Compile Include="Factories\ViewModels\IMainShellViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\INewProjectSuiteViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\IProjectExplorerViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\IRecentFileViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\IRecorderViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\IStartPageViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestDetailsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestItemViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestMainShellViewModelFactory.cs" />
@@ -118,7 +120,9 @@
     <Compile Include="ViewModels\INewProjectSuiteViewModel.cs" />
     <Compile Include="ViewModels\IOnScreenActionViewModel.cs" />
     <Compile Include="ViewModels\IProjectExplorerViewModel.cs" />
+    <Compile Include="ViewModels\IRecentFileViewModel.cs" />
     <Compile Include="ViewModels\IRecorderViewModel.cs" />
+    <Compile Include="ViewModels\IStartPageViewModel.cs" />
     <Compile Include="ViewModels\ITestDetailsViewModel.cs" />
     <Compile Include="ViewModels\ITestItemViewModel.cs" />
     <Compile Include="ViewModels\ITestMainShellViewModel.cs" />
@@ -128,6 +132,7 @@
     <Compile Include="ViewModels\Nodes\IDisplayNode.cs" />
     <Compile Include="Factories\ViewModels\Nodes\ILogNodeFactory.cs" />
     <Compile Include="Factories\ViewModels\Nodes\IProjectLogsNodeFactory.cs" />
+    <Compile Include="ViewModels\IOperationViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>

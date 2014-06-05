@@ -21,6 +21,7 @@ namespace Olf.GoldenHorse.Core.Controllers
         private readonly IProjectExplorerViewFactory projectExplorerViewFactory;
         private readonly IProjectExplorerViewModelFactory projectExplorerViewModelFactory;
         private readonly IProjectSuiteFileManager projectSuiteFileManager;
+        private readonly IRecentFileManager recentFileManager;
         private readonly IRegionManager regionManager;
         private IWindow newProjectSuiteWindow;
 
@@ -29,6 +30,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             IProjectExplorerViewFactory projectExplorerViewFactory,
             IProjectExplorerViewModelFactory projectExplorerViewModelFactory,
             IProjectSuiteFileManager projectSuiteFileManager,
+            IRecentFileManager recentFileManager,
             IRegionManager regionManager)
         {
             this.newProjectSuiteWindowFactory = newProjectSuiteWindowFactory;
@@ -36,6 +38,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             this.projectExplorerViewFactory = projectExplorerViewFactory;
             this.projectExplorerViewModelFactory = projectExplorerViewModelFactory;
             this.projectSuiteFileManager = projectSuiteFileManager;
+            this.recentFileManager = recentFileManager;
             this.regionManager = regionManager;
         }
 
@@ -68,6 +71,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             CloseNewProjectSuiteWindow();
 
             ResetForNewProjectSuite();
+            recentFileManager.AddToRecentFiles(ProjectSuiteManager.CurrentProjectSuite.FilePath);
         }
 
         private void ResetForNewProjectSuite()
@@ -80,7 +84,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             view.DataContext = projectExplorerViewModel;
         }
 
-        public void Open()
+        public void ShowOpen()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -89,13 +93,20 @@ namespace Olf.GoldenHorse.Core.Controllers
             openFileDialog.InitialDirectory = DefaultData.GoldenHorseProjectsLocation;
 
             DialogResult dialogResult = openFileDialog.ShowDialog();
-
+            
             if (dialogResult == DialogResult.OK)
             {
-                ProjectSuite projectSuite = projectSuiteFileManager.Open(openFileDialog.FileName);
-                ProjectSuiteManager.CurrentProjectSuite = projectSuite;
-                ResetForNewProjectSuite();
+                string fileName = openFileDialog.FileName;
+                Open(fileName);
             }
+        }
+
+        public void Open(string fileName)
+        {
+            ProjectSuite projectSuite = projectSuiteFileManager.Open(fileName);
+            ProjectSuiteManager.CurrentProjectSuite = projectSuite;
+            ResetForNewProjectSuite();
+            recentFileManager.AddToRecentFiles(ProjectSuiteManager.CurrentProjectSuite.FilePath);
         }
 
         public void CancelNew()

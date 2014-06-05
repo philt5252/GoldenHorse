@@ -42,7 +42,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         private void ExecuteOpenProjectSuiteCommand()
         {
-            projectSuiteController.Open();
+            projectSuiteController.ShowOpen();
         }
 
         protected virtual void ExecuteNewProjectSuiteCommand()

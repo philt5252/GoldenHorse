@@ -43,6 +43,7 @@
     <Compile Include="ProjectFileManager.cs" />
     <Compile Include="ProjectSuiteFileManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecentFileManager.cs" />
     <Compile Include="TestFileManager.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -17,6 +17,14 @@ namespace Olf.GoldenHorse.Foundation
             }
         }
 
+        public static string GoldenHorseRecentProjectsFilePath
+        {
+            get
+            {
+                return Path.Combine(GoldenHorseProjectsLocation, "RecentProjects.dat");
+            }
+        }
+
         
     }
 }

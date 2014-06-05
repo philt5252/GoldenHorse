@@ -3,10 +3,8 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using Olf.GoldenHorse.Foundation.Models;
-using Olf.GoldenHorse.Foundation.Services;
 
-namespace Olf.GoldenHorse.Core.Services
+namespace Olf.GoldenHorse.Foundation.Services
 {
     public static class Camera
     {

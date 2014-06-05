@@ -19,6 +19,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         public ICommand RecordCommand { get; protected set; }
         public ICommand PauseCommand { get; protected set; }
         public ICommand StopCommand { get; protected set; }
+        public ICommand AssertCommand { get; protected set; }
 
         public RecorderViewModel(IRecorder recorder, IRecordingController recordingController)
         {
@@ -28,35 +29,46 @@ namespace Olf.GoldenHorse.Core.ViewModels
             RecordCommand = new DelegateCommand(ExecuteRecordCommand, CanExecuteRecordCommand);
             StopCommand = new DelegateCommand(ExecuteStopCommand, CanExecuteStopCommand);
             PauseCommand = new DelegateCommand(ExecutePauseCommand, CanExecutePauseCommand);
+            AssertCommand = new DelegateCommand(ExecuteAssertCommand, CanExecuteAssertCommand);
         }
 
-        private bool CanExecutePauseCommand()
+        protected virtual bool CanExecuteAssertCommand()
         {
             return true;
         }
 
-        private void ExecutePauseCommand()
+        protected virtual void ExecuteAssertCommand()
+        {
+            recordingController.DoAssert();
+        }
+
+        protected virtual bool CanExecutePauseCommand()
+        {
+            return true;
+        }
+
+        protected virtual void ExecutePauseCommand()
         {
             throw new NotImplementedException();
         }
 
-        private bool CanExecuteStopCommand()
+        protected virtual bool CanExecuteStopCommand()
         {
             return true;
         }
 
-        private void ExecuteStopCommand()
+        protected virtual void ExecuteStopCommand()
         {
             recorder.Stop();
             recordingController.StopRecord();
         }
 
-        private bool CanExecuteRecordCommand()
+        protected virtual bool CanExecuteRecordCommand()
         {
             return true;
         }
 
-        private void ExecuteRecordCommand()
+        protected virtual void ExecuteRecordCommand()
         {
             recorder.Record();
         }

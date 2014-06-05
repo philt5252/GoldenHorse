@@ -15,7 +15,7 @@ namespace Olf.GoldenHorse.Core.Models
             {
                 int yOffset = Resources.click.Height/2;
                 int xOffset = Resources.click.Width/2;
-                graphics.DrawImage(Resources.click, ClickX+xOffset, ClickY+yOffset);
+                graphics.DrawImage(Resources.click, ClickX-xOffset, ClickY-yOffset);
             }
         }
     }

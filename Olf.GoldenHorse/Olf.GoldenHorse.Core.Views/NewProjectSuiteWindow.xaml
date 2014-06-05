@@ -7,7 +7,7 @@
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              mc:Ignorable="d" 
           
-            Title="New Project Suite" Height="150" Width="300" MaxHeight="150" MaxWidth="300" MinHeight="150" MinWidth="300">
+            Title="New Project Suite" Height="150" Width="325" MaxHeight="150" MaxWidth="325" MinHeight="150" MinWidth="300">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

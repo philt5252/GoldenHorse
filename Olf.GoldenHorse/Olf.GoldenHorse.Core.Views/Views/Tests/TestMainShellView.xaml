@@ -123,10 +123,10 @@
                            <views:TestShellView x:Name="testShellView"></views:TestShellView>
                        </xcad:LayoutDocument>
                         <xcad:LayoutDocument Title="Parameters">
-                            <TextBlock Text="Hi"/>
+                            <TextBlock Text=" "/>
                         </xcad:LayoutDocument>
                         <xcad:LayoutDocument Title="Variables">
-                            <TextBlock Text="Hi"/>
+                            <TextBlock Text=" "/>
                         </xcad:LayoutDocument>
                     </xcad:LayoutDocumentPane>
                     <xcad:LayoutAnchorablePane DockHeight="150">

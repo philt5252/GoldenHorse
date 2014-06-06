@@ -6,6 +6,6 @@ namespace Olf.GoldenHorse.Foundation.Controllers
     {
         void ShowRecord();
         void StopRecord();
-        void DoAssert();
+        void DoValidation(OnScreenValidation onScreenValidation);
     }
 }

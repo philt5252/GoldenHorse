@@ -51,11 +51,12 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<StartPageViewModel>().As<IStartPageViewModel>();
             builder.RegisterType<RecentFileViewModel>().As<IRecentFileViewModel>();
             builder.RegisterType<TestItemEditorViewModel>().As<ITestItemEditorViewModel>();
-            builder.RegisterType<TestObjectEditorViewModel>().As<ITestItemEditorViewModel>();
+            builder.RegisterType<TestObjectEditorViewModel>().As<ITestObjectEditorViewModel>();
             builder.RegisterType<TestOperationEditorViewModel>().As<ITestOperationEditorViewModel>();
             builder.RegisterType<TestParameterEditorViewModel>().As<ITestParameterEditorViewModel>();
             builder.RegisterType<TestDescriptionEditorViewModel>().As<ITestDescriptionEditorViewModel>();
             builder.RegisterType<EditParameterViewModel>().As<IEditParameterViewModel>();
+            builder.RegisterType<ValidateTextAtPointListItemViewModel>().As<IValidationListItemViewModel>().SingleInstance();
 
             builder.RegisterType<TestNode>().AsSelf();
             builder.RegisterType<TestGroupNode>().AsSelf();
@@ -83,7 +84,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<StartPageViewModelFactory>().As<IStartPageViewModelFactory>().SingleInstance();
             builder.RegisterType<RecentFileViewModelFactory>().As<IRecentFileViewModelFactory>().SingleInstance();
             builder.RegisterType<TestItemEditorViewModelFactory>().As<ITestItemEditorViewModelFactory>().SingleInstance();
-            builder.RegisterType<TestObjectEditorViewModelFactory>().As<ITestItemEditorViewModelFactory>().SingleInstance();
+            builder.RegisterType<TestObjectEditorViewModelFactory>().As<ITestObjectEditorViewModelFactory>().SingleInstance();
             builder.RegisterType<TestOperationEditorViewModelFactory>().As<ITestOperationEditorViewModelFactory>().SingleInstance();
             builder.RegisterType<TestParameterEditorViewModelFactory>().As<ITestParameterEditorViewModelFactory>().SingleInstance();
             builder.RegisterType<TestDescriptionEditorViewModelFactory>().As<ITestDescriptionEditorViewModelFactory>().SingleInstance();

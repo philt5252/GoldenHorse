@@ -147,11 +147,18 @@ namespace Olf.GoldenHorse.Core.Services
 
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
         {
-            //throw new NotImplementedException();
+            
         }
 
+        private int count = 0;
         private void KeyboardHookListenerOnKeyDown(object sender, KeyEventArgs keyEventArgs)
         {
+            count ++;
+
+            if (count > 5)
+            {
+                
+            }
             //throw new NotImplementedException();
         }
 

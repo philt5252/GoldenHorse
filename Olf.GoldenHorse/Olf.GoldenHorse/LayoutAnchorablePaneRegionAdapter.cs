@@ -74,9 +74,9 @@ namespace Olf.GoldenHorse
             LayoutAnchorable layoutAnchorable = new LayoutAnchorable();
             layoutAnchorable.IsSelected = true;
             
-            //Binding myBinding = new Binding("Tag");
-            //myBinding.Source = newView;
-            //BindingOperations.SetBinding(layoutAnchorable, LayoutAnchorable.TitleProperty, myBinding);
+            Binding myBinding = new Binding("Tag");
+            myBinding.Source = newView;
+            BindingOperations.SetBinding(layoutAnchorable, LayoutAnchorable.TitleProperty, myBinding);
 
             layoutAnchorable.Content = newView;
             anchorableDict[newView] = layoutAnchorable;

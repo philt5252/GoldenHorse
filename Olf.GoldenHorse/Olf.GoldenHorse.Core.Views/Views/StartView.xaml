@@ -79,6 +79,7 @@
                             <StackPanel Orientation="Horizontal"  Cursor="Hand" >
                             <Image Width="15" Height="15" Source="../../WhiteImages/Symbols_Play_32xLG.png"></Image>
                             <TextBlock Text="{Binding FileName}" Foreground="White">
+                               
                             </TextBlock>
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseDown">

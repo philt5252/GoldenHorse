@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Xml.Serialization;
+using Olf.GoldenHorse.Foundation.Services;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
@@ -26,5 +30,19 @@ namespace Olf.GoldenHorse.Foundation.Models
         public abstract string DefaultDescription(MappedItem control);
 
         public abstract void Play(MappedItem control, Log log);
+
+        protected static Screenshot CreateScreenshot(Log log)
+        {
+            Bitmap bitmap = Camera.Capture();
+            DateTime dateTime = DateTime.Now;
+            string screenshotName = "ghscn_" + dateTime.Ticks + ".bmp";
+            bitmap.Save(Path.Combine(ProjectSuiteManager.GetScreenshotsFolder(log), screenshotName));
+
+            Screenshot screenshot = new Screenshot();
+
+            screenshot.ImageFile = screenshotName;
+            screenshot.DateTime = dateTime;
+            return screenshot;
+        }
     }
 }

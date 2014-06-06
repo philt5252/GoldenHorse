@@ -35,7 +35,6 @@ namespace Olf.GoldenHorse.Core.Controllers
         private readonly IProjectFileManager projectFileManager;
         private readonly IAppController appController;
         private readonly ITestController testController;
-        private readonly IExternalAppInfoManager externalAppInfoManager;
         private IWindow recordingWindow;
         private IRecorder recorder;
 
@@ -45,8 +44,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             ITestFileManager testFileManager,
             IProjectFileManager projectFileManager, 
             IAppController appController,
-            ITestController testController,
-            IExternalAppInfoManager externalAppInfoManager)
+            ITestController testController)
         {
             this.recordWindowFactory = recordWindowFactory;
             this.recorderViewModelFactory = recorderViewModelFactory;
@@ -55,7 +53,6 @@ namespace Olf.GoldenHorse.Core.Controllers
             this.projectFileManager = projectFileManager;
             this.appController = appController;
             this.testController = testController;
-            this.externalAppInfoManager = externalAppInfoManager;
         }
 
         public void ShowRecord()
@@ -125,7 +122,7 @@ namespace Olf.GoldenHorse.Core.Controllers
 
                 while (doPicture)
                 {
-                    currentUIITem = externalAppInfoManager.GetControl(System.Windows.Forms.Cursor.Position);
+                    currentUIITem = ExternalAppInfoManager.GetControl(System.Windows.Forms.Cursor.Position);
 
                     if (currentUIITem.AutomationElement.Current.ProcessId == Process.GetCurrentProcess().Id)
                         currentUIITem = prevUIItem;

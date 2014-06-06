@@ -11,9 +11,9 @@ using TestStack.White.UIItems.Actions;
 
 namespace Olf.GoldenHorse.Core.Services
 {
-    public class ExternalAppInfoManager : IExternalAppInfoManager
+    public static class ExternalAppInfoManager
     {
-        public string GetForegroundWindowProcessName()
+        public static string GetForegroundWindowProcessName()
         {
             IntPtr hwnd = GetForegroundWindow();
             uint pid;
@@ -22,7 +22,15 @@ namespace Olf.GoldenHorse.Core.Services
             return p.ProcessName;
         }
 
-        public string GetForegroundWindowName()
+        public static int GetForegroundWindowProcessId()
+        {
+            IntPtr hwnd = GetForegroundWindow();
+            uint pid;
+            GetWindowThreadProcessId(hwnd, out pid);
+            return (int)pid;
+        }
+
+        public static string GetForegroundWindowName()
         {
             StringBuilder builder = new StringBuilder(1024);
 
@@ -32,7 +40,7 @@ namespace Olf.GoldenHorse.Core.Services
             return builder.ToString();
         }
 
-        public Point GetForegroundWindowLocalizedPoint()//for when window is already focused
+        public static Point GetForegroundWindowLocalizedPoint()//for when window is already focused
         {
             RECT rect = GetWindowRect();
             int pX = Cursor.Position.X - rect.Left;
@@ -40,7 +48,7 @@ namespace Olf.GoldenHorse.Core.Services
             return new Point(pX, pY);
         }
 
-        protected RECT GetWindowRect()
+        private static RECT GetWindowRect()
         {
             IntPtr foregroundWindow = GetForegroundWindow();
             RECT rect = new RECT();
@@ -99,7 +107,7 @@ namespace Olf.GoldenHorse.Core.Services
             public int Bottom;
         }
 
-        public UIItem GetControl(Point point)//should I only make automationElement and actionListener once?
+        public static UIItem GetControl(Point point)//should I only make automationElement and actionListener once?
         {
             POINT point1 = new POINT(point.X, point.Y);
             IntPtr myIntPtr = WindowFromPoint(point1);
@@ -113,7 +121,7 @@ namespace Olf.GoldenHorse.Core.Services
             return new UIItem(automationElement, actionListener);
         }
 
-        private AutomationElement GetChildControl(Point point, AutomationElement automationElement)
+        private static AutomationElement GetChildControl(Point point, AutomationElement automationElement)
         {
             TreeWalker walker = TreeWalker.ControlViewWalker;
 

@@ -18,6 +18,9 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         public MappedItem GetMappedItem(string id)
         {
+            if (id == null)
+                return null;
+
             if (cachedMappedItemDict.ContainsKey(id))
                 return cachedMappedItemDict[id];
 

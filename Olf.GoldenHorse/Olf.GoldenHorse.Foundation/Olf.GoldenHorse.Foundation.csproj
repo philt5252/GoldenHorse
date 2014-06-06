@@ -100,7 +100,6 @@
     <Compile Include="Services\AppPlaybackService.cs" />
     <Compile Include="Services\Camera.cs" />
     <Compile Include="Services\DefaultNameHelper.cs" />
-    <Compile Include="Services\IExternalAppInfoManager.cs" />
     <Compile Include="Services\IRecorder.cs" />
     <Compile Include="Services\ProjectSuiteManager.cs" />
     <Compile Include="Models\Screenshot.cs" />

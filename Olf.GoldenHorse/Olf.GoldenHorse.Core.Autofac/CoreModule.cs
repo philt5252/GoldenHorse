@@ -30,7 +30,6 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<LogController>().As<ILogController>().SingleInstance();
 
             builder.RegisterType<Recorder>().As<IRecorder>();
-            builder.RegisterType<ExternalAppInfoManager>().As<IExternalAppInfoManager>().SingleInstance();
 
             builder.RegisterType<RecorderFactory>().As<IRecorderFactory>().SingleInstance();
 

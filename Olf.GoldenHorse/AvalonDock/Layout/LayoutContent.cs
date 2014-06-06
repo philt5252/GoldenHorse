@@ -40,18 +40,25 @@ namespace AvalonDock.Layout
         internal LayoutContent()
         { }
 
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register("Title", typeof(string), typeof(LayoutAnchorable), new PropertyMetadata(default(string)));
+
+        public static readonly DependencyProperty IsSelectedProperty =
+            DependencyProperty.Register("IsSelected", typeof(bool), typeof(LayoutAnchorable), new PropertyMetadata(default(bool)));
+
+
         #region Title
 
-        private string _title = null;
+        //private string _title = null;
         public string Title
         {
-            get { return _title; }
+            get { return (string) GetValue(TitleProperty); }
             set
             {
-                if (_title != value)
+                if (Title != value)
                 {
                     RaisePropertyChanging("Title");
-                    _title = value;
+                    SetValue(TitleProperty, value);
                     RaisePropertyChanged("Title");
                 }
             }
@@ -108,20 +115,21 @@ namespace AvalonDock.Layout
 
         #region IsSelected
 
-        private bool _isSelected = false;
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get { return (bool)GetValue(IsSelectedProperty); }
             set
             {
-                if (_isSelected != value)
+                bool isSelected = (bool) GetValue(IsSelectedProperty);
+
+                if (isSelected != value)
                 {
-                    bool oldValue = _isSelected;
+                    bool oldValue = IsSelected;
                     RaisePropertyChanging("IsSelected");
-                    _isSelected = value;
+                    SetValue(IsSelectedProperty, value);
                     var parentSelector = (Parent as ILayoutContentSelector);
                     if (parentSelector != null)
-                        parentSelector.SelectedContentIndex = _isSelected ? parentSelector.IndexOf(this) : -1;
+                        parentSelector.SelectedContentIndex = isSelected ? parentSelector.IndexOf(this) : -1;
                     OnIsSelectedChanged(oldValue, value);
                     RaisePropertyChanged("IsSelected");
                 }

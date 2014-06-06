@@ -55,32 +55,6 @@ namespace AvalonDock.Layout
 
         #endregion
 
-        public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof (string), typeof (LayoutDocument), new PropertyMetadata(default(string)));
-
-        public static readonly DependencyProperty IsSelectedProperty =
-            DependencyProperty.Register("IsSelected", typeof (bool), typeof (LayoutDocument), new PropertyMetadata(default(bool)));
-
-        public bool IsSelected
-        {
-            get { return (bool) GetValue(IsSelectedProperty); }
-            set
-            {
-                SetValue(IsSelectedProperty, value);
-                base.IsSelected = value;
-            }
-        }
-
-        public string Title
-        {
-            get { return (string) GetValue(TitleProperty); }
-            set
-            {
-                SetValue(TitleProperty, value);
-                base.Title = value;
-            }
-        }
-
         public override void WriteXml(System.Xml.XmlWriter writer)
         {
             base.WriteXml(writer);

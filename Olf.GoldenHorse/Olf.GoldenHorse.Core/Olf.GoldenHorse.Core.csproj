@@ -164,6 +164,8 @@
     <Compile Include="ViewModels\TestParameterEditorViewModel.cs" />
     <Compile Include="ViewModels\TestScreenshotsViewModel.cs" />
     <Compile Include="ViewModels\TestShellViewModel.cs" />
+    <Compile Include="ViewModels\ValidateTextAtPointListItemViewModel.cs" />
+    <Compile Include="ViewModels\ValidationListItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Olf.GoldenHorse.Foundation.DataAccess\Olf.GoldenHorse.Foundation.DataAccess.csproj">

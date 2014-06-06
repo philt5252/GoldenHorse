@@ -4,6 +4,6 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
 {
     public interface IValidationListItemViewModel
     {
-         ICommand CreateValidation { get; set; }
+         ICommand CreateValidationCommand { get; set; }
     }
 }

@@ -6,7 +6,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock Text="Press this "></TextBlock>
-            
+        <StackPanel Orientation="Vertical">
+        <TextBlock Text="Move the mouse to the test to be validated on screen. Press Shift+Ctrl+A to select the text."></TextBlock>
+        <TextBlock Text="Selecting this will open the Visualizer view. Click a control to set its property to the validation text."></TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>

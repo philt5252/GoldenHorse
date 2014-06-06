@@ -2,7 +2,7 @@
 {
     public interface ITestItemEditorWindowFactory
     {
-        IViewWithDataContext Create();
+        IWindow Create();
     }
         
 }

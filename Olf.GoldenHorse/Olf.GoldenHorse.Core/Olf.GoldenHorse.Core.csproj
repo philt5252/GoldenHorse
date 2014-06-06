@@ -106,6 +106,8 @@
     <Compile Include="Factories\ViewModels\TestShellViewModelFactory.cs" />
     <Compile Include="Helpers\RegionHelpers.cs" />
     <Compile Include="Models\ControlHighlightAdornment.cs" />
+    <Compile Include="Models\ValidateTextAtPointOperation.cs" />
+    <Compile Include="Models\Validation.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

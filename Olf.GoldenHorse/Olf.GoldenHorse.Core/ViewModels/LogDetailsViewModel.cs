@@ -116,7 +116,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 {
                     if (ShowErrors && l.Category == LogItemCategory.Error)
                         return true;
-                    if (ShowCheckpoints && l.Category == LogItemCategory.Checkpoint)
+                    if (ShowCheckpoints && l.Category == LogItemCategory.Validation)
                         return true;
                     if (ShowEvents && l.Category == LogItemCategory.Event)
                         return true;

@@ -24,6 +24,7 @@ namespace Olf.GoldenHorse.Core.Models
             set
             {
                 textParam.Value = value;
+                textParam.Mode = OperationParameterValueMode.Constant;
             }
         }
 

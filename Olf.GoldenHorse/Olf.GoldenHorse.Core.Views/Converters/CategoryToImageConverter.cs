@@ -26,7 +26,7 @@ namespace Olf.GoldenHorse.Core.Views.Converters
             {
                 return new BitmapImage(new Uri("../../WhiteImages/SendInstantMessage_32x32.png", UriKind.RelativeOrAbsolute));
             }
-            else if (value.ToString().Equals("Checkpoint"))
+            else if (value.ToString().Equals("Validation"))
             {
                 return new BitmapImage(new Uri("../../WhiteImages/Symbols_Complete_and_ok_White.png", UriKind.RelativeOrAbsolute));
             }

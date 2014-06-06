@@ -42,6 +42,7 @@ namespace Olf.GoldenHorse
                             }
 
                             regionTarget.Children.Add(documentDict[newView]);
+                            regionTarget.SelectedContentIndex = regionTarget.Children.Count - 1;
                         }
 
                     }

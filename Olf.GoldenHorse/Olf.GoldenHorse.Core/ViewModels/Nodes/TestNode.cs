@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
@@ -18,6 +19,11 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         public override string Name
         {
             get { return projectFile.Name; }
+        }
+
+        public override Bitmap Icon
+        {
+            get { return Resources.test; }
         }
 
         public TestNode(ProjectFile projectFile, ITestController testController,

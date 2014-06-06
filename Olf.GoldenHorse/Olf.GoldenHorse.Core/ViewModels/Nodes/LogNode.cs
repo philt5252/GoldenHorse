@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.Prism.Commands;
+﻿using System.Drawing;
+using Microsoft.Practices.Prism.Commands;
 using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.GoldenHorse.Foundation.DataAccess;
 using Olf.GoldenHorse.Foundation.Models;
@@ -14,6 +15,11 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         public override string Name
         {
             get { return logFile.Name; }
+        }
+
+        public override Bitmap Icon
+        {
+            get { return Resources.log; }
         }
 
         public LogNode(ProjectFile logFile, ILogFileManager logFileManager,

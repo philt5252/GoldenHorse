@@ -15,5 +15,20 @@ namespace TestApp
         {
             InitializeComponent();
         }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            int num1;
+            int num2;
+
+            if (int.TryParse(input1Tbx.Text, out num1)
+                && int.TryParse(input1Tbx.Text, out num2))
+            {
+                sumTbx.Text = (num1 + num2).ToString();
+                return;
+            }
+
+            sumTbx.Text = "Error";
+        }
     }
 }

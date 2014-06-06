@@ -1,4 +1,5 @@
-﻿using Olf.GoldenHorse.Foundation.Factories.ViewModels.Nodes;
+﻿using System.Drawing;
+using Olf.GoldenHorse.Foundation.Factories.ViewModels.Nodes;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
 using Olf.GoldenHorse.Foundation.ViewModels.Nodes;
@@ -10,6 +11,11 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         public override string Name
         {
             get { return "Project Suite '" + ProjectSuiteManager.CurrentProjectSuite.Name + "'  Logs"; }
+        }
+
+        public override Bitmap Icon
+        {
+            get { return Resources.projectLogSuite; }
         }
 
         public ProjectSuiteLogsNode(IProjectLogsNodeFactory projectLogsNodeFactory)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels.Nodes;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.ViewModels.Nodes;
@@ -14,6 +15,11 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         {
             get { return "Tests"; }
         }
+
+        public override Bitmap Icon
+        {
+            get { return Resources.project1; }
+        }   
 
         public TestGroupNode(Project project, ITestNodeFactory testNodeFactory)
         {

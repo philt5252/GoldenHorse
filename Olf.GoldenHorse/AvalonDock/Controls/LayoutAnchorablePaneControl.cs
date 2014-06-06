@@ -69,7 +69,6 @@ namespace AvalonDock.Controls
         protected override void OnGotKeyboardFocus(System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
             _model.SelectedContent.IsActive = true;
-            
             base.OnGotKeyboardFocus(e);
         }
 

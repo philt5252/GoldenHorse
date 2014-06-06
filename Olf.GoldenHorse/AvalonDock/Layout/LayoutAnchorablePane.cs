@@ -63,6 +63,9 @@ namespace AvalonDock.Layout
                     value >= Children.Count)
                     value = -1;
 
+                if (value == -1 && Children.Count > 0)
+                    value = 0;
+
                 if (_selectedIndex != value)
                 {
                     RaisePropertyChanging("SelectedContentIndex");

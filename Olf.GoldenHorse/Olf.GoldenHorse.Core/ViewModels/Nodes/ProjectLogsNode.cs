@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels.Nodes;
 using Olf.GoldenHorse.Foundation.Models;
 
@@ -12,6 +13,11 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         public override string Name
         {
             get { return project.Name + " Logs"; }
+        }
+
+        public override Bitmap Icon
+        {
+            get { return Resources.logs; }
         }
 
         public ProjectLogsNode(Project project, ILogNodeFactory logNodeFactory)

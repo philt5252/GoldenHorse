@@ -41,6 +41,7 @@ namespace Olf.GoldenHorse
                                 //                    + " to activate. Add it do the Views collection before activating.");
                             
                             regionTarget.Children.Add(anchorableDict[newView]);
+                            regionTarget.SelectedContentIndex = regionTarget.Children.Count - 1;
                         }
                         
                     }

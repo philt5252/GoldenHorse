@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:converters="clr-namespace:Olf.GoldenHorse.Core.Views.Converters"
              mc:Ignorable="d" 
              Tag="Project Explorer">
+    <UserControl.Resources>
+        <converters:ImageConverter  x:Key="ImageConverter" />
+    </UserControl.Resources>
     <Grid Background="White">
         
         <TreeView Name="projectExplorerTvw" ItemsSource="{Binding Nodes}">
@@ -18,7 +22,7 @@
                                 <i:InvokeCommandAction Command="{Binding Path=DefaultCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>-->
-                        <Image Source="..\Images\newProjectSuite.png" Margin="5,0,0,0"  Width="12" Height="12"></Image>
+                        <Image Source="{Binding Icon, Converter={StaticResource ImageConverter}}" Margin="5,0,0,0"  Width="12" Height="12" ></Image>
                         <TextBlock Margin="5,3,5,3" Text="{Binding Name}"  Foreground="Black">  
                         </TextBlock>         
                     </StackPanel>

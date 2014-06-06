@@ -34,7 +34,7 @@ namespace Olf.GoldenHorse.Core.Views.Converters
             {
                 return new BitmapImage(new Uri("../WhiteImages/ProjectExplorerImages/log.png"));
             }
-            else if (value == "ProjectLog")
+            else if (value == "ProjectLogs")
             {
                 return new BitmapImage(new Uri("../WhiteImages/ProjectExplorerImages/Logs.png"));
             }

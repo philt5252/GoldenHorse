@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              Tag="Project Explorer">
     <UserControl.Resources>
-        <converters:ImageConverter  x:Key="ImageConverter" />
+        <converters:CategoryToImageConverter  x:Key="CategoryToImageConverter" />
     </UserControl.Resources>
     <Grid Background="White">
         
@@ -22,7 +22,7 @@
                                 <i:InvokeCommandAction Command="{Binding Path=DefaultCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>-->
-                        <Image  Source="{Binding Icon, Converter={StaticResource ImageConverter}}" Margin="5,0,0,0"  Width="16" Height="16" ></Image>
+                        <Image  Source="{Binding Type, Converter={StaticResource CategoryToImageConverter}}" Margin="5,0,0,0"  Width="16" Height="16" ></Image>
                         <TextBlock Margin="5,3,5,3" Text="{Binding Name}" Background="Transparent"  Foreground="Black">  
                         </TextBlock>         
                     </StackPanel>

@@ -113,16 +113,6 @@ namespace Olf.GoldenHorse.Core {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap project2 {
-            get {
-                object obj = ResourceManager.GetObject("project2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap projectLogSuite {
             get {
                 object obj = ResourceManager.GetObject("projectLogSuite", resourceCulture);
@@ -146,6 +136,16 @@ namespace Olf.GoldenHorse.Core {
         internal static System.Drawing.Bitmap test {
             get {
                 object obj = ResourceManager.GetObject("test", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap test2 {
+            get {
+                object obj = ResourceManager.GetObject("test2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

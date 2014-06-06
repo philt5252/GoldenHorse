@@ -16,14 +16,14 @@
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                     
-                    <StackPanel Orientation="Horizontal" MouseDown="DoubleClick">
+                    <StackPanel Orientation="Horizontal" MouseDown="DoubleClick" Background="Transparent">
                         <!--<i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDown">
                                 <i:InvokeCommandAction Command="{Binding Path=DefaultCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>-->
-                        <Image Source="{Binding Icon, Converter={StaticResource ImageConverter}}" Margin="5,0,0,0"  Width="12" Height="12" ></Image>
-                        <TextBlock Margin="5,3,5,3" Text="{Binding Name}"  Foreground="Black">  
+                        <Image  Source="{Binding Icon, Converter={StaticResource ImageConverter}}" Margin="5,0,0,0"  Width="16" Height="16" ></Image>
+                        <TextBlock Margin="5,3,5,3" Text="{Binding Name}" Background="Transparent"  Foreground="Black">  
                         </TextBlock>         
                     </StackPanel>
                 </HierarchicalDataTemplate>

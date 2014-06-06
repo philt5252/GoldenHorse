@@ -2,8 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
+             Tag="Start Page"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
        <LinearGradientBrush x:Key="BackgroundBrush" StartPoint="0,1" EndPoint="1,1">
@@ -27,25 +29,72 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </UserControl.Resources>
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource BackgroundBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="35"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackPanel Width="300" HorizontalAlignment="Left" Grid.Row="1">
-            
-            <Label Content="New Project Suite" FontSize="24" Margin="10,10,0,10" Background="Transparent" 
-                               Foreground="DimGray" Style="{StaticResource myStyle}">
-            </Label>
-
-            <Label Content="Open Project Suite" FontSize="24" Margin="10,10,0,10" Background="Transparent" 
-                               Foreground="DimGray" Style="{StaticResource myStyle}">
-            </Label>
-
-
-        </StackPanel>
         
-            
+        <Style x:Key="{x:Type ListBoxItem}" TargetType="ListBoxItem">
+            <Setter Property="Margin" Value="15,6,6,6"></Setter>
+        </Style>
+
+        <SolidColorBrush x:Key="brush1">
+            <SolidColorBrush.Color>
+                <Color A="255" R="57" B="57" G="57"></Color>
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource brush1}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="200*"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="DimGray">
+            <StackPanel Margin="6,0,0,0">
+                <TextBlock Text="GOLDEN HORSE" FontSize="30" FontWeight="DemiBold" Foreground="White" FontFamily="Estrangelo Edessa">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="3" 
+                                            Color="Black" 
+                                            Opacity="1" 
+                                            ShadowDepth="5" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                <TextBlock Margin="3,0,10,0" Text="Version 2.0"  Foreground="White" Grid.Row="0"  ></TextBlock>
+            </StackPanel>
+        </Grid>
+        
+       
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200*"></ColumnDefinition>
+                    <ColumnDefinition Width="140*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+        
+            <StackPanel Width="170" Orientation="Vertical" HorizontalAlignment="Left" Margin="20,10,0,0" Grid.Column="0">
+
+             <TextBlock Text="Recent Project Suites" Foreground="White" FontWeight="DemiBold" FontSize="16" TextDecorations="Underline"></TextBlock>
+            <ListBox ItemsSource="{Binding RecentFiles}" 
+                     Background="Transparent" FontSize="14" Foreground="White" HorizontalAlignment="Stretch"
+                     VerticalAlignment="Stretch" BorderBrush="Transparent" DisplayMemberPath="FileName">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="ListBox.Selected">
+                        <i:InvokeCommandAction Command="{Binding Path=OpenFileCommand, Mode=OneWay}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListBox>
+            </StackPanel>
+             <DockPanel Grid.Column="1" Dock="Right">
+                <StackPanel Orientation="Vertical">
+                    <Button Content="New Project Suite" FontWeight="DemiBold" FontSize="16" Height="35" Width="150" 
+                            Command="{Binding NewProjectSuiteCommand}" 
+                        Margin="10,10,10,0" Background="DimGray" Foreground="White" />
+                    <Button Content="Open Project Suite" FontWeight="DemiBold" FontSize="16" Height="35" Width="150" Command="{Binding NewProjectSuiteCommand}" 
+                        Margin="10,10,10,0" Background="DimGray" Foreground="White" ></Button>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
+
+
+
+
+
     </Grid>
 </UserControl>

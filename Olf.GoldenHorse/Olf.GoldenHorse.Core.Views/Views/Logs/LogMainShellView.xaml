@@ -10,19 +10,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <avalondock:DockingManager>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300*"></RowDefinition>
+            <RowDefinition Height="200*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <logs:LogShellView x:Name="logShellView"  Grid.Row="0"></logs:LogShellView>
+        <avalondock:DockingManager Grid.Row="1">
             <avalondock:LayoutRoot>
                 <avalondock:LayoutPanel Orientation="Vertical">
-                    <avalondock:LayoutDocumentPane x:Name="LogShellPane"  DockHeight="300*">
-                        <avalondock:LayoutDocument >
-                            <logs:LogShellView x:Name="logShellView"></logs:LogShellView>
+
+                    <avalondock:LayoutDocumentPane DockHeight="200">
+                        <avalondock:LayoutDocument Title="Screenshots">
+                            <logs:LogScreenshotsView x:Name="logScreenshotsView" ></logs:LogScreenshotsView>
                         </avalondock:LayoutDocument>
                     </avalondock:LayoutDocumentPane>
-                    <avalondock:LayoutAnchorablePane DockHeight="200">
-                        <avalondock:LayoutAnchorable>
-                            <logs:LogScreenshotsView x:Name="logScreenshotsView" ></logs:LogScreenshotsView>
-                        </avalondock:LayoutAnchorable>
-                    </avalondock:LayoutAnchorablePane>
                 </avalondock:LayoutPanel>
             </avalondock:LayoutRoot>
         </avalondock:DockingManager>

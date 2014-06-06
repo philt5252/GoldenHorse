@@ -117,7 +117,7 @@
                         <Image Source="../Images/Paste.png"></Image>
                     </Button>
                     <Button Height="25" Width="25" Command="{Binding ToolBarCommand}" ToolTip="Toolbar" Background="{StaticResource brush1}" >
-                        <Image Source="../Images/Repair.png"></Image>
+                        <Image Source="../WhiteImages/Hammer_Builder_32xLG.png"></Image>
                     </Button>
                 </ToolBar>
             </ToolBarTray>

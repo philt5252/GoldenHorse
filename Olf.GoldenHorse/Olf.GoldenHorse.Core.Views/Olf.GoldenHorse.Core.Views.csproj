@@ -274,6 +274,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="WhiteImages\Addacomment_8818.png" />
+    <Content Include="WhiteImages\Bubble_16xLG.png" />
+    <Resource Include="WhiteImages\scissors_16xLG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="WhiteImages\Event_594_exp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="WhiteImages\GlobalApplicationClass%28asax%29_443_32x.png" />
     <Resource Include="WhiteImages\Camera_32xLG.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

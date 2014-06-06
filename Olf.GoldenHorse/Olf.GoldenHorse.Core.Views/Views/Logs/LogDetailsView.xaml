@@ -86,7 +86,7 @@
                                 <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                     <StackPanel Orientation="Horizontal" >
                                         <Grid >
-                                            <customControls:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1" />
+                                            <customControls:TreeListViewExpander Margin="4,1,0,0" Canvas.ZIndex="1" />
                                         </Grid>
                                         <StackPanel Orientation="Horizontal" >
                                             <!--The Expander Button (can be used in any column (typically the first one))-->

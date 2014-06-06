@@ -134,7 +134,7 @@
                                     <StackPanel Orientation="Horizontal" >
                                         <!--The Expander Button (can be used in any column (typically the first one))-->
                                         <!--<Image Width ="20" Height ="20"  Source="Images\dachshund.jpg"></Image>-->
-                                            <TextBlock Text="{Binding Name}" FontWeight="DemiBold" Foreground="Black" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
+                                            <TextBlock Text="{Binding Name}" Foreground="Black" MouseLeftButtonDown="OpenItemEditWindow" ></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -147,7 +147,7 @@
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0" >
                                 <!--Display the size of the DataElement-->
-                                    <TextBlock Text="{Binding Operation}" FontWeight="DemiBold" Foreground="Black" MouseLeftButtonDown="OpenOperationEditWindow" HorizontalAlignment="Center" >
+                                    <TextBlock Text="{Binding Operation}" Foreground="Black" MouseLeftButtonDown="OpenOperationEditWindow" HorizontalAlignment="Center" >
                                     </TextBlock>
                             </Border>
                         </DataTemplate>
@@ -158,16 +158,16 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                    <TextBlock  Text="{Binding Value}" FontWeight="DemiBold" Foreground="Black" MouseLeftButtonDown="OpenValueEditWindow"  HorizontalAlignment="Center"/>
+                                    <TextBlock  Text="{Binding Value}" Foreground="Black" MouseLeftButtonDown="OpenValueEditWindow"  HorizontalAlignment="Center"/>
                             </Border>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
-                <GridViewColumn Header="Description" Width="200">
+                <GridViewColumn Header="Description" Width="300">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                    <TextBlock Text="{Binding Description}" Foreground="Black" HorizontalAlignment="Stretch"/>
+                                    <TextBlock Text="{Binding Description}" Margin="5,0,0,0" Foreground="Black" HorizontalAlignment="Stretch"/>
                             </Border>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>

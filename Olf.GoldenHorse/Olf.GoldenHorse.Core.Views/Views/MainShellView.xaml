@@ -111,7 +111,7 @@
                         <Image Source="../Images/Copy.png"></Image>
                     </Button>
                     <Button Height="25" Width="25" Command="{Binding CutCommand}" ToolTip="Cut" Background="{StaticResource brush1}" >
-                        <Image Source="../Images/Cut.png"></Image>
+                        <Image Source="../WhiteImages/scissors_16xLG.png"></Image>
                     </Button>
                     <Button Height="25" Width="25" Command="{Binding PasteCommand}" ToolTip="Paste" Background="{StaticResource brush1}" >
                         <Image Source="../Images/Paste.png"></Image>

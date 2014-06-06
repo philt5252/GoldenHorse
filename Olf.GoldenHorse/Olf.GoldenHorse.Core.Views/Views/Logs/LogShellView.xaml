@@ -117,11 +117,11 @@
                              DocumentPaneControlStyle="{StaticResource MyCustomDocumentPaneControlStyle}">
             <avalondock:LayoutRoot>
                 <avalondock:LayoutPanel>
-                    <!--<avalondock:LayoutAnchorablePane  DockWidth="160" DockHeight="300*" x:Name="TestOperationsPane">
+                    <avalondock:LayoutAnchorablePane  DockWidth="160" DockHeight="300*" x:Name="TestOperationsPane">
                         <avalondock:LayoutAnchorable>
                             <logs:LogOperationsView x:Name="logOperationsView" ></logs:LogOperationsView>
                         </avalondock:LayoutAnchorable>
-                    </avalondock:LayoutAnchorablePane>-->
+                    </avalondock:LayoutAnchorablePane>
                     <avalondock:LayoutDocumentPane>
                         <avalondock:LayoutDocument >
                             <logs:LogDetailsView x:Name="logDetailsView"></logs:LogDetailsView>

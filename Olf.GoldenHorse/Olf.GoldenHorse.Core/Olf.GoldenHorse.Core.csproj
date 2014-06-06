@@ -177,6 +177,36 @@
   <ItemGroup>
     <None Include="Resources\click.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_Closed_32xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IntelliTrace_32x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manifest_32xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\project_control_on_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProjectDocumentView2010_11780.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RefactoringLog_12810.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Textfile_818_32x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\log.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\test.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\log.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

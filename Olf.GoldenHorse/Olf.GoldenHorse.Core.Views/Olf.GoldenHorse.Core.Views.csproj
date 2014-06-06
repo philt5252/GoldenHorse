@@ -78,6 +78,7 @@
     <Compile Include="Factories\ProjectWorkspaceViewFactory.cs" />
     <Compile Include="Factories\RecordWindowFactory.cs" />
     <Compile Include="Factories\StartViewFactory.cs" />
+    <Compile Include="Factories\TestItemEditorWindowFactory.cs" />
     <Compile Include="Factories\TestMainShellViewFactory.cs" />
     <Compile Include="Factories\TestShellViewFactory.cs" />
     <Compile Include="Views\MainShellView.xaml.cs">
@@ -114,6 +115,21 @@
     </Compile>
     <Compile Include="Views\Tests\TestDetailsView.xaml.cs">
       <DependentUpon>TestDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tests\TestEditor\EditParameterView.xaml.cs">
+      <DependentUpon>EditParameterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tests\TestEditor\TestDescriptionEditorView.xaml.cs">
+      <DependentUpon>TestDescriptionEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tests\TestEditor\TestObjectEditorView.xaml.cs">
+      <DependentUpon>TestObjectEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tests\TestEditor\TestOperationEditorView.xaml.cs">
+      <DependentUpon>TestOperationEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tests\TestEditor\TestParameterEditorView.xaml.cs">
+      <DependentUpon>TestParameterEditorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tests\TestMainShellView.xaml.cs">
       <DependentUpon>TestMainShellView.xaml</DependentUpon>
@@ -196,6 +212,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tests\TestDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tests\TestEditor\EditParameterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tests\TestEditor\TestDescriptionEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tests\TestEditor\TestObjectEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tests\TestEditor\TestOperationEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tests\TestEditor\TestParameterEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -301,6 +337,15 @@
     <Resource Include="WhiteImages\ProjectExplorerImages\test2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="WhiteImages\BlackCircleCheck.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="WhiteImages\GreenCircleCheck.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="WhiteImages\WhiteCircleCheck.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="WhiteImages\Symbols_Alert_and_Warning_32xLG.png" />
     <Resource Include="WhiteImages\Symbols_Complete_and_ok_32xLG.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -396,7 +441,7 @@
     <Resource Include="Images\SeriousWarning.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Event.png">
+    <Resource Include="WhiteImages\Event.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Add.png">
@@ -419,10 +464,10 @@
     </Resource>
     <Content Include="Images\Undo.png" />
     <Content Include="Images\Redo.png" />
-    <Resource Include="Images\Warning.png">
+    <Resource Include="WhiteImages\Warning.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Validate.png">
+    <Resource Include="WhiteImages\Validate.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Content Include="Images\Zoom_In.png" />

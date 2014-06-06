@@ -16,11 +16,11 @@ namespace Olf.GoldenHorse.Core.Views.Converters
             }
             else if (value.ToString().Equals("Warning"))
             {
-                return new BitmapImage(new Uri("../../WhiteImages/StatusAnnotations_Warning_32xLG_color.png", UriKind.RelativeOrAbsolute));
+                return new BitmapImage(new Uri("../../WhiteImages/StatusAnnotations...ng_32xLG_color.png", UriKind.RelativeOrAbsolute));
             }
             else if (value.ToString().Equals("Event"))
             {
-                return new BitmapImage(new Uri("../../WhiteImages/Event_594_exp.png", UriKind.RelativeOrAbsolute));
+                return new BitmapImage(new Uri("../../WhiteImages/BlackCircleCheck.png", UriKind.RelativeOrAbsolute));
             }
             else if (value.ToString().Equals("Message"))
             {
@@ -28,7 +28,7 @@ namespace Olf.GoldenHorse.Core.Views.Converters
             }
             else if (value.ToString().Equals("Validation"))
             {
-                return new BitmapImage(new Uri("../../WhiteImages/Symbols_Complete_and_ok_White.png", UriKind.RelativeOrAbsolute));
+                return new BitmapImage(new Uri("../../WhiteImages/GreenCircleCheck.png", UriKind.RelativeOrAbsolute));
             }
             else if (value.Equals("Log"))
             {

@@ -49,15 +49,15 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Height="30">
-            <Image Width="15" Height="15"  Margin="0,-3,-2,0"  Source="../../WhiteImages/StatusAnnotations_Critical_32xLG_color.png"></Image>
+            <Image Width="15" Height="15"  Margin="5,0,-2,0"  Source="../../WhiteImages/StatusAnnotations_Critical_32xLG_color.png"></Image>
             <CheckBox  Content="Error" Foreground="White" IsChecked="{Binding ShowErrors}" Margin="5,5,10,5"></CheckBox>
-            <Image Width="15" Height="15" Margin="0,-3,-2,0" Source="../../WhiteImages/StatusAnnotations_Warning_32xLG.png"></Image>
+            <Image Width="15" Height="15" Margin="0,-1,-2,0" Source="../../WhiteImages/StatusAnnotations_Warning_32xLG_color.png"></Image>
             <CheckBox  Content="Warning" Foreground="White" IsChecked="{Binding ShowWarnings}" Margin="5,5,10,5"></CheckBox>
-            <Image Width="20" Height="20"  Margin="0,-3,-2,0" Source="../../WhiteImages/Event_594_exp.png"></Image>
+            <Image Width="15" Height="15"  Margin="0,0,-2,0" Source="../../WhiteImages/BlackCircleCheck.png"></Image>
             <CheckBox  Content="Event" Foreground="White" IsChecked="{Binding ShowEvents}" Margin="5,5,10,5"></CheckBox>
-            <Image Width="20" Height="20"  Margin="0,-3,-2,0" Source="../../Images/SendInstantMessage_32x32.png"></Image>
+            <Image Width="20" Height="20"  Margin="0,0,-2,0" Source="../../Images/SendInstantMessage_32x32.png"></Image>
             <CheckBox  Content="Message" Foreground="White" IsChecked="{Binding ShowMessages}" Margin="5,5,10,5"></CheckBox>
-            <Image Width="20" Height="20" Margin="0,-3,-2,0" Source="../../WhiteImages/Symbols_Complete_and_ok_32xLG.png"></Image>
+            <Image Width="15" Height="15" Margin="0,0,-2,0" Source="../../WhiteImages/GreenCircleCheck.png"></Image>
             <CheckBox  Content="Validations" Foreground="White" IsChecked="{Binding ShowCheckpoints}" Margin="5,5,10,5"></CheckBox>
         </StackPanel>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">

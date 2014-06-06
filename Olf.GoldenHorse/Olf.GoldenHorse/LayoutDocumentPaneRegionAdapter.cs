@@ -88,9 +88,9 @@ namespace Olf.GoldenHorse
             LayoutDocument layoutDocument = new LayoutDocument();
             layoutDocument.IsSelected = true;
 
-            //Binding myBinding = new Binding("Tag");
-            //myBinding.Source = newView;
-            //BindingOperations.SetBinding(layoutDocument, LayoutDocument., myBinding);
+            Binding myBinding = new Binding("Tag");
+            myBinding.Source = newView;
+            BindingOperations.SetBinding(layoutDocument, LayoutDocument.TitleProperty, myBinding);
 
             layoutDocument.Content = newView;
             documentDict[newView] = layoutDocument;

@@ -37,11 +37,13 @@ namespace AvalonDock.Layout
     {
         public LayoutAnchorablePane()
         {
+            
         }
 
         public LayoutAnchorablePane(LayoutAnchorable anchorable)
         {
             Children.Add(anchorable);
+            
         }
 
         protected override bool GetVisibility()

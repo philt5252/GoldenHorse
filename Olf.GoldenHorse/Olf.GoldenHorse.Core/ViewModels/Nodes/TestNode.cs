@@ -21,11 +21,6 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
             get { return projectFile.Name; }
         }
 
-        public override Bitmap Icon
-        {
-            get { return Resources.test; }
-        }
-
         public TestNode(ProjectFile projectFile, ITestController testController,
             ITestFileManager testFileManager)
         {

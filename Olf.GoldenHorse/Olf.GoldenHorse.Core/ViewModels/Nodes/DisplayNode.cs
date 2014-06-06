@@ -8,7 +8,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
     public abstract class DisplayNode : IDisplayNode
     {
         public abstract string Name { get; }
-        public virtual Bitmap Icon { get { return null; } }
+        public virtual string Type{get { return this.GetType().Name.Replace("Node", ""); }}
 
         public ObservableCollection<IDisplayNode> Children { get; protected set; }
 

@@ -1,5 +1,8 @@
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Expression.Interactivity.Core;
@@ -18,31 +21,23 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private readonly IRecorder recorder;
         private readonly IRecordingController recordingController;
         public string CurrentTest { get; protected set; }
+        public IValidationListItemViewModel[] ValidationList { get; protected set; }
+
         public ICommand RecordCommand { get; protected set; }
         public ICommand PauseCommand { get; protected set; }
         public ICommand StopCommand { get; protected set; }
-        public ICommand AssertCommand { get; protected set; }
 
-        public RecorderViewModel(IRecorder recorder, IRecordingController recordingController)
+        public RecorderViewModel(IRecorder recorder,
+            IEnumerable<IValidationListItemViewModel> validationList,
+            IRecordingController recordingController)
         {
             this.recorder = recorder;
             this.recordingController = recordingController;
+            ValidationList = validationList.ToArray();
 
             RecordCommand = new DelegateCommand(ExecuteRecordCommand, CanExecuteRecordCommand);
             StopCommand = new DelegateCommand(ExecuteStopCommand, CanExecuteStopCommand);
             PauseCommand = new DelegateCommand(ExecutePauseCommand, CanExecutePauseCommand);
-            AssertCommand = new DelegateCommand(ExecuteAssertCommand, CanExecuteAssertCommand);
-        }
-
-        protected virtual bool CanExecuteAssertCommand()
-        {
-            return true;
-        }
-
-        protected virtual void ExecuteAssertCommand()
-        {
-            OnScreenValidation onScreenValidation = new OnScreenValidation();
-            recordingController.DoAssert();
         }
 
         protected virtual bool CanExecutePauseCommand()

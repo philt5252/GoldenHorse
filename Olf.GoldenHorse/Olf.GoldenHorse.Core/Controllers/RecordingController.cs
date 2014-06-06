@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using MouseKeyboardActivityMonitor;
 using MouseKeyboardActivityMonitor.WinApi;
+using Olf.GoldenHorse.Core.Models;
 using Olf.GoldenHorse.Core.Services;
 using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.GoldenHorse.Foundation.DataAccess;
@@ -36,6 +37,7 @@ namespace Olf.GoldenHorse.Core.Controllers
         private readonly IAppController appController;
         private readonly ITestController testController;
         private readonly ITestItemEditorViewModelFactory testItemEditorViewModelFactory;
+        private readonly ITestItemEditorWindowFactory testItemEditorWindowFactory;
         private IWindow recordingWindow;
         private IRecorder recorder;
 
@@ -46,7 +48,8 @@ namespace Olf.GoldenHorse.Core.Controllers
             IProjectFileManager projectFileManager, 
             IAppController appController,
             ITestController testController,
-            ITestItemEditorViewModelFactory testItemEditorViewModelFactory)
+            ITestItemEditorViewModelFactory testItemEditorViewModelFactory,
+            ITestItemEditorWindowFactory testItemEditorWindowFactory)
         {
             this.recordWindowFactory = recordWindowFactory;
             this.recorderViewModelFactory = recorderViewModelFactory;
@@ -56,6 +59,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             this.appController = appController;
             this.testController = testController;
             this.testItemEditorViewModelFactory = testItemEditorViewModelFactory;
+            this.testItemEditorWindowFactory = testItemEditorWindowFactory;
         }
 
         public void ShowRecord()
@@ -88,10 +92,16 @@ namespace Olf.GoldenHorse.Core.Controllers
             testController.ShowTest(recorder.CurrentTest);
         }
 
-        public void DoAssert()
+        public void DoValidation(OnScreenValidation onScreenValidation)
         {
+            IWindow testItemEditorWindow = testItemEditorWindowFactory.Create();
             ITestItemEditorViewModel testItemEditorViewModel = testItemEditorViewModelFactory.Create();
 
+            testItemEditorWindow.DataContext = testItemEditorViewModel;
+
+            testItemEditorWindow.ShowDialog();
+
+            return;
 
             Window window = new Window();
             window.Height = SystemParameters.VirtualScreenHeight;

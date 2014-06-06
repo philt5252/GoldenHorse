@@ -1,7 +1,6 @@
 ﻿using System.Xml.Serialization;
-using Olf.GoldenHorse.Foundation.Models;
 
-namespace Olf.GoldenHorse.Core.Models
+namespace Olf.GoldenHorse.Foundation.Models
 {
     public class OnScreenAction : TestItem
     {

@@ -96,6 +96,8 @@
     <Compile Include="Models\LogItem.cs" />
     <Compile Include="Models\LogItemCategory.cs" />
     <Compile Include="Models\MappedItem.cs" />
+    <Compile Include="Models\OnScreenAction.cs" />
+    <Compile Include="Models\OnScreenValidation.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\OperationParameter.cs" />
     <Compile Include="Models\OperationParameterValue.cs" />

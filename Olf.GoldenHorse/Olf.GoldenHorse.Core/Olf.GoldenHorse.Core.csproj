@@ -116,7 +116,6 @@
     <Compile Include="Helpers\RegionHelpers.cs" />
     <Compile Include="Models\ControlHighlightAdornment.cs" />
     <Compile Include="Models\ValidateTextAtPointOperation.cs" />
-    <Compile Include="Models\OnScreenValidation.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -125,7 +124,6 @@
     <Compile Include="Models\ClickOperation.cs" />
     <Compile Include="Models\KeyboardOperation.cs" />
     <Compile Include="Models\LeftClickOperation.cs" />
-    <Compile Include="Models\OnScreenAction.cs" />
     <Compile Include="Models\RightClickOperation.cs" />
     <Compile Include="Models\ClickAdornment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

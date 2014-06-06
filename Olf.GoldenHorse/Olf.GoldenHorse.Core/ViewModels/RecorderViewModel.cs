@@ -1,8 +1,10 @@
 
 using System;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Expression.Interactivity.Core;
 using Microsoft.Practices.Prism.Commands;
+using Olf.GoldenHorse.Core.Models;
 using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.GoldenHorse.Foundation.DataAccess;
 using Olf.GoldenHorse.Foundation.Models;
@@ -39,6 +41,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         protected virtual void ExecuteAssertCommand()
         {
+            OnScreenValidation onScreenValidation = new OnScreenValidation();
             recordingController.DoAssert();
         }
 

@@ -71,6 +71,9 @@
     <Reference Include="UIAutomationClient" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WindowsInput">
+      <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AppController.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="Controllers\RecordingController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Factories\Services\RecorderFactory.cs" />
+    <Compile Include="Factories\ViewModels\EditParameterViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\LogDetailsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\LogItemViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\LogMainShellViewModelFactory.cs" />
@@ -99,15 +103,20 @@
     <Compile Include="Factories\ViewModels\RecentFileViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\RecorderViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\StartPageViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\TestDescriptionEditorViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestDetailsViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\TestItemEditorViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestMainShellViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\TestObjectEditorViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\TestOperationEditorViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestOperationsViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\TestParameterEditorViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestScreenshotsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestShellViewModelFactory.cs" />
     <Compile Include="Helpers\RegionHelpers.cs" />
     <Compile Include="Models\ControlHighlightAdornment.cs" />
     <Compile Include="Models\ValidateTextAtPointOperation.cs" />
-    <Compile Include="Models\Validation.cs" />
+    <Compile Include="Models\OnScreenValidation.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -122,6 +131,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ExternalAppInfoManager.cs" />
     <Compile Include="Services\Recorder.cs" />
+    <Compile Include="ViewModels\EditParameterViewModel.cs" />
     <Compile Include="ViewModels\LogDetailsViewModel.cs" />
     <Compile Include="ViewModels\LogItemViewModel.cs" />
     <Compile Include="ViewModels\LogMainShellViewModel.cs" />
@@ -143,10 +153,15 @@
     <Compile Include="ViewModels\RecentFileViewModel.cs" />
     <Compile Include="ViewModels\RecorderViewModel.cs" />
     <Compile Include="ViewModels\StartPageViewModel.cs" />
+    <Compile Include="ViewModels\TestDescriptionEditorViewModel.cs" />
     <Compile Include="ViewModels\TestDetailsViewModel.cs" />
+    <Compile Include="ViewModels\TestItemEditorViewModel.cs" />
     <Compile Include="ViewModels\TestItemViewModelBase.cs" />
     <Compile Include="ViewModels\TestMainShellViewModel.cs" />
+    <Compile Include="ViewModels\TestObjectEditorViewModel.cs" />
+    <Compile Include="ViewModels\TestOperationEditorViewModel.cs" />
     <Compile Include="ViewModels\TestOperationsViewModel.cs" />
+    <Compile Include="ViewModels\TestParameterEditorViewModel.cs" />
     <Compile Include="ViewModels\TestScreenshotsViewModel.cs" />
     <Compile Include="ViewModels\TestShellViewModel.cs" />
   </ItemGroup>

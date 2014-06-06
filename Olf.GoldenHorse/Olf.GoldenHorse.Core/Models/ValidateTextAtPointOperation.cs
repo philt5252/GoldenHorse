@@ -1,8 +1,13 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Threading;
+using System.Windows;
+using WindowsInput;
+using WindowsInput.Native;
 using Olf.Automation;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
 using TestStack.White.UIItems;
+using Point = System.Drawing.Point;
 
 namespace Olf.GoldenHorse.Core.Models
 {
@@ -11,7 +16,6 @@ namespace Olf.GoldenHorse.Core.Models
         private OperationParameter textParam { get { return Parameters[0]; } }
         private OperationParameter clickXParam { get { return Parameters[1]; } }
         private OperationParameter clickYParam { get { return Parameters[2]; } }
-
 
         public override string Name
         {
@@ -91,15 +95,72 @@ namespace Olf.GoldenHorse.Core.Models
             IUIItem uiItem = AppPlaybackService.GetControl(process, window, control);
             Point clickPoint = new Point(X,Y);
             Point globalPoint = new Point((int)uiItem.Bounds.X + clickPoint.X, (int)uiItem.Bounds.Y + clickPoint.Y);
+            
+            Screenshot screenshot = CreateScreenshot(log);
 
             Cursor.LeftClick(globalPoint);
-            Screenshot screenshot = CreateScreenshot(log);
+            string actualText = CopyText();
+            string expectedText = textParam.GetValue();
+
+            if(!Equals(actualText, expectedText))
+            {
+                string error = "Expected \"{0}\" but value was \"{1}\"";
+                error = string.Format(error, expectedText, actualText);
+
+                log.CreateLogItem(LogItemCategory.Error, error, screenshot);
+            }
+
+            
 
             string description = "Validated that the text at ({0},{1}) on {2} is equal to \"{3}\"";
             description = string.Format(description, X, Y, control.Name, Text);
             
-
             log.CreateLogItem(LogItemCategory.Validation, description, screenshot);
+        }
+
+        private string CopyText()
+        {
+            InputSimulator simulator = new InputSimulator();
+            simulator.Keyboard.KeyDown(VirtualKeyCode.HOME);
+
+            Thread.Sleep(200);
+            simulator.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+            simulator.Keyboard.KeyDown(VirtualKeyCode.END);
+            simulator.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+
+            Thread.Sleep(100);
+            simulator.Keyboard.KeyDown(VirtualKeyCode.CONTROL);
+            simulator.Keyboard.KeyDown(VirtualKeyCode.VK_C);
+            simulator.Keyboard.KeyUp(VirtualKeyCode.CONTROL);
+
+
+            Thread.Sleep(100);
+            int count = 0;
+            string clipboardText = "{Clipboard Text could not be retreived}";
+            int milliseconds = 200;
+            DateTime dateTime = DateTime.Now;
+            do
+            {
+                if (DateTime.Now - dateTime > TimeSpan.FromSeconds(10))
+                {
+                    throw new Exception("Could not access the clipboard");
+                }
+                try
+                {
+                    IDataObject dataObject = Clipboard.GetDataObject();
+                    object data = dataObject.GetData(typeof(string));
+                    return clipboardText = data.ToString();
+                }
+                catch (Exception ex)
+                {
+                    //count++;
+                    Thread.Sleep(milliseconds);
+                    milliseconds += 100;
+                }
+
+
+            } while (clipboardText.Equals("{Clipboard Text could not be retreived}"));
+            return clipboardText;
         }
     }
 }

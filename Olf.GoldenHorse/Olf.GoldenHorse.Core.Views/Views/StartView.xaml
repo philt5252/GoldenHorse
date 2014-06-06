@@ -44,7 +44,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="200*"></RowDefinition>
-            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="DimGray">
             <StackPanel Margin="6,0,0,0">
@@ -97,7 +97,8 @@
                     <Button Content="New Project Suite" FontWeight="DemiBold" FontSize="16" Height="35" Width="150" 
                             Command="{Binding NewProjectSuiteCommand}" 
                         Margin="10,10,10,0" Background="DimGray" Foreground="White" />
-                    <Button Content="Open Project Suite" FontWeight="DemiBold" FontSize="16" Height="35" Width="150" Command="{Binding NewProjectSuiteCommand}" 
+                    <Button Content="Open Project Suite" FontWeight="DemiBold" FontSize="16" Height="35" Width="150" 
+                            Command="{Binding OpenProjectSuiteCommand}" 
                         Margin="10,10,10,0" Background="DimGray" Foreground="White" ></Button>
                 </StackPanel>
             </DockPanel>

@@ -36,17 +36,17 @@
             <MenuItem Header="_FILE" >
                 <MenuItem Header="_New Project Suite" Command="{Binding NewProjectSuiteCommand}">
                     <MenuItem.Icon>
-                        <Image Height="15" Width="15" Source="../Images/NewFolderHS.png"></Image>
+                        <Image Height="15" Width="15" Source="../WhiteImages/AddModule_368.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Open Project Suite" Command="{Binding OpenProjectSuiteCommand}">
                     <MenuItem.Icon>
-                        <Image Height="15" Width="15" Source="../Images/NewDocumentHS.png"></Image>
+                        <Image Height="15" Width="15" Source="../WhiteImages/AddControl_371.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Save Project Suite" Command="{Binding SaveProjectSuiteCommand}">
                     <MenuItem.Icon>
-                        <Image Height="15" Width="15" Source="../Images/saveHS.png"></Image>
+                        <Image Height="15" Width="15" Source="../WhiteImages/Save_6530.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>

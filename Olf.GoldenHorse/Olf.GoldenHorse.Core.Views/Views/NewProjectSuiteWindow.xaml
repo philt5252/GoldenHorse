@@ -32,7 +32,15 @@
                 <Label Background="Transparent" Foreground="White" Content ="Location: " ></Label>
                 <TextBox Background="Transparent" Foreground="White" Text="{Binding Location, UpdateSourceTrigger=PropertyChanged}" Height ="20" Width="200"></TextBox>
                 <Button Margin="1,0,0,0"  Width="35" FontSize="10"  Height="35" Command="{Binding BrowseCommand}">
-                    <Ellipse></Ellipse>
+                    <!--<Button.Template>
+                        <ControlTemplate>
+                            <Ellipse Height="30" Width="30">
+                                <Ellipse.Style>
+                                    <Template
+                                </Ellipse.Style>
+                            </Ellipse>
+                        </ControlTemplate>
+                    </Button.Template>-->
                 </Button>
             </WrapPanel>
         </StackPanel>

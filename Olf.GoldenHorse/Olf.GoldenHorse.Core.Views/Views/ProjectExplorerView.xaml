@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
              Tag="Project Explorer">
     <Grid>
+        
         <TreeView Name="projectExplorerTvw" ItemsSource="{Binding Nodes}">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
@@ -17,12 +18,12 @@
                                 <i:InvokeCommandAction Command="{Binding Path=DefaultCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>-->
-                        <Image Source="Images\newProjectSuite.png" Margin="5,0,0,0"  Width="12" Height="12"></Image>
+                        <Image Source="..\Images\newProjectSuite.png" Margin="5,0,0,0"  Width="12" Height="12"></Image>
                         <TextBlock Margin="5,3,5,3" Text="{Binding Name}"  Foreground="Black">  
                         </TextBlock>         
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
-        </TreeView>    
+        </TreeView>
     </Grid>
 </UserControl>

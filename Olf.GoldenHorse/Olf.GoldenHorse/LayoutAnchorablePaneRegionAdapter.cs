@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Data;
+using AvalonDock.Layout;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
-using Xceed.Wpf.AvalonDock.Layout;
 
 namespace Olf.GoldenHorse
 {
@@ -73,9 +73,10 @@ namespace Olf.GoldenHorse
         {
             LayoutAnchorable layoutAnchorable = new LayoutAnchorable();
             layoutAnchorable.IsSelected = true;
-            Binding myBinding = new Binding("Tag");
-            myBinding.Source = newView;
-            BindingOperations.SetBinding(layoutAnchorable, LayoutAnchorable.TitleProperty, myBinding);
+            
+            //Binding myBinding = new Binding("Tag");
+            //myBinding.Source = newView;
+            //BindingOperations.SetBinding(layoutAnchorable, LayoutAnchorable.TitleProperty, myBinding);
 
             layoutAnchorable.Content = newView;
             anchorableDict[newView] = layoutAnchorable;

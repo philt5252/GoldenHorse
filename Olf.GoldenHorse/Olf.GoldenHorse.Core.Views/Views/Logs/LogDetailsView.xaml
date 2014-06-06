@@ -47,11 +47,16 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Height="30">
-            <CheckBox  Content="Error" Foreground="Black" IsChecked="{Binding ShowErrors}" Margin="5,5,10,5"></CheckBox>
-            <CheckBox  Content="Warning" Foreground="Black" IsChecked="{Binding ShowWarnings}" Margin="5,5,10,5"></CheckBox>
-            <CheckBox  Content="Event" Foreground="Black" IsChecked="{Binding ShowEvents}" Margin="5,5,10,5"></CheckBox>
-            <CheckBox  Content="Message" Foreground="Black" IsChecked="{Binding ShowMessages}" Margin="5,5,10,5"></CheckBox>
-            <CheckBox  Content="Checkpoint" Foreground="Black" IsChecked="{Binding ShowCheckpoints}" Margin="5,5,10,5"></CheckBox>
+            <Image Width="25" Height="25"  Margin="0,-3,-2,0"  Source="../../Images/SeriousWarning.png"></Image>
+            <CheckBox  Content="Error" Foreground="White" IsChecked="{Binding ShowErrors}" Margin="5,5,10,5"></CheckBox>
+            <Image Width="25" Height="25" Margin="0,-3,-2,0" Source="../../Images/Warning.png"></Image>
+            <CheckBox  Content="Warning" Foreground="White" IsChecked="{Binding ShowWarnings}" Margin="5,5,10,5"></CheckBox>
+            <Image Width="20" Height="20"  Margin="0,-3,-2,0" Source="../../Images/Event.png"></Image>
+            <CheckBox  Content="Event" Foreground="White" IsChecked="{Binding ShowEvents}" Margin="5,5,10,5"></CheckBox>
+            <Image Width="20" Height="20"  Margin="0,-3,-2,0" Source="../../Images/SendInstantMessage_32x32.png"></Image>
+            <CheckBox  Content="Message" Foreground="White" IsChecked="{Binding ShowMessages}" Margin="5,5,10,5"></CheckBox>
+            <Image Width="25" Height="25" Margin="0,-3,-2,0" Source="../../Images/Validate.png"></Image>
+            <CheckBox  Content="Validations" Foreground="White" IsChecked="{Binding ShowCheckpoints}" Margin="5,5,10,5"></CheckBox>
         </StackPanel>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
             <customControls:TreeListView  AllowsColumnReorder="True" ItemsSource="{Binding LogItems}"
@@ -108,7 +113,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                    <Image Name="logScreenshot" Width="15" Height="15" Visibility="Collapsed" />
+                                    <Image Name="logScreenshot" Width="15" Height="15" Visibility="Collapsed" Source="../../Images/Monitor.png" />
                                 </Border>
                                 <DataTemplate.Triggers>
                                     <DataTrigger Binding="{Binding HasScreenshot}" Value="True">

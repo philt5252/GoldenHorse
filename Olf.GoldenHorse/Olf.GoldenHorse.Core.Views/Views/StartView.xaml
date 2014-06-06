@@ -5,22 +5,50 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <StackPanel Width="200" HorizontalAlignment="Left">
-            <Button Width="200" Height="50" Background="White" BorderBrush="White">
-                <Button.Template>
-                    <ControlTemplate>
-                        <TextBlock Text="New Project Suite" FontSize="24" Foreground="CornflowerBlue"></TextBlock>
+    <UserControl.Resources>
+       <LinearGradientBrush x:Key="BackgroundBrush" StartPoint="0,1" EndPoint="1,1">
+           <GradientStop Color="White" Offset="0"></GradientStop>
+            <GradientStop Color="#FFE3BB4F" Offset="1.9"></GradientStop>
+        </LinearGradientBrush>
+
+        <Style x:Key="myStyle" TargetType="Label">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                   Value="True">
+                                <Setter Property="Foreground"
+                    Value="Blue" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                        <ContentPresenter />
                     </ControlTemplate>
-                </Button.Template>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Width="200" HorizontalAlignment="Left" Grid.Row="1">
+            
+            <Label Content="New Project Suite" FontSize="24" Margin="5,10,0,10" Background="Transparent" 
+                               Foreground="White" Style="{StaticResource myStyle}">
+            </Label>
+
+            <Button Width="200" Height="50" Background="Transparent" BorderBrush="Transparent">
+                <Button.Content>
+                        <TextBlock Text="Open Project Suite" FontSize="24" Background="Transparent" 
+                                   Foreground="White"></TextBlock>
+                </Button.Content>
             </Button>
-            <Button Width="200" Height="50" Background="White" BorderBrush="White">
-                <Button.Template>
-                    <ControlTemplate>
-                        <TextBlock Text="Open Project Suite" FontSize="24" Foreground="CornflowerBlue"></TextBlock>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+            <TextBlock Margin="0,10,0,0" Text="---------Most Recent---------------------" FontSize="16" 
+                       Foreground="White"></TextBlock>
+            <ListBox ItemsSource="{Binding MostRecent}" Foreground="White" 
+                     FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></ListBox>
         </StackPanel>
         
             

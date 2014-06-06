@@ -48,6 +48,7 @@
     <Compile Include="Factories\IProjectExplorerViewFactory.cs" />
     <Compile Include="Factories\IProjectWorkspaceViewFactory.cs" />
     <Compile Include="Factories\IRecordWindowFactory.cs" />
+    <Compile Include="Factories\IStartViewFactory.cs" />
     <Compile Include="Factories\ITestShellViewFactory.cs" />
     <Compile Include="Factories\ITestMainShellViewFactory.cs" />
     <Compile Include="IViewWithDataContext.cs" />

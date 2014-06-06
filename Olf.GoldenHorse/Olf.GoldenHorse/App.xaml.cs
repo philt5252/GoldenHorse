@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Autofac;
+using AvalonDock.Layout;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.Regions.Behaviors;
 using Microsoft.Practices.ServiceLocation;
@@ -15,7 +16,6 @@ using Olf.GoldenHorse.Core.DataAccess.Autofac;
 using Olf.GoldenHorse.Core.Views.Autofac;
 using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.Prism.Autofac;
-using Xceed.Wpf.AvalonDock.Layout;
 
 namespace Olf.GoldenHorse
 {

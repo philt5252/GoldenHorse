@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
-             xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
+             xmlns:xcad="http://avalondock.codeplex.com"
              Tag="{Binding TestName}" >
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary  Source="pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2010;component/Brushes.xaml" />
+                <ResourceDictionary  Source="pack://application:,,,/AvalonDock.Themes.VS2010;component/Brushes.xaml" />
+                <ResourceDictionary  Source="pack://application:,,,/AvalonDock.Themes.VS2010;component/Theme.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>

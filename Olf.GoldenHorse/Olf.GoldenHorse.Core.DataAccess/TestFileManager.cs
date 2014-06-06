@@ -24,7 +24,8 @@ namespace Olf.GoldenHorse.Core.DataAccess
             foreach (string assemblyFile in Directory.EnumerateFiles(fileInfo.Directory.FullName)
                 .Where(f => f.EndsWith(".exe") || f.EndsWith(".dll")))
             {
-                if (assemblyFile.Contains("Olf.Common.Extensions"))
+                if (assemblyFile.Contains("Olf.Common.Extensions")
+                    || assemblyFile.Contains("Avalon"))
                     continue;
 
                 types.AddRange(Assembly.LoadFile(assemblyFile).GetTypes()

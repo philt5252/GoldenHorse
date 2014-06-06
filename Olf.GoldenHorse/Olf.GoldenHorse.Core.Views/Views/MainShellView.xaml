@@ -1,0 +1,169 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Olf.GoldenHorse.Core.Views"
+             xmlns:regions="http://www.codeplex.com/CompositeWPF"
+             xmlns:test="clr-namespace:AvalonDock.Themes;assembly=AvalonDock.Themes.VS2010"
+             xmlns:avalondock="http://avalondock.codeplex.com"
+             x:Class="Olf.GoldenHorse.Core.Views.MainShellView" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary  Source="pack://application:,,,/AvalonDock.Themes.VS2010;component/Brushes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor1}">
+        <Grid.Resources>
+            <Style TargetType="MenuItem" x:Key="{x:Type MenuItem}">
+                <Setter Property="Background" Value="{StaticResource brush1}"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="500*"/>
+            <RowDefinition Height="26"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Background="{StaticResource brush1}">
+            
+            <MenuItem Header="_FILE" >
+                <MenuItem Header="_New Project Suite" Command="{Binding NewProjectSuiteCommand}">
+                    <MenuItem.Icon>
+                        <Image Height="15" Width="15" Source="../Images/NewFolderHS.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Open Project Suite" Command="{Binding OpenProjectSuiteCommand}">
+                    <MenuItem.Icon>
+                        <Image Height="15" Width="15" Source="../Images/NewDocumentHS.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Save Project Suite" Command="{Binding SaveProjectSuiteCommand}">
+                    <MenuItem.Icon>
+                        <Image Height="15" Width="15" Source="../Images/saveHS.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_EDIT">
+                <MenuItem Header="_Cut" Command="{Binding CutCommand}">
+                    <MenuItem.Icon>
+                        <Image Height="15" Width="15" Source="../Images/Cut.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Paste" Command="{Binding PasteCommand}">
+                    <MenuItem.Icon>
+                        <Image Height="15" Width="15" Source="../Images/Paste.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Cop_y" Command="{Binding CopyCommand}">
+                    <MenuItem.Icon>
+                        <Image Height="15" Width="15" Source="../Images/Copy.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Delete" Command="{Binding DeleteCommand}">
+                    <MenuItem.Icon>
+                        <Image Height="15" Width="15" Source="../Images/Delete.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+                
+            <MenuItem Header="_VIEW">
+                <MenuItem Header="Project Explorer"></MenuItem>
+                <MenuItem Header="Toolbar"></MenuItem>
+                <MenuItem Header="Screenshots"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_DEBUG"></MenuItem>
+            <MenuItem Header="_TOOLS"></MenuItem>
+            <MenuItem Header="_HELP"></MenuItem>
+        </Menu>
+        <DockPanel Grid.Row="1" Background="{StaticResource brush1}" >
+            <ToolBarTray Background="{StaticResource brush1}" >
+                <ToolBar Background="{StaticResource brush1}" Loaded="ToolBar_Loaded">
+                    <Button Height="25" Width="25" Command="{Binding NewProjectSuiteCommand}" ToolTip="New Project Suite" Background="{StaticResource brush1}" >
+                    <Image Height="15" Width="15" Source="../WhiteImages/AddModule_368.png"></Image>
+                </Button>
+                    <Button Height="25" Width="25" Command="{Binding NewProjectCommand}" ToolTip="New Project" Background="{StaticResource brush1}" >
+                        <Image Height="15" Width="15" Source="../WhiteImages/AddControl_371.png"></Image>
+                </Button>
+                    <Button Height="25" Width="25" Command="{Binding SaveAllCommand}" ToolTip="Save All" Background="{StaticResource brush1}" >
+                        <Image Height="15" Width="15" Source="../WhiteImages/folder_Open_32xLG.png"></Image>
+                    </Button>
+                    <Button  Height="25" Width="25" Command="{Binding SaveCommand}" ToolTip="Save" Background="{StaticResource brush1}" >
+                        <Image Height="15" Width="15" Source="../WhiteImages/Save_6530.png"></Image>
+                </Button>
+                    <Button Height="25" Width="25" Command="{Binding SaveAllCommand}" ToolTip="Save All" Background="{StaticResource brush1}" >
+                        <Image Height="15" Width="15" Source="../WhiteImages/Saveall_6518.png"></Image>
+                </Button>
+                    
+             
+                    
+                </ToolBar>
+            </ToolBarTray>
+            <ToolBarTray Background="{StaticResource brush1}">
+                <ToolBar Background="{StaticResource brush1}" Loaded="ToolBar_Loaded">
+                    <Button Height="25" Width="25" Command="{Binding CopyCommand}" ToolTip="Copy" Background="{StaticResource brush1}" >
+                        <Image Source="../Images/Copy.png"></Image>
+                    </Button>
+                    <Button Height="25" Width="25" Command="{Binding CutCommand}" ToolTip="Cut" Background="{StaticResource brush1}" >
+                        <Image Source="../Images/Cut.png"></Image>
+                    </Button>
+                    <Button Height="25" Width="25" Command="{Binding PasteCommand}" ToolTip="Paste" Background="{StaticResource brush1}" >
+                        <Image Source="../Images/Paste.png"></Image>
+                    </Button>
+                    <Button Height="25" Width="25" Command="{Binding ToolBarCommand}" ToolTip="Toolbar" Background="{StaticResource brush1}" >
+                        <Image Source="../Images/Repair.png"></Image>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+            <ToolBarTray Background="{StaticResource brush1}">
+                <ToolBar Background="{StaticResource brush1}" Loaded="ToolBar_Loaded">
+                    <Button Height="25" Width="25" Command="{Binding RecordCommand}" ToolTip="Record"  Background="{StaticResource brush1}" >
+                        <Ellipse Height="12" Width="12">
+                            <Ellipse.Fill>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
+                                    <GradientStop Color="DarkRed" Offset="0" />
+                                    <GradientStop Color="Red" Offset="1" />
+                                </LinearGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                    </Button>
+                    <Button Height="25" Width="25" Command="{Binding ToolBarCommand}" ToolTip="Play" Background="{StaticResource brush1}" >
+                        <Image Source="../Images/Run.png"></Image>
+                    </Button>
+                    <Button Height="25" Width="25" Command="{Binding ToolBarCommand}" ToolTip="Pause" Background="{StaticResource brush1}" >
+                        <Image Source="../Images/Pause.png"></Image>
+                    </Button>
+                    <Button Height="25" Width="25" Command="{Binding ToolBarCommand}" ToolTip="Stop" Background="{StaticResource brush1}" >
+                        <Rectangle Height="10" Width="10">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
+                                    <GradientStop Color="White" Offset="1" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+
+            
+
+        </DockPanel>
+        <avalondock:DockingManager Grid.Row="2">
+            <avalondock:DockingManager.Theme>
+                <test:VS2010Theme></test:VS2010Theme>
+            </avalondock:DockingManager.Theme>
+            <avalondock:LayoutRoot>
+                <avalondock:LayoutPanel>
+                    <avalondock:LayoutDocumentPane x:Name="layoutDocumentPane" regions:RegionManager.RegionName="MainWorkspaceViewRegion" />
+                </avalondock:LayoutPanel>
+            </avalondock:LayoutRoot>
+        </avalondock:DockingManager>
+
+    </Grid>
+</UserControl>

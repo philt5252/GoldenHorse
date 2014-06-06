@@ -3,15 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:logs="clr-namespace:Olf.GoldenHorse.Core.Views.Views.Logs"
+             xmlns:avalondock="http://avalondock.codeplex.com"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary  Source="pack://application:,,,/Xceed.Wpf.AvalonDock.Themes.VS2010;component/Brushes.xaml" />
+                <ResourceDictionary  Source="pack://application:,,,/AvalonDock.Themes.VS2010;component/Brushes.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -20,11 +20,11 @@
     <Grid>
         <Grid.Resources>
 
-            <Style x:Key="MyCustomDocumentPaneControlStyle" TargetType="{x:Type xcad:LayoutDocumentPaneControl}">
+            <Style x:Key="MyCustomDocumentPaneControlStyle" TargetType="{x:Type avalondock:LayoutDocumentPaneControl}">
                 <Setter Property="TabStripPlacement" Value="Top"/>
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type xcad:LayoutDocumentPaneControl}">
+                        <ControlTemplate TargetType="{x:Type avalondock:LayoutDocumentPaneControl}">
                             <Grid ClipToBounds="true" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
@@ -37,27 +37,27 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <xcad:DocumentPaneTabPanel x:Name="HeaderPanel" Grid.Column="0" IsItemsHost="true" Margin="2,2,2,0" Grid.Row="0" KeyboardNavigation.TabIndex="1"/>
-                                    <xcad:DropDownButton
+                                    <avalondock:DocumentPaneTabPanel x:Name="HeaderPanel" Grid.Column="0" IsItemsHost="true" Margin="2,2,2,0" Grid.Row="0" KeyboardNavigation.TabIndex="1"/>
+                                    <avalondock:DropDownButton
                             x:Name="MenuDropDownButton"
                             Style="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}"
                             Focusable="False"
                             Grid.Column="1">
-                                        <xcad:DropDownButton.DropDownContextMenu>
-                                            <xcad:ContextMenuEx
+                                        <avalondock:DropDownButton.DropDownContextMenu>
+                                            <avalondock:ContextMenuEx
                                     ItemsSource="{Binding Model.ChildrenSorted, RelativeSource={RelativeSource TemplatedParent}}">
-                                                <xcad:ContextMenuEx.ItemContainerStyle>
-                                                    <Style TargetType="{x:Type xcad:MenuItemEx}" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                                <avalondock:ContextMenuEx.ItemContainerStyle>
+                                                    <Style TargetType="{x:Type avalondock:MenuItemEx}" BasedOn="{StaticResource {x:Type MenuItem}}">
                                                         <Setter Property="HeaderTemplate" Value="{Binding Path=Root.Manager.DocumentPaneMenuItemHeaderTemplate}"/>
                                                         <Setter Property="HeaderTemplateSelector" Value="{Binding Path=Root.Manager.DocumentPaneMenuItemHeaderTemplateSelector}"/>
                                                         <Setter Property="IconTemplate" Value="{Binding Path=Root.Manager.IconContentTemplate}"/>
                                                         <Setter Property="IconTemplateSelector" Value="{Binding Path=Root.Manager.IconContentTemplateSelector}"/>
                                                     </Style>
-                                                </xcad:ContextMenuEx.ItemContainerStyle>
-                                            </xcad:ContextMenuEx>
-                                        </xcad:DropDownButton.DropDownContextMenu>
+                                                </avalondock:ContextMenuEx.ItemContainerStyle>
+                                            </avalondock:ContextMenuEx>
+                                        </avalondock:DropDownButton.DropDownContextMenu>
                                         <Image Source="/AvalonDock;component/Images/PinDocMenu.png"/>
-                                    </xcad:DropDownButton>
+                                    </avalondock:DropDownButton>
                                 </Grid>
                                 <Border x:Name="ContentPanel" 
                             VerticalAlignment="Stretch" 
@@ -97,7 +97,7 @@
                 <Setter Property="ItemTemplate">
                     <Setter.Value>
                         <DataTemplate>
-                            <xcad:LayoutDocumentTabItem Model="{Binding}"/>
+                            <avalondock:LayoutDocumentTabItem Model="{Binding}"/>
                         </DataTemplate>
                     </Setter.Value>
 
@@ -105,7 +105,7 @@
                 <Setter Property="ContentTemplate">
                     <Setter.Value>
                         <DataTemplate>
-                            <xcad:LayoutDocumentControl Model="{Binding}"/>
+                            <avalondock:LayoutDocumentControl Model="{Binding}"/>
                         </DataTemplate>
                     </Setter.Value>
                 </Setter>
@@ -113,24 +113,24 @@
         </Grid.Resources>
 
 
-        <xcad:DockingManager Grid.Column="0" Height="Auto" Width="Auto" VerticalAlignment="Stretch" 
+        <avalondock:DockingManager Grid.Column="0" Height="Auto" Width="Auto" VerticalAlignment="Stretch" 
                              DocumentPaneControlStyle="{StaticResource MyCustomDocumentPaneControlStyle}">
-            <xcad:LayoutRoot>
-                <xcad:LayoutPanel>
-                    <xcad:LayoutAnchorablePane  DockWidth="160" DockHeight="300*" x:Name="TestOperationsPane">
-                        <xcad:LayoutAnchorable>
+            <avalondock:LayoutRoot>
+                <avalondock:LayoutPanel>
+                    <avalondock:LayoutAnchorablePane  DockWidth="160" DockHeight="300*" x:Name="TestOperationsPane">
+                        <avalondock:LayoutAnchorable>
                             <logs:LogOperationsView x:Name="logOperationsView" ></logs:LogOperationsView>
-                        </xcad:LayoutAnchorable>
-                    </xcad:LayoutAnchorablePane>
-                    <xcad:LayoutDocumentPane>
-                        <xcad:LayoutDocument >
+                        </avalondock:LayoutAnchorable>
+                    </avalondock:LayoutAnchorablePane>
+                    <avalondock:LayoutDocumentPane>
+                        <avalondock:LayoutDocument >
                             <logs:LogDetailsView x:Name="logDetailsView"></logs:LogDetailsView>
-                        </xcad:LayoutDocument>
-                    </xcad:LayoutDocumentPane>
+                        </avalondock:LayoutDocument>
+                    </avalondock:LayoutDocumentPane>
 
-                </xcad:LayoutPanel>
-            </xcad:LayoutRoot>
-        </xcad:DockingManager>
+                </avalondock:LayoutPanel>
+            </avalondock:LayoutRoot>
+        </avalondock:DockingManager>
 
     </Grid>
 </UserControl>

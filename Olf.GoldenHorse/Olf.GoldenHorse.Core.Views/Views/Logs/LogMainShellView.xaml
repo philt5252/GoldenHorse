@@ -3,28 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:logs="clr-namespace:Olf.GoldenHorse.Core.Views.Views.Logs"
-              Tag="{Binding LogName}"
+             xmlns:avalondock="http://avalondock.codeplex.com"
+             Tag="{Binding LogName}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <xcad:DockingManager>
-            <xcad:LayoutRoot>
-                <xcad:LayoutPanel Orientation="Vertical">
-                    <xcad:LayoutDocumentPane x:Name="LogShellPane"  DockHeight="300*">
-                        <xcad:LayoutDocument >
+        <avalondock:DockingManager>
+            <avalondock:LayoutRoot>
+                <avalondock:LayoutPanel Orientation="Vertical">
+                    <avalondock:LayoutDocumentPane x:Name="LogShellPane"  DockHeight="300*">
+                        <avalondock:LayoutDocument >
                             <logs:LogShellView x:Name="logShellView"></logs:LogShellView>
-                        </xcad:LayoutDocument>
-                    </xcad:LayoutDocumentPane>
-                    <xcad:LayoutAnchorablePane DockHeight="200">
-                        <xcad:LayoutAnchorable>
+                        </avalondock:LayoutDocument>
+                    </avalondock:LayoutDocumentPane>
+                    <avalondock:LayoutAnchorablePane DockHeight="200">
+                        <avalondock:LayoutAnchorable>
                             <logs:LogScreenshotsView x:Name="logScreenshotsView" ></logs:LogScreenshotsView>
-                        </xcad:LayoutAnchorable>
-                    </xcad:LayoutAnchorablePane>
-                </xcad:LayoutPanel>
-            </xcad:LayoutRoot>
-        </xcad:DockingManager>
+                        </avalondock:LayoutAnchorable>
+                    </avalondock:LayoutAnchorablePane>
+                </avalondock:LayoutPanel>
+            </avalondock:LayoutRoot>
+        </avalondock:DockingManager>
     </Grid>
 </UserControl>

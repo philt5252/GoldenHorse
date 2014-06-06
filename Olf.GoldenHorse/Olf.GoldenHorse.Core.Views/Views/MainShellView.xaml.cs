@@ -11,10 +11,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AvalonDock.Layout;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
 using Olf.GoldenHorse.Foundation.Views;
-using Xceed.Wpf.AvalonDock.Layout;
 
 namespace Olf.GoldenHorse.Core.Views
 {
@@ -35,6 +35,16 @@ namespace Olf.GoldenHorse.Core.Views
             //regionManager.Regions.Add(region);
 
             RegionManager.UpdateRegions();
+        }
+
+        private void ToolBar_Loaded(object sender, RoutedEventArgs e)
+        {
+            ToolBar toolBar = sender as ToolBar;
+            var overflowGrid = toolBar.Template.FindName("OverflowGrid", toolBar) as FrameworkElement;
+            if (overflowGrid != null)
+            {
+                overflowGrid.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

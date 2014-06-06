@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Data;
+using AvalonDock.Layout;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
-using Olf.Common.Extensions.Reflection;
-using Xceed.Wpf.AvalonDock.Layout;
 
 namespace Olf.GoldenHorse
 {
@@ -89,9 +88,9 @@ namespace Olf.GoldenHorse
             LayoutDocument layoutDocument = new LayoutDocument();
             layoutDocument.IsSelected = true;
 
-            Binding myBinding = new Binding("Tag");
-            myBinding.Source = newView;
-            BindingOperations.SetBinding(layoutDocument, LayoutDocument.TitleProperty, myBinding);
+            //Binding myBinding = new Binding("Tag");
+            //myBinding.Source = newView;
+            //BindingOperations.SetBinding(layoutDocument, LayoutDocument., myBinding);
 
             layoutDocument.Content = newView;
             documentDict[newView] = layoutDocument;

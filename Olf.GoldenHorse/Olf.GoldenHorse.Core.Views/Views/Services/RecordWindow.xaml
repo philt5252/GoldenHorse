@@ -23,8 +23,14 @@
             <GradientStop Color="IndianRed" Offset="1"></GradientStop>
         </LinearGradientBrush>
 
+        <SolidColorBrush x:Key="brush1">
+            <SolidColorBrush.Color>
+                <Color A="255" R="57" B="57" G="57"></Color>
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+
     </Window.Resources>
-    <Grid>
+    <Grid Background="{StaticResource brush1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
@@ -44,7 +50,11 @@
             <Button Command="{Binding StopCommand}" Width="30" Height="30"  ToolTip="Stop"  Margin="5,5,5,5" >
                 <Rectangle Height="16" Width="18" Fill="{StaticResource ButtonBrush}"/>
             </Button>
-            <Button Command="{Binding AssertCommand}" Height="30" Width="30"  ToolTip="Assert"   Margin="5,5,5,5" />
+            <Button Command="{Binding AssertCommand}" Height="30" Width="30"  ToolTip="Assert"   Margin="5,5,5,5">
+                <Button.Content>
+                    <Image Height="20" Width="20" Source="../../WhiteImages/Symbols_Complete_and_ok_32xLG.png"></Image>
+                </Button.Content>
+            </Button>
         </StackPanel>
 
 

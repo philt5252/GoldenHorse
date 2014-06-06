@@ -60,30 +60,30 @@
         <ToolBar Grid.Row="0" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" >
           
             <Button Command="{Binding PlayCommand}" Margin="0,0,17,0" Height="25" 
-                VerticalAlignment="Top" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" 
+                VerticalAlignment="Top" Background="Transparent" 
                     HorizontalAlignment="Right" >
                 <StackPanel Orientation="Horizontal">
                     <Image Height="20" Width="20" Source="../../Images/Run.png"></Image> 
-                    <TextBlock Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}"
+                    <TextBlock Background="Transparent"
                                Foreground="White" Text="Run Test"></TextBlock>
                 </StackPanel>
             </Button>
             <Button Command="{Binding AppendCommand}"  Margin="0,0,17,0" Height="25" 
-                VerticalAlignment="Top" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" 
+                VerticalAlignment="Top" Background="Transparent" 
                     HorizontalAlignment="Right" >
                 <StackPanel Orientation="Horizontal">
                     <Image Height="20" Width="20" Source="../../Images/EditTask_32x32.png"></Image>
-                    <TextBlock Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}"
+                    <TextBlock Background="Transparent"
                                Foreground="White" Text="Append to Test">
                     </TextBlock>
                 </StackPanel>
             </Button>
             <Button Command="{Binding AddVariableCommand}"  Margin="0,0,17,0" Height="25" 
-                VerticalAlignment="Top" Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}" 
+                VerticalAlignment="Top" Background="Transparent" 
                     HorizontalAlignment="Right" >
                 <StackPanel Orientation="Horizontal">
                     <Image Height="20" Width="20" Source="../../Images/Add.png"></Image>
-                    <TextBlock Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor33}"
+                    <TextBlock Background="Transparent"
                                Foreground="White" Text="Add Variable"></TextBlock>
                 </StackPanel>
             </Button>

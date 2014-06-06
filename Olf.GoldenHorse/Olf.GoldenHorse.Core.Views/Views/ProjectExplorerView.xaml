@@ -6,7 +6,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              Tag="Project Explorer">
-    <Grid>
+    <Grid Background="White">
         
         <TreeView Name="projectExplorerTvw" ItemsSource="{Binding Nodes}">
             <TreeView.ItemTemplate>

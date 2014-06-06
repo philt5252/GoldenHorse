@@ -42,19 +42,19 @@
     </UserControl.Resources>
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource brush1}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="200*"></RowDefinition>
             <RowDefinition Height="10"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="DimGray">
             <StackPanel Margin="6,0,0,0">
-                <TextBlock Text="GOLDEN HORSE" FontSize="30" FontWeight="DemiBold" Foreground="White" FontFamily="Estrangelo Edessa">
-                    <TextBlock.Effect>
+                <TextBlock Text="GOLDEN HORSE" FontSize="35" FontWeight="DemiBold" Foreground="White" FontFamily="Estrangelo Edessa">
+                    <!--<TextBlock.Effect>
                         <DropShadowEffect BlurRadius="3" 
                                             Color="Black" 
                                             Opacity="1" 
                                             ShadowDepth="5" />
-                    </TextBlock.Effect>
+                    </TextBlock.Effect>-->
                 </TextBlock>
                 <TextBlock Margin="3,0,10,0" Text="Version 2.0"  Foreground="White" Grid.Row="0"  ></TextBlock>
             </StackPanel>
@@ -77,11 +77,11 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                             <StackPanel Orientation="Horizontal"  Cursor="Hand" >
-                            <Image Width="10" Height="10" Source="../../WhiteImages/folder_Closed_32xLG.png"></Image>
+                            <Image Width="15" Height="15" Source="../../WhiteImages/Symbols_Play_32xLG.png"></Image>
                             <TextBlock Text="{Binding FileName}" Foreground="White">
                             </TextBlock>
                                 <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="StackPanel.MouseDown">
+                                    <i:EventTrigger EventName="MouseDown">
                                         <i:InvokeCommandAction Command="{Binding Path=OpenFileCommand, Mode=OneWay}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
@@ -94,10 +94,10 @@
             </StackPanel>
              <DockPanel Grid.Column="1" Dock="Right">
                 <StackPanel Orientation="Vertical">
-                    <Button Content="New Project Suite" FontWeight="DemiBold" FontSize="16" Height="35" Width="150" 
+                    <Button Content="New Project Suite" FontWeight="DemiBold" FontSize="16" Height="35" Width="200" 
                             Command="{Binding NewProjectSuiteCommand}" 
                         Margin="10,10,10,0" Background="DimGray" Foreground="White" />
-                    <Button Content="Open Project Suite" FontWeight="DemiBold" FontSize="16" Height="35" Width="150" 
+                    <Button Content="Open Project Suite" FontWeight="DemiBold" FontSize="16" Height="35" Width="200" 
                             Command="{Binding OpenProjectSuiteCommand}" 
                         Margin="10,10,10,0" Background="DimGray" Foreground="White" ></Button>
                 </StackPanel>

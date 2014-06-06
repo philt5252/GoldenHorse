@@ -276,6 +276,10 @@
   <ItemGroup>
     <Content Include="WhiteImages\Addacomment_8818.png" />
     <Content Include="WhiteImages\Bubble_16xLG.png" />
+    <Content Include="WhiteImages\Symbols_Alert_and_Warning_32xLG.png" />
+    <Resource Include="WhiteImages\Symbols_Complete_and_ok_32xLG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="WhiteImages\scissors_16xLG.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -319,7 +323,7 @@
     <Resource Include="WhiteImages\StatusAnnotations_Warning_32xLG_color.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="WhiteImages\Symbols_Complete_and_ok_32xLG.png">
+    <Resource Include="WhiteImages\Symbols_Complete_and_ok_White.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="WhiteImages\Symbols_Pause_32xLG.png">

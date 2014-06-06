@@ -5,16 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
-            
+            GlowBrush="{StaticResource AccentColorBrush}"
             Title="New Project" Height="150" Width="350" MaxHeight="150" MaxWidth="300" MinHeight="150" MinWidth="300">
     <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Olf.GoldenHorse.Core.Views;component/../Themes/Icons.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <SolidColorBrush x:Key="brush1">
+            <SolidColorBrush.Color>
+                <Color A="255" R="57" B="57" G="57"></Color>
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
     </Window.Resources>
-    <Grid>
+    <Grid Background="{StaticResource brush1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
@@ -22,8 +22,9 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1">
             <WrapPanel Margin="13,0,0,7">
-                <Label Content="Name: "></Label>
-                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Height="20" AcceptsReturn="True" Width="200"/>
+                <Label Content="Name: " Foreground="White"></Label>
+                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Height="20" 
+                         AcceptsReturn="True" Width="200" Background="Transparent" Foreground="White"/>
             </WrapPanel>
             
         </StackPanel>

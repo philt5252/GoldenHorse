@@ -8,8 +8,8 @@ using Olf.GoldenHorse.Foundation.Views;
 
 namespace Olf.GoldenHorse.Core.Views
 {
-    //Aero
-    public class WindowBase : Window, IWindow
+    //BaseLight
+    public class WindowBase : MetroWindow, IWindow
     {
         public void Maximize()
         {

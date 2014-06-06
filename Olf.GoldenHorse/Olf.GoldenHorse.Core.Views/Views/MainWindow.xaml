@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
-            
+            GlowBrush="{StaticResource AccentColorBrush}"
             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
             xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
             Title ="GOLDEN HORSE"

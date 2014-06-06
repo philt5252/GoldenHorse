@@ -7,6 +7,7 @@
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              mc:Ignorable="d" 
           
+                  GlowBrush="{StaticResource AccentColorBrush}"
             Title="New Project Suite" Height="150" Width="325" MaxHeight="150" MaxWidth="325" MinHeight="150" MinWidth="300">
     <Window.Resources>
         <SolidColorBrush x:Key="brush1">
@@ -26,21 +27,15 @@
         <StackPanel Grid.Row="1" Background="Transparent">
             <WrapPanel Margin="13,0,0,7" Background="Transparent">
                 <Label Content="Name: " Foreground="White" Background="Transparent"></Label>
-                <TextBox Background="Transparent" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Height="20" AcceptsReturn="True" Width="200"/>
+                <TextBox Background="Transparent" Foreground="White" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Height="20" AcceptsReturn="True" Width="200"/>
             </WrapPanel>
             <WrapPanel Background="Transparent">
                 <Label Background="Transparent" Foreground="White" Content ="Location: " ></Label>
                 <TextBox Background="Transparent" Foreground="White" Text="{Binding Location, UpdateSourceTrigger=PropertyChanged}" Height ="20" Width="200"></TextBox>
-                <Button Margin="1,0,0,0"  Width="35" FontSize="10"  Height="35" Command="{Binding BrowseCommand}">
-                    <!--<Button.Template>
-                        <ControlTemplate>
-                            <Ellipse Height="30" Width="30">
-                                <Ellipse.Style>
-                                    <Template
-                                </Ellipse.Style>
-                            </Ellipse>
-                        </ControlTemplate>
-                    </Button.Template>-->
+                <Button Content="browse" Foreground="White" Style="{StaticResource MetroCircleButtonStyle}"  Margin="3,0,0,0"  Width="35" FontSize="10"  Height="35" Command="{Binding BrowseCommand}">
+                   <!--<Button.Content>
+                       <Image Height="20" Width="20" Source="../../WhiteImages/"></Image>
+                   </Button.Content>-->
                 </Button>
             </WrapPanel>
         </StackPanel>

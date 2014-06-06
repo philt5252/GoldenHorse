@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls"
-             xmlns:themes="clr-namespace:Olf.GoldenHorse.Core.Views.Themes"
+             xmlns:themes="clr-namespace:Olf.GoldenHorse.Core.Views.Themes"             
+             xmlns:converters="clr-namespace:Olf.GoldenHorse.Core.Views.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -37,6 +38,7 @@
             <Setter Property="Background" Value="{StaticResource ColumnBrush}" ></Setter>
             <Setter Property="Foreground" Value="White" ></Setter>
         </Style>
+        <converters:CategoryToImageConverter x:Key="CategoryToImageConverter" />
 
     </UserControl.Resources>
 
@@ -72,7 +74,7 @@
                             <DataTemplate>
                                 <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                     <StackPanel Orientation="Horizontal" >
-                                        <Image Name="picImage"  Height="15" Width="15" Source="{Binding Category}"></Image>
+                                        <Image Name="picImage"  Height="15" Width="15" Source="{Binding Category, Converter={StaticResource CategoryToImageConverter}}"></Image>
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>

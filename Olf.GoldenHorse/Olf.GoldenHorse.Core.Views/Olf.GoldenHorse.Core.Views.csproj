@@ -277,6 +277,30 @@
   <ItemGroup>
     <Content Include="WhiteImages\Addacomment_8818.png" />
     <Content Include="WhiteImages\Bubble_16xLG.png" />
+    <Resource Include="WhiteImages\ProjectExplorerImages\projectSuiteProjects.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="WhiteImages\ProjectExplorerImages\Logs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="WhiteImages\ProjectExplorerImages\log.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="WhiteImages\ProjectExplorerImages\project.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="WhiteImages\ProjectExplorerImages\projectSuiteLogs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="WhiteImages\ProjectExplorerImages\tests.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="WhiteImages\ProjectExplorerImages\test.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="WhiteImages\ProjectExplorerImages\test2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="WhiteImages\Symbols_Alert_and_Warning_32xLG.png" />
     <Resource Include="WhiteImages\Symbols_Complete_and_ok_32xLG.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

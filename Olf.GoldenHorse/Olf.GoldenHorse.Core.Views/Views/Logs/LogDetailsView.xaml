@@ -73,8 +73,8 @@
                         <GridViewColumn.CellTemplate >
                             <DataTemplate>
                                 <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                    <StackPanel Orientation="Horizontal" >
-                                        <Image Name="picImage"  Height="15" Width="15" Source="{Binding Category, Converter={StaticResource CategoryToImageConverter}}"></Image>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Visibility="Visible"  Height="20" Width="20" Source="{Binding Category, Converter={StaticResource CategoryToImageConverter}}"></Image>
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>

@@ -35,6 +35,7 @@ namespace Olf.GoldenHorse.Core.Controllers
         private readonly IProjectFileManager projectFileManager;
         private readonly IAppController appController;
         private readonly ITestController testController;
+        private readonly ITestItemEditorViewModelFactory testItemEditorViewModelFactory;
         private IWindow recordingWindow;
         private IRecorder recorder;
 
@@ -44,7 +45,8 @@ namespace Olf.GoldenHorse.Core.Controllers
             ITestFileManager testFileManager,
             IProjectFileManager projectFileManager, 
             IAppController appController,
-            ITestController testController)
+            ITestController testController,
+            ITestItemEditorViewModelFactory testItemEditorViewModelFactory)
         {
             this.recordWindowFactory = recordWindowFactory;
             this.recorderViewModelFactory = recorderViewModelFactory;
@@ -53,6 +55,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             this.projectFileManager = projectFileManager;
             this.appController = appController;
             this.testController = testController;
+            this.testItemEditorViewModelFactory = testItemEditorViewModelFactory;
         }
 
         public void ShowRecord()
@@ -87,6 +90,9 @@ namespace Olf.GoldenHorse.Core.Controllers
 
         public void DoAssert()
         {
+            ITestItemEditorViewModel testItemEditorViewModel = testItemEditorViewModelFactory.Create();
+
+
             Window window = new Window();
             window.Height = SystemParameters.VirtualScreenHeight;
             window.Width = SystemParameters.VirtualScreenWidth;

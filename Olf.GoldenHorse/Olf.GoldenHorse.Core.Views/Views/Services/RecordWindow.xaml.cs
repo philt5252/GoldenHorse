@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Olf.GoldenHorse.Foundation.ViewModels;
 using Olf.GoldenHorse.Foundation.Views;
 
 namespace Olf.GoldenHorse.Core.Views
@@ -23,6 +24,13 @@ namespace Olf.GoldenHorse.Core.Views
         public RecordWindow()
         {
             InitializeComponent();
+        }
+
+        private void ExecuteValidationCommand(object sender, SelectionChangedEventArgs e)
+        {
+            IValidationListItemViewModel validationListItemViewModel = sender as IValidationListItemViewModel;
+            ICommand validationCommand = validationListItemViewModel.CreateValidationCommand;
+            validationCommand.Execute(null);
         }
     }
 }

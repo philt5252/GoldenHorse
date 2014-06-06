@@ -79,9 +79,10 @@
                             <StackPanel Orientation="Horizontal"  Cursor="Hand" >
                             <Image Width="10" Height="10" Source="../../WhiteImages/folder_Closed_32xLG.png"></Image>
                             <TextBlock Text="{Binding FileName}" Foreground="White">
+                               
                             </TextBlock>
                                 <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="StackPanel.MouseDown">
+                                    <i:EventTrigger EventName="MouseDown">
                                         <i:InvokeCommandAction Command="{Binding Path=OpenFileCommand, Mode=OneWay}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>

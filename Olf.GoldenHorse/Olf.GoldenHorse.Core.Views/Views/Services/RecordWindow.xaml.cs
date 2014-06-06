@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -28,7 +29,8 @@ namespace Olf.GoldenHorse.Core.Views
 
         private void ExecuteValidationCommand(object sender, SelectionChangedEventArgs e)
         {
-            IValidationListItemViewModel validationListItemViewModel = sender as IValidationListItemViewModel;
+            ComboBox comboBox = sender as ComboBox;
+            IValidationListItemViewModel validationListItemViewModel = comboBox.SelectedItem as IValidationListItemViewModel;
             ICommand validationCommand = validationListItemViewModel.CreateValidationCommand;
             validationCommand.Execute(null);
         }

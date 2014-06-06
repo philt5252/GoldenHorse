@@ -21,8 +21,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
         public string Version { get { return "2.0.0"; } }
         public IRecentFileViewModel[] RecentFiles { get; protected set; }
 
-        public ICommand CreateNewProjectCommand { get; protected set; }
-        public ICommand OpenProjectCommand { get; protected set; }
+        public ICommand NewProjectSuiteCommand { get; protected set; }
+        public ICommand OpenProjectSuiteCommand { get; protected set; }
 
         public StartPageViewModel(IProjectSuiteController projectSuiteController,
             IRecentFileViewModelFactory recentFileViewModelFactory,
@@ -30,8 +30,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
         {
             this.projectSuiteController = projectSuiteController;
             this.recentFileViewModelFactory = recentFileViewModelFactory;
-            CreateNewProjectCommand = new DelegateCommand(ExecuteNewProjectCommand);
-            OpenProjectCommand = new DelegateCommand(ExecuteOpenProjecctCommand);
+            NewProjectSuiteCommand = new DelegateCommand(ExecuteNewProjectCommand);
+            OpenProjectSuiteCommand = new DelegateCommand(ExecuteOpenProjectCommand);
 
             string filePath = DefaultData.GoldenHorseRecentProjectsFilePath;
 
@@ -43,7 +43,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
             RecentFiles = projects.Select(recentFileViewModelFactory.Create).ToArray();
         }
 
-        private void ExecuteOpenProjecctCommand()
+        private void ExecuteOpenProjectCommand()
         {
             projectSuiteController.ShowOpen();
         }

@@ -8,7 +8,7 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
     {
         string Version { get; }
         IRecentFileViewModel[] RecentFiles { get; }
-        ICommand CreateNewProjectCommand { get; }
-        ICommand OpenProjectCommand { get; }
+        ICommand NewProjectSuiteCommand { get; }
+        ICommand OpenProjectSuiteCommand { get; }
     }
 }

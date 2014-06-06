@@ -7,7 +7,6 @@ namespace Olf.GoldenHorse.Foundation.ViewModels.Nodes
     public interface IDisplayNode
     {
         string Name { get; }
-        Bitmap Icon { get; }
         ObservableCollection<IDisplayNode> Children { get; }
         ICommand DefaultCommand { get; }
     }

@@ -17,11 +17,6 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
             get { return logFile.Name; }
         }
 
-        public override Bitmap Icon
-        {
-            get { return Resources.log; }
-        }
-
         public LogNode(ProjectFile logFile, ILogFileManager logFileManager,
             ILogController logController)
         {

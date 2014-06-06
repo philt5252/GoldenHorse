@@ -14,12 +14,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         public override string Name
         {
             get { return "Tests"; }
-        }
-
-        public override Bitmap Icon
-        {
-            get { return Resources.project1; }
-        }   
+        }  
 
         public TestGroupNode(Project project, ITestNodeFactory testNodeFactory)
         {

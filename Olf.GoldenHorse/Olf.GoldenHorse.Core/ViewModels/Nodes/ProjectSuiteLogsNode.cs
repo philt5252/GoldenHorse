@@ -12,12 +12,6 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         {
             get { return "Project Suite '" + ProjectSuiteManager.CurrentProjectSuite.Name + "'  Logs"; }
         }
-
-        public override Bitmap Icon
-        {
-            get { return Resources.projectLogSuite; }
-        }
-
         public ProjectSuiteLogsNode(IProjectLogsNodeFactory projectLogsNodeFactory)
         {
             foreach (Project project in ProjectSuiteManager.CurrentProjectSuite.Projects)

@@ -49,11 +49,6 @@ namespace Olf.GoldenHorse.Foundation.Models
             }
         }
 
-        public void CreateLogItem()
-        {
-            
-        }
-
         public void StartLogItemChildren()
         {
             

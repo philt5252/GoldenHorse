@@ -92,7 +92,10 @@ namespace AvalonDock.Controls
             }
 
             Dispatcher.BeginInvoke(new Action(() =>
-                {
+            {
+                if (currentActiveContent == null)
+                    return;
+
                     currentActiveContent.IsSelected = false;
                     currentActiveContent.IsActive = false;
                     currentActiveContent.IsActive = true;

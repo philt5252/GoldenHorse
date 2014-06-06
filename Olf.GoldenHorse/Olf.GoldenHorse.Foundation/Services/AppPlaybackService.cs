@@ -69,7 +69,7 @@ namespace Olf.GoldenHorse.Foundation.Services
                 return appWindow;
 
             if (!control.Name.IsNullOrEmpty())
-                return appWindow.Items.FirstOrDefault(i => Equals(i.Name, control.Name));
+                return appWindow.Items.FirstOrDefault(i => Equals(i.AutomationElement.Current.AutomationId, control.Name));
             
             IUIItem[] uiItems = appWindow.Items
                 .Where(i => i.AutomationElement.Current.Name == control.Text

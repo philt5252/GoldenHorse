@@ -28,15 +28,11 @@ namespace Olf.GoldenHorse.Core.Models
             Point globalPoint = new Point((int)uiItem.Bounds.X + clickPoint.X, (int)uiItem.Bounds.Y + clickPoint.Y);
             
             Cursor.LeftClick(globalPoint);
-            Bitmap bitmap = Camera.Capture();
-            DateTime dateTime = DateTime.Now;
-            string screenshotName = "ghscn_" + dateTime.Ticks + ".bmp";
-            bitmap.Save(Path.Combine(ProjectSuiteManager.GetScreenshotsFolder(log), screenshotName));
+            Screenshot screenshot = CreateScreenshot(log);
 
-            Screenshot screenshot = new Screenshot();
+            string description = string.Format("The {0} was clicked with the left mouse button", mappedItem.Type);
 
-            screenshot.ImageFile = screenshotName;
-            screenshot.DateTime = dateTime;
+            log.CreateLogItem(LogItemCategory.Event, description, screenshot);
 
             AutomationElement findWindowElement = uiItem.AutomationElement;
 
@@ -45,16 +41,20 @@ namespace Olf.GoldenHorse.Core.Models
                 findWindowElement = TreeWalker.ControlViewWalker.GetParent(findWindowElement);
             }
 
+            screenshot.Adornments.Add(
+                new ControlHighlightAdornment
+                {
+                    X = (int)uiItem.Bounds.X - (int)findWindowElement.Current.BoundingRectangle.X,
+                    Y = (int)uiItem.Bounds.Y - (int)findWindowElement.Current.BoundingRectangle.Y,
+                    Width = (int)uiItem.Bounds.Width,
+                    Height = (int)uiItem.Bounds.Height
+                });
+
             int screenshotX = globalPoint.X - (int)findWindowElement.Current.BoundingRectangle.X;
             int screenshotY = globalPoint.Y - (int)findWindowElement.Current.BoundingRectangle.Y;
 
-            screenshot.Adornments.Add(new ScreenshotClickAdornment { ClickX = screenshotX, ClickY = screenshotY });
+            screenshot.Adornments.Add(new ClickAdornment { ClickX = screenshotX, ClickY = screenshotY });
             
-
-            string description = string.Format("The {0} was clicked with the left mouse button", mappedItem.Type);
-            
-            log.CreateLogItem(LogItemCategory.Event, description, screenshot);
-            //uiItem.Click();
         }
     }
 }

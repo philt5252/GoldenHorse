@@ -256,7 +256,11 @@ namespace AvalonDock.Controls
                 case Win32Helper.WM_NCLBUTTONDOWN: //Left button down on title -> start dragging over docking manager
                     if (wParam.ToInt32() == Win32Helper.HT_CAPTION)
                     {
-                        _model.Descendents().OfType<LayoutAnchorablePane>().First(p => p.ChildrenCount > 0 && p.SelectedContent != null).SelectedContent.IsActive = true;
+                        LayoutAnchorablePane layoutAnchorablePane = _model.Descendents().OfType<LayoutAnchorablePane>().FirstOrDefault(p => p.ChildrenCount > 0 && p.SelectedContent != null);
+
+                        if(layoutAnchorablePane != null)
+                            layoutAnchorablePane.SelectedContent.IsActive = true;
+
                         handled = true;
                     }
                     break;

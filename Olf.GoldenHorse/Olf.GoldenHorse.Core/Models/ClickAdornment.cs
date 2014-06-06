@@ -4,7 +4,7 @@ using Olf.GoldenHorse.Foundation.Models;
 
 namespace Olf.GoldenHorse.Core.Models
 {
-    public class ScreenshotClickAdornment : ScreenshotAdornment
+    public class ClickAdornment : ScreenshotAdornment
     {
         public int ClickX { get; set; }
         public int ClickY { get; set; }

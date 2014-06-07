@@ -9,8 +9,66 @@
              GlowBrush="{StaticResource AccentColorBrush}"
              mc:Ignorable="d" 
              Height="500" Width="450">
-    <Grid>
-        <avalondock:DockingManager Margin="5,20,5,20">
+    <Window.Resources>
+        <SolidColorBrush x:Key="brush1">
+            <SolidColorBrush.Color>
+                <Color A="255" R="57" B="57" G="57"></Color>
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+        <SolidColorBrush x:Key="brush2">
+            <SolidColorBrush.Color>
+                <Color A="255" R="66" B="69" G="60"></Color>
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+        <SolidColorBrush x:Key="brush3">
+            <SolidColorBrush.Color>
+                <Color A="255" R="54" B="53" G="67"></Color>
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+        <Color x:Key="color1" A="255" R="57" G="57" B="57"></Color>
+
+        <DrawingBrush x:Key="AvalonDock_ThemeVS2010_BaseColor1" 
+                  TileMode="Tile"  
+                Viewport="0 0 5 5" 
+				ViewportUnits="Absolute" 
+				Stretch="None">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="{StaticResource brush1}">
+                        <GeometryDrawing.Geometry>
+                            <RectangleGeometry Rect="0,0,10,10"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing>
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="1" Brush="{StaticResource brush2}" />
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Geometry>
+                            <GeometryGroup>
+                                <LineGeometry StartPoint="0,0" EndPoint="10,10" />
+                            </GeometryGroup>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing>
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="1" Brush="{StaticResource brush3}" />
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Geometry>
+                            <GeometryGroup>
+                                <LineGeometry StartPoint="1,0" EndPoint="10,9" />
+                            </GeometryGroup>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+    </Window.Resources>
+    <Grid Background="{StaticResource AvalonDock_ThemeVS2010_BaseColor1}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="400*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <avalondock:DockingManager Margin="3,5,3,0" Grid.Row="0">
             <avalondock:LayoutRoot>
                 <avalondock:LayoutPanel>
                     <avalondock:LayoutDocumentPaneGroup>
@@ -32,6 +90,9 @@
                 </avalondock:LayoutPanel>
             </avalondock:LayoutRoot>
         </avalondock:DockingManager>
+        <Button Command="{Binding CancelCommand}" Grid.Row="1" Height="26" Content="Cancel" Margin="0,0,10,9" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom"/>
+        <Button Command="{Binding FinishCommand}" Grid.Row="1" Height="26" Content="Finish" Margin="0,0,90,9" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom"/>
+        <Button Command="{Binding NextCommand}" Grid.Row="1" Content="Next" Height="26" Width="75" Margin="0,0,170,9" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
 
 
     </Grid>

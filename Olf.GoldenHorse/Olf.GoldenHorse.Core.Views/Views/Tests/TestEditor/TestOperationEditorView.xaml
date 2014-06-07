@@ -8,19 +8,25 @@
     <UserControl.Resources>
         <SolidColorBrush x:Key="brush1">
             <SolidColorBrush.Color>
-                <Color A="255" R="57" B="57" G="57"></Color>
+                <Color A="255" R="67" B="67" G="67"></Color>
             </SolidColorBrush.Color>
         </SolidColorBrush>
 
     </UserControl.Resources>
     <Grid Background="{StaticResource brush1}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="300*"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="320*"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
-        <TreeView Grid.Row="0" Margin="20,10,20,20"></TreeView>
-        <Button Grid.Row="1" Height="26" Content="Cancel" Margin="0,0,10,9" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom"/>
-        <Button Grid.Row="1" Content="Next" Height="26" Width="75" Margin="0,0,90,9" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
+        <Grid Grid.Row="0" Background="DimGray">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Foreground="White" Margin="15,0,0,0" Text="Specify Method or Property" FontSize="18" FontWeight="Bold"></TextBlock>
+                <TextBlock Foreground="White" Margin="30,0,0,10" Text="Specify the method or property the operation will call."></TextBlock>
+            </StackPanel>
+        </Grid>
+        <TreeView Grid.Row="1" Margin="20,10,20,20" ItemsSource="{Binding Operations}"></TreeView>
+       
             
     </Grid>
 </UserControl>

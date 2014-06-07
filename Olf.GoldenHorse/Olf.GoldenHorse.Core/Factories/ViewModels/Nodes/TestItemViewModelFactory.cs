@@ -8,19 +8,16 @@ namespace Olf.GoldenHorse.Core.Factories.ViewModels.Nodes
 {
     public class TestItemViewModelFactory : ITestItemViewModelFactory
     {
-        private readonly Func<OnScreenAction, IOnScreenActionViewModel> createOnScreenActionViewModelFunc;
+        private readonly Func<TestItem, ITestItemViewModel> createViewModelFunc;
 
-        public TestItemViewModelFactory(Func<OnScreenAction, IOnScreenActionViewModel> createOnScreenActionViewModelFunc)
+        public TestItemViewModelFactory(Func<TestItem, ITestItemViewModel> createViewModelFunc)
         {
-            this.createOnScreenActionViewModelFunc = createOnScreenActionViewModelFunc;
+            this.createViewModelFunc = createViewModelFunc;
         }
 
         public ITestItemViewModel Create(TestItem testItem)
         {
-            if (testItem is OnScreenAction)
-                return createOnScreenActionViewModelFunc(testItem as OnScreenAction);
-
-            throw new Exception();
+            return createViewModelFunc(testItem);
         }
     }
 }

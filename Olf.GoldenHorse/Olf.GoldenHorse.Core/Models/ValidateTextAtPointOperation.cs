@@ -102,6 +102,12 @@ namespace Olf.GoldenHorse.Core.Models
             string actualText = CopyText();
             string expectedText = textParam.GetValue();
 
+            if (actualText == null)
+                actualText = "";
+
+            if (expectedText == null)
+                expectedText = "";
+
             if(!Equals(actualText, expectedText))
             {
                 string error = "Expected \"{0}\" but value was \"{1}\"";
@@ -121,6 +127,10 @@ namespace Olf.GoldenHorse.Core.Models
 
         private string CopyText()
         {
+            IDataObject oldDataObject = Clipboard.GetDataObject();
+
+            Clipboard.Clear();
+
             Thread.Sleep(500);
             InputSimulator simulator = new InputSimulator();
             simulator.Keyboard.KeyDown(VirtualKeyCode.HOME);
@@ -151,7 +161,13 @@ namespace Olf.GoldenHorse.Core.Models
                 {
                     IDataObject dataObject = Clipboard.GetDataObject();
                     object data = dataObject.GetData(typeof(string));
-                    return clipboardText = data.ToString();
+                    
+                    if (data == null)
+                        data = "";
+                    
+                    string copyText = clipboardText = data.ToString();
+                    Clipboard.SetDataObject(oldDataObject);
+                    return copyText;
                 }
                 catch (Exception ex)
                 {
@@ -162,6 +178,9 @@ namespace Olf.GoldenHorse.Core.Models
 
 
             } while (clipboardText.Equals("{Clipboard Text could not be retreived}"));
+
+            Clipboard.SetDataObject(oldDataObject);
+
             return clipboardText;
         }
     }

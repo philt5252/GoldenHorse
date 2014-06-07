@@ -18,9 +18,9 @@ namespace Olf.GoldenHorse.Core.ViewModels
         {
         }
 
-        protected override OnScreenValidation CreateOnScreenValidation()
+        protected override TestItem CreateOnScreenValidation()
         {
-            OnScreenValidation onScreenValidation = new OnScreenValidation();
+            TestItem onScreenValidation = new TestItem();
             ValidateTextAtPointOperation operation = new ValidateTextAtPointOperation();
 
             onScreenValidation.Operation = operation;

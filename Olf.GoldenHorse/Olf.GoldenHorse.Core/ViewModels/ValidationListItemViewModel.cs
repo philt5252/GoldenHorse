@@ -25,10 +25,10 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private void ExecuteCreateValidationCommand()
         {
             recordingController.PauseRecord();
-            OnScreenValidation onScreenValidation = CreateOnScreenValidation();
+            TestItem onScreenValidation = CreateOnScreenValidation();
             recordingController.DoValidation(onScreenValidation);
         }
 
-        protected abstract OnScreenValidation CreateOnScreenValidation();
+        protected abstract TestItem CreateOnScreenValidation();
     }
 }

@@ -6,10 +6,23 @@ using Olf.GoldenHorse.Foundation.Services;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
-    public abstract class TestItem : ScreenshotOwner
+    public class TestItem : ScreenshotOwner
     {
         private ObservableCollection<TestItem> children;
         private MappedItem control;
+
+        private string description;
+
+        private Operation operation;
+        public Operation Operation
+        {
+            get { return operation; }
+            set
+            {
+                operation = value;
+                operation.TestItem = this;
+            }
+        }
 
         public string ControlId { get; set; }
 
@@ -46,9 +59,13 @@ namespace Olf.GoldenHorse.Foundation.Models
             }
         }
 
-        public virtual string Description { get; set; }
+        public virtual string Description
+        {
+            get { return description ?? DefaultDescription(); }
+            set { description = value; }
+        }
 
-        protected TestItem()
+        public TestItem()
         {
             Children = new ObservableCollection<TestItem>();
             Id = Guid.NewGuid().ToString();
@@ -78,6 +95,14 @@ namespace Olf.GoldenHorse.Foundation.Models
             }
         }
 
-        public abstract void Play(Log log);
+        protected virtual string DefaultDescription()
+        {
+            return Operation.DefaultDescription(Control);
+        }
+
+        public virtual void Play(Log log)
+        {
+            Operation.Play(Control, log);
+        }
     }
 }

@@ -6,5 +6,10 @@
         {
             return DisplayValue;
         }
+
+        public ConstantOperationParameterValue()
+        {
+            DisplayValue = "";
+        }
     }
 }

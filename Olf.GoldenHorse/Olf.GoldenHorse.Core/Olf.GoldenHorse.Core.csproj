@@ -101,6 +101,7 @@
     <Compile Include="Factories\ViewModels\Nodes\ProjectSuiteProjectsNodeFactory.cs" />
     <Compile Include="Factories\ViewModels\Nodes\TestGroupNodeFactory.cs" />
     <Compile Include="Factories\ViewModels\Nodes\TestNodeFactory.cs" />
+    <Compile Include="Factories\ViewModels\OperationParameterViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ProjectExplorerViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\RecentFileViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\RecorderViewModelFactory.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="ViewModels\Nodes\TestNode.cs" />
     <Compile Include="ViewModels\OnScreenActionOperationViewModel.cs" />
     <Compile Include="ViewModels\OnScreenActionViewModel.cs" />
+    <Compile Include="ViewModels\OperationParameterViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorerViewModel.cs" />
     <Compile Include="ViewModels\RecentFileViewModel.cs" />
     <Compile Include="ViewModels\RecorderViewModel.cs" />

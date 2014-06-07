@@ -17,6 +17,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private readonly ITestItemViewModelFactory testItemViewModelFactory;
         private readonly ILogFileManager logFileManager;
         private readonly ILogController logController;
+        private readonly IAppController appController;
         private ITestItemViewModel selectedTestItem;
         public ObservableCollection<ITestItemViewModel> TestItems { get; protected set; }
 
@@ -36,12 +37,13 @@ namespace Olf.GoldenHorse.Core.ViewModels
         public ICommand PlayCommand { get; protected set; }
  
         public TestDetailsViewModel(Test test, ITestItemViewModelFactory testItemViewModelFactory,
-            ILogFileManager logFileManager, ILogController logController)
+            ILogFileManager logFileManager, ILogController logController, IAppController appController)
         {
             this.test = test;
             this.testItemViewModelFactory = testItemViewModelFactory;
             this.logFileManager = logFileManager;
             this.logController = logController;
+            this.appController = appController;
             TestItems = new ObservableCollection<ITestItemViewModel>(test.TestItems.Select(testItemViewModelFactory.Create));
         
             PlayCommand = new DelegateCommand(ExecutePlayCommand);
@@ -49,6 +51,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         private void ExecutePlayCommand()
         {
+            appController.MainWindow.Minimize();
+
             Log log = new Log();
             log.Owner = test.Project;
             DateTime dateTime = DateTime.Now;
@@ -67,6 +71,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
             logFileManager.Save(log);
 
             logController.ShowLog(log);
+
+            appController.MainWindow.Restore();
         }
     }
 }

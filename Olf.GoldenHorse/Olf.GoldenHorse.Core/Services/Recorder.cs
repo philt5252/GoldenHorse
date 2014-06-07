@@ -82,7 +82,7 @@ namespace Olf.GoldenHorse.Core.Services
                 return;
 
             IUIItem whiteControl;
-            OnScreenAction action = CreateOnScreenAction(mouseEventArgs, out whiteControl);
+            TestItem action = CreateOnScreenAction(mouseEventArgs, out whiteControl);
             currentUiItem = whiteControl;
 
             AutomationElement findWindowElement = FindWindowElement(whiteControl);
@@ -123,7 +123,7 @@ namespace Olf.GoldenHorse.Core.Services
 
         private void CreateKeyboardOnScreenAction()
         {
-            OnScreenAction onScreenAction = CreateOnScreenAction();
+            TestItem onScreenAction = CreateOnScreenAction();
             onScreenAction.ControlId = currentMappedItem.Id;
 
             AutomationElement findWindowElement = FindWindowElement(currentUiItem);
@@ -143,9 +143,9 @@ namespace Olf.GoldenHorse.Core.Services
             test.TestItems.Add(onScreenAction);
         }
 
-        private OnScreenAction CreateOnScreenAction()
+        private TestItem CreateOnScreenAction()
         {
-            OnScreenAction action = new OnScreenAction();
+            TestItem action = new TestItem();
             Screenshot screenshot = GetScreenshot();
 
             action.Screenshot = screenshot;
@@ -153,9 +153,9 @@ namespace Olf.GoldenHorse.Core.Services
             return action;
         }
 
-        private OnScreenAction CreateOnScreenAction(MouseEventArgs mouseEventArgs, out IUIItem whiteControl)
+        private TestItem CreateOnScreenAction(MouseEventArgs mouseEventArgs, out IUIItem whiteControl)
         {
-            OnScreenAction action = new OnScreenAction();
+            TestItem action = new TestItem();
             MappedItem mappedItem = null;
             Screenshot screenshot = GetScreenshot();
 

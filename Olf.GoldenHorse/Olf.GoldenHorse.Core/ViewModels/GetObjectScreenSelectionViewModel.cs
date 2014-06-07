@@ -121,20 +121,16 @@ namespace Olf.GoldenHorse.Core.ViewModels
             {
                 UIItem = currentUIItem;
 
-                
-                if (testItemController.CurrentTestItem is OnScreenValidation)
+                TestItem onScreenValidation = testItemController.CurrentTestItem;
+
+                OperationParameter operationParameterX = onScreenValidation.Operation.GetParameterNamed("ClientX");
+                OperationParameter operationParameterY = onScreenValidation.Operation.GetParameterNamed("ClientY");
+
+                if (operationParameterX != null && operationParameterY != null)
                 {
-                    OnScreenValidation onScreenValidation = testItemController.CurrentTestItem as OnScreenValidation;
-
-                    OperationParameter operationParameterX = onScreenValidation.Operation.GetParameterNamed("ClientX");
-                    OperationParameter operationParameterY = onScreenValidation.Operation.GetParameterNamed("ClientY");
-
-                    if (operationParameterX != null && operationParameterY != null)
-                    {
-                        operationParameterX.Value = point.X - UIItem.Bounds.X;
-                        operationParameterY.Value = point.Y - UIItem.Bounds.Y;
-                    }
-                };
+                    operationParameterX.Value = point.X - UIItem.Bounds.X;
+                    operationParameterY.Value = point.Y - UIItem.Bounds.Y;
+                }
 
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {

@@ -1,20 +1,24 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using Microsoft.Practices.Prism.Commands;
 using MouseKeyboardActivityMonitor;
 using MouseKeyboardActivityMonitor.WinApi;
 using Olf.GoldenHorse.Core.Services;
 using Olf.GoldenHorse.Foundation.Controllers;
+using Olf.GoldenHorse.Foundation.Models;
+using Olf.GoldenHorse.Foundation.Services;
 using Olf.GoldenHorse.Foundation.ViewModels;
 using TestStack.White.UIItems;
 using Application = System.Windows.Application;
+using Brushes = System.Windows.Media.Brushes;
+using Rectangle = System.Windows.Shapes.Rectangle;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
@@ -54,6 +58,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
             Canvas.SetTop(rectangle, 0);
             Canvas.SetLeft(rectangle, 0);
             UIItem currentUIItem = null;
+            System.Drawing.Point point = new System.Drawing.Point();
 
             Task task = new Task(() =>
             {
@@ -75,8 +80,9 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
                 while (doPicture)
                 {
+                    point = Cursor.Position;
                     currentUIItem = ExternalAppInfoManager.GetControl(System.Windows.Forms.Cursor.Position);
-
+                    
                     if (currentUIItem.AutomationElement.Current.ProcessId == Process.GetCurrentProcess().Id)
                         currentUIItem = prevUIItem;
 
@@ -114,9 +120,28 @@ namespace Olf.GoldenHorse.Core.ViewModels
             task.ContinueWith(t =>
             {
                 UIItem = currentUIItem;
+
+                
+                if (testItemController.CurrentTestItem is OnScreenValidation)
+                {
+                    OnScreenValidation onScreenValidation = testItemController.CurrentTestItem as OnScreenValidation;
+
+                    OperationParameter operationParameterX = onScreenValidation.Operation.GetParameterNamed("ClientX");
+                    OperationParameter operationParameterY = onScreenValidation.Operation.GetParameterNamed("ClientY");
+
+                    if (operationParameterX != null && operationParameterY != null)
+                    {
+                        operationParameterX.Value = point.X - UIItem.Bounds.X;
+                        operationParameterY.Value = point.Y - UIItem.Bounds.Y;
+                    }
+                };
+
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {
                     window.Close();
+                    Thread.Sleep(500);
+                    testItemController.RestoreTestItemEditorWindow();
+                    Thread.Sleep(500);
                     testItemController.RestoreTestItemEditorWindow();
                 }));
                 

@@ -7,5 +7,6 @@ namespace Olf.GoldenHorse.Foundation.Controllers
         void EditTestItem(TestItem testItem);
         void MinimizeTestItemEditorWindow();
         void RestoreTestItemEditorWindow();
+        TestItem CurrentTestItem { get; }
     }
 }

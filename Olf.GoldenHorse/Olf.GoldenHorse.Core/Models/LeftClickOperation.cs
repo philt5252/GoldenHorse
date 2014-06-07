@@ -34,12 +34,7 @@ namespace Olf.GoldenHorse.Core.Models
 
             log.CreateLogItem(LogItemCategory.Event, description, screenshot);
 
-            AutomationElement findWindowElement = uiItem.AutomationElement;
-
-            while (findWindowElement.Current.LocalizedControlType != "window")
-            {
-                findWindowElement = TreeWalker.ControlViewWalker.GetParent(findWindowElement);
-            }
+            AutomationElement findWindowElement = ExternalAppInfoManager.GetWindowAutomationElement(uiItem);
 
             screenshot.Adornments.Add(
                 new ControlHighlightAdornment

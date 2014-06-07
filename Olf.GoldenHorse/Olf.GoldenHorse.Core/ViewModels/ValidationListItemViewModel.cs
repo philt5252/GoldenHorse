@@ -24,6 +24,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         private void ExecuteCreateValidationCommand()
         {
+            recordingController.PauseRecord();
             OnScreenValidation onScreenValidation = CreateOnScreenValidation();
             recordingController.DoValidation(onScreenValidation);
         }

@@ -15,9 +15,9 @@ namespace Olf.GoldenHorse.Core.Factories.ViewModels
             this.createModelFunc = createModelFunc;
         }
 
-        public ITestItemEditorViewModel Create(OnScreenValidation onScreenValidation)
+        public ITestItemEditorViewModel Create(TestItem testItem)
         {
-            return createModelFunc(onScreenValidation);
+            return createModelFunc(testItem);
         }
         
     }

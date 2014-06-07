@@ -6,6 +6,6 @@ namespace Olf.GoldenHorse.Foundation.Factories.ViewModels
 {
     public interface ITestItemEditorViewModelFactory
     {
-        ITestItemEditorViewModel Create(OnScreenValidation onScreenValidation);
+        ITestItemEditorViewModel Create(TestItem testItem);
     }
 }

@@ -13,7 +13,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private readonly TestItem testItem;
         public ITestObjectEditorViewModel TestObjectEditorViewModel { get; protected set; }
         public ITestOperationEditorViewModel TestOperationEditorViewModel { get; protected set; }
-        public ITestParameterEditorViewModel TestParameterEditorView { get; protected set; }
+        public ITestParameterEditorViewModel TestParameterEditorViewModel { get; protected set; }
         public ITestDescriptionEditorViewModel TestDescriptionEditorViewModel { get; protected set; }
 
 
@@ -24,6 +24,11 @@ namespace Olf.GoldenHorse.Core.ViewModels
             ITestDescriptionEditorViewModelFactory testDescriptionEditorViewModelFactory)
         {
             this.testItem = testItem;
+
+            TestObjectEditorViewModel = testObjectEditorViewModelFactory.Create(testItem);
+            TestOperationEditorViewModel = testOperationEditorViewModelFactory.Create(testItem);
+            TestParameterEditorViewModel = testParameterEditorViewModelFactory.Create(testItem);
+            TestDescriptionEditorViewModel = testDescriptionEditorViewModelFactory.Create(testItem);
         }
     }
 }

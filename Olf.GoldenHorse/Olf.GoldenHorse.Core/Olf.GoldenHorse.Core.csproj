@@ -81,8 +81,10 @@
     <Compile Include="Controllers\ProjectSuiteController.cs" />
     <Compile Include="Controllers\RecordingController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TestItemController.cs" />
     <Compile Include="Factories\Services\RecorderFactory.cs" />
     <Compile Include="Factories\ViewModels\EditParameterViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\GetObjectScreenSelectionViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\LogDetailsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\LogItemViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\LogMainShellViewModelFactory.cs" />
@@ -130,6 +132,8 @@
     <Compile Include="Services\ExternalAppInfoManager.cs" />
     <Compile Include="Services\Recorder.cs" />
     <Compile Include="ViewModels\EditParameterViewModel.cs" />
+    <Compile Include="ViewModels\GetObjectScreenSelectionViewModel.cs" />
+    <Compile Include="ViewModels\GetObjectViewModel.cs" />
     <Compile Include="ViewModels\LogDetailsViewModel.cs" />
     <Compile Include="ViewModels\LogItemViewModel.cs" />
     <Compile Include="ViewModels\LogMainShellViewModel.cs" />

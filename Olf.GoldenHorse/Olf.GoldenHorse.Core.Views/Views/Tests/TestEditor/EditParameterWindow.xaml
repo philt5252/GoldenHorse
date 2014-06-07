@@ -25,13 +25,15 @@
             </Grid>
             <Grid Height="50">
                 <TextBlock Name="modeTbk" Height="20" Text="Mode: " Foreground="White" Margin="10,16,0,10" Width="50" HorizontalAlignment="Left"></TextBlock>
-                <ComboBox Name="modeCbx" SelectionChanged="EnableValueControls" Height="8" ItemsSource="{Binding ValidationModes}" Width="230" Margin="60,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
+                <ComboBox Name="modeCbx" SelectionChanged="EnableValueControls" Height="8" 
+                          ItemsSource="{Binding ValidationModes}" Width="230" Margin="60,10,0,0" 
+                          SelectedItem="{Binding SelectedValidationMode}" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
             </Grid>
         </StackPanel>
         <Grid Grid.Row="1" Height="50" Margin="0,0,0,150">
             <TextBlock Name="valueTbk" Visibility="Collapsed" Height="20" Text="Value: " 
                        Foreground="White"  Margin="10,16,0,10" Width="50" HorizontalAlignment="Left"></TextBlock>
-            <TextBox Name="valueTbx" Text="{Binding Value}" Visibility="Collapsed" Height="8" Width="230" 
+            <TextBox Name="valueTbx" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed" Height="8" Width="230" 
                      Margin="60,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBox>
            
         </Grid>

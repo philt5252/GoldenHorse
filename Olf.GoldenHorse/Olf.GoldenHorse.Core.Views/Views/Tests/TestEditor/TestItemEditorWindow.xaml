@@ -10,22 +10,22 @@
              mc:Ignorable="d" 
              Height="500" Width="450">
     <Grid>
-        <avalondock:DockingManager>
+        <avalondock:DockingManager Margin="5,20,5,20">
             <avalondock:LayoutRoot>
                 <avalondock:LayoutPanel>
                     <avalondock:LayoutDocumentPaneGroup>
                         <avalondock:LayoutDocumentPane DockWidth="500">
                             <avalondock:LayoutDocument Title="Object">
-                                <testEditor:TestObjectEditorView></testEditor:TestObjectEditorView>
+                                <testEditor:TestObjectEditorView x:Name="testObjectEditorView"></testEditor:TestObjectEditorView>
                             </avalondock:LayoutDocument>
                             <avalondock:LayoutDocument Title="Operation">
-                                <testEditor:TestOperationEditorView></testEditor:TestOperationEditorView>
+                                <testEditor:TestOperationEditorView x:Name="testOperationEditorView"></testEditor:TestOperationEditorView>
                             </avalondock:LayoutDocument>
                             <avalondock:LayoutDocument Title="Parameter">
-                                <testEditor:TestParameterEditorView></testEditor:TestParameterEditorView>
+                                <testEditor:TestParameterEditorView x:Name="testParameterEditorView"></testEditor:TestParameterEditorView>
                             </avalondock:LayoutDocument>
                             <avalondock:LayoutDocument Title="Description">
-                                <testEditor:TestDescriptionEditorView></testEditor:TestDescriptionEditorView>
+                                <testEditor:TestDescriptionEditorView x:Name="testDescriptionEditorView"></testEditor:TestDescriptionEditorView>
                             </avalondock:LayoutDocument>
                         </avalondock:LayoutDocumentPane>
                     </avalondock:LayoutDocumentPaneGroup>

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Olf.GoldenHorse.Foundation.ViewModels;
 
 namespace Olf.GoldenHorse.Core.Views.Views.Tests
 {
@@ -22,6 +23,17 @@ namespace Olf.GoldenHorse.Core.Views.Views.Tests
         public TestItemEditorWindow()
         {
             InitializeComponent();
+            DataContextChanged += OnDataContextChanged;
+        }
+
+        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            ITestItemEditorViewModel testItemEditorViewModel = DataContext as ITestItemEditorViewModel;
+
+            testObjectEditorView.DataContext = testItemEditorViewModel.TestObjectEditorViewModel;
+            testOperationEditorView.DataContext = testItemEditorViewModel.TestOperationEditorViewModel;
+            testParameterEditorView.DataContext = testItemEditorViewModel.TestParameterEditorView;
+            testDescriptionEditorView.DataContext = testItemEditorViewModel.TestDescriptionEditorViewModel;
         }
     }
 }

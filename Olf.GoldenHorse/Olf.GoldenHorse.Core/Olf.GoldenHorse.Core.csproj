@@ -151,7 +151,6 @@
     <Compile Include="ViewModels\Nodes\TestGroupNode.cs" />
     <Compile Include="ViewModels\Nodes\TestNode.cs" />
     <Compile Include="ViewModels\OnScreenActionOperationViewModel.cs" />
-    <Compile Include="ViewModels\OnScreenActionViewModel.cs" />
     <Compile Include="ViewModels\OperationParameterViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorerViewModel.cs" />
     <Compile Include="ViewModels\RecentFileViewModel.cs" />
@@ -160,7 +159,7 @@
     <Compile Include="ViewModels\TestDescriptionEditorViewModel.cs" />
     <Compile Include="ViewModels\TestDetailsViewModel.cs" />
     <Compile Include="ViewModels\TestItemEditorViewModel.cs" />
-    <Compile Include="ViewModels\TestItemViewModelBase.cs" />
+    <Compile Include="ViewModels\TestItemViewModel.cs" />
     <Compile Include="ViewModels\TestMainShellViewModel.cs" />
     <Compile Include="ViewModels\TestObjectEditorViewModel.cs" />
     <Compile Include="ViewModels\TestOperationEditorViewModel.cs" />

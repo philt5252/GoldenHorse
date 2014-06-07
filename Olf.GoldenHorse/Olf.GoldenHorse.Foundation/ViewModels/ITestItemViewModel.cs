@@ -8,7 +8,7 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
         TestItem TestItem { get; set; }
         string Name { get; }
         string Operation { get; }
-        string Value { get; set; }
+        string Value { get; }
         string Description { get; set; }
         string AutowaitTimeout { get; set; }
         IList<ITestItemViewModel> ChildItems { get; }

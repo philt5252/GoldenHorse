@@ -11,15 +11,21 @@ namespace Olf.GoldenHorse.Core.Controllers
     {
         private readonly ITestItemEditorWindowFactory testItemEditorWindowFactory;
         private readonly ITestItemEditorViewModelFactory testItemEditorViewModelFactory;
+        private readonly IEditParameterWindowFactory editParameterWindowFactory;
+        private readonly IEditParameterViewModelFactory editParameterViewModelFactory;
         private IWindow testItemEditorWindow;
 
         public TestItem CurrentTestItem { get; protected set; }
-
+        
         public TestItemController(ITestItemEditorWindowFactory testItemEditorWindowFactory,
-            ITestItemEditorViewModelFactory testItemEditorViewModelFactory)
+            ITestItemEditorViewModelFactory testItemEditorViewModelFactory,
+            IEditParameterWindowFactory editParameterWindowFactory,
+            IEditParameterViewModelFactory editParameterViewModelFactory)
         {
             this.testItemEditorWindowFactory = testItemEditorWindowFactory;
             this.testItemEditorViewModelFactory = testItemEditorViewModelFactory;
+            this.editParameterWindowFactory = editParameterWindowFactory;
+            this.editParameterViewModelFactory = editParameterViewModelFactory;
         }
 
         public void EditTestItem(TestItem testItem)
@@ -41,6 +47,16 @@ namespace Olf.GoldenHorse.Core.Controllers
         public void RestoreTestItemEditorWindow()
         {
             testItemEditorWindow.Restore();
+        }
+
+        public void EditParameter(OperationParameter parameter)
+        {
+            IWindow editParameterWindow = editParameterWindowFactory.Create();
+            IEditParameterViewModel editParameterViewModel = editParameterViewModelFactory.Create(parameter);
+
+            editParameterWindow.DataContext = editParameterViewModel;
+
+            editParameterWindow.ShowDialog();
         }
     }
 }

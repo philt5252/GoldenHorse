@@ -47,7 +47,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<LogDetailsViewModel>().As<ILogDetailsViewModel>();
             builder.RegisterType<ProjectExplorerViewModel>().As<IProjectExplorerViewModel>();
             builder.RegisterType<RecorderViewModel>().As<IRecorderViewModel>();
-            builder.RegisterType<OnScreenActionViewModel>().As<IOnScreenActionViewModel>();
+            builder.RegisterType<TestItemViewModel>().As<ITestItemViewModel>();
             builder.RegisterType<LogItemViewModel>().As<ILogItemViewModel>();
             builder.RegisterType<StartPageViewModel>().As<IStartPageViewModel>();
             builder.RegisterType<RecentFileViewModel>().As<IRecentFileViewModel>();

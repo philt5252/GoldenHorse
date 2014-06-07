@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="400">
+             d:DesignHeight="500" d:DesignWidth="450">
 
     <UserControl.Resources>
         <SolidColorBrush x:Key="brush1">
@@ -26,7 +26,7 @@
             </StackPanel>
         </Grid>
         <TextBlock Height="20" Width="70" Text="Description: " Foreground="White" Grid.Row="1" Margin="15,16,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
-        <TextBox Grid.Row="1" Height="26" Width="300" TextWrapping="Wrap" Margin="90,10,0,0" 
+        <TextBox Grid.Row="1" Height="26" Width="350" TextWrapping="Wrap" Margin="90,10,0,0" 
                  VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></TextBox>
 
     </Grid>

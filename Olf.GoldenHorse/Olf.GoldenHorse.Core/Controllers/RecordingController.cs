@@ -95,7 +95,7 @@ namespace Olf.GoldenHorse.Core.Controllers
         public void DoValidation(OnScreenValidation onScreenValidation)
         {
             IWindow testItemEditorWindow = testItemEditorWindowFactory.Create();
-            ITestItemEditorViewModel testItemEditorViewModel = testItemEditorViewModelFactory.Create();
+            ITestItemEditorViewModel testItemEditorViewModel = testItemEditorViewModelFactory.Create(onScreenValidation);
 
             testItemEditorWindow.DataContext = testItemEditorViewModel;
 

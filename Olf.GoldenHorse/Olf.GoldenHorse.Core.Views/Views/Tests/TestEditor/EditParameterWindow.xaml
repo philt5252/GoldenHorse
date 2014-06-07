@@ -35,7 +35,7 @@
                      Margin="60,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBox>
            
         </Grid>
-        <views:TreeViewSelect Name="valueTvw"  Visibility="Collapsed" SelectedObject="{Binding SelectedVariable}" Grid.Row="1" ItemsSource="{Binding Variables}">
+        <views:TreeViewSelect x:Name="valueTvw"  Visibility="Collapsed" SelectedObject="{Binding SelectedVariable}" Grid.Row="1" ItemsSource="{Binding Variables}">
         </views:TreeViewSelect>
     </Grid>
 </views:WindowBase>

@@ -5,7 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="brush1">
+            <SolidColorBrush.Color>
+                <Color A="255" R="67" B="67" G="67"></Color>
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource brush1}">
             
     </Grid>
 </UserControl>

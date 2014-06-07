@@ -16,7 +16,7 @@ namespace Olf.GoldenHorse.Core.Views.Factories
 
         public IWindow Create()
         {
-            createWindow();
+            return createWindow();
         }
     }
 }

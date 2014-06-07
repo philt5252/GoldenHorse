@@ -18,7 +18,7 @@ namespace Olf.GoldenHorse.Core.Views.Views.Tests.TestEditor
     /// <summary>
     /// Interaction logic for EditParameterView.xaml
     /// </summary>
-    public partial class EditParameterWindow : WindowBase, IViewWithDataContext
+    public partial class EditParameterWindow : WindowBase
     {
         public EditParameterWindow()
         {

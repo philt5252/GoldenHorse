@@ -32,7 +32,9 @@
                 <DataGridTemplateColumn Header="" Width="40" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                             <Button Content="..." Height="20" Width="30" Command="{Binding EditParameterCommand}" ></Button>
+                            <Grid>
+                                <Button Content="..." Height="20" Width="30" Command="{Binding EditParameterCommand}" ></Button>
+                            </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+                  GlowBrush="{StaticResource AccentColorBrush}"
+             Title="Edit Parameter" Height="300" Width="300">
     <Window.Resources>
         <SolidColorBrush x:Key="brush1">
             <SolidColorBrush.Color>
@@ -16,12 +17,13 @@
     <Grid Background="{StaticResource brush1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition Height="300*"></RowDefinition>
+            <RowDefinition Height="200*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical">
             <Grid Height="50">
                 <TextBlock Height="20" Text="Name: " Foreground="White" Margin="10,16,0,10" Width="50" HorizontalAlignment="Left"></TextBlock>
-                <TextBox Height="24" Width="230" Margin="60,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBox>
+                <TextBox IsReadOnly="True" Height="24" Width="230" Margin="60,10,0,0" 
+                         Text="{Binding Name}" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBox>
             </Grid>
             <Grid Height="50">
                 <TextBlock Name="modeTbk" Height="20" Text="Mode: " Foreground="White" Margin="10,16,0,10" Width="50" HorizontalAlignment="Left"></TextBlock>
@@ -30,7 +32,7 @@
                           SelectedItem="{Binding SelectedValidationMode}" VerticalAlignment="Top" HorizontalAlignment="Left"></ComboBox>
             </Grid>
         </StackPanel>
-        <Grid Grid.Row="1" Height="50" Margin="0,0,0,150">
+        <Grid Grid.Row="1" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Width="292">
             <TextBlock Name="valueTbk" Visibility="Collapsed" Height="20" Text="Value: " 
                        Foreground="White"  Margin="10,16,0,10" Width="50" HorizontalAlignment="Left"></TextBlock>
             <TextBox Name="valueTbx" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed" Height="8" Width="230" 

@@ -25,14 +25,17 @@
                 <TextBlock Foreground="White" Margin="30,0,0,10" Text="Specify the values of parameters"></TextBlock>
             </StackPanel>
         </Grid>
-        <DataGrid Background="{StaticResource brush1}" Grid.Row="1" ItemsSource="{Binding Parameters}" SelectedItem="{Binding SelectedParameter}">
+        <DataGrid Margin="10" Background="Transparent" Grid.Row="1" ItemsSource="{Binding Parameters}" 
+                  SelectedItem="{Binding SelectedParameter}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="170*" Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Value" Width="170" Binding="{Binding Value}"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="" Width="40" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                             <Button Content="..." Height="20" Width="30" Command="{Binding EditParameterCommand}" ></Button>
+                            <Grid>
+                                <Button Content="..." Height="20" Width="30" Command="{Binding EditParameterCommand}" ></Button>
+                            </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

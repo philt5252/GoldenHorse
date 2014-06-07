@@ -14,7 +14,7 @@
         </SolidColorBrush>
     </UserControl.Resources>
     
-    <Grid Background="{StaticResource brush1}">
+    <Grid Background="{StaticResource brush1}" Name="grid1">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="140*"></RowDefinition>
@@ -27,12 +27,12 @@
                 <TextBlock Foreground="White" Margin="30,0,0,10" Text="Specify an object with which the operation will work"></TextBlock>
             </StackPanel>
         </Grid>
-        <ListBox Grid.Row="1" Background="Transparent" ItemsSource="{Binding GetObjectViewModels}">
+        <ListBox  Grid.Row="1" Background="Transparent" ItemsSource="{Binding GetObjectViewModels}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid VerticalAlignment="Stretch">
+                    <Grid Name="grid2"  >
                         <Button Command="{Binding GetObjectCommand}"  Height="30" Width="30" Margin="10,10,0,28" HorizontalAlignment="Left"/>
-                        <TextBlock Margin="50,10,20,10"  TextWrapping="Wrap" Foreground="White" Text="{Binding Description}"/>
+                        <TextBlock Margin="60,10,20,10" Width="300" HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" Text="{Binding Description}"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

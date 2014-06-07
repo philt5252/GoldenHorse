@@ -68,6 +68,7 @@
     <Compile Include="Converters\CategoryToImageConverter.cs" />
     <Compile Include="Converters\HeightConverter.cs" />
     <Compile Include="Converters\ImageConverter.cs" />
+    <Compile Include="Factories\EditParameterWindowFactory.cs" />
     <Compile Include="Factories\LogMainShellViewFactory.cs" />
     <Compile Include="Factories\LogShellViewFactory.cs" />
     <Compile Include="Factories\MainShellViewFactory.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Factories\TestItemEditorWindowFactory.cs" />
     <Compile Include="Factories\TestMainShellViewFactory.cs" />
     <Compile Include="Factories\TestShellViewFactory.cs" />
+    <Compile Include="TreeViewSelect.cs" />
     <Compile Include="Views\MainShellView.xaml.cs">
       <DependentUpon>MainShellView.xaml</DependentUpon>
     </Compile>
@@ -116,8 +118,8 @@
     <Compile Include="Views\Tests\TestDetailsView.xaml.cs">
       <DependentUpon>TestDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tests\TestEditor\EditParameterView.xaml.cs">
-      <DependentUpon>EditParameterView.xaml</DependentUpon>
+    <Compile Include="Views\Tests\TestEditor\EditParameterWindow.xaml.cs">
+      <DependentUpon>EditParameterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tests\TestEditor\TestDescriptionEditorView.xaml.cs">
       <DependentUpon>TestDescriptionEditorView.xaml</DependentUpon>
@@ -215,7 +217,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tests\TestEditor\EditParameterView.xaml">
+    <Page Include="Views\Tests\TestEditor\EditParameterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

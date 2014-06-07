@@ -4,6 +4,7 @@ using Olf.GoldenHorse.Core.Views.Factories;
 using Olf.GoldenHorse.Core.Views.Views;
 using Olf.GoldenHorse.Core.Views.Views.Logs;
 using Olf.GoldenHorse.Core.Views.Views.Tests;
+using Olf.GoldenHorse.Core.Views.Views.Tests.TestEditor;
 using Olf.GoldenHorse.Foundation.Views.Factories;
 using Module = Autofac.Module;
 
@@ -30,6 +31,7 @@ namespace Olf.GoldenHorse.Core.Views.Autofac
             builder.RegisterType<LogShellView>().AsSelf();
             builder.RegisterType<StartView>().AsSelf();
             builder.RegisterType<TestItemEditorWindow>().AsSelf();
+            builder.RegisterType<EditParameterWindow>().AsSelf();
 
             builder.RegisterType<MainWindowFactory>().As<IMainWindowFactory>().SingleInstance();
             builder.RegisterType<MainShellViewFactory>().As<IMainShellViewFactory>().SingleInstance();
@@ -44,6 +46,7 @@ namespace Olf.GoldenHorse.Core.Views.Autofac
             builder.RegisterType<LogShellViewFactory>().As<ILogShellViewFactory>().SingleInstance();
             builder.RegisterType<StartViewFactory>().As<IStartViewFactory>().SingleInstance();
             builder.RegisterType<TestItemEditorWindowFactory>().As<ITestItemEditorWindowFactory>().SingleInstance();
+            builder.RegisterType<EditParameterWindowFactory>().As<IEditParameterWindowFactory>().SingleInstance();
         }
     }
 }

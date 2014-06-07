@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\IEditParameterWindowFactory.cs" />
     <Compile Include="Factories\ILogMainShellViewFactory.cs" />
     <Compile Include="Factories\ILogShellViewFactory.cs" />
     <Compile Include="Factories\IMainShellViewFactory.cs" />

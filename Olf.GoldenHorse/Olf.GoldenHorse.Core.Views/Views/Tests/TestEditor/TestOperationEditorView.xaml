@@ -4,15 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="300">
-    <Grid>
+             d:DesignHeight="500" d:DesignWidth="450">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="brush1">
+            <SolidColorBrush.Color>
+                <Color A="255" R="57" B="57" G="57"></Color>
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+
+    </UserControl.Resources>
+    <Grid Background="{StaticResource brush1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="300*"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
         <TreeView Grid.Row="0" Margin="20,10,20,20"></TreeView>
-        <Button Grid.Row="1" Height="26" Content="Cancel" Width="75" Margin="265,5,10,9"></Button>
-        <Button Grid.Row="1" Content="Next" Height="26" Width="75" Margin="185,5,90,9"></Button>
+        <Button Grid.Row="1" Height="26" Content="Cancel" Margin="0,0,10,9" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom"/>
+        <Button Grid.Row="1" Content="Next" Height="26" Width="75" Margin="0,0,90,9" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
             
     </Grid>
 </UserControl>

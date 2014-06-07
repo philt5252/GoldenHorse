@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
+             GlowBrush="{StaticResource AccentColorBrush}"
              mc:Ignorable="d" 
            
              Title="Record" Height="100" Width="200" MaxHeight="100" MaxWidth="200" MinHeight="100" MinWidth="200">

@@ -6,8 +6,9 @@
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:testEditor="clr-namespace:Olf.GoldenHorse.Core.Views.Views.Tests.TestEditor"
              xmlns:avalondock="http://avalondock.codeplex.com"
+             GlowBrush="{StaticResource AccentColorBrush}"
              mc:Ignorable="d" 
-             Height="400" Width="350">
+             Height="500" Width="450">
     <Grid>
         <avalondock:DockingManager>
             <avalondock:LayoutRoot>

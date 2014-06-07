@@ -22,11 +22,11 @@ namespace Olf.GoldenHorse.Core.Views
     /// </summary>
     public partial class TestDetailsView : UserControl, IViewWithDataContext
     {
-        public int itemCount;
+        public int objectCount;
         public int operationCount;
         public int valueCount;
 
-        public Stopwatch ItemStopwatch;
+        public Stopwatch ObjectStopwatch;
         public Stopwatch OperationStopwatch;
         public Stopwatch ValueStopwatch;
 
@@ -35,29 +35,28 @@ namespace Olf.GoldenHorse.Core.Views
             InitializeComponent();
         }
 
-        public void OpenItemEditWindow(object sender, MouseEventArgs args)
+        public void OpenObjectEditWindow(object sender, MouseEventArgs args)
         {
 
            
-            if (ItemStopwatch!= null && ItemStopwatch.ElapsedMilliseconds > 600)
+            if (ObjectStopwatch!= null && ObjectStopwatch.ElapsedMilliseconds > 700)
             {
-                itemCount = 0;
+                objectCount = 0;
             }
-            if (itemCount == 0)
+            if (objectCount == 0)
             {
-                ItemStopwatch = Stopwatch.StartNew();
-                itemCount++;
+                ObjectStopwatch = Stopwatch.StartNew();
+                objectCount++;
             }
-            else if (itemCount == 1)
+            else if (objectCount == 1)
             {
-                int elapsedMilliseconds = (int)ItemStopwatch.ElapsedMilliseconds;
-                itemCount = 0;
+                int elapsedMilliseconds = (int)ObjectStopwatch.ElapsedMilliseconds;
+                objectCount = 0;
                 if (elapsedMilliseconds <= (int)GetDoubleClickTime())
                 {
-                    //MessageBox.Show(new Window(), dataContext.Item);
-
+                    object o = sender;
+                    object dataContext = DataContext;
                 }
-
             }
         }
 

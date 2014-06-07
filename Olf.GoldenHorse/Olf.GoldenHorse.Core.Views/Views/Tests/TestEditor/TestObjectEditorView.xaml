@@ -30,7 +30,7 @@
         <ListBox Grid.Row="1" Background="Transparent" ItemsSource="{Binding GetObjectViewModels}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid VerticalAlignment="Stretch">
                         <Button Command="{Binding GetObjectCommand}"  Height="30" Width="30" Margin="10,10,0,28" HorizontalAlignment="Left"/>
                         <TextBlock Margin="50,10,20,10"  TextWrapping="Wrap" Foreground="White" Text="{Binding Description}"/>
                     </Grid>

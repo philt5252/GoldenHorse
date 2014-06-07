@@ -24,7 +24,7 @@
             <WrapPanel Margin="13,0,0,7">
                 <Label Content="Name: " Foreground="White"></Label>
                 <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Height="20" 
-                         AcceptsReturn="True" Width="200" Background="Transparent" Foreground="White"/>
+                         AcceptsReturn="True" Width="200" />
             </WrapPanel>
             
         </StackPanel>

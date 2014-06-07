@@ -36,8 +36,8 @@
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label Content="Test: " Width="35" Grid.Row="0" Margin="0,0,157,0"></Label>
-        <Label Content="{Binding CurrentTest}" Grid.Row="0" Margin="35,0,0,0"/>
+        <Label Foreground="White" Content="Test: " Width="35" Grid.Row="0" Margin="0,0,157,0"></Label>
+        <Label Foreground="White" Content="{Binding CurrentTest}" Grid.Row="0" Margin="35,0,0,0"/>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <Button Command="{Binding RecordCommand}"  Height="30" Width="30" Margin="5,5,5,5"  ToolTip="Record"   >
                 <Ellipse Height="18" Width="18" Fill="{DynamicResource RedButtonBrush}"/>

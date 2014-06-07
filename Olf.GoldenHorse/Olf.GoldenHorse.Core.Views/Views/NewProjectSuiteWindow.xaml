@@ -27,11 +27,11 @@
         <StackPanel Grid.Row="1" Background="Transparent">
             <WrapPanel Margin="13,0,0,7" Background="Transparent">
                 <Label Content="Name: " Foreground="White" Background="Transparent"></Label>
-                <TextBox Background="Transparent" Foreground="White" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Height="20" AcceptsReturn="True" Width="200"/>
+                <TextBox  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Height="20" AcceptsReturn="True" Width="200"/>
             </WrapPanel>
             <WrapPanel Background="Transparent">
                 <Label Background="Transparent" Foreground="White" Content ="Location: " ></Label>
-                <TextBox Background="Transparent" Foreground="White" Text="{Binding Location, UpdateSourceTrigger=PropertyChanged}" Height ="20" Width="200"></TextBox>
+                <TextBox Text="{Binding Location, UpdateSourceTrigger=PropertyChanged}" Height ="20" Width="200"></TextBox>
                 <Button Content="browse" Foreground="White" Style="{StaticResource MetroCircleButtonStyle}"  Margin="3,0,0,0"  Width="35" FontSize="10"  Height="35" Command="{Binding BrowseCommand}">
                    <!--<Button.Content>
                        <Image Height="20" Width="20" Source="../../WhiteImages/"></Image>

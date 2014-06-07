@@ -24,7 +24,7 @@
             <Grid Height="50">
                 <TextBlock Height="20" Text="Name: " Foreground="White" Margin="10,16,0,10" Width="50" HorizontalAlignment="Left"></TextBlock>
                 <TextBox IsReadOnly="True" Height="24" Width="230" Margin="60,10,0,0" 
-                         Text="{Binding Name}" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBox>
+                         Text="{Binding Name, Mode=OneWay}" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBox>
             </Grid>
             <Grid Height="50">
                 <TextBlock Name="modeTbk" Height="20" Text="Mode: " Foreground="White" Margin="10,16,0,10" Width="50" HorizontalAlignment="Left"></TextBlock>

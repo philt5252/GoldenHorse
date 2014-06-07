@@ -126,6 +126,7 @@ namespace AvalonDock.Layout
                 {
                     bool oldValue = IsSelected;
                     RaisePropertyChanging("IsSelected");
+                    isSelected = value;
                     SetValue(IsSelectedProperty, value);
                     var parentSelector = (Parent as ILayoutContentSelector);
                     if (parentSelector != null)

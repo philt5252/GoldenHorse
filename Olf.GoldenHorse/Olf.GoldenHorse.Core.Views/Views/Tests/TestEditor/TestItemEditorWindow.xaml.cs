@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -34,6 +35,21 @@ namespace Olf.GoldenHorse.Core.Views.Views.Tests
             testOperationEditorView.DataContext = testItemEditorViewModel.TestOperationEditorViewModel;
             testParameterEditorView.DataContext = testItemEditorViewModel.TestParameterEditorViewModel;
             testDescriptionEditorView.DataContext = testItemEditorViewModel.TestDescriptionEditorViewModel;
+
+            layoutDocumentPane.PropertyChanged +=
+                (o, e) =>
+                {
+                    if (e.PropertyName == "SelectedContentIndex")
+                        testItemEditorViewModel.SelectedIndex = layoutDocumentPane.SelectedContentIndex;
+                };
+
+            testItemEditorViewModel.PropertyChanged +=
+                (o, e) =>
+                {
+                    if (e.PropertyName == "SelectedIndex")
+                        layoutDocumentPane.SelectedContentIndex = testItemEditorViewModel.SelectedIndex;
+                };
         }
+
     }
 }

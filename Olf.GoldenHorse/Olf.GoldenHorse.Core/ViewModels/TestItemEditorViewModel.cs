@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data.Odbc;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
@@ -11,14 +12,25 @@ using Olf.GoldenHorse.Foundation.ViewModels;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
-    public class TestItemEditorViewModel : ITestItemEditorViewModel
+    public class TestItemEditorViewModel : ViewModelBase, ITestItemEditorViewModel
     {
         private readonly TestItem testItem;
         private readonly ITestItemController testItemController;
         private readonly IRecordingController recordingController;
         private ITabItemViewModel[] tabItems;
-        private int selectedTabIndex = 0;
         private DelegateCommand nextCommand;
+        private int selectedIndex;
+
+        public int SelectedIndex
+        {
+            get { return selectedIndex; }
+            set
+            {
+                selectedIndex = value; 
+                OnPropertyChanged("SelectedIndex");
+                nextCommand.RaiseCanExecuteChanged();
+            }
+        }
 
         public ITestObjectEditorViewModel TestObjectEditorViewModel { get; protected set; }
         public ITestOperationEditorViewModel TestOperationEditorViewModel { get; protected set; }
@@ -54,22 +66,26 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 TestDescriptionEditorViewModel
             };
 
+            CancelCommand = new DelegateCommand(ExecuteCancelCommand);
             FinishCommand = new DelegateCommand(ExecuteFinishCommand);
             nextCommand = new DelegateCommand(ExecuteNextCommand, CanExeccuteNextCommand);
             NextCommand = nextCommand;
         }
 
+        private void ExecuteCancelCommand()
+        {
+            testItemController.CloseTestItemEditorWindow();
+        }
+
         private bool CanExeccuteNextCommand()
         {
-            return selectedTabIndex < tabItems.Length - 1;
+            return SelectedIndex < tabItems.Length - 1;
         }
 
         private void ExecuteNextCommand()
         {
-            selectedTabIndex++;
+            SelectedIndex++;
             nextCommand.RaiseCanExecuteChanged();
-            tabItems[selectedTabIndex].IsSelected = true;
-            tabItems[selectedTabIndex-1].IsSelected = false;
         }
 
         protected virtual void ExecuteFinishCommand()

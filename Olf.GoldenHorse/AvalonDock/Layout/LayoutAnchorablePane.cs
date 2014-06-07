@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Markup;
 using System.ComponentModel;
 using System.Xml.Serialization;
@@ -53,12 +54,17 @@ namespace AvalonDock.Layout
 
         #region SelectedContentIndex
 
+        public static readonly DependencyProperty SelectedContentIndexProperty =
+            DependencyProperty.Register("SelectedContentIndex", typeof (int), typeof (LayoutAnchorablePane), new PropertyMetadata(default(int)));
+
         private int _selectedIndex = -1;
         public int SelectedContentIndex
         {
-            get { return _selectedIndex; }
+            get { return _selectedIndex = (int)GetValue(SelectedContentIndexProperty); }
             set
             {
+                _selectedIndex = (int)GetValue(SelectedContentIndexProperty);
+
                 if (value < 0 ||
                     value >= Children.Count)
                     value = -1;
@@ -74,6 +80,7 @@ namespace AvalonDock.Layout
                         _selectedIndex < Children.Count)
                         Children[_selectedIndex].IsSelected = false;
 
+                    SetValue(SelectedContentIndexProperty, value);
                     _selectedIndex = value;
 
                     if (_selectedIndex >= 0 &&

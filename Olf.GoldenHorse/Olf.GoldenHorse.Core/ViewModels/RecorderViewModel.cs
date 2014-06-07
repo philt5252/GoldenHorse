@@ -20,7 +20,15 @@ namespace Olf.GoldenHorse.Core.ViewModels
     {
         private readonly IRecorder recorder;
         private readonly IRecordingController recordingController;
-        public string CurrentTest { get; protected set; }
+
+        public string CurrentTest
+        {
+            get
+            {
+                return recorder.CurrentTest.Name;
+            }
+        }
+
         public IValidationListItemViewModel[] ValidationList { get; protected set; }
 
         public ICommand RecordCommand { get; protected set; }

@@ -54,7 +54,7 @@ namespace Olf.GoldenHorse.Core.Models
 
         public override string ParametersDescription
         {
-            get { return textParam.Value.ToString(); }
+            get { return textParam.Value == null ? "" : textParam.Value.ToString(); }
         }
 
         protected override OperationParameter[] SetParameters()
@@ -108,6 +108,7 @@ namespace Olf.GoldenHorse.Core.Models
                 error = string.Format(error, expectedText, actualText);
 
                 log.CreateLogItem(LogItemCategory.Error, error, screenshot);
+                return;
             }
 
             
@@ -120,6 +121,7 @@ namespace Olf.GoldenHorse.Core.Models
 
         private string CopyText()
         {
+            Thread.Sleep(500);
             InputSimulator simulator = new InputSimulator();
             simulator.Keyboard.KeyDown(VirtualKeyCode.HOME);
 

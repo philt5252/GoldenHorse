@@ -9,6 +9,12 @@ namespace Olf.GoldenHorse.Foundation.Models
     public abstract class TestItem : ScreenshotOwner
     {
         private ObservableCollection<TestItem> children;
+        private MappedItem control;
+
+        public string ControlId { get; set; }
+
+        [XmlIgnore]
+        public MappedItem Control { get { return control ?? (control = AppManager.GetMappedItem(ControlId)); } }
 
         public string Id { get; set; }
 

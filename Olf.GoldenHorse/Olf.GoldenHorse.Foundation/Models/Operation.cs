@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 using Olf.GoldenHorse.Foundation.Services;
 
@@ -30,6 +31,11 @@ namespace Olf.GoldenHorse.Foundation.Models
         public abstract string DefaultDescription(MappedItem control);
 
         public abstract void Play(MappedItem control, Log log);
+
+        public OperationParameter GetParameterNamed(string name)
+        {
+            return Parameters.FirstOrDefault(p => Equals(name, p.Name));
+        }
 
         protected static Screenshot CreateScreenshot(Log log)
         {

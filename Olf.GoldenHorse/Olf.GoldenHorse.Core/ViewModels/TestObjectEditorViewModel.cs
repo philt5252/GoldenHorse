@@ -25,8 +25,37 @@ namespace Olf.GoldenHorse.Core.ViewModels
     {
         private readonly TestItem testItem;
         private readonly IGetObjectScreenSelectionViewModelFactory getObjectScreenSelectionViewModelFactory;
+        private IGetObjectViewModel[] getObjectViewModels;
 
-        public IGetObjectViewModel[] GetObjectViewModels { get; protected set; }
+        public IGetObjectViewModel[] GetObjectViewModels
+        {
+            get { return getObjectViewModels; }
+            protected set
+            {
+                if (getObjectViewModels != null)
+                {
+                    foreach (var getObjectViewModel in getObjectViewModels)
+                    {
+                        getObjectViewModel.UIItemChanged -= GetObjectViewModelOnUIItemChanged;
+                    }
+                }
+
+                getObjectViewModels = value;
+
+                foreach (var getObjectViewModel in getObjectViewModels)
+                {
+                    getObjectViewModel.UIItemChanged += GetObjectViewModelOnUIItemChanged;
+                }
+                
+            }
+        }
+
+        private void GetObjectViewModelOnUIItemChanged(object sender, EventArgs eventArgs)
+        {
+            IGetObjectViewModel getObjectViewModel = sender as IGetObjectViewModel;
+            MappedItem mappedItem = ExternalAppInfoManager.GetMappedItemFromUIItem(getObjectViewModel.UIItem, testItem.AppManager);
+            testItem.ControlId = mappedItem.Id;
+        }
 
         public TestObjectEditorViewModel(TestItem testItem,
             IGetObjectScreenSelectionViewModelFactory getObjectScreenSelectionViewModelFactory)

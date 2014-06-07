@@ -13,6 +13,8 @@ namespace Olf.GoldenHorse.Core.Controllers
         private readonly ITestItemEditorViewModelFactory testItemEditorViewModelFactory;
         private IWindow testItemEditorWindow;
 
+        public TestItem CurrentTestItem { get; protected set; }
+
         public TestItemController(ITestItemEditorWindowFactory testItemEditorWindowFactory,
             ITestItemEditorViewModelFactory testItemEditorViewModelFactory)
         {
@@ -22,12 +24,13 @@ namespace Olf.GoldenHorse.Core.Controllers
 
         public void EditTestItem(TestItem testItem)
         {
+            CurrentTestItem = testItem;
             testItemEditorWindow = testItemEditorWindowFactory.Create();
             ITestItemEditorViewModel testItemEditorViewModel = testItemEditorViewModelFactory.Create(testItem);
 
             testItemEditorWindow.DataContext = testItemEditorViewModel;
 
-            testItemEditorWindow.ShowDialog();
+            testItemEditorWindow.Show();
         }
 
         public void MinimizeTestItemEditorWindow()

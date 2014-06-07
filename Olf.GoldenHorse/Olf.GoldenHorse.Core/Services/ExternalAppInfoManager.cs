@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Forms;
+using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.Actions;
+using Point = System.Drawing.Point;
 
 namespace Olf.GoldenHorse.Core.Services
 {
@@ -145,5 +148,58 @@ namespace Olf.GoldenHorse.Core.Services
 
         [DllImport("user32.dll")]
         public static extern IntPtr WindowFromPoint(POINT Point);
+
+        public static MappedItem GetMappedItemFromUIItem(IUIItem uiItem, AppManager appManager)
+        {
+            if (uiItem.AutomationElement.Current.LocalizedControlType.Equals("window"))
+                return null;
+
+            TreeWalker walker = TreeWalker.ControlViewWalker;
+            AutomationElement automationElement = uiItem.AutomationElement;
+            Stack<AutomationElement> uiElementTree = new Stack<AutomationElement>();
+
+            while (automationElement != AutomationElement.RootElement)
+            {
+                uiElementTree.Push(automationElement);
+                automationElement = walker.GetParent(automationElement);
+            }
+
+            Process process = Process.GetProcessById(uiItem.AutomationElement.Current.ProcessId);
+
+            AppProcess appProcess = appManager.FindOrCreateProcess(process.ProcessName);
+
+            string parentId = appProcess.Id;
+
+            AutomationElement window = uiElementTree.Peek();
+            MappedItem createdMappedItem = null;
+
+            while (uiElementTree.Count > 0)
+            {
+                automationElement = uiElementTree.Pop();
+                string name = automationElement.Current.AutomationId;
+                string type = automationElement.Current.ControlType.LocalizedControlType;
+                string text = automationElement.Current.Name;
+                Rect bounds = automationElement.Current.BoundingRectangle;
+                bounds.X -= window.Current.BoundingRectangle.X;
+                bounds.Y -= window.Current.BoundingRectangle.Y;
+                createdMappedItem = appManager.FindOrCreateMappedItem(parentId, name, bounds, type, text);
+
+                parentId = createdMappedItem.Id;
+            }
+
+            return createdMappedItem;
+        }
+
+        public static AutomationElement GetWindowAutomationElement(IUIItem uiItem)
+        {
+            AutomationElement findWindowElement = uiItem.AutomationElement;
+
+            while (findWindowElement.Current.LocalizedControlType != "window")
+            {
+                findWindowElement = TreeWalker.ControlViewWalker.GetParent(findWindowElement);
+            }
+
+            return findWindowElement;
+        }
     }
 }

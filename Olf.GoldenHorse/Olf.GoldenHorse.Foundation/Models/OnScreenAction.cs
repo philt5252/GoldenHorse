@@ -5,10 +5,8 @@ namespace Olf.GoldenHorse.Foundation.Models
     public class OnScreenAction : TestItem
     {
         private string description;
-        private MappedItem control;
-        private Operation operation;
-        public string ControlId { get; set; }
 
+        private Operation operation;
         public Operation Operation
         {
             get { return operation; }
@@ -19,9 +17,7 @@ namespace Olf.GoldenHorse.Foundation.Models
             }
         }
 
-        [XmlIgnore]
-        public MappedItem Control { get { return control ?? (control = AppManager.GetMappedItem(ControlId)); } }
-
+        
         public override string Description
         {
             get { return description ?? DefaultDescription(); }

@@ -91,7 +91,18 @@ namespace Olf.GoldenHorse.Core.Controllers
 
         public void DoValidation(OnScreenValidation onScreenValidation)
         {
+            onScreenValidation.Test = recorder.CurrentTest;
             testItemController.EditTestItem(onScreenValidation);
+        }
+
+        public void PauseRecord()
+        {
+            recorder.Pause();
+        }
+
+        public void ResumeRecorder()
+        {
+            recorder.Record();
         }
     }
 }

@@ -1,10 +1,13 @@
-﻿namespace Olf.GoldenHorse.Foundation.Models
+﻿using System;
+
+namespace Olf.GoldenHorse.Foundation.Models
 {
     public class OperationParameter
     {
         private OperationParameterValueMode mode;
         private OperationParameterValue value;
-        
+
+        public event EventHandler ValueChanged;
 
         public string Name { get; set; }
 
@@ -14,6 +17,7 @@
             set
             {
                 this.value.DisplayValue = value.ToString();
+                OnValueChanged();
             }
         }
 
@@ -30,6 +34,7 @@
                     this.value = new ConstantOperationParameterValue();
                 }
 
+                OnValueChanged();
             }
         }
 
@@ -41,6 +46,13 @@
         public string GetValue()
         {
             return value.GetValue();
+        }
+
+        protected virtual void OnValueChanged()
+        {
+            EventHandler handler = ValueChanged;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
     }
 }

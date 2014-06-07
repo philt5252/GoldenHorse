@@ -8,7 +8,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"></RowDefinition>
-            <RowDefinition Height="220"></RowDefinition>
+            <RowDefinition Height="220*"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel  Orientation="Vertical" Grid.Row="0">
@@ -21,10 +21,12 @@
                 <TextBlock  Margin="50,10,20,10" TextWrapping="Wrap" Text="Selecting this will open the Visualizer view. Click a control to set its property to the validation text."></TextBlock>
             </Grid>
         </StackPanel>
-        <Grid Grid.Row="1" Height="150">
+        <Grid Grid.Row="1" Margin="20,0,20,0">
               <TreeView ItemsSource="{Binding IDontKnow}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></TreeView>
         </Grid>
-        
-     
+        <Button Grid.Row="2" Height="26" Content="Cancel" Width="75" Margin="265,5,10,9"></Button>
+        <Button Grid.Row="2" Content="Next" Height="26" Width="75" Margin="185,5,90,9"></Button>
+
+
     </Grid>
 </UserControl>

@@ -135,6 +135,7 @@
     <Compile Include="ViewModels\IRecentFileViewModel.cs" />
     <Compile Include="ViewModels\IRecorderViewModel.cs" />
     <Compile Include="ViewModels\IStartPageViewModel.cs" />
+    <Compile Include="ViewModels\ITabItemViewModel.cs" />
     <Compile Include="ViewModels\ITestDescriptionEditorViewModel.cs" />
     <Compile Include="ViewModels\ITestDetailsViewModel.cs" />
     <Compile Include="ViewModels\ITestItemEditorViewModel.cs" />

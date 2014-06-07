@@ -14,7 +14,12 @@ namespace Olf.GoldenHorse.Core.ViewModels
     public class TestItemEditorViewModel : ITestItemEditorViewModel
     {
         private readonly TestItem testItem;
+        private readonly ITestItemController testItemController;
         private readonly IRecordingController recordingController;
+        private ITabItemViewModel[] tabItems;
+        private int selectedTabIndex = 0;
+        private DelegateCommand nextCommand;
+
         public ITestObjectEditorViewModel TestObjectEditorViewModel { get; protected set; }
         public ITestOperationEditorViewModel TestOperationEditorViewModel { get; protected set; }
         public ITestParameterEditorViewModel TestParameterEditorViewModel { get; protected set; }
@@ -29,9 +34,11 @@ namespace Olf.GoldenHorse.Core.ViewModels
             ITestOperationEditorViewModelFactory testOperationEditorViewModelFactory,
             ITestParameterEditorViewModelFactory testParameterEditorViewModelFactory,
             ITestDescriptionEditorViewModelFactory testDescriptionEditorViewModelFactory,
+            ITestItemController testItemController,
             IRecordingController recordingController)
         {
             this.testItem = testItem;
+            this.testItemController = testItemController;
             this.recordingController = recordingController;
 
             TestObjectEditorViewModel = testObjectEditorViewModelFactory.Create(testItem);
@@ -39,12 +46,36 @@ namespace Olf.GoldenHorse.Core.ViewModels
             TestParameterEditorViewModel = testParameterEditorViewModelFactory.Create(testItem);
             TestDescriptionEditorViewModel = testDescriptionEditorViewModelFactory.Create(testItem);
         
+            tabItems = new ITabItemViewModel[]
+            {
+                TestObjectEditorViewModel,
+                TestOperationEditorViewModel,
+                TestParameterEditorViewModel,
+                TestDescriptionEditorViewModel
+            };
+
             FinishCommand = new DelegateCommand(ExecuteFinishCommand);
+            nextCommand = new DelegateCommand(ExecuteNextCommand, CanExeccuteNextCommand);
+            NextCommand = nextCommand;
+        }
+
+        private bool CanExeccuteNextCommand()
+        {
+            return selectedTabIndex < tabItems.Length - 1;
+        }
+
+        private void ExecuteNextCommand()
+        {
+            selectedTabIndex++;
+            nextCommand.RaiseCanExecuteChanged();
+            tabItems[selectedTabIndex].IsSelected = true;
+            tabItems[selectedTabIndex-1].IsSelected = false;
         }
 
         protected virtual void ExecuteFinishCommand()
         {
             testItem.Test.TestItems.Add(testItem);
+            testItemController.CloseTestItemEditorWindow();
             recordingController.ResumeRecorder();
         }
     }

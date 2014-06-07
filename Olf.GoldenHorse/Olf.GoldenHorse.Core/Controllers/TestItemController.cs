@@ -58,5 +58,10 @@ namespace Olf.GoldenHorse.Core.Controllers
 
             editParameterWindow.ShowDialog();
         }
+
+        public void CloseTestItemEditorWindow()
+        {
+            testItemEditorWindow.Close();
+        }
     }
 }

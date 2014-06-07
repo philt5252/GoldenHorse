@@ -6,6 +6,7 @@ using System.Windows.Data;
 using AvalonDock.Layout;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
+using Olf.Common.Extensions.Reflection;
 
 namespace Olf.GoldenHorse
 {
@@ -92,6 +93,12 @@ namespace Olf.GoldenHorse
             Binding myBinding = new Binding("Tag");
             myBinding.Source = newView;
             BindingOperations.SetBinding(layoutDocument, LayoutDocument.TitleProperty, myBinding);
+
+
+            Binding isSelectedBinding = new Binding("IsSelected");
+            isSelectedBinding.Source = newView.GetProperty("DataContext");
+            BindingOperations.SetBinding(layoutDocument, LayoutDocument.IsSelectedProperty, isSelectedBinding);
+
 
             layoutDocument.Content = newView;
             documentDict[newView] = layoutDocument;

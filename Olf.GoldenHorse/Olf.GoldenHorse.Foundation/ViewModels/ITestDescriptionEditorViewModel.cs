@@ -2,7 +2,7 @@
 
 namespace Olf.GoldenHorse.Foundation.ViewModels
 {
-    public interface ITestDescriptionEditorViewModel
+    public interface ITestDescriptionEditorViewModel : ITabItemViewModel
     {
     }
 }

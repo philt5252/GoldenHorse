@@ -9,5 +9,6 @@ namespace Olf.GoldenHorse.Foundation.Controllers
         void RestoreTestItemEditorWindow();
         TestItem CurrentTestItem { get; }
         void EditParameter(OperationParameter parameter);
+        void CloseTestItemEditorWindow();
     }
 }

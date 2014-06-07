@@ -21,11 +21,12 @@ using Application = System.Windows.Application;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
-    public class TestObjectEditorViewModel : ITestObjectEditorViewModel
+    public class TestObjectEditorViewModel : TabItemViewModel, ITestObjectEditorViewModel
     {
         private readonly TestItem testItem;
         private readonly IGetObjectScreenSelectionViewModelFactory getObjectScreenSelectionViewModelFactory;
         private IGetObjectViewModel[] getObjectViewModels;
+        private bool isSelected;
 
         public IGetObjectViewModel[] GetObjectViewModels
         {
@@ -76,5 +77,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         {
             
         }
+
+        
     }
 }

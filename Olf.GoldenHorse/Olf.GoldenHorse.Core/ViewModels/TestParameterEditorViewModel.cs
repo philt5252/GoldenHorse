@@ -6,7 +6,7 @@ using Olf.GoldenHorse.Foundation.ViewModels;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
-    public class TestParameterEditorViewModel : ITestParameterEditorViewModel
+    public class TestParameterEditorViewModel : TabItemViewModel, ITestParameterEditorViewModel
     {
         private readonly TestItem testItem;
         private readonly OperationParameter[] parameters;
@@ -21,5 +21,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 .Select(operationParameterViewModelFactory.Create)
                 .ToArray();
         }
+
+        
     }
 }

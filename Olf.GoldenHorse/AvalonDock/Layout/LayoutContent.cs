@@ -41,10 +41,10 @@ namespace AvalonDock.Layout
         { }
 
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(LayoutAnchorable), new PropertyMetadata(default(string)));
+            DependencyProperty.Register("Title", typeof(string), typeof(LayoutContent), new PropertyMetadata(default(string)));
 
         public static readonly DependencyProperty IsSelectedProperty =
-            DependencyProperty.Register("IsSelected", typeof(bool), typeof(LayoutAnchorable), new PropertyMetadata(default(bool)));
+            DependencyProperty.Register("IsSelected", typeof(bool), typeof(LayoutContent), new PropertyMetadata(default(bool)));
 
 
         #region Title

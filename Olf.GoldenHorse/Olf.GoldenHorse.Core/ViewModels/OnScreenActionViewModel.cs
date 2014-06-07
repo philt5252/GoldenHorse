@@ -6,26 +6,26 @@ namespace Olf.GoldenHorse.Core.ViewModels
 {
     public class OnScreenActionViewModel : TestItemViewModelBase, IOnScreenActionViewModel
     {
-        private readonly OnScreenAction onScreenAction;
+        private readonly TestItem testItem;
 
-        public OnScreenActionViewModel(OnScreenAction onScreenAction)
+        public OnScreenActionViewModel(TestItem testItem)
         {
-            this.onScreenAction = onScreenAction;
-            TestItem = onScreenAction;
+            this.testItem = testItem;
+            TestItem = testItem;
         }
 
         public override string Name
         {
-            get { return onScreenAction.Control.FriendlyName; }
+            get { return testItem.Control.FriendlyName; }
         }
 
-        public override string Operation { get { return onScreenAction.Operation.Name; }}
-        public override string Value { get { return onScreenAction.Operation.ParametersDescription; } }
+        public override string Operation { get { return testItem.Operation.Name; } }
+        public override string Value { get { return testItem.Operation.ParametersDescription; } }
 
         public override string Description
         {
-            get { return onScreenAction.Description; }
-            set { onScreenAction.Description = value; }
+            get { return testItem.Description; }
+            set { testItem.Description = value; }
         }
 
         public override string AutowaitTimeout { get; set; }

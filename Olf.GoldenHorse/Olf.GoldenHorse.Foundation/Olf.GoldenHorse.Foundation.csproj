@@ -70,6 +70,7 @@
     <Compile Include="Factories\ViewModels\ILogShellViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\IMainShellViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\INewProjectSuiteViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\IOperationParameterViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\IProjectExplorerViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\IRecentFileViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\IRecorderViewModelFactory.cs" />
@@ -98,8 +99,6 @@
     <Compile Include="Models\LogItem.cs" />
     <Compile Include="Models\LogItemCategory.cs" />
     <Compile Include="Models\MappedItem.cs" />
-    <Compile Include="Models\OnScreenAction.cs" />
-    <Compile Include="Models\OnScreenValidation.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\OperationParameter.cs" />
     <Compile Include="Models\OperationParameterValue.cs" />
@@ -131,6 +130,7 @@
     <Compile Include="ViewModels\IMainShellViewModel.cs" />
     <Compile Include="ViewModels\INewProjectSuiteViewModel.cs" />
     <Compile Include="ViewModels\IOnScreenActionViewModel.cs" />
+    <Compile Include="ViewModels\IOperationParameterViewModel.cs" />
     <Compile Include="ViewModels\IProjectExplorerViewModel.cs" />
     <Compile Include="ViewModels\IRecentFileViewModel.cs" />
     <Compile Include="ViewModels\IRecorderViewModel.cs" />

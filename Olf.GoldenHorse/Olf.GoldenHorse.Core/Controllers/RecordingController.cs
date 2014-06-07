@@ -89,7 +89,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             testController.ShowTest(recorder.CurrentTest);
         }
 
-        public void DoValidation(OnScreenValidation onScreenValidation)
+        public void DoValidation(TestItem onScreenValidation)
         {
             onScreenValidation.Test = recorder.CurrentTest;
             testItemController.EditTestItem(onScreenValidation);

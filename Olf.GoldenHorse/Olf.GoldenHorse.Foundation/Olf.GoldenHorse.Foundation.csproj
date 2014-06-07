@@ -58,9 +58,11 @@
     <Compile Include="Controllers\IProjectSuiteController.cs" />
     <Compile Include="Controllers\IRecordingController.cs" />
     <Compile Include="Controllers\ITestController.cs" />
+    <Compile Include="Controllers\ITestItemController.cs" />
     <Compile Include="DefaultData.cs" />
     <Compile Include="Factories\Services\IRecorderFactory.cs" />
     <Compile Include="Factories\ViewModels\IEditParameterViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\IGetObjectScreenSelectionViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ILogDetailsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ILogItemViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ILogMainShellViewModelFactory.cs" />
@@ -119,6 +121,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ProjectManager.cs" />
     <Compile Include="ViewModels\IEditParameterViewModel.cs" />
+    <Compile Include="ViewModels\IGetObjectViewModel.cs" />
+    <Compile Include="ViewModels\IGetObjectScreenSelectionViewModel.cs" />
     <Compile Include="ViewModels\ILogDetailsViewModel.cs" />
     <Compile Include="ViewModels\ILogItemViewModel.cs" />
     <Compile Include="ViewModels\ILogMainShellViewModel.cs" />

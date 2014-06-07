@@ -36,8 +36,7 @@ namespace Olf.GoldenHorse.Core.Controllers
         private readonly IProjectFileManager projectFileManager;
         private readonly IAppController appController;
         private readonly ITestController testController;
-        private readonly ITestItemEditorViewModelFactory testItemEditorViewModelFactory;
-        private readonly ITestItemEditorWindowFactory testItemEditorWindowFactory;
+        private readonly ITestItemController testItemController;
         private IWindow recordingWindow;
         private IRecorder recorder;
 
@@ -48,8 +47,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             IProjectFileManager projectFileManager, 
             IAppController appController,
             ITestController testController,
-            ITestItemEditorViewModelFactory testItemEditorViewModelFactory,
-            ITestItemEditorWindowFactory testItemEditorWindowFactory)
+            ITestItemController testItemController)
         {
             this.recordWindowFactory = recordWindowFactory;
             this.recorderViewModelFactory = recorderViewModelFactory;
@@ -58,8 +56,7 @@ namespace Olf.GoldenHorse.Core.Controllers
             this.projectFileManager = projectFileManager;
             this.appController = appController;
             this.testController = testController;
-            this.testItemEditorViewModelFactory = testItemEditorViewModelFactory;
-            this.testItemEditorWindowFactory = testItemEditorWindowFactory;
+            this.testItemController = testItemController;
         }
 
         public void ShowRecord()
@@ -94,97 +91,7 @@ namespace Olf.GoldenHorse.Core.Controllers
 
         public void DoValidation(OnScreenValidation onScreenValidation)
         {
-            IWindow testItemEditorWindow = testItemEditorWindowFactory.Create();
-            ITestItemEditorViewModel testItemEditorViewModel = testItemEditorViewModelFactory.Create(onScreenValidation);
-
-            testItemEditorWindow.DataContext = testItemEditorViewModel;
-
-            testItemEditorWindow.ShowDialog();
-
-            return;
-
-            Window window = new Window();
-            window.Height = SystemParameters.VirtualScreenHeight;
-            window.Width = SystemParameters.VirtualScreenWidth;
-            bool doPicture = false;
-
-            Canvas canvas = new Canvas();
-            Rectangle rectangle = new Rectangle();
-            rectangle.StrokeThickness = 2;
-            rectangle.Stroke = Brushes.CornflowerBlue;
-            rectangle.Height = 0;
-            rectangle.Width = 0;
-            Canvas.SetTop(rectangle, 0);
-            Canvas.SetLeft(rectangle, 0);
-
-            Task task = new Task(() =>
-            {
-                doPicture = true;
-                UIItem prevUIItem = null;
-                UIItem currentUIITem = null;
-
-                GlobalHooker hooker = new GlobalHooker();
-                KeyboardHookListener listener = new KeyboardHookListener(hooker);
-                listener.Enabled = true;
-
-                listener.KeyDown += (o, args) =>
-                {
-                    if (args.Shift && args.Control && args.KeyCode == Keys.A)
-                    {
-                        doPicture = false;
-
-                    }
-                };
-
-                while (doPicture)
-                {
-                    currentUIITem = ExternalAppInfoManager.GetControl(System.Windows.Forms.Cursor.Position);
-
-                    if (currentUIITem.AutomationElement.Current.ProcessId == Process.GetCurrentProcess().Id)
-                        currentUIITem = prevUIItem;
-
-                    if (currentUIITem == null)
-                        continue;
-
-                    Rect bounds = currentUIITem.AutomationElement.Current.BoundingRectangle;
-
-
-                    Thread.Sleep(250);
-                    Application.Current.Dispatcher.Invoke(new Action(() =>
-                    {
-                        rectangle.Width = bounds.Width;
-                        rectangle.Height = bounds.Height;
-                        Canvas.SetTop(rectangle, bounds.Y);
-                        Canvas.SetLeft(rectangle, bounds.X);
-                    }));
-                    prevUIItem = currentUIITem;
-                }
-
-            });
-
-            canvas.Children.Add(rectangle);
-            window.Left = 0;
-            window.Top = 0;
-
-            window.Content = canvas;
-            window.WindowStyle = new WindowStyle();
-            window.ShowInTaskbar = false;
-            window.AllowsTransparency = true;
-            window.Background = Brushes.Transparent;
-            window.Topmost = true;
-            window.Show();
-            task.Start();
-
-            task.ContinueWith(t =>
-            {
-                Application.Current.Dispatcher.Invoke(new Action(() => window.Close()));
-            });
-
-            window.Closed += (o, args) =>
-            {
-                doPicture = false;
-                task.Dispose();
-            };
+            testItemController.EditTestItem(onScreenValidation);
         }
     }
 }

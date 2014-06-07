@@ -32,7 +32,7 @@ namespace Olf.GoldenHorse.Core.Views.Views.Tests
 
             testObjectEditorView.DataContext = testItemEditorViewModel.TestObjectEditorViewModel;
             testOperationEditorView.DataContext = testItemEditorViewModel.TestOperationEditorViewModel;
-            testParameterEditorView.DataContext = testItemEditorViewModel.TestParameterEditorView;
+            testParameterEditorView.DataContext = testItemEditorViewModel.TestParameterEditorViewModel;
             testDescriptionEditorView.DataContext = testItemEditorViewModel.TestDescriptionEditorViewModel;
         }
     }

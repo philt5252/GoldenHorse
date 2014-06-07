@@ -6,7 +6,7 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
     {
         ITestObjectEditorViewModel TestObjectEditorViewModel { get; }
         ITestOperationEditorViewModel TestOperationEditorViewModel { get; }
-        ITestParameterEditorViewModel TestParameterEditorView { get; }
+        ITestParameterEditorViewModel TestParameterEditorViewModel { get; }
         ITestDescriptionEditorViewModel TestDescriptionEditorViewModel { get; }
     }
 }

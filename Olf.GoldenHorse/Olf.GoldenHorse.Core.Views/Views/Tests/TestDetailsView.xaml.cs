@@ -34,6 +34,7 @@ namespace Olf.GoldenHorse.Core.Views
         public TestDetailsView()
         {
             InitializeComponent();
+            
         }
 
         public void OpenObjectEditWindow(object sender, MouseEventArgs args)

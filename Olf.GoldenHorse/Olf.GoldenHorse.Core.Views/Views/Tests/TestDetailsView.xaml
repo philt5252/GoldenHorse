@@ -53,6 +53,11 @@
         </SolidColorBrush>
         <converters:TestItemImageConverter x:Key="TestItemImageConverter" />
 
+        <Style TargetType="{x:Type TreeViewItem}">
+            <Setter Property="IsExpanded" Value="True">
+            </Setter>
+        </Style>
+
     </UserControl.Resources>
    
     <Grid x:Name="grid1" >
@@ -100,7 +105,8 @@
                             HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
                             SelectedObject="{Binding SelectedTestItem, Mode=TwoWay}" Background="White"
                                           >
-            <!--Create an item template to specify the ItemsSource-->
+       
+                <!--Create an item template to specify the ItemsSource-->
             <customControls:TreeListView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding ChildItems}" />
             </customControls:TreeListView.ItemTemplate>
@@ -129,11 +135,12 @@
                 <GridViewColumn Header="Item" Width="120">
 
                     <GridViewColumn.CellTemplate >
+                        
                         <DataTemplate >
                             <Border Name="ObjectBorder"  Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                 <StackPanel Orientation="Horizontal" >
                                     <Grid >
-                                        <customControls:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1" />
+                                        <customControls:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1"  />
                                         <!-- <TreeViewItem Template="{StaticResource TreeViewItemLines}"></TreeViewItem>-->
                                     </Grid>
                                     <StackPanel Orientation="Horizontal" >

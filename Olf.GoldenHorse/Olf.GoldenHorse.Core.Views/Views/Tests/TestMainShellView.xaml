@@ -29,19 +29,16 @@
             </themes:DockingManager.Theme>
             <themes:LayoutRoot>
                 <themes:LayoutPanel Orientation="Vertical">
-                    <themes:LayoutDocumentPane x:Name="TestShellPane"  DockHeight="300*">
-                       <themes:LayoutDocument Title="Test Steps">
+                    <themes:LayoutDocumentPane x:Name="TestShellPane"  DockHeight="300*" >
+                       <themes:LayoutDocument Title="Test Steps" CanClose="False">
                            <views:TestShellView x:Name="testShellView"></views:TestShellView>
                        </themes:LayoutDocument>
-                        <themes:LayoutDocument Title="Parameters">
-                            <TextBlock Text=" "/>
-                        </themes:LayoutDocument>
-                        <themes:LayoutDocument Title="Variables">
+                        <themes:LayoutDocument Title="Variables" CanClose="False">
                             <TextBlock Text=" "/>
                         </themes:LayoutDocument>
                     </themes:LayoutDocumentPane>
                     <themes:LayoutAnchorablePane DockHeight="150">
-                        <themes:LayoutAnchorable Title="Test Screenshots">
+                        <themes:LayoutAnchorable Title="Test Screenshots" CanClose="False">
                             <views:TestScreenshotsView x:Name="testScreenshotsView" ></views:TestScreenshotsView>
                         </themes:LayoutAnchorable>
                     </themes:LayoutAnchorablePane>

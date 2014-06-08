@@ -315,6 +315,15 @@
   <ItemGroup>
     <Content Include="WhiteImages\Addacomment_8818.png" />
     <Content Include="WhiteImages\Bubble_16xLG.png" />
+    <Resource Include="WhiteImages\TestItemImages\keyboard.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="WhiteImages\TestItemImages\MousePointer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="WhiteImages\TestItemImages\variable.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="WhiteImages\ProjectExplorerImages\projectSuiteProjects.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

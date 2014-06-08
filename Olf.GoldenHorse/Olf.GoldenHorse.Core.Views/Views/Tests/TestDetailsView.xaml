@@ -6,6 +6,7 @@
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:treeview="clr-namespace:Olf.GoldenHorse.Core.Views.Themes"
              xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls"
+             xmlns:converters="clr-namespace:Olf.GoldenHorse.Core.Views.Converters"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
     <UserControl.Resources>
 
@@ -50,6 +51,7 @@
                 <Color A="255" B="67" G="67" R="67"></Color>
             </SolidColorBrush.Color>
         </SolidColorBrush>
+        <converters:CategoryToImageConverter x:Key="CategoryToImageConverter" />
 
     </UserControl.Resources>
    
@@ -114,8 +116,8 @@
                                 </StackPanel>
                             </Border>
                             <DataTemplate.Triggers>
-                                <DataTrigger Binding="{Binding HasPicture}" Value="True">
-                                    <Setter TargetName="picImage" Property="Visibility" Value="Visible"></Setter>
+                                <DataTrigger Binding="{Binding HasScreenshot}" Value="True">
+                                    <Setter  TargetName="picImage" Property="Visibility" Value="Visible"></Setter>
                                 </DataTrigger>
                             </DataTemplate.Triggers>
                         </DataTemplate>
@@ -136,7 +138,7 @@
                                     </Grid>
                                     <StackPanel Orientation="Horizontal" >
                                         <!--The Expander Button (can be used in any column (typically the first one))-->
-                                        <!--<Image Width ="20" Height ="20"  Source="Images\dachshund.jpg"></Image>-->
+                                            <Image Width ="20" Height ="20"  Source="{Binding Operation, Converter={StaticResource CategoryToImageConverter} }"></Image>
                                    
                                             <Label Content="{Binding Name, Mode=OneWay}" HorizontalAlignment="Center" >
                                                 <i:Interaction.Triggers>

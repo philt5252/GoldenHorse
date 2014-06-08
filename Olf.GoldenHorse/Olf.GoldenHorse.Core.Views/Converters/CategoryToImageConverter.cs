@@ -10,7 +10,24 @@ namespace Olf.GoldenHorse.Core.Views.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value.ToString().Equals("Error"))
+            if (value.ToString().Equals("Left Click") || value.ToString().Equals("Right Click"))
+            {
+                return new BitmapImage(new Uri("../../WhiteImages/TestItemImages/MousePointer.png", UriKind.RelativeOrAbsolute));
+            }
+            else if (value.ToString().Equals("Keyboard"))
+            {
+                return new BitmapImage(new Uri("../../WhiteImages/TestItemImages/keyboard.png", UriKind.RelativeOrAbsolute));
+            }
+            else if (value.Equals("Validate at point"))
+            {
+                return new BitmapImage(new Uri("../../../WhiteImages/TestItemImages/MousePointer.png", UriKind.RelativeOrAbsolute));
+            }
+            else if (value.ToString().Contains("Validate"))
+            {
+                return new BitmapImage(new Uri("../../WhiteImages/TestItemImages/variable.png", UriKind.RelativeOrAbsolute));
+            }
+            
+            else if (value.ToString().Equals("Error"))
             {
                 return new BitmapImage(new Uri("../../WhiteImages/StatusAnnotations_Critical_32xLG_color.png", UriKind.RelativeOrAbsolute));
             }

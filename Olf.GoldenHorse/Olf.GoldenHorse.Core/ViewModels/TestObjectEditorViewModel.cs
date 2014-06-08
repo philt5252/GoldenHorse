@@ -21,12 +21,24 @@ using Application = System.Windows.Application;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
-    public class TestObjectEditorViewModel : ITestObjectEditorViewModel
+    public class TestObjectEditorViewModel : ViewModelBase, ITestObjectEditorViewModel
     {
         private readonly TestItem testItem;
         private readonly IGetObjectScreenSelectionViewModelFactory getObjectScreenSelectionViewModelFactory;
         private IGetObjectViewModel[] getObjectViewModels;
         private bool isSelected;
+        private string selectedObject;
+
+        public string SelectedObject
+        {
+            get { return selectedObject; }
+            protected set
+            {
+                selectedObject = value;
+
+                OnPropertyChanged("SelectedObject");
+            }
+        }
 
         public IGetObjectViewModel[] GetObjectViewModels
         {
@@ -56,6 +68,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
             IGetObjectViewModel getObjectViewModel = sender as IGetObjectViewModel;
             MappedItem mappedItem = ExternalAppInfoManager.GetMappedItemFromUIItem(getObjectViewModel.UIItem, testItem.AppManager);
             testItem.ControlId = mappedItem.Id;
+
+            SelectedObject = testItem.Control.FriendlyName;
         }
 
         public TestObjectEditorViewModel(TestItem testItem,
@@ -71,6 +85,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         {
             IGetObjectScreenSelectionViewModel getObjectScreenSelectionViewModel = getObjectScreenSelectionViewModelFactory.Create();
             GetObjectViewModels = new IGetObjectViewModel[] { getObjectScreenSelectionViewModel };     
+            
         }
 
         private void ExecuteDoScreenSelectionCommand()

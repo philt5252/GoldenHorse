@@ -99,7 +99,7 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         protected virtual string DefaultDescription()
         {
-            return Operation.DefaultDescription(Control);
+            return Operation == null ? "" : Operation.DefaultDescription(Control);
         }
 
         public virtual void Play(Log log)

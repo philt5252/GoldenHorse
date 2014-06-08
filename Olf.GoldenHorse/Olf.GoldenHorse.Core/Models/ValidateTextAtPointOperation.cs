@@ -34,7 +34,7 @@ namespace Olf.GoldenHorse.Core.Models
 
         public int X
         {
-            get { return int.Parse(clickXParam.Value.ToString()); }
+            get { return ReferenceEquals(clickXParam.Value, "") ? 0 : int.Parse(clickXParam.Value.ToString()); }
             set
             {
                 clickXParam.Value = value;
@@ -44,7 +44,7 @@ namespace Olf.GoldenHorse.Core.Models
 
         public int Y
         {
-            get { return int.Parse(clickYParam.Value.ToString()); }
+            get { return ReferenceEquals(clickXParam.Value, "") ? 0 : int.Parse(clickYParam.Value.ToString()); }
             set
             {
                 clickYParam.Value = value;
@@ -83,8 +83,9 @@ namespace Olf.GoldenHorse.Core.Models
         public override string DefaultDescription(MappedItem control)
         {
             string description = "Validates that the text at ({0},{1}) on {2} is equal to \"{3}\"";
-            
-            return string.Format(description, X, Y, control.Name, Text);
+            string controlName = control == null ? "<Unset Control>" : control.Name;
+
+            return string.Format(description, X, Y, controlName, Text);
         }
 
         public override void Play(MappedItem control, Log log)

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Olf.GoldenHorse.Foundation.ViewModels;
 using Olf.GoldenHorse.Foundation.Views;
 
 namespace Olf.GoldenHorse.Core.Views
@@ -54,8 +55,9 @@ namespace Olf.GoldenHorse.Core.Views
                 objectCount = 0;
                 if (elapsedMilliseconds <= (int)GetDoubleClickTime())
                 {
-                    object o = sender;
-                    object dataContext = DataContext;
+                    TextBlock textBlock = sender as TextBlock;
+                    ITestItemViewModel testItemViewModel = textBlock.DataContext as ITestItemViewModel;
+                    
                 }
             }
         }

@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:treeview="clr-namespace:Olf.GoldenHorse.Core.Views.Themes"
-             xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls">
+             xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
     <UserControl.Resources>
 
         <SolidColorBrush x:Key="MyBorderBrush" Color="LightGoldenrodYellow"></SolidColorBrush>
@@ -107,7 +108,8 @@
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                 <StackPanel Orientation="Horizontal" Height="{TemplateBinding Height}">
-                                    <treeview:DebugButton Margin="0,0,0,0" Width="15" Height="15" Name="DebugButton" IsDebugging="{Binding DebugState, UpdateSourceTrigger=PropertyChanged}"></treeview:DebugButton>
+                                    <treeview:DebugButton Margin="0,0,0,0" Width="15" Height="15" Name="DebugButton" 
+                                                          IsDebugging="{Binding DebugState, UpdateSourceTrigger=PropertyChanged}"></treeview:DebugButton>
                                     <Image Name="picImage"  Height="15" Width="15" Visibility="Collapsed" Source="../../Images/Monitor.png"></Image >
                                 </StackPanel>
                             </Border>
@@ -126,7 +128,7 @@
 
                     <GridViewColumn.CellTemplate >
                         <DataTemplate >
-                            <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
+                            <Border Name="ObjectBorder"  Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                 <StackPanel Orientation="Horizontal" >
                                     <Grid >
                                         <customControls:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1" />
@@ -135,8 +137,15 @@
                                     <StackPanel Orientation="Horizontal" >
                                         <!--The Expander Button (can be used in any column (typically the first one))-->
                                         <!--<Image Width ="20" Height ="20"  Source="Images\dachshund.jpg"></Image>-->
-                                            <TextBlock Text="{Binding Name}" Foreground="Black" MouseLeftButtonDown="OpenObjectEditWindow" ></TextBlock>
-                                    </StackPanel>
+                                   
+                                            <Label Content="{Binding Name, Mode=OneWay}" HorizontalAlignment="Center" >
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseDoubleClick">
+                                                        <i:InvokeCommandAction Command="{Binding Path=EditObjectCommand, Mode=OneWay}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Label>
+                                        </StackPanel>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -148,9 +157,14 @@
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0" >
                                 <!--Display the size of the DataElement-->
-                                    <TextBlock Text="{Binding Operation}" Foreground="Black" MouseLeftButtonDown="OpenOperationEditWindow" HorizontalAlignment="Center" >
-                                    </TextBlock>
-                            </Border>
+                                    <Label Content="{Binding Operation, Mode=OneWay}" HorizontalAlignment="Center" >
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:InvokeCommandAction Command="{Binding Path=EditOperationCommand, Mode=OneWay}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Label>
+                                </Border>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
@@ -159,8 +173,14 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                    <TextBlock  Text="{Binding Value}" Foreground="Black" MouseLeftButtonDown="OpenValueEditWindow"  HorizontalAlignment="Center"/>
-                            </Border>
+                                    <Label Content="{Binding Value, Mode=OneWay}" HorizontalAlignment="Center" >
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:InvokeCommandAction Command="{Binding Path=EditParameterCommand, Mode=OneWay}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Label>
+                                </Border>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
@@ -168,8 +188,14 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                    <TextBlock Text="{Binding Description}" Margin="5,0,0,0" Foreground="Black" HorizontalAlignment="Stretch"/>
-                            </Border>
+                                    <Label Content="{Binding Description, Mode=OneWay}" HorizontalAlignment="Center" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=EditObjectCommand, Mode=OneWay}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Label>
+                                </Border>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>

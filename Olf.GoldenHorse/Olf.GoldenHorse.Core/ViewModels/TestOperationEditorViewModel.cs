@@ -12,7 +12,11 @@ namespace Olf.GoldenHorse.Core.ViewModels
         public TestOperationEditorViewModel(TestItem testItem)
         {
             this.testItem = testItem;
-            Operations = new[] {"one", "two", "three"};
+
+            if (testItem.Type == TestItemTypes.OnScreenAction)
+            {
+                Operations = new[] {"Left Click", "Right Click", "Keyboar"};
+            }
         }
     }
 }

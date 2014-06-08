@@ -13,11 +13,12 @@ namespace Olf.GoldenHorse.CustomControls
         {
             TreeViewItem item = (TreeViewItem) value;
 
-
+            item.IsExpanded = true;
             ContentPresenter dp = item.TemplatedParent as ContentPresenter;
             GridViewRowPresenter dp2 = dp.Parent as GridViewRowPresenter;
             Border border = dp2.Parent as Border;
             treeViewItem = border.TemplatedParent as TreeViewItem;
+            
 
 
             ItemsControl ic = ItemsControl.ItemsControlFromItemContainer(treeViewItem);

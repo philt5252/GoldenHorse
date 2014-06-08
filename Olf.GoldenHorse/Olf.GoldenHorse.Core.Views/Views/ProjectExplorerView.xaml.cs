@@ -63,5 +63,11 @@ namespace Olf.GoldenHorse.Core.Views
 
         [DllImport("user32.dll")]
         static extern uint GetDoubleClickTime();
+
+
+        private void HandleRequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

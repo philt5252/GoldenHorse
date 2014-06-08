@@ -22,11 +22,8 @@
                         <Rectangle Width="5" Height="1" Stroke="Black" SnapsToDevicePixels="true"/>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="False">
-                            <Setter Property="Visibility"  TargetName="ExpandPath" Value="Collapsed"/>
-                        </Trigger>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Visibility"  TargetName="ExpandPath" Value="Visible"/>
+                            <Setter Property="Visibility"  TargetName="ExpandPath" Value="Collapsed"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -76,7 +73,8 @@
         </Grid>
         <ControlTemplate.Triggers>
             <!--Trigger used to show the sub items-->
-            <Trigger Property="IsExpanded" Value="True">
+            
+            <Trigger Property="IsExpanded" Value="False">
                 <Setter TargetName="ItemsPresenter" Property="Visibility" Value="Collapsed"/>
             </Trigger>
             <!--Trigger used to change the color based on selection-->
@@ -165,6 +163,8 @@
                         <!--Apply this style to all 'TreeViewItem's.-->
                         <Style TargetType="TreeViewItem">
                             <Setter Property="Template" Value="{StaticResource TreeListViewItem}"/>
+                            <Setter Property="IsExpanded" Value="True"/>
+                           
                         </Style>
                         <!--Apply this style to all 'TreeListViewExpander's.-->
                         <Style TargetType="customControls:TreeListViewExpander">
@@ -179,7 +179,7 @@
                         <!--ScrollViewer providing horizontal scrolling functionality 
                         for both, content and headers.-->
                         <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                                      VerticalScrollBarVisibility="Disabled">
+                                      VerticalScrollBarVisibility="Disabled" >
                             <!--Grid containing the header row and all the content rows.-->
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -191,7 +191,7 @@
                                 <!--The header row.-->
                                 <GridViewHeaderRowPresenter Columns="{TemplateBinding Columns}"
                                   AllowsColumnReorder="{TemplateBinding AllowsColumnReorder}" 
-                                    ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
+                                    ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" >
                                 </GridViewHeaderRowPresenter>
                                 <!--ScrollViewer providing vertical scrolling
                                 functionality for the content.-->

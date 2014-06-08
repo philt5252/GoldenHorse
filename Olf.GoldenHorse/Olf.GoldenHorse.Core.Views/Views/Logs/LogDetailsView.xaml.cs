@@ -24,5 +24,10 @@ namespace Olf.GoldenHorse.Core.Views.Views.Logs
         {
             InitializeComponent();
         }
+
+        private void HandleRequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

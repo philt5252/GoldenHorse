@@ -120,6 +120,11 @@ namespace Olf.GoldenHorse.Core.Views
             }
         }
 
+        private void HandleRequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
+        {
+            e.Handled = true;
+        }
+
     }
 
     

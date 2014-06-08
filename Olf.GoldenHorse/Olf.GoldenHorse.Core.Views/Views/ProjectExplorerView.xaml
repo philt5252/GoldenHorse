@@ -12,7 +12,7 @@
     </UserControl.Resources>
     <Grid Background="White">
         
-        <TreeView Name="projectExplorerTvw" ItemsSource="{Binding Nodes}" >
+        <TreeView Name="projectExplorerTvw" ItemsSource="{Binding Nodes}" RequestBringIntoView="HandleRequestBringIntoView">
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}">
                     <Setter Property="IsExpanded" Value="True" />

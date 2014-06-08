@@ -63,7 +63,7 @@
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
             <customControls:TreeListView  AllowsColumnReorder="True" ItemsSource="{Binding LogItems}"
                             HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
-                            SelectedObject="{Binding SelectedLogItem, Mode=TwoWay}" Background="White">
+                            SelectedObject="{Binding SelectedLogItem, Mode=TwoWay}" Background="White" RequestBringIntoView="HandleRequestBringIntoView">
                 <!--Create an item template to specify the ItemsSource-->
                 <customControls:TreeListView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Items}" />

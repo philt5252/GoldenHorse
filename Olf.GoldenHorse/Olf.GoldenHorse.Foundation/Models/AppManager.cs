@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using Castle.Core.Internal;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
@@ -70,6 +71,12 @@ namespace Olf.GoldenHorse.Foundation.Models
             mappedItem.ParentId = parentId;
             mappedItem.Bounds = bounds;
             mappedItem.Name = name;
+
+            if (mappedItem.Name.IsNullOrEmpty())
+            {
+                mappedItem.FriendlyName = text + " " + type;
+            }
+
             mappedItem.Type = type;
             mappedItem.Text = text;
 

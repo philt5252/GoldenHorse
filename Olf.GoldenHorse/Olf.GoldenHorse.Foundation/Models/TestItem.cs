@@ -31,6 +31,8 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         public string Id { get; set; }
 
+        public string Type { get; set; }
+
         [XmlIgnore]
         public Test Test { get; set; }
 

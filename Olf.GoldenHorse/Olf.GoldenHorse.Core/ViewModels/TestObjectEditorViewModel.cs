@@ -21,7 +21,7 @@ using Application = System.Windows.Application;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
-    public class TestObjectEditorViewModel : TabItemViewModel, ITestObjectEditorViewModel
+    public class TestObjectEditorViewModel : ITestObjectEditorViewModel
     {
         private readonly TestItem testItem;
         private readonly IGetObjectScreenSelectionViewModelFactory getObjectScreenSelectionViewModelFactory;

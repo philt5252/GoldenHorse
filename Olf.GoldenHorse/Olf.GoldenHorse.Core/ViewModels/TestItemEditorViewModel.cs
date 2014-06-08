@@ -17,7 +17,6 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private readonly TestItem testItem;
         private readonly ITestItemController testItemController;
         private readonly IRecordingController recordingController;
-        private ITabItemViewModel[] tabItems;
         private DelegateCommand nextCommand;
         private int selectedIndex;
 
@@ -57,14 +56,6 @@ namespace Olf.GoldenHorse.Core.ViewModels
             TestOperationEditorViewModel = testOperationEditorViewModelFactory.Create(testItem);
             TestParameterEditorViewModel = testParameterEditorViewModelFactory.Create(testItem);
             TestDescriptionEditorViewModel = testDescriptionEditorViewModelFactory.Create(testItem);
-        
-            tabItems = new ITabItemViewModel[]
-            {
-                TestObjectEditorViewModel,
-                TestOperationEditorViewModel,
-                TestParameterEditorViewModel,
-                TestDescriptionEditorViewModel
-            };
 
             CancelCommand = new DelegateCommand(ExecuteCancelCommand);
             FinishCommand = new DelegateCommand(ExecuteFinishCommand);
@@ -79,7 +70,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         private bool CanExeccuteNextCommand()
         {
-            return SelectedIndex < tabItems.Length - 1;
+            return SelectedIndex < 3;
         }
 
         private void ExecuteNextCommand()

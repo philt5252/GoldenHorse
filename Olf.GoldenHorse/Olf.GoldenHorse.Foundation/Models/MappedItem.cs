@@ -22,7 +22,15 @@ namespace Olf.GoldenHorse.Foundation.Models
         public string ParentId { get; set; }
         public string Type { get; set; }
         public string Name { get; set; }
-        public string FriendlyName { get { return friendlyName ?? Name; } }
+
+        public string FriendlyName
+        {
+            get { return friendlyName ?? Name; }
+            set
+            {
+                friendlyName = value;
+            }
+        }
         public double X;
         public double Y;
         public double Width;

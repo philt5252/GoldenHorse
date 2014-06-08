@@ -10,10 +10,23 @@ namespace Olf.GoldenHorse.Foundation.Models
 {
     public abstract class Operation
     {
+        private OperationParameter[] parameters;
         public abstract string Name { get; }
         public abstract string ParametersDescription { get; }
 
-        public OperationParameter[] Parameters { get; set; }
+        public OperationParameter[] Parameters
+        {
+            get { return parameters; }
+            set
+            {
+                parameters = value;
+
+                foreach (OperationParameter operationParameter in parameters)
+                {
+                    operationParameter.OwningOperation = this;
+                }
+            }
+        }
 
         [XmlIgnore]
         public TestItem TestItem { get; set; }

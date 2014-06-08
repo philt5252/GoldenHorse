@@ -18,14 +18,15 @@ namespace Olf.GoldenHorse.Core.Views.Converters
             {
                 return new BitmapImage(new Uri("../../WhiteImages/TestItemImages/keyboard.png", UriKind.RelativeOrAbsolute));
             }
+            else if (value.Equals("Validate at point"))
+            {
+                return new BitmapImage(new Uri("../../WhiteImages/TestItemImages/MousePointer.png", UriKind.RelativeOrAbsolute));
+            }
             else if (value.ToString().Contains("Validate"))
             {
                 return new BitmapImage(new Uri("../../WhiteImages/TestItemImages/variable.png", UriKind.RelativeOrAbsolute));
             }
-            else if (value.ToString().Contains("Validate at point"))
-            {
-                return new BitmapImage(new Uri("../../WhiteImages/TestItemImages/MousePointer.png", UriKind.RelativeOrAbsolute));
-            }
+            
             else if (value.ToString().Equals("Error"))
             {
                 return new BitmapImage(new Uri("../../WhiteImages/StatusAnnotations_Critical_32xLG_color.png", UriKind.RelativeOrAbsolute));

@@ -6,9 +6,10 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
 {
     public interface IGetObjectViewModel
     {
-        event EventHandler UIItemChanged;
+        string Type { get; }
         IUIItem UIItem { get; }
         string Description { get; }
-        ICommand GetObjectCommand { get; } 
+        ICommand GetObjectCommand { get; }
+        event EventHandler UIItemChanged;
     }
 }

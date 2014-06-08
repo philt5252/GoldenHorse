@@ -26,6 +26,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
     {
         private readonly ITestItemController testItemController;
 
+        public string Type { get { return "Validate at point"; } }
+
         public override string Description 
         {
             get

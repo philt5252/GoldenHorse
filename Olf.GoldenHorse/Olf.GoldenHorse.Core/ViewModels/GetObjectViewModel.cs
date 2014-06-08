@@ -9,6 +9,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
     {
         private IUIItem uiItem;
 
+        public abstract string Type { get; }
+
         public event EventHandler UIItemChanged;
 
         public IUIItem UIItem

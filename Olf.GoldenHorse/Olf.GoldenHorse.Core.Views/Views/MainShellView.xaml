@@ -123,7 +123,8 @@
             </ToolBarTray>
             <ToolBarTray Background="{StaticResource brush1}">
                 <ToolBar Background="{StaticResource brush1}" Loaded="ToolBar_Loaded">
-                    <Button Height="25" Width="25" Command="{Binding RecordCommand}" ToolTip="Record"  Background="{StaticResource brush1}" >
+                    <Button Height="25" Width="125" Command="{Binding RecordCommand}" ToolTip="Record"  Background="{StaticResource brush1}" >
+                        <StackPanel Orientation="Horizontal">
                         <Ellipse Height="12" Width="12">
                             <Ellipse.Fill>
                                 <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
@@ -132,8 +133,10 @@
                                 </LinearGradientBrush>
                             </Ellipse.Fill>
                         </Ellipse>
+                         <TextBlock Margin="5,0,0,0" Text="Record New Test" Foreground="White" Background="Transparent"></TextBlock>
+                        </StackPanel>
                     </Button>
-                    <Button Height="25" Width="25" Command="{Binding ToolBarCommand}" ToolTip="Play" Background="{StaticResource brush1}" >
+                    <!--<Button Height="25" Width="25" Command="{Binding ToolBarCommand}" ToolTip="Play" Background="{StaticResource brush1}" >
                         <Image Source="../Images/Run.png"></Image>
                     </Button>
                     <Button Height="25" Width="25" Command="{Binding ToolBarCommand}" ToolTip="Pause" Background="{StaticResource brush1}" >
@@ -147,7 +150,7 @@
                                 </LinearGradientBrush>
                             </Rectangle.Fill>
                         </Rectangle>
-                    </Button>
+                    </Button>-->
                 </ToolBar>
             </ToolBarTray>
 

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
+             xmlns:converters="clr-namespace:Olf.GoldenHorse.Core.Views.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="440">
     <UserControl.Resources>
@@ -13,6 +14,7 @@
                 <Color A="255" R="67" B="67" G="67"></Color>
             </SolidColorBrush.Color>
         </SolidColorBrush>
+        <converters:CategoryToImageConverter x:Key="CategoryToImageConverter" />
     </UserControl.Resources>
     
     <Grid Background="{StaticResource brush1}" Name="grid1">
@@ -32,8 +34,12 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Name="grid2"  >
-                        <Button Command="{Binding GetObjectCommand}"  Height="30" Width="30" Margin="10,10,0,28" HorizontalAlignment="Left"/>
-                        <TextBlock Margin="60,10,20,10" Width="300" HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" Text="{Binding Description}"/>
+                            <Button Command="{Binding GetObjectCommand}"  Height="30" Width="30" Margin="10,10,0,28" HorizontalAlignment="Left">
+                                <Button.Content>
+                                    <Image Source="{Binding Type, Converter={StaticResource CategoryToImageConverter}}" Height="20" Width="20"></Image>
+                                </Button.Content>
+                            </Button>
+                                <TextBlock Margin="60,10,20,10" Width="300" HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" Text="{Binding Description}"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

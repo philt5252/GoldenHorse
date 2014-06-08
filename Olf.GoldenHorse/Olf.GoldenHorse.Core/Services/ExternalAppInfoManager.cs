@@ -119,6 +119,12 @@ namespace Olf.GoldenHorse.Core.Services
 
             automationElement = GetChildControl(point, automationElement) ?? automationElement;
 
+            TreeWalker walker = TreeWalker.ControlViewWalker;
+
+            AutomationElement parentElement = walker.GetParent(automationElement);
+            if (parentElement != null && parentElement.Current.LocalizedControlType == "button")
+                automationElement = parentElement;
+
 
             ActionListener actionListener = new NullActionListener();
             return new UIItem(automationElement, actionListener);

@@ -68,6 +68,7 @@
     <Compile Include="Converters\CategoryToImageConverter.cs" />
     <Compile Include="Converters\HeightConverter.cs" />
     <Compile Include="Converters\ImageConverter.cs" />
+    <Compile Include="Converters\TestItemImageConverter.cs" />
     <Compile Include="Factories\EditParameterWindowFactory.cs" />
     <Compile Include="Factories\LogMainShellViewFactory.cs" />
     <Compile Include="Factories\LogShellViewFactory.cs" />

@@ -13,19 +13,44 @@ namespace Olf.GoldenHorse.Foundation.Models
         private OperationParameter[] parameters;
         public abstract string Name { get; }
         public abstract string ParametersDescription { get; }
+        public event EventHandler ParameterValuesChanged;
+
+        protected virtual void OnParameterValuesChanged()
+        {
+            EventHandler handler = ParameterValuesChanged;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
 
         public OperationParameter[] Parameters
         {
             get { return parameters; }
             set
             {
+                if (parameters != null)
+                {
+                    foreach (OperationParameter operationParameter in parameters)
+                    {
+                        operationParameter.ValueChanged -= OperationParameterOnValueChanged;
+                    }
+                }
+
                 parameters = value;
 
                 foreach (OperationParameter operationParameter in parameters)
                 {
                     operationParameter.OwningOperation = this;
+                    operationParameter.ValueChanged += OperationParameterOnValueChanged;
                 }
+
+                RaiseTestChanged();
             }
+        }
+
+        private void OperationParameterOnValueChanged(object sender, EventArgs eventArgs)
+        {
+            OnParameterValuesChanged();
+            RaiseTestChanged();
         }
 
         [XmlIgnore]
@@ -50,7 +75,7 @@ namespace Olf.GoldenHorse.Foundation.Models
             return Parameters.FirstOrDefault(p => Equals(name, p.Name));
         }
 
-        protected static Screenshot CreateScreenshot(Log log)
+        protected Screenshot CreateScreenshot(Log log)
         {
             Bitmap bitmap = Camera.Capture();
             DateTime dateTime = DateTime.Now;
@@ -62,6 +87,12 @@ namespace Olf.GoldenHorse.Foundation.Models
             screenshot.ImageFile = screenshotName;
             screenshot.DateTime = dateTime;
             return screenshot;
+        }
+
+        private void RaiseTestChanged()
+        {
+            if(TestItem != null && TestItem.Test != null)
+                TestItem.Test.RaiseTestChanged();
         }
     }
 }

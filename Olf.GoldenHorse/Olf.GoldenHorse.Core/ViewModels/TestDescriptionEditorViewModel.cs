@@ -1,10 +1,11 @@
 
+using System;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.ViewModels;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
-    public class TestDescriptionEditorViewModel : ITestDescriptionEditorViewModel
+    public class TestDescriptionEditorViewModel : ViewModelBase, ITestDescriptionEditorViewModel
     {
         private readonly TestItem testItem;
 
@@ -17,12 +18,19 @@ namespace Olf.GoldenHorse.Core.ViewModels
             set
             {
                 testItem.Description = value;
+                OnPropertyChanged("Description");
             }
         }
 
         public TestDescriptionEditorViewModel(TestItem testItem)
         {
             this.testItem = testItem;
+            testItem.DescriptionChanged += TestItemOnDescriptionChanged;
+        }
+
+        private void TestItemOnDescriptionChanged(object sender, EventArgs eventArgs)
+        {
+            OnPropertyChanged("Description");
         }
     }
 }

@@ -10,28 +10,62 @@ namespace Olf.GoldenHorse.Foundation.Models
     {
         private ObservableCollection<TestItem> children;
         private MappedItem control;
-
         private string description;
-
         private Operation operation;
+        private string controlId;
+        private string type;
+
+        public event EventHandler DescriptionChanged;
+
         public Operation Operation
         {
             get { return operation; }
             set
             {
+                if (operation != null)
+                {
+                    operation.ParameterValuesChanged -= OperationOnParameterValuesChanged;
+                }
+
                 operation = value;
                 operation.TestItem = this;
+
+                Operation.ParameterValuesChanged += OperationOnParameterValuesChanged;
+
+                RaiseTestChanged();
             }
         }
 
-        public string ControlId { get; set; }
+        private void OperationOnParameterValuesChanged(object sender, EventArgs eventArgs)
+        {
+            OnDescriptionChanged();
+            RaiseTestChanged();
+        }
+
+        public string ControlId
+        {
+            get { return controlId; }
+            set
+            {
+                controlId = value;
+                RaiseTestChanged();
+            }
+        }
 
         [XmlIgnore]
         public MappedItem Control { get { return control ?? (control = AppManager.GetMappedItem(ControlId)); } }
 
         public string Id { get; set; }
 
-        public string Type { get; set; }
+        public string Type
+        {
+            get { return type; }
+            set
+            {
+                type = value;
+                RaiseTestChanged();
+            }
+        }
 
         [XmlIgnore]
         public Test Test { get; set; }
@@ -58,6 +92,7 @@ namespace Olf.GoldenHorse.Foundation.Models
                 }
 
                 children.CollectionChanged += ChildrenOnCollectionChanged;
+                RaiseTestChanged();
             }
         }
 
@@ -78,6 +113,12 @@ namespace Olf.GoldenHorse.Foundation.Models
             return ProjectManager.GetScreenshotsFolder(Test);
         }
 
+        private void RaiseTestChanged()
+        {
+            if(Test != null)
+                Test.RaiseTestChanged();
+        }
+
         private void ChildrenOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
             if (args.Action == NotifyCollectionChangedAction.Add)
@@ -95,11 +136,20 @@ namespace Olf.GoldenHorse.Foundation.Models
                         testItem.Test = null;
                 }
             }
+
+            RaiseTestChanged();
         }
 
         protected virtual string DefaultDescription()
         {
             return Operation == null ? "" : Operation.DefaultDescription(Control);
+        }
+
+        protected virtual void OnDescriptionChanged()
+        {
+            EventHandler handler = DescriptionChanged;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
         public virtual void Play(Log log)

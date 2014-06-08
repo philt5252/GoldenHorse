@@ -90,12 +90,13 @@
         </ToolBar>
 
        
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" Background="DarkGray" VerticalScrollBarVisibility="Visible">
+        <ScrollViewer Name="scrollViewer" Grid.Row="1" HorizontalScrollBarVisibility="Visible" Background="DarkGray" VerticalScrollBarVisibility="Visible">
            
 
-            <customControls:TreeListView  AllowsColumnReorder="True" ItemsSource="{Binding TestItems}"
+            <customControls:TreeListView Name="detailsTlv"  AllowsColumnReorder="True" ItemsSource="{Binding TestItems}"
                             HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
-                            SelectedObject="{Binding SelectedTestItem, Mode=TwoWay}" Background="White">
+                            SelectedObject="{Binding SelectedTestItem, Mode=TwoWay}" Background="White"
+                                          >
             <!--Create an item template to specify the ItemsSource-->
             <customControls:TreeListView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Items}" />

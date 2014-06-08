@@ -57,7 +57,8 @@ namespace Olf.GoldenHorse.Core.Views
                 {
                     TextBlock textBlock = sender as TextBlock;
                     ITestItemViewModel testItemViewModel = textBlock.DataContext as ITestItemViewModel;
-                    
+                    ICommand editObjectCommand = testItemViewModel.EditObjectCommand;
+                    editObjectCommand.Execute(null);
                 }
             }
         }
@@ -83,8 +84,10 @@ namespace Olf.GoldenHorse.Core.Views
                 valueCount = 0;
                 if (elapsedMilliseconds <= (int)GetDoubleClickTime())
                 {
-                    //MessageBox.Show(new Window(), dataContext.Value);
-
+                    TextBlock textBlock = sender as TextBlock;
+                    ITestItemViewModel testItemViewModel = textBlock.DataContext as ITestItemViewModel;
+                    ICommand editParameterCommand = testItemViewModel.EditParameterCommand; 
+                    editParameterCommand.Execute(null);
                 }
 
             }
@@ -107,7 +110,10 @@ namespace Olf.GoldenHorse.Core.Views
                 operationCount = 0;
                 if (elapsedMilliseconds <= (int)GetDoubleClickTime())
                 {
-                    //MessageBox.Show(new Window(), dataContext.Operation);
+                    TextBlock textBlock = sender as TextBlock;
+                    ITestItemViewModel testItemViewModel = textBlock.DataContext as ITestItemViewModel;
+                    ICommand editOperationCommand = testItemViewModel.EditOperationCommand;
+                    editOperationCommand.Execute(null);
 
                 }
             }

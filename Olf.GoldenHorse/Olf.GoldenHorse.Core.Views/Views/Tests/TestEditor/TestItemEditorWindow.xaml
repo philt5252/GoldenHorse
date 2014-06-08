@@ -8,6 +8,7 @@
              xmlns:avalondock="http://avalondock.codeplex.com"
              GlowBrush="{StaticResource AccentColorBrush}"
              mc:Ignorable="d" 
+                  Title="Edit Test Item"
              Height="500" Width="450" MaxHeight="500" MaxWidth="450">
     <Window.Resources>
         <SolidColorBrush x:Key="brush1">

@@ -11,6 +11,12 @@
              Tag="{Binding TestName}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" >
+    <UserControl.InputBindings>
+        <KeyBinding Key="S"
+                Modifiers="Control" 
+                Command="{Binding SaveCommand}" />
+    </UserControl.InputBindings>
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

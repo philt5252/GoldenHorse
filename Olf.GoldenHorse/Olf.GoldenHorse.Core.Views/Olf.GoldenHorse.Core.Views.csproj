@@ -164,6 +164,9 @@
     <Compile Include="Views\Tests\TestEditor\TestItemEditorWindow.xaml.cs">
       <DependentUpon>TestItemEditorWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Variables\VariableManager View.xaml.cs">
+      <DependentUpon>VariableManager View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowBase.cs" />
     <Compile Include="Views\Tests\TestShellView.xaml.cs">
       <DependentUpon>TestShellView.xaml</DependentUpon>
@@ -279,6 +282,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tests\TestEditor\TestItemEditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Variables\VariableManager View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

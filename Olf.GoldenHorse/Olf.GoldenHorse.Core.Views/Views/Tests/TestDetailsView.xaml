@@ -132,7 +132,7 @@
 
                 </GridViewColumn>
                 <!--Create the first column containing the expand button and the type name.-->
-                <GridViewColumn Header="Item" Width="120">
+                <GridViewColumn Header="Item" Width="200">
 
                     <GridViewColumn.CellTemplate >
                         
@@ -140,14 +140,14 @@
                             <Border Name="ObjectBorder"  Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
                                 <StackPanel Orientation="Horizontal" >
                                     <Grid >
-                                        <customControls:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1"  />
+                                        <customControls:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1" IsChecked="True" />
                                         <!-- <TreeViewItem Template="{StaticResource TreeViewItemLines}"></TreeViewItem>-->
                                     </Grid>
                                     <StackPanel Orientation="Horizontal" >
                                         <!--The Expander Button (can be used in any column (typically the first one))-->
                                             <Image Width ="20" Height ="20"  Source="{Binding Converter={StaticResource TestItemImageConverter} }"></Image>
                                    
-                                            <Label Content="{Binding Name, Mode=OneWay}" HorizontalAlignment="Center" >
+                                            <Label Content="{Binding Name, Mode=OneWay}" HorizontalAlignment="Left" >
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseDoubleClick">
                                                         <i:InvokeCommandAction Command="{Binding Path=EditObjectCommand, Mode=OneWay}"/>
@@ -161,7 +161,7 @@
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
                 <!--Create a second column containing the number of children.-->
-                <GridViewColumn Header="Operation" Width="120">
+                <GridViewColumn Header="Operation" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0" >
@@ -178,11 +178,11 @@
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
                 <!--Create a third column containing the brush of the material.-->
-                <GridViewColumn Header="Value" Width="150" >
+                <GridViewColumn Header="Value" Width="120" >
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                    <Label Content="{Binding Value, Mode=OneWay}" HorizontalAlignment="Center" >
+                                    <Label ToolTip="{Binding Value}" Content="{Binding Value, Mode=OneWay}" HorizontalAlignment="Center" >
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="MouseDoubleClick">
                                                 <i:InvokeCommandAction Command="{Binding Path=EditParameterCommand, Mode=OneWay}"/>
@@ -197,7 +197,7 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                    <Label Content="{Binding Description, Mode=OneWay}" ToolTip="{Binding Description}" HorizontalAlignment="Center" >
+                                    <Label Content="{Binding Description, Mode=OneWay}" ToolTip="{Binding Description}" HorizontalAlignment="Left" >
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseDoubleClick">
                                                     <i:InvokeCommandAction Command="{Binding Path=EditObjectCommand, Mode=OneWay}"/>

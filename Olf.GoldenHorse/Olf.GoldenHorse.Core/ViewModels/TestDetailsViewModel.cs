@@ -95,6 +95,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
                     {
                         windowTestItemViewModel = testItemViewModelFactory.Create(null);
                         windowTestItemViewModel.ControlId = window.Id;
+                        windowTestItemViewModel.Type = TestItemTypes.WindowGroup;
                         windowTestItemViewModel.Name = window.FriendlyName;
 
                         AppProcess appProcess = test.Project.AppManager.GetProcess(testItem.Control);
@@ -104,6 +105,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
                         {
                             processTestItemViewModel = testItemViewModelFactory.Create(null);
                             processTestItemViewModel.Name = appProcess.Name;
+                            processTestItemViewModel.Type = TestItemTypes.ProcessGroup;
                             processTestItemViewModel.ControlId = appProcess.Id;
 
                             testItemViewModels.Add(processTestItemViewModel);

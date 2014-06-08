@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -44,8 +45,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
             this.logFileManager = logFileManager;
             this.logController = logController;
             this.appController = appController;
-            TestItems = new ObservableCollection<ITestItemViewModel>(test.TestItems.Select(testItemViewModelFactory.Create));
-        
+            //TestItems = new ObservableCollection<ITestItemViewModel>(test.TestItems.Select(testItemViewModelFactory.Create));
+            RefreshTestItems();
             PlayCommand = new DelegateCommand(ExecutePlayCommand);
         }
 
@@ -74,5 +75,82 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
             appController.MainWindow.Restore();
         }
+
+        private void RefreshTestItems()
+        {
+            ITestItemViewModel processTestItemViewModel = null;
+            ITestItemViewModel windowTestItemViewModel = null;
+            IList<ITestItemViewModel> testItemViewModels = new List<ITestItemViewModel>();
+
+            foreach (TestItem testItem in test.TestItems)
+            {
+                if (testItem.Type == TestItemTypes.OnScreenAction)
+                {
+                    ITestItemViewModel testItemViewModel = testItemViewModelFactory.Create(testItem);
+
+                    MappedItem window = test.Project.AppManager.GetWindow(testItem.Control);
+
+                    if (windowTestItemViewModel == null
+                        || windowTestItemViewModel.ControlId != window.Id)
+                    {
+                        windowTestItemViewModel = testItemViewModelFactory.Create(null);
+                        windowTestItemViewModel.ControlId = window.Id;
+                        windowTestItemViewModel.Name = window.FriendlyName;
+
+                        AppProcess appProcess = test.Project.AppManager.GetProcess(testItem.Control);
+
+                        if (processTestItemViewModel == null
+                            || processTestItemViewModel.ControlId != appProcess.Id)
+                        {
+                            processTestItemViewModel = testItemViewModelFactory.Create(null);
+                            processTestItemViewModel.Name = appProcess.Name;
+                            processTestItemViewModel.ControlId = appProcess.Id;
+
+                            testItemViewModels.Add(processTestItemViewModel);
+                        }
+
+                        processTestItemViewModel.ChildItems.Add(windowTestItemViewModel);
+                    }
+
+                    windowTestItemViewModel.ChildItems.Add(testItemViewModel);
+                }
+            }
+
+            TestItems = new ObservableCollection<ITestItemViewModel>(testItemViewModels);
+        }
+
+        private List<TestItem> GetTestItems(IEnumerable<ITestItemViewModel> testItemViewModels)
+        {
+            List<TestItem> testItems = new List<TestItem>();
+
+            GetTestItems(testItemViewModels, testItems, null);
+
+            return testItems;
+        }
+
+        private void GetTestItems(IEnumerable<ITestItemViewModel> testItemViewModels, List<TestItem> testItems, TestItem parentTestItem)
+        {
+            TestItem newParentTestItem = null;
+            foreach (ITestItemViewModel testItemViewModel in testItemViewModels)
+            {
+                if (testItemViewModel.TestItem != null)
+                {
+                    testItemViewModel.TestItem.Children = new ObservableCollection<TestItem>();
+                    if (parentTestItem != null)
+                        parentTestItem.Children.Add(testItemViewModel.TestItem);
+                    else
+                    {
+                        newParentTestItem = testItemViewModel.TestItem;
+                        testItems.Add(newParentTestItem);
+                    }
+                }
+                else
+                {
+                    newParentTestItem = null;
+                }
+                GetTestItems(testItemViewModel.ChildItems, testItems, newParentTestItem);
+            }
+        }
+
     }
 }

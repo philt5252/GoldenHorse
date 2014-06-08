@@ -60,6 +60,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<ValidateTextAtPointListItemViewModel>().As<IValidationListItemViewModel>().SingleInstance();
             builder.RegisterType<GetObjectScreenSelectionViewModel>().As<IGetObjectScreenSelectionViewModel>();
             builder.RegisterType<OperationParameterViewModel>().As<IOperationParameterViewModel>();
+            builder.RegisterType<VariableManagerViewModel>().As<IVariableManagerViewModel>();
 
             builder.RegisterType<TestNode>().AsSelf();
             builder.RegisterType<TestGroupNode>().AsSelf();
@@ -94,6 +95,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<EditParameterViewModelFactory>().As<IEditParameterViewModelFactory>().SingleInstance();
             builder.RegisterType<GetObjectScreenSelectionViewModelFactory>().As<IGetObjectScreenSelectionViewModelFactory>().SingleInstance();
             builder.RegisterType<OperationParameterViewModelFactory>().As<IOperationParameterViewModelFactory>().SingleInstance();
+            builder.RegisterType<VariableManagerViewModelFactory>().As<IVariableManagerViewModelFactory>().SingleInstance();
 
             builder.RegisterType<TestNodeFactory>().As<ITestNodeFactory>().SingleInstance();
             builder.RegisterType<TestGroupNodeFactory>().As<ITestGroupNodeFactory>().SingleInstance();

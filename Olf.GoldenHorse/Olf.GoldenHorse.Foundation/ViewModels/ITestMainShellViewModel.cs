@@ -8,5 +8,6 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
         string TestName { get; }
         ITestScreenshotsViewModel TestScreenshotsViewModel { get; }
         ITestShellViewModel TestShellViewModel { get; }
+        IVariableManagerViewModel VariableManagerViewModel { get; }
     }
 }

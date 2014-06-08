@@ -116,6 +116,7 @@
     <Compile Include="Factories\ViewModels\TestParameterEditorViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestScreenshotsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestShellViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\VariableManagerViewModelFactory.cs" />
     <Compile Include="Helpers\RegionHelpers.cs" />
     <Compile Include="Models\ControlHighlightAdornment.cs" />
     <Compile Include="Models\ValidateTextAtPointOperation.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="ViewModels\TestShellViewModel.cs" />
     <Compile Include="ViewModels\ValidateTextAtPointListItemViewModel.cs" />
     <Compile Include="ViewModels\ValidationListItemViewModel.cs" />
+    <Compile Include="ViewModels\VariableManagerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Olf.GoldenHorse.Foundation.DataAccess\Olf.GoldenHorse.Foundation.DataAccess.csproj">

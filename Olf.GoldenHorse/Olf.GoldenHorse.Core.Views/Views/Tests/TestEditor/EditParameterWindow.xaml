@@ -6,7 +6,7 @@
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              mc:Ignorable="d" 
                   GlowBrush="{StaticResource AccentColorBrush}"
-             Title="Edit Parameter" Height="250" Width="300">
+             Title="Edit Parameter" MaxHeight="250" MaxWidth="300" Height="250" Width="300">
     <Window.Resources>
         <SolidColorBrush x:Key="brush1">
             <SolidColorBrush.Color>

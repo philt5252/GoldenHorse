@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
+             xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="450">
+             d:DesignHeight="500" d:DesignWidth="440">
     <UserControl.Resources>
         <SolidColorBrush x:Key="brush1">
             <SolidColorBrush.Color>
@@ -17,8 +18,7 @@
     <Grid Background="{StaticResource brush1}" Name="grid1">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="140*"></RowDefinition>
-            <RowDefinition Height="290*"></RowDefinition>
+            <RowDefinition Height="430"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="DimGray">
@@ -27,7 +27,8 @@
                 <TextBlock Foreground="White" Margin="30,0,0,10" Text="Specify an object with which the operation will work"></TextBlock>
             </StackPanel>
         </Grid>
-        <ListBox  Grid.Row="1" Background="Transparent" ItemsSource="{Binding GetObjectViewModels}">
+        <StackPanel Grid.Row="1">
+        <ListBox Grid.Row="1" Background="Transparent" ItemsSource="{Binding GetObjectViewModels}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Name="grid2"  >
@@ -38,8 +39,18 @@
             </ListBox.ItemTemplate>
         </ListBox>
         
-        <ContentControl Grid.Row="2" regions:RegionManager.RegionName="ObjectEditorDetailsRegion"></ContentControl>
-       
+        <Grid Grid.Row="1">
+            <TextBlock Margin="10,10,0,0" Text="Object: " Foreground="White" Width="45" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
+            <TextBox IsReadOnly="False" Height="26" Margin="10,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                     Width="415" Text="{Binding SelectedObject, Mode=OneWay}"/>
+            
+            <views:TreeViewSelect Margin="10,72,0,0" Height="73" Width="415" VerticalAlignment="Top" ItemsSource="{Binding Objects}"
+                                  SelectedObject="{Binding SelectedObject}" HorizontalAlignment="Left"></views:TreeViewSelect>
+
+        </Grid>
+        </StackPanel>
+
+
 
     </Grid>
 </UserControl>

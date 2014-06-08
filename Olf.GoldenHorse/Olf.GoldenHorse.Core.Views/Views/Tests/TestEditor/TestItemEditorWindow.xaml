@@ -8,7 +8,7 @@
              xmlns:avalondock="http://avalondock.codeplex.com"
              GlowBrush="{StaticResource AccentColorBrush}"
              mc:Ignorable="d" 
-             Height="500" Width="450">
+             Height="500" Width="450" MaxHeight="500" MaxWidth="450">
     <Window.Resources>
         <SolidColorBrush x:Key="brush1">
             <SolidColorBrush.Color>
@@ -82,18 +82,18 @@
                 <testEditor:TestDescriptionEditorView x:Name="testDescriptionEditorView"></testEditor:TestDescriptionEditorView>
             </TabItem>
         </TabControl>-->
-        <avalondock:DockingManager Margin="3,5,3,0" Grid.Row="0">
+        <avalondock:DockingManager Margin="3,5,3,0" Grid.Row="0" >
             <avalondock:LayoutRoot>
                 <avalondock:LayoutPanel>
-                    <avalondock:LayoutDocumentPaneGroup>
-                        <avalondock:LayoutDocumentPane x:Name="layoutDocumentPane" DockWidth="500" >
+                    <avalondock:LayoutDocumentPaneGroup >
+                        <avalondock:LayoutDocumentPane x:Name="layoutDocumentPane" DockWidth="500"  >
                             <avalondock:LayoutDocument Title="Object" CanFloat="False" CanClose="False">
                                 <testEditor:TestObjectEditorView x:Name="testObjectEditorView"></testEditor:TestObjectEditorView>
                             </avalondock:LayoutDocument>
                             <avalondock:LayoutDocument Title="Operation" CanFloat="False" CanClose="False">
                                 <testEditor:TestOperationEditorView x:Name="testOperationEditorView"></testEditor:TestOperationEditorView>
                             </avalondock:LayoutDocument>
-                            <avalondock:LayoutDocument Title="Parameter" CanFloat="False" CanClose="False">
+                            <avalondock:LayoutDocument Title="Parameter"  CanFloat="False" CanClose="False">
                                 <testEditor:TestParameterEditorView x:Name="testParameterEditorView"></testEditor:TestParameterEditorView>
                             </avalondock:LayoutDocument>
                             <avalondock:LayoutDocument Title="Description" CanFloat="False" CanClose="False">

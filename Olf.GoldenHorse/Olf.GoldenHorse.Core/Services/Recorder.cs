@@ -205,7 +205,7 @@ namespace Olf.GoldenHorse.Core.Services
 
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
         {
-            
+            currentScreenshot = GetScreenshot();
         }
 
         private int count = 0;

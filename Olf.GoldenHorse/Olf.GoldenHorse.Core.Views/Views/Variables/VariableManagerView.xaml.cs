@@ -17,9 +17,9 @@ namespace Olf.GoldenHorse.Core.Views.Views.Variables
     /// <summary>
     /// Interaction logic for VariableManager_View.xaml
     /// </summary>
-    public partial class VariableManager_View : UserControl
+    public partial class VariableManagerView : UserControl
     {
-        public VariableManager_View()
+        public VariableManagerView()
         {
             InitializeComponent();
         }

@@ -35,6 +35,7 @@ namespace Olf.GoldenHorse.Core.Views
 
             testShellView.DataContext = testMainShellViewModel.TestShellViewModel;
             testScreenshotsView.DataContext = testMainShellViewModel.TestScreenshotsViewModel;
+            variableManagerView.DataContext = testMainShellViewModel.VariableManagerViewModel;
         }
     }
 }

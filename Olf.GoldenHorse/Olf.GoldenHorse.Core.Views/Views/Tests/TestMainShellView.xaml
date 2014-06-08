@@ -7,6 +7,7 @@
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:themes="http://avalondock.codeplex.com"
+             xmlns:variables="clr-namespace:Olf.GoldenHorse.Core.Views.Views.Variables"
              Tag="{Binding TestName}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" >
@@ -34,7 +35,7 @@
                            <views:TestShellView x:Name="testShellView"></views:TestShellView>
                        </themes:LayoutDocument>
                         <themes:LayoutDocument Title="Variables" CanClose="False">
-                            <TextBlock Text=" "/>
+                            <variables:VariableManagerView x:Name="variableManagerView"></variables:VariableManagerView>
                         </themes:LayoutDocument>
                     </themes:LayoutDocumentPane>
                     <themes:LayoutAnchorablePane DockHeight="150">

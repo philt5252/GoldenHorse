@@ -11,13 +11,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Olf.GoldenHorse.Foundation.Views;
 
 namespace Olf.GoldenHorse.Core.Views.Views.Variables
 {
     /// <summary>
     /// Interaction logic for VariableManager_View.xaml
     /// </summary>
-    public partial class VariableManagerView : UserControl
+    public partial class VariableManagerView : UserControl, IViewWithDataContext
     {
         public VariableManagerView()
         {

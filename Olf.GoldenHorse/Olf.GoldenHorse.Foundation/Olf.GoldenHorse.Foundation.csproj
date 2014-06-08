@@ -106,6 +106,7 @@
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ProjectFile.cs" />
     <Compile Include="Models\ProjectSuite.cs" />
+    <Compile Include="Models\TestItemTypes.cs" />
     <Compile Include="Services\AppPlaybackService.cs" />
     <Compile Include="Services\Camera.cs" />
     <Compile Include="Services\DefaultNameHelper.cs" />
@@ -135,7 +136,6 @@
     <Compile Include="ViewModels\IRecentFileViewModel.cs" />
     <Compile Include="ViewModels\IRecorderViewModel.cs" />
     <Compile Include="ViewModels\IStartPageViewModel.cs" />
-    <Compile Include="ViewModels\ITabItemViewModel.cs" />
     <Compile Include="ViewModels\ITestDescriptionEditorViewModel.cs" />
     <Compile Include="ViewModels\ITestDetailsViewModel.cs" />
     <Compile Include="ViewModels\ITestItemEditorViewModel.cs" />

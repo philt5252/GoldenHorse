@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Serialization;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
@@ -37,6 +38,12 @@ namespace Olf.GoldenHorse.Foundation.Models
                 OnValueChanged();
             }
         }
+
+        [XmlIgnore]
+        public Operation OwningOperation { get; set; }
+
+        [XmlIgnore]
+        public TestItem OwningTestItem { get { return OwningOperation.TestItem; } }
 
         public OperationParameter()
         {

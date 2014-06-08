@@ -37,7 +37,7 @@ namespace Olf.GoldenHorse.Core.Controllers
 
             testItemEditorWindow.DataContext = testItemEditorViewModel;
 
-            testItemEditorWindow.Show();
+            testItemEditorWindow.ShowDialog();
         }
 
         public void MinimizeTestItemEditorWindow()

@@ -43,6 +43,7 @@ namespace Olf.GoldenHorse.Core.Services
         private InputType currentInputType;
         private IUIItem currentUiItem;
         private MappedItem currentMappedItem;
+        private Screenshot currentScreenshot;
 
         public Recorder(Test test)
         {
@@ -123,7 +124,7 @@ namespace Olf.GoldenHorse.Core.Services
 
         private void CreateKeyboardOnScreenAction()
         {
-            TestItem onScreenAction = CreateOnScreenAction();
+            TestItem onScreenAction = CreateOnScreenAction(currentScreenshot);
             onScreenAction.ControlId = currentMappedItem.Id;
 
             AutomationElement findWindowElement = FindWindowElement(currentUiItem);
@@ -143,10 +144,10 @@ namespace Olf.GoldenHorse.Core.Services
             test.TestItems.Add(onScreenAction);
         }
 
-        private TestItem CreateOnScreenAction()
+        private TestItem CreateOnScreenAction(Screenshot screenshot=null)
         {
-            TestItem action = new TestItem();
-            Screenshot screenshot = GetScreenshot();
+            TestItem action = new TestItem{Type = TestItemTypes.OnScreenAction};
+            currentScreenshot = screenshot = screenshot ?? GetScreenshot();
 
             action.Screenshot = screenshot;
 
@@ -155,9 +156,10 @@ namespace Olf.GoldenHorse.Core.Services
 
         private TestItem CreateOnScreenAction(MouseEventArgs mouseEventArgs, out IUIItem whiteControl)
         {
-            TestItem action = new TestItem();
+            TestItem action = new TestItem { Type = TestItemTypes.OnScreenAction };
             MappedItem mappedItem = null;
             Screenshot screenshot = GetScreenshot();
+            currentScreenshot = screenshot;
 
             whiteControl = CreateWhiteControl(mouseEventArgs.Location, ref mappedItem);
             currentMappedItem = mappedItem;
@@ -224,6 +226,7 @@ namespace Olf.GoldenHorse.Core.Services
 
             keys += keyValue;
             //throw new NotImplementedException();
+            currentScreenshot = GetScreenshot();
         }
 
         public Test CurrentTest

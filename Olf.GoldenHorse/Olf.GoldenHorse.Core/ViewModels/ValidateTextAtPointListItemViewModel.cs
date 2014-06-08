@@ -20,7 +20,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         protected override TestItem CreateOnScreenValidation()
         {
-            TestItem onScreenValidation = new TestItem();
+            TestItem onScreenValidation = new TestItem{Type = TestItemTypes.ValidateTextAtPoint};
             ValidateTextAtPointOperation operation = new ValidateTextAtPointOperation();
 
             onScreenValidation.Operation = operation;

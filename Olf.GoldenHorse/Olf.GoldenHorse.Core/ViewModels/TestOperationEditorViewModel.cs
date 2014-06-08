@@ -15,7 +15,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
             if (testItem.Type == TestItemTypes.OnScreenAction)
             {
-                Operations = new[] {"Left Click", "Right Click", "Keyboar"};
+                Operations = new[] {"Left Click", "Right Click", "Keyboard"};
             }
         }
     }

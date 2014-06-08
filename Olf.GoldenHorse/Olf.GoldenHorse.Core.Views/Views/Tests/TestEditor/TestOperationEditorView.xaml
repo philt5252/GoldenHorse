@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Olf.GoldenHorse.Core.Views.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="450">
     <UserControl.Resources>
@@ -11,6 +12,7 @@
                 <Color A="255" R="67" B="67" G="67"></Color>
             </SolidColorBrush.Color>
         </SolidColorBrush>
+        <converters:CategoryToImageConverter x:Key="CategoryToImageConverter" />
 
     </UserControl.Resources>
     <Grid Background="{StaticResource brush1}">
@@ -25,7 +27,18 @@
                 <TextBlock Foreground="White" Margin="30,0,0,10" Text="Specify the method or property the operation will call."></TextBlock>
             </StackPanel>
         </Grid>
-        <TreeView Grid.Row="1" Margin="20,10,20,20" ItemsSource="{Binding Operations}" Foreground="White"></TreeView>
+        <ListBox Grid.Row="1" Background="Transparent" Margin="20,10,20,20" ItemsSource="{Binding Operations}" 
+                SelectedItem="{Binding SelectedOperation}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid >
+                        <Image Height="20" Width="20" Source="{Binding Name, Converter={StaticResource CategoryToImageConverter} }"></Image>
+                        <TextBlock Background="Transparent" Foreground="White" Text="{Binding Name}" FontSize="14"></TextBlock>
+                        <TextBlock Background="Transparent" Foreground="White" Text="{Binding Description}" FontSize="11"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
        
             
     </Grid>

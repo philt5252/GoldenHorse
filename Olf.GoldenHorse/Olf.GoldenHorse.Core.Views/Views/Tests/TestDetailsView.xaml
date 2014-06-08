@@ -102,7 +102,7 @@
                                           >
             <!--Create an item template to specify the ItemsSource-->
             <customControls:TreeListView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Items}" />
+                <HierarchicalDataTemplate ItemsSource="{Binding ChildItems}" />
             </customControls:TreeListView.ItemTemplate>
             <customControls:TreeListView.Columns >
                 <GridViewColumn Header="" Width="40">

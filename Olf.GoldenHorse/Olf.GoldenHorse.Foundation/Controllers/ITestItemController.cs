@@ -10,5 +10,6 @@ namespace Olf.GoldenHorse.Foundation.Controllers
         TestItem CurrentTestItem { get; }
         void EditParameter(OperationParameter parameter);
         void CloseTestItemEditorWindow();
+        void CloseEditParameterWindow();
     }
 }

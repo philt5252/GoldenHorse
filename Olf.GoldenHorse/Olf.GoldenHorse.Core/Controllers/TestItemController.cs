@@ -14,6 +14,7 @@ namespace Olf.GoldenHorse.Core.Controllers
         private readonly IEditParameterWindowFactory editParameterWindowFactory;
         private readonly IEditParameterViewModelFactory editParameterViewModelFactory;
         private IWindow testItemEditorWindow;
+        private IWindow editParameterWindow;
 
         public TestItem CurrentTestItem { get; protected set; }
         
@@ -51,7 +52,7 @@ namespace Olf.GoldenHorse.Core.Controllers
 
         public void EditParameter(OperationParameter parameter)
         {
-            IWindow editParameterWindow = editParameterWindowFactory.Create();
+            editParameterWindow = editParameterWindowFactory.Create();
             IEditParameterViewModel editParameterViewModel = editParameterViewModelFactory.Create(parameter);
 
             editParameterWindow.DataContext = editParameterViewModel;
@@ -62,6 +63,11 @@ namespace Olf.GoldenHorse.Core.Controllers
         public void CloseTestItemEditorWindow()
         {
             testItemEditorWindow.Close();
+        }
+
+        public void CloseEditParameterWindow()
+        {
+            editParameterWindow.Close();
         }
     }
 }

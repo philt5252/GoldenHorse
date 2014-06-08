@@ -8,7 +8,7 @@ using Olf.GoldenHorse.Foundation.ViewModels;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
-    public class OperationParameterViewModel : IOperationParameterViewModel
+    public class OperationParameterViewModel : ViewModelBase, IOperationParameterViewModel
     {
         private readonly OperationParameter parameter;
         private readonly ITestItemController testItemController;
@@ -30,6 +30,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private void ExecuteEditParameterCommand()
         {
             testItemController.EditParameter(parameter);
+            OnPropertyChanged("Value");
         }
     }
 }

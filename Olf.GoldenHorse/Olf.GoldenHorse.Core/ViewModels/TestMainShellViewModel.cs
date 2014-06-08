@@ -43,7 +43,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
         {
             if (args.PropertyName == "SelectedTestItem")
             {
-                if (!TestShellViewModel.TestDetailsViewModel.SelectedTestItem.HasScreenshot)
+                if (TestShellViewModel.TestDetailsViewModel.SelectedTestItem == null
+                    || !TestShellViewModel.TestDetailsViewModel.SelectedTestItem.HasScreenshot)
                     return;
 
                 TestScreenshotsViewModel.SelectedScreenshot =

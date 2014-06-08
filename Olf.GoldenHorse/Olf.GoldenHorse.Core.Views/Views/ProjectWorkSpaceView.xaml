@@ -15,7 +15,7 @@
             </themes:DockingManager.Theme>
             <themes:LayoutRoot>
                 <themes:LayoutPanel>
-                    <themes:LayoutAnchorablePane DockWidth="200" DockHeight="400" regions:RegionManager.RegionName="ExplorerViewRegion"></themes:LayoutAnchorablePane>
+                    <themes:LayoutAnchorablePane DockWidth="220" DockHeight="400" regions:RegionManager.RegionName="ExplorerViewRegion"></themes:LayoutAnchorablePane>
                     <themes:LayoutDocumentPaneGroup DockWidth="1*" DockHeight="200*">
                         <themes:LayoutDocumentPane regions:RegionManager.RegionName="WorkspaceViewRegion"></themes:LayoutDocumentPane>
                     </themes:LayoutDocumentPaneGroup>

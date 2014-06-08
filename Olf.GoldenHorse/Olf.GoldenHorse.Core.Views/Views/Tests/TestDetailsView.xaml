@@ -112,7 +112,7 @@
                                 <StackPanel Orientation="Horizontal" Height="{TemplateBinding Height}">
                                     <treeview:DebugButton Margin="0,0,0,0" Width="15" Height="15" Name="DebugButton" 
                                                           IsDebugging="{Binding DebugState, UpdateSourceTrigger=PropertyChanged}"></treeview:DebugButton>
-                                    <Image Name="picImage"  Height="15" Width="15" Visibility="Collapsed" Source="../../Images/Monitor.png"></Image >
+                                    <Image ToolTip="Screenshot available" Name="picImage"  Height="15" Width="15" Visibility="Collapsed" Source="../../Images/Monitor.png"></Image >
                                 </StackPanel>
                             </Border>
                             <DataTemplate.Triggers>
@@ -190,7 +190,7 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                    <Label Content="{Binding Description, Mode=OneWay}" HorizontalAlignment="Center" >
+                                    <Label Content="{Binding Description, Mode=OneWay}" ToolTip="{Binding Description}" HorizontalAlignment="Center" >
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseDoubleClick">
                                                     <i:InvokeCommandAction Command="{Binding Path=EditObjectCommand, Mode=OneWay}"/>

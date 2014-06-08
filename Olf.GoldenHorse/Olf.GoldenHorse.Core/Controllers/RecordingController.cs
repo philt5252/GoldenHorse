@@ -80,6 +80,9 @@ namespace Olf.GoldenHorse.Core.Controllers
 
         public void StopRecord()
         {
+            if (recorder != null)
+                recorder.Stop();
+
             recordingWindow.Close();
 
             testFileManager.Save(recorder.CurrentTest);
@@ -87,6 +90,8 @@ namespace Olf.GoldenHorse.Core.Controllers
 
             appController.MainWindow.Restore();
             testController.ShowTest(recorder.CurrentTest);
+
+            recorder = null;
         }
 
         public void DoValidation(TestItem onScreenValidation)
@@ -97,12 +102,14 @@ namespace Olf.GoldenHorse.Core.Controllers
 
         public void PauseRecord()
         {
-            recorder.Pause();
+            if (recorder != null)
+                recorder.Pause();
         }
 
         public void ResumeRecorder()
         {
-            recorder.Record();
+            if(recorder != null)
+                recorder.Record();
         }
     }
 }

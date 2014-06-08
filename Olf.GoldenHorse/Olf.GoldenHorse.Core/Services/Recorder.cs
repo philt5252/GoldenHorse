@@ -43,7 +43,6 @@ namespace Olf.GoldenHorse.Core.Services
         private InputType currentInputType;
         private IUIItem currentUiItem;
         private MappedItem currentMappedItem;
-        private Screenshot currentScreenshot;
 
         public Recorder(Test test)
         {
@@ -124,7 +123,7 @@ namespace Olf.GoldenHorse.Core.Services
 
         private void CreateKeyboardOnScreenAction()
         {
-            TestItem onScreenAction = CreateOnScreenAction(currentScreenshot);
+            TestItem onScreenAction = CreateOnScreenAction();
             onScreenAction.ControlId = currentMappedItem.Id;
 
             AutomationElement findWindowElement = FindWindowElement(currentUiItem);
@@ -144,10 +143,10 @@ namespace Olf.GoldenHorse.Core.Services
             test.TestItems.Add(onScreenAction);
         }
 
-        private TestItem CreateOnScreenAction(Screenshot screenshot=null)
+        private TestItem CreateOnScreenAction()
         {
             TestItem action = new TestItem{Type = TestItemTypes.OnScreenAction};
-            currentScreenshot = screenshot = screenshot ?? GetScreenshot();
+            Screenshot screenshot = CreateScreenshotFromCurrentBitmap();
 
             action.Screenshot = screenshot;
 
@@ -158,8 +157,7 @@ namespace Olf.GoldenHorse.Core.Services
         {
             TestItem action = new TestItem { Type = TestItemTypes.OnScreenAction };
             MappedItem mappedItem = null;
-            Screenshot screenshot = GetScreenshot();
-            currentScreenshot = screenshot;
+            Screenshot screenshot = CreateNewScreenshot();
 
             whiteControl = CreateWhiteControl(mouseEventArgs.Location, ref mappedItem);
             currentMappedItem = mappedItem;
@@ -168,16 +166,29 @@ namespace Olf.GoldenHorse.Core.Services
             return action;
         }
 
-        private Screenshot GetScreenshot()
+        private void TakePictureAndSetCurrentBitmap()
+        {
+            currentBitmap = Camera.Capture();
+            currentBitmapDateTime = DateTime.Now;
+        }
+
+        private Screenshot CreateNewScreenshot()
+        {
+            TakePictureAndSetCurrentBitmap();
+            return CreateScreenshotFromCurrentBitmap();
+        }
+
+        private Screenshot CreateScreenshotFromCurrentBitmap()
         {
             Screenshot screenshot = new Screenshot();
-            Bitmap bitmap = Camera.Capture();
-            DateTime dateTime = DateTime.Now;
-            string screenshotName = "ghscn_" + dateTime.Ticks + ".bmp";
-            bitmap.Save(Path.Combine(ProjectSuiteManager.GetScreenshotsFolder(test), screenshotName));
 
+            string screenshotName = "ghscn_" + currentBitmapDateTime.Ticks + ".bmp";
+            
             screenshot.ImageFile = screenshotName;
-            screenshot.DateTime = dateTime;
+            screenshot.DateTime = currentBitmapDateTime;
+
+            currentBitmap.Save(Path.Combine(ProjectSuiteManager.GetScreenshotsFolder(test), screenshotName));
+
             return screenshot;
         }
 
@@ -201,15 +212,19 @@ namespace Olf.GoldenHorse.Core.Services
         private void MouseHookListenerOnMouseDown(object sender, MouseEventArgs mouseEventArgs)
         {
             //throw new NotImplementedException();
+            TakePictureAndSetCurrentBitmap();
         }
 
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
         {
-            currentScreenshot = GetScreenshot();
+            TakePictureAndSetCurrentBitmap();
         }
 
         private int count = 0;
         private string keys = "";
+        private Bitmap currentBitmap;
+        private DateTime currentBitmapDateTime;
+
         private void KeyboardHookListenerOnKeyDown(object sender, KeyEventArgs keyEventArgs)
         {
             if (currentInputType == InputType.Mouse)
@@ -226,7 +241,7 @@ namespace Olf.GoldenHorse.Core.Services
 
             keys += keyValue;
             //throw new NotImplementedException();
-            currentScreenshot = GetScreenshot();
+            TakePictureAndSetCurrentBitmap();
         }
 
         public Test CurrentTest

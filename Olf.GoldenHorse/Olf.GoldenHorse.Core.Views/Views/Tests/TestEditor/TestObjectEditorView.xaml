@@ -35,9 +35,7 @@
                 <DataTemplate>
                     <Grid Name="grid2"  >
                             <Button Command="{Binding GetObjectCommand}"  Height="30" Width="30" Margin="10,10,0,28" HorizontalAlignment="Left">
-                                <Button.Content>
                                     <Image Source="{Binding Type, Converter={StaticResource CategoryToImageConverter}}" Height="20" Width="20"></Image>
-                                </Button.Content>
                             </Button>
                                 <TextBlock Margin="60,10,20,10" Width="300" HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" Text="{Binding Description}"/>
                     </Grid>

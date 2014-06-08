@@ -20,7 +20,7 @@ namespace Olf.GoldenHorse.Core.Views.Converters
             }
             else if (value.Equals("Validate at point"))
             {
-                return new BitmapImage(new Uri("../../WhiteImages/TestItemImages/MousePointer.png", UriKind.RelativeOrAbsolute));
+                return new BitmapImage(new Uri("../../../WhiteImages/TestItemImages/MousePointer.png", UriKind.RelativeOrAbsolute));
             }
             else if (value.ToString().Contains("Validate"))
             {

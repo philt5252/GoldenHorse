@@ -138,7 +138,7 @@
                                     </Grid>
                                     <StackPanel Orientation="Horizontal" >
                                         <!--The Expander Button (can be used in any column (typically the first one))-->
-                                            <Image Width ="20" Height ="20"  Source="{Binding Operation, Converter={StaticResource CategoryToImageConverter} }"></Image>
+                                            <Image Width ="20" Height ="20"  Source="{Binding Converter={StaticResource CategoryToImageConverter} }"></Image>
                                    
                                             <Label Content="{Binding Name, Mode=OneWay}" HorizontalAlignment="Center" >
                                                 <i:Interaction.Triggers>

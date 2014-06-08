@@ -13,6 +13,12 @@
             <GradientStop Color="White" Offset="1.9"></GradientStop>
         </LinearGradientBrush>
 
+        <LinearGradientBrush x:Key="GoldBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FFEDBA" Offset="0" />
+            <GradientStop Color="#FFE8A6" Offset="0.5" />
+            <GradientStop Color="#FFE8A6" Offset="1" />
+        </LinearGradientBrush>
+
         <Style x:Key="myStyle" TargetType="Label">
             <Setter Property="Template">
                 <Setter.Value>
@@ -77,8 +83,8 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                             <StackPanel Orientation="Horizontal"  Cursor="Hand" >
-                            <Image Width="15" Height="15" Source="../../WhiteImages/Symbols_Play_32xLG.png"></Image>
-                            <TextBlock Text="{Binding FileName}" Foreground="White">
+                            <Image Width="15" Height="15" Source="../Images/Run.png"></Image>
+                            <TextBlock Margin="5,0,0,0" Text="{Binding FileName}" Foreground="{StaticResource GoldBrush}">
                                
                             </TextBlock>
                                 <i:Interaction.Triggers>

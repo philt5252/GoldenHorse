@@ -17,6 +17,9 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private string selectedValidationMode;
         private string parameterValue;
 
+        public string[] Variables { get; protected set; }
+        public string SelectedVariable { get; set; }
+
         public string SelectedValidationMode
         {
             get
@@ -59,6 +62,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
             Value = parameter.Value.ToString();
             SelectedValidationMode = parameter.Mode.ToString();
+
+            Variables = parameter.OwningTestItem.Test.Variables.Select(v => v.Name).ToArray();
         }
 
         private void ExecuteCancelParameterCommand()
@@ -69,7 +74,12 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private void ExecuteSaveParameterCommand()
         {
             parameter.Mode = (OperationParameterValueMode)Enum.Parse(typeof (OperationParameterValueMode), SelectedValidationMode);
-            parameter.Value = parameterValue;
+            
+            if(Equals(SelectedValidationMode, OperationParameterValueMode.Constant.ToString()))
+                parameter.Value = parameterValue;
+            else if (Equals(SelectedValidationMode, OperationParameterValueMode.Variable.ToString()))
+                parameter.Value = SelectedVariable;
+
             testItemController.CloseEditParameterWindow();
         }
     }

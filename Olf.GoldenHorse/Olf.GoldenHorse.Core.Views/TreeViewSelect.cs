@@ -20,7 +20,17 @@ namespace Olf.GoldenHorse.Core.Views
             }
         }
 
-         private void SelectTreeViewItem(object item)
+        public TreeViewSelect()
+        {
+            SelectedItemChanged += OnSelectedItemChanged;
+        }
+
+        private void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> routedPropertyChangedEventArgs)
+        {
+            SelectedObject = SelectedItem;
+        }
+
+        private void SelectTreeViewItem(object item)
         {
             try
             {

@@ -85,5 +85,23 @@ namespace Olf.GoldenHorse.Foundation.Models
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }
+
+        public void Play(Log log)
+        {
+            ResetVariables();
+
+            foreach (TestItem testItem in TestItems)
+            {
+                testItem.Play(log);
+            }
+        }
+
+        private void ResetVariables()
+        {
+            foreach (Variable variable in Variables)
+            {
+                variable.Reset();
+            }
+        }
     }
 }

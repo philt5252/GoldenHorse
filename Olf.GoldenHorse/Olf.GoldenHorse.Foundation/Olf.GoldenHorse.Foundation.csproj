@@ -109,6 +109,7 @@
     <Compile Include="Models\ProjectSuite.cs" />
     <Compile Include="Models\TestItemTypes.cs" />
     <Compile Include="Models\Variable.cs" />
+    <Compile Include="Models\VariableOperationParameterValue.cs" />
     <Compile Include="Services\AppPlaybackService.cs" />
     <Compile Include="Services\Camera.cs" />
     <Compile Include="Services\DefaultNameHelper.cs" />

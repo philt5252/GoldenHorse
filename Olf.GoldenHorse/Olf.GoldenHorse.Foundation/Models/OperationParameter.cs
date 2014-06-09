@@ -6,18 +6,30 @@ namespace Olf.GoldenHorse.Foundation.Models
     public class OperationParameter
     {
         private OperationParameterValueMode mode;
-        private OperationParameterValue value;
+        private OperationParameterValue parameterValue;
+
+
+        public OperationParameterValue ParameterValue
+        {
+            get { return parameterValue; }
+            set
+            {
+                parameterValue = value;
+                parameterValue.OwningOperationParameter = this;
+            }
+        }
 
         public event EventHandler ValueChanged;
 
         public string Name { get; set; }
 
+        [XmlIgnore]
         public object Value
         {
-            get { return value.DisplayValue; }
+            get { return ParameterValue.DisplayValue; }
             set
             {
-                this.value.DisplayValue = value.ToString();
+                this.ParameterValue.DisplayValue = value == null ? "" : value.ToString();
                 OnValueChanged();
             }
         }
@@ -30,9 +42,14 @@ namespace Olf.GoldenHorse.Foundation.Models
                 mode = value;
 
                 if (mode == OperationParameterValueMode.Constant
-                    && !(this.value is ConstantOperationParameterValue))
+                    && !(this.ParameterValue is ConstantOperationParameterValue))
                 {
-                    this.value = new ConstantOperationParameterValue();
+                    this.ParameterValue = new ConstantOperationParameterValue();
+                }
+                else if (mode == OperationParameterValueMode.Variable
+                    && !(this.ParameterValue is VariableOperationParameterValue))
+                {
+                    this.ParameterValue = new VariableOperationParameterValue();
                 }
 
                 OnValueChanged();
@@ -52,7 +69,7 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         public string GetValue()
         {
-            return value.GetValue();
+            return ParameterValue.GetValue();
         }
 
         protected virtual void OnValueChanged()

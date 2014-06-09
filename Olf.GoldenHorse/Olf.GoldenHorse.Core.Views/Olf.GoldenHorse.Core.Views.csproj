@@ -365,6 +365,9 @@
     <Resource Include="WhiteImages\WhiteCircleCheck.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <None Include="WhiteImages\GoldenHorse.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="WhiteImages\Symbols_Alert_and_Warning_32xLG.png" />
     <Resource Include="WhiteImages\Symbols_Complete_and_ok_32xLG.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

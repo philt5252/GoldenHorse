@@ -16,8 +16,8 @@
     <Grid Background="{StaticResource brush1}">
         <DataGrid Margin="10" HorizontalAlignment="Stretch" Background="Transparent" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding Variables}">
             <DataGrid.Columns>
-                <DataGridComboBoxColumn Header="Type" Width="80" ItemsSource="{Binding Type}" 
-                                        SelectedItemBinding="{Binding SelectedType}"></DataGridComboBoxColumn>
+                <DataGridComboBoxColumn Header="Type" Width="80" ItemsSource="{Binding Types}" 
+                                        ></DataGridComboBoxColumn>
                 <DataGridTextColumn Header="Name" Width="120" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Default Value" Width="150" Binding="{Binding DefaultValue, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Description" Width="150" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>

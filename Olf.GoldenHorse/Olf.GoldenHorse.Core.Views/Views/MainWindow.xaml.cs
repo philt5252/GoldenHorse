@@ -34,6 +34,7 @@ namespace Olf.GoldenHorse.Core.Views
             
             
             InitializeComponent();
+            this.Icon = new BitmapImage(new Uri("WhiteImages/GoldenHorse.ico", UriKind.RelativeOrAbsolute));
 
             RegionManager.UpdateRegions();
 

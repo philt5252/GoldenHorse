@@ -169,12 +169,8 @@ namespace Olf.GoldenHorse.Core.Services
 
         private void TakePictureAndSetCurrentBitmap()
         {
-            Task.Factory.StartNew(() =>
-            {
-                currentBitmap = Camera.Capture();
-                currentBitmapDateTime = DateTime.Now;
-            });
-
+            currentBitmap = Camera.Capture();
+            currentBitmapDateTime = DateTime.Now;
         }
 
         private Screenshot CreateNewScreenshot()

@@ -82,7 +82,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
             foreach (TestItem testItem in test.TestItems)
             {
-                if (testItem.Type == TestItemTypes.OnScreenAction)
+                if (testItem.Type == TestItemTypes.OnScreenAction
+                    || testItem.Type == TestItemTypes.ValidateTextAtPoint)
                 {
                     ITestItemViewModel testItemViewModel = testItemViewModelFactory.Create(testItem);
 

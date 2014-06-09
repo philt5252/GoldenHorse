@@ -8,6 +8,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
     public class TestDescriptionEditorViewModel : ViewModelBase, ITestDescriptionEditorViewModel
     {
         private readonly TestItem testItem;
+        private string description;
 
         public string Description
         {

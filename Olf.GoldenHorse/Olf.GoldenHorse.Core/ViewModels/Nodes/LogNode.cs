@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using Microsoft.Practices.Prism.Commands;
+using Olf.GoldenHorse.Foundation;
 using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.GoldenHorse.Foundation.DataAccess;
 using Olf.GoldenHorse.Foundation.Models;
@@ -14,7 +15,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
 
         public override string Name
         {
-            get { return logFile.Name; }
+            get { return logFile.Name.Replace(DefaultData.LogExtension, ""); }
         }
 
         public LogNode(ProjectFile logFile, ILogFileManager logFileManager,

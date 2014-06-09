@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Olf.GoldenHorse.Foundation.Controllers;
@@ -8,7 +10,7 @@ using Olf.GoldenHorse.Foundation.ViewModels;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
-    public class TestItemViewModel : ITestItemViewModel
+    public class TestItemViewModel : ViewModelBase, ITestItemViewModel
     {
         private readonly ITestItemController testItemController;
         private string controlId;
@@ -91,6 +93,28 @@ namespace Olf.GoldenHorse.Core.ViewModels
             EditOperationCommand = new DelegateCommand(ExecuteEditOperationCommand);
             EditParameterCommand = new DelegateCommand(ExeccuteEditParameterCommand);
             EditDescriptionCommand = new DelegateCommand(ExecuteEditDescriptionCommand);
+
+            if (TestItem != null)
+            {
+                TestItem.OperationChanged += TestItemOnOperationChanged;
+                TestItem.ParametersChanged += TestItemOnParametersChanged;
+                TestItem.DescriptionChanged += TestItemOnDescriptionChanged;
+            }
+        }
+
+        private void TestItemOnDescriptionChanged(object sender, EventArgs eventArgs)
+        {
+            OnPropertyChanged("Description");
+        }
+
+        private void TestItemOnParametersChanged(object sender, EventArgs eventArgs)
+        {
+            OnPropertyChanged("Value");
+        }
+
+        private void TestItemOnOperationChanged(object sender, EventArgs eventArgs)
+        {
+            OnPropertyChanged("Operation");
         }
 
         private void ExecuteEditDescriptionCommand()

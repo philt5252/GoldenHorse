@@ -15,6 +15,10 @@ namespace Olf.GoldenHorse.Foundation.Models
         private string controlId;
         private string type;
 
+        public event EventHandler OperationChanged;
+
+        public event EventHandler ParametersChanged;
+
         public event EventHandler DescriptionChanged;
 
         public Operation Operation
@@ -31,7 +35,7 @@ namespace Olf.GoldenHorse.Foundation.Models
                 operation.TestItem = this;
 
                 Operation.ParameterValuesChanged += OperationOnParameterValuesChanged;
-
+                OnOperationChanged();
                 RaiseTestChanged();
             }
         }
@@ -39,6 +43,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         private void OperationOnParameterValuesChanged(object sender, EventArgs eventArgs)
         {
             OnDescriptionChanged();
+            OnParametersChanged();
             RaiseTestChanged();
         }
 
@@ -99,7 +104,11 @@ namespace Olf.GoldenHorse.Foundation.Models
         public virtual string Description
         {
             get { return description ?? DefaultDescription(); }
-            set { description = value; }
+            set
+            {
+                description = value;
+                OnDescriptionChanged();
+            }
         }
 
         public TestItem()
@@ -148,6 +157,20 @@ namespace Olf.GoldenHorse.Foundation.Models
         protected virtual void OnDescriptionChanged()
         {
             EventHandler handler = DescriptionChanged;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnParametersChanged()
+        {
+            EventHandler handler = ParametersChanged;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnOperationChanged()
+        {
+            EventHandler handler = OperationChanged;
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }

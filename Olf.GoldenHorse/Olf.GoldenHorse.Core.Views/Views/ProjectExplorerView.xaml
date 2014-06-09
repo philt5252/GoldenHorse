@@ -28,7 +28,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>-->
                         <Image  Source="{Binding Type, Converter={StaticResource CategoryToImageConverter}}" Margin="5,0,0,0"  Width="16" Height="16" ></Image>
-                        <TextBlock Margin="5,3,5,3" Text="{Binding Name}" Background="Transparent"  Foreground="Black">  
+                        <TextBlock Margin="5,3,5,3" Text="{Binding Name}" Background="Transparent"   Foreground="Black">  
                         </TextBlock>         
                     </StackPanel>
                 </HierarchicalDataTemplate>

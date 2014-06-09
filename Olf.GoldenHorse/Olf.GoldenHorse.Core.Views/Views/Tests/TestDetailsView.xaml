@@ -51,6 +51,7 @@
                 <Color A="255" B="67" G="67" R="67"></Color>
             </SolidColorBrush.Color>
         </SolidColorBrush>
+        
         <converters:TestItemImageConverter x:Key="TestItemImageConverter" />
 
         <Style TargetType="{x:Type TreeViewItem}">

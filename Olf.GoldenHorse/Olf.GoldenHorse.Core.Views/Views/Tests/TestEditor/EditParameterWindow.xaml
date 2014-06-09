@@ -40,7 +40,8 @@
                      Margin="60,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBox>
            
         </Grid>
-        <views:TreeViewSelect x:Name="valueTvw"  Visibility="Collapsed" SelectedObject="{Binding SelectedVariable}" Grid.Row="1" ItemsSource="{Binding Variables}">
+        <views:TreeViewSelect x:Name="valueTvw"  Visibility="Collapsed" SelectedObject="{Binding SelectedVariable}" Grid.Row="1" 
+                              ItemsSource="{Binding Variables}">
         </views:TreeViewSelect>
         <Button Content="Save" Command="{Binding SaveParameterCommand}" Width="75" Height="26" Grid.Row="2" Margin="127,10,90,14"></Button>
         <Button Content="Cancel" Command="{Binding CancelParameterCommand}" Width="75" Height="26" Grid.Row="2" Margin="207,10,10,14"></Button>

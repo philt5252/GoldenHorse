@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Olf.GoldenHorse.Core.Views.Views.Variables.VariableManagerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="500">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="brush1">
+            <SolidColorBrush.Color>
+                <Color A="255" R="67" B="67" G="67"></Color>
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+
+        <LinearGradientBrush x:Key="HeaderBrush"  EndPoint="0,0" StartPoint="0,1">
+            <GradientStop Color="DarkGray" Offset="0"/>
+            <GradientStop Color="Gray" Offset="1"/>
+        </LinearGradientBrush>
+
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="{StaticResource HeaderBrush}"/>
+            <Setter Property="FontSize" Value="12"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="BorderBrush" Value="WhiteSmoke" />
+            <Setter Property="BorderThickness" Value="1,1,1,1" />
+        </Style>
+    </UserControl.Resources>
+
+
+
+    <Grid Background="{StaticResource brush1}">
+        <DataGrid Margin="10" HorizontalAlignment="Stretch" Background="Transparent" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding Variables}"
+                  RowHeight="20" ColumnHeaderHeight="24" CanUserResizeRows="True" >
+            <DataGrid.Columns>
+                <DataGridComboBoxColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"  Header="Type" Width="100" SelectedItemBinding="{Binding VariableType}" ></DataGridComboBoxColumn>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Name" Width="200" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Default Value" Width="200" Binding="{Binding DefaultValue, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Description" Width="150*" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+            
+    </Grid>
+</UserControl>

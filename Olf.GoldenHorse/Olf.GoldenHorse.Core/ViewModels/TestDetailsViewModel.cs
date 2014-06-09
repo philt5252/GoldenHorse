@@ -62,10 +62,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 dateTime.Month, dateTime.Day, dateTime.Year,
                 dateTime.Hour, dateTime.Minute, dateTime.Second);
 
-            foreach (TestItem testItem in test.TestItems)
-            {
-                testItem.Play(log);
-            }
+
+            test.Play(log);
 
             log.EndTime = DateTime.Now;
 

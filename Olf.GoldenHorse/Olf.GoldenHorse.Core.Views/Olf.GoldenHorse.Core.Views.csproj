@@ -299,10 +299,6 @@
       <Project>{db81988f-e0f2-45a0-a1fd-8c37f3d35244}</Project>
       <Name>AvalonDock</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Olf.GoldenHorse.Core\Olf.GoldenHorse.Core.csproj">
-      <Project>{03A71A49-10A2-429D-B274-04DA18609472}</Project>
-      <Name>Olf.GoldenHorse.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Olf.GoldenHorse.CustomControls\Olf.GoldenHorse.CustomControls.csproj">
       <Project>{c3be191d-1c68-430e-9ba3-eada12a14103}</Project>
       <Name>Olf.GoldenHorse.CustomControls</Name>

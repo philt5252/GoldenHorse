@@ -2,6 +2,7 @@
 using System.Security.Cryptography;
 using System.Windows.Automation;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using Olf.Automation;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
@@ -18,13 +19,13 @@ namespace Olf.GoldenHorse.Core.Models
             get { return "Keyboard"; }
         }
 
+        [XmlIgnore]
         public string Text
         {
             get { return (string)textParam.Value; }
             set
             {
                 textParam.Value = value;
-                textParam.Mode = OperationParameterValueMode.Constant;
             }
         }
 
@@ -54,7 +55,8 @@ namespace Olf.GoldenHorse.Core.Models
 
         public override void Play(MappedItem mappedItem, Log log)
         {
-            Keyboard.SendKeys(Text);
+            string text = textParam.GetValue();
+            Keyboard.SendKeys(text);
             Screenshot screenshot = CreateScreenshot(log);
 
             AppProcess process = AppManager.GetProcess(mappedItem);
@@ -79,7 +81,7 @@ namespace Olf.GoldenHorse.Core.Models
                 });
 
 
-            string description = string.Format("The text '{0}' was entered in {1}", Text, mappedItem.Name);
+            string description = string.Format("The text '{0}' was entered in {1}", text, mappedItem.Name);
             log.CreateLogItem(LogItemCategory.Event, description, screenshot);
         }  
     }

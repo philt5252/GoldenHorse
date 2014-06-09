@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Forms;
@@ -168,8 +169,12 @@ namespace Olf.GoldenHorse.Core.Services
 
         private void TakePictureAndSetCurrentBitmap()
         {
-            currentBitmap = Camera.Capture();
-            currentBitmapDateTime = DateTime.Now;
+            Task.Factory.StartNew(() =>
+            {
+                currentBitmap = Camera.Capture();
+                currentBitmapDateTime = DateTime.Now;
+            });
+
         }
 
         private Screenshot CreateNewScreenshot()
@@ -241,7 +246,6 @@ namespace Olf.GoldenHorse.Core.Services
 
             keys += keyValue;
             //throw new NotImplementedException();
-            TakePictureAndSetCurrentBitmap();
         }
 
         public Test CurrentTest

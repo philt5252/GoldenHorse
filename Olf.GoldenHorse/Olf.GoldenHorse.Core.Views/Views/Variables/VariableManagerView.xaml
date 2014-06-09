@@ -33,7 +33,7 @@
 
     <Grid Background="{StaticResource brush1}">
         <DataGrid Margin="10" HorizontalAlignment="Stretch" Background="Transparent" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding Variables}"
-                  RowHeight="20" ColumnHeaderHeight="24" >
+                  RowHeight="20" ColumnHeaderHeight="24" CanUserResizeRows="True" >
             <DataGrid.Columns>
                 <DataGridComboBoxColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"  Header="Type" Width="100" ItemsSource="{Binding Types}" ></DataGridComboBoxColumn>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Name" Width="200" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>

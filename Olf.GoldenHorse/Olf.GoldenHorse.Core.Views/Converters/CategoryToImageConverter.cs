@@ -10,7 +10,11 @@ namespace Olf.GoldenHorse.Core.Views.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value.ToString().Contains("Validate"))
+             if (value.Equals("Validate at point"))
+            {
+                return new BitmapImage(new Uri("../../../WhiteImages/TestItemImages/MousePointer.png", UriKind.RelativeOrAbsolute));
+            }
+            else if (value.ToString().Contains("Validate"))
             {
                 return new BitmapImage(new Uri("../../WhiteImages/TestItemImages/variable.png", UriKind.RelativeOrAbsolute));
             }

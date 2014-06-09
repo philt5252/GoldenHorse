@@ -37,7 +37,7 @@
             <themes:LayoutRoot>
                 <themes:LayoutPanel Orientation="Vertical">
                     <themes:LayoutDocumentPane x:Name="TestShellPane"  DockHeight="300*" >
-                       <themes:LayoutDocument Title="Test Steps">
+                        <themes:LayoutDocument Title="Test Steps" CanClose="False" >
                            <views:TestShellView x:Name="testShellView"></views:TestShellView>
                        </themes:LayoutDocument>
                         <themes:LayoutDocument Title="Variables" CanClose="False">

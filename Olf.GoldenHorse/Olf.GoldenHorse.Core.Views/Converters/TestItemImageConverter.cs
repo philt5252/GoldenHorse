@@ -12,7 +12,8 @@ namespace Olf.GoldenHorse.Core.Views.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             ITestItemViewModel testItemViewModel = value as ITestItemViewModel;
-            if (testItemViewModel.Type.Equals(TestItemTypes.OnScreenAction))
+            if (testItemViewModel.Type.Equals(TestItemTypes.OnScreenAction)||
+                testItemViewModel.Type.Equals(TestItemTypes.ValidateTextAtPoint))
             {
                 if (testItemViewModel.Operation.Equals("Left Click") || testItemViewModel.Operation.Equals("Right Click"))
                 {

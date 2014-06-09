@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation;
@@ -13,6 +15,7 @@ using Olf.GoldenHorse.Core.Models;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
 using TestStack.White.UIItems;
+using TestStack.White.UIItems.Actions;
 using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
 using Point = System.Drawing.Point;
@@ -270,12 +273,10 @@ namespace Olf.GoldenHorse.Core.Services
             keyboardHookListener.Enabled = false;
         }
 
+        private string[] endurProcesses = new string[] { "master", "master.exe", "olfpres", "olfpres.exe", "ins", "ins.exe" };
+
         public IUIItem CreateWhiteControl(Point point, ref MappedItem mappedItem)
         {
-
-            //if (endurProcesses.Contains(windowState.WindowInfo.ProcessName))
-            //return null;
-
             try
             {
                 UIItem uiItem = ExternalAppInfoManager.GetControl(point);
@@ -302,12 +303,36 @@ namespace Olf.GoldenHorse.Core.Services
                 AutomationElement window = uiElementTree.Peek();
                 MappedItem createdMappedItem = null;
 
-                while (uiElementTree.Count > 0)
+                /*if (endurProcesses.Contains(appProcess.Name))
                 {
                     automationElement = uiElementTree.Pop();
                     string name = automationElement.Current.AutomationId;
                     string type = automationElement.Current.ControlType.LocalizedControlType;
                     string text = automationElement.Current.Name;
+                    Rect bounds = automationElement.Current.BoundingRectangle;
+                    bounds.X -= window.Current.BoundingRectangle.X;
+                    bounds.Y -= window.Current.BoundingRectangle.Y;
+                    createdMappedItem = appManager.FindOrCreateMappedItem(parentId, name, bounds, type, text);
+
+                    mappedItem = createdMappedItem;
+
+                    return new UIItem(window, new NullActionListener());
+                }*/
+
+                while (uiElementTree.Count > 0)
+                {
+                    automationElement = uiElementTree.Pop();
+                    string name = automationElement.Current.AutomationId;
+                    int num;
+                    if (int.TryParse(name, out num))
+                        name = "";
+
+                    string type = automationElement.Current.ControlType.LocalizedControlType;
+                    string text = automationElement.Current.Name;
+
+                    if (type == "edit")
+                        text = "";
+
                     Rect bounds = automationElement.Current.BoundingRectangle;
                     bounds.X -= window.Current.BoundingRectangle.X;
                     bounds.Y -= window.Current.BoundingRectangle.Y;

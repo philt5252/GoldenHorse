@@ -62,7 +62,7 @@ namespace Olf.GoldenHorse.Core.Models
             AppProcess process = AppManager.GetProcess(mappedItem);
             MappedItem window = AppManager.GetWindow(mappedItem);
 
-            IUIItem uiItem = AppPlaybackService.GetControl(process, window, mappedItem);
+            IUIItem uiItem = AppPlaybackService.GetControl(process, window, mappedItem, AppManager);
 
             AutomationElement findWindowElement = uiItem.AutomationElement;
 

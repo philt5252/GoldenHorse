@@ -93,7 +93,7 @@ namespace Olf.GoldenHorse.Core.Models
             AppProcess process = AppManager.GetProcess(control);
             MappedItem window = AppManager.GetWindow(control);
 
-            IUIItem uiItem = AppPlaybackService.GetControl(process, window, control);
+            IUIItem uiItem = AppPlaybackService.GetControl(process, window, control, AppManager);
             Point clickPoint = new Point(X,Y);
             Point globalPoint = new Point((int)uiItem.Bounds.X + clickPoint.X, (int)uiItem.Bounds.Y + clickPoint.Y);
             

@@ -125,6 +125,13 @@ namespace Olf.GoldenHorse.Core.Services
             if (parentElement != null && parentElement.Current.LocalizedControlType == "button")
                 automationElement = parentElement;
 
+            int delNum;
+
+            while(int.TryParse(automationElement.Current.Name, out delNum))
+            {
+                automationElement = walker.GetParent(automationElement);
+            }
+
 
             ActionListener actionListener = new NullActionListener();
             return new UIItem(automationElement, actionListener);

@@ -23,19 +23,14 @@ namespace Olf.GoldenHorse.Core.Models
             AppProcess process = AppManager.GetProcess(mappedItem);
             MappedItem window = AppManager.GetWindow(mappedItem);
 
-            IUIItem uiItem = AppPlaybackService.GetControl(process, window, mappedItem);
+            IUIItem uiItem = AppPlaybackService.GetControl(process, window, mappedItem, AppManager);
             Point clickPoint = this.GetClickPoint();
             Point globalPoint = new Point((int)uiItem.Bounds.X + clickPoint.X, (int)uiItem.Bounds.Y + clickPoint.Y);
-            
-            Cursor.LeftClick(globalPoint);
-            Screenshot screenshot = CreateScreenshot(log);
 
-            string description = string.Format("The {0} was clicked with the left mouse button", mappedItem.Type);
-
-            log.CreateLogItem(LogItemCategory.Event, description, screenshot);
+            Cursor.Position = globalPoint;
 
             AutomationElement findWindowElement = ExternalAppInfoManager.GetWindowAutomationElement(uiItem);
-
+            Screenshot screenshot = CreateScreenshot(log);
             screenshot.Adornments.Add(
                 new ControlHighlightAdornment
                 {
@@ -44,6 +39,17 @@ namespace Olf.GoldenHorse.Core.Models
                     Width = (int)uiItem.Bounds.Width,
                     Height = (int)uiItem.Bounds.Height
                 });
+
+            Cursor.LeftClick(globalPoint);
+           
+
+            string description = string.Format("The {0} was clicked with the left mouse button", mappedItem.Type);
+
+            log.CreateLogItem(LogItemCategory.Event, description, screenshot);
+
+            
+
+            
 
             int screenshotX = globalPoint.X - (int)findWindowElement.Current.BoundingRectangle.X;
             int screenshotY = globalPoint.Y - (int)findWindowElement.Current.BoundingRectangle.Y;

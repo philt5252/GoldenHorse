@@ -22,7 +22,7 @@ namespace Olf.GoldenHorse.Core.Views.Converters
                 {
                     return new BitmapImage(new Uri("../../WhiteImages/TestItemImages/keyboard.png", UriKind.RelativeOrAbsolute));
                 }
-                else if (testItemViewModel.Operation.Equals("Validate at point"))
+                else if (testItemViewModel.Operation.Equals("Validate text at point"))
                 {
                     return new BitmapImage(new Uri("../../../WhiteImages/TestItemImages/MousePointer.png", UriKind.RelativeOrAbsolute));
                 }

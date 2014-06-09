@@ -8,16 +8,15 @@
              xmlns:xcad="http://avalondock.codeplex.com"
              Tag="{Binding TestName}" >
     <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary  Source="pack://application:,,,/AvalonDock.Themes.VS2010;component/Brushes.xaml" />
-                <ResourceDictionary  Source="pack://application:,,,/AvalonDock.Themes.VS2010;component/Theme.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <SolidColorBrush x:Key="brush1">
+            <SolidColorBrush.Color>
+                <Color A="255" R="67" B="67" G="67"></Color>
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
     </UserControl.Resources>
 
 
-    <Grid>
+    <Grid >
            <Grid.Resources>
             
             <Style x:Key="MyCustomDocumentPaneControlStyle" TargetType="{x:Type xcad:LayoutDocumentPaneControl}">
@@ -110,6 +109,9 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+               
+           
+
         </Grid.Resources>
 
         <xcad:DockingManager Grid.Column="0" Height="Auto" Width="Auto" VerticalAlignment="Stretch" DocumentPaneControlStyle="{StaticResource MyCustomDocumentPaneControlStyle}">

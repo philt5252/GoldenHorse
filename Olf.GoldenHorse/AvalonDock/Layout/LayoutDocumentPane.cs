@@ -103,7 +103,16 @@ namespace AvalonDock.Layout
 
         public LayoutContent SelectedContent
         {
-            get { return _selectedIndex == -1 ? null : Children[_selectedIndex]; }
+            get
+            {
+                if (_selectedIndex < 0)
+                    return null;
+
+                if (_selectedIndex >= Children.Count)
+                    _selectedIndex = ChildrenCount - 1;
+
+                return Children[_selectedIndex];
+            }
         }
         #endregion
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Xml.Serialization;
@@ -9,8 +10,12 @@ namespace Olf.GoldenHorse.Foundation.Models
     {
         private ObservableCollection<TestItem> testItems;
 
+        public event EventHandler TestChanged;
+
         [XmlIgnore]
         public Project Project { get; set; }
+
+        public ObservableCollection<Variable> Variables { get; set; } 
 
         public string Name { get; set; }
 
@@ -33,6 +38,8 @@ namespace Olf.GoldenHorse.Foundation.Models
                 }
 
                 testItems.CollectionChanged += TestItemsOnCollectionChanged;
+
+                RaiseTestChanged();
             }
         }
 
@@ -42,6 +49,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         {
             TestItems = new ObservableCollection<TestItem>();
             Id = Guid.NewGuid().ToString();
+            Variables = new ObservableCollection<Variable>();
         }
 
         private void TestItemsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
@@ -51,6 +59,7 @@ namespace Olf.GoldenHorse.Foundation.Models
                 foreach (TestItem testItem in args.NewItems)
                 {
                     testItem.Test = this;
+                    OnTestChanged();
                 }
             }
             else if (args.Action == NotifyCollectionChangedAction.Remove)
@@ -59,8 +68,22 @@ namespace Olf.GoldenHorse.Foundation.Models
                 {
                     if (testItem.Test == this)
                         testItem.Test = null;
+
+                    RaiseTestChanged();
                 }
             }
+        }
+
+        public void RaiseTestChanged()
+        {
+            OnTestChanged();
+        }
+
+        protected virtual void OnTestChanged()
+        {
+            EventHandler handler = TestChanged;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
     }
 }

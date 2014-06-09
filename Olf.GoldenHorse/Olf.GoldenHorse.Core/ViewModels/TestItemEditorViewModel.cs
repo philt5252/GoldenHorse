@@ -81,7 +81,9 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         protected virtual void ExecuteFinishCommand()
         {
-            testItem.Test.TestItems.Add(testItem);
+            if(!testItem.Test.TestItems.Contains(testItem))
+                testItem.Test.TestItems.Add(testItem);
+
             testItemController.CloseTestItemEditorWindow();
             recordingController.ResumeRecorder();
         }

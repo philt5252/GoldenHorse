@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
+using Olf.GoldenHorse.Foundation;
 using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.GoldenHorse.Foundation.DataAccess;
 using Olf.GoldenHorse.Foundation.Models;
@@ -18,7 +19,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
 
         public override string Name
         {
-            get { return projectFile.Name; }
+            get { return projectFile.Name.Replace(DefaultData.TestExtension, ""); }
         }
 
         public TestNode(ProjectFile projectFile, ITestController testController,

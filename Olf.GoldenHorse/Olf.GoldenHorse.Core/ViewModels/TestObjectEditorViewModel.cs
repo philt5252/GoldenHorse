@@ -78,6 +78,11 @@ namespace Olf.GoldenHorse.Core.ViewModels
             this.testItem = testItem;
             this.getObjectScreenSelectionViewModelFactory = getObjectScreenSelectionViewModelFactory;
 
+            if (testItem != null && testItem.Control != null)
+            {
+                SelectedObject = testItem.Control.FriendlyName;
+            }
+
             SetGetObjectViewModels();
         }
 

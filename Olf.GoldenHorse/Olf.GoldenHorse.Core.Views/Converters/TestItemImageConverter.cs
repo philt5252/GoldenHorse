@@ -24,7 +24,7 @@ namespace Olf.GoldenHorse.Core.Views.Converters
                 }
                 else if (testItemViewModel.Operation.Equals("Validate text at point"))
                 {
-                    return new BitmapImage(new Uri("../../../WhiteImages/TestItemImages/MousePointer.png", UriKind.RelativeOrAbsolute));
+                    return new BitmapImage(new Uri("../../WhiteImages/TestItemImages/variable.png", UriKind.RelativeOrAbsolute));
                 }
             }
             return null;

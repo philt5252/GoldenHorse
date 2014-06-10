@@ -47,7 +47,7 @@ namespace Olf.GoldenHorse.Core.Views
         private void WindowBase_Deactivated_1(object sender, EventArgs e)
         {
             this.Topmost = true;
-            this.Activate();
+            
         }
     }
 }

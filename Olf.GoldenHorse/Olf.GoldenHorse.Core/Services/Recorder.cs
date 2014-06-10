@@ -282,15 +282,48 @@ namespace Olf.GoldenHorse.Core.Services
                 UIItem uiItem = ExternalAppInfoManager.GetControl(point);
 
                 if (uiItem.AutomationElement.Current.LocalizedControlType.Equals("window"))
-                    return null;
+                {
+                    Process process1 = Process.GetProcessById(uiItem.AutomationElement.Current.ProcessId);
+
+                    AppProcess appProcess1 = appManager.FindOrCreateProcess(process1.ProcessName);
+
+                    
+                    string name = uiItem.AutomationElement.Current.AutomationId;
+
+                    int num;
+                    if (int.TryParse(name, out num))
+                        name = "";
+
+                    string type = uiItem.AutomationElement.Current.ControlType.LocalizedControlType;
+                    string text = uiItem.AutomationElement.Current.Name;
+
+                    if (type == "edit")
+                        text = "";
+
+                    Rect bounds = uiItem.AutomationElement.Current.BoundingRectangle;
+                    bounds.X = 0;//;window.Current.BoundingRectangle.X;
+                    bounds.Y = 0;//window.Current.BoundingRectangle.Y;
+                    mappedItem = appManager.FindOrCreateMappedItem(appProcess1.Id, name, bounds, type, text);
+                    
+                    return uiItem;
+                }
+                    
 
                 TreeWalker walker = TreeWalker.ControlViewWalker;
                 AutomationElement automationElement = uiItem.AutomationElement;
                 Stack<AutomationElement> uiElementTree = new Stack<AutomationElement>();
 
+                int delNum;
+
                 while (automationElement != AutomationElement.RootElement)
                 {
-                    uiElementTree.Push(automationElement);
+                    if (!((string.IsNullOrEmpty(automationElement.Current.Name)
+                        && string.IsNullOrEmpty(automationElement.Current.AutomationId))
+                        || int.TryParse(automationElement.Current.AutomationId, out delNum)))
+                    {
+                        uiElementTree.Push(automationElement);
+                    }
+                    
                     automationElement = walker.GetParent(automationElement);
                 }
 
@@ -323,6 +356,7 @@ namespace Olf.GoldenHorse.Core.Services
                 {
                     automationElement = uiElementTree.Pop();
                     string name = automationElement.Current.AutomationId;
+
                     int num;
                     if (int.TryParse(name, out num))
                         name = "";

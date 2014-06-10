@@ -9,9 +9,11 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Automation;
 using Castle.Core.Internal;
+using Olf.Automation;
 using Olf.GoldenHorse.Foundation.Models;
 using TestStack.White;
 using TestStack.White.Factory;
+using TestStack.White.ScreenMap;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.Actions;
 using TestStack.White.UIItems.Finders;
@@ -57,25 +59,18 @@ namespace Olf.GoldenHorse.Foundation.Services
 
             Window appWindow;
 
-            List<Window> list = application.GetWindows();
-            string nam1e = list[1].Name;
-            string title = list[1].Title;
-
             if (!window.Name.IsNullOrEmpty())
                 appWindow = application.GetWindow(SearchCriteria.ByAutomationId(window.Name), InitializeOption.NoCache);
             else
             {
-                List<Window> windows = application.GetWindows();
-                string name = windows[0].AutomationElement.Current.Name;
-                bool equals = Equals(name, window.Text);
-
-                appWindow = windows.First(w => w.AutomationElement.Current.Name == window.Text);
+                appWindow = application.GetWindowWhere(w => w.AutomationElement.Current.Name == window.Text);
+                //appWindow = windows.First(w => w.AutomationElement.Current.Name == window.Text);
             }
 
             BringWindowToFront(appWindow.AutomationElement.Current.NativeWindowHandle);
 
 
-            if (control == null)
+            if (control == null || control.Type == "window")
                 return appWindow;
 
             Stack<MappedItem> mappedItemTree = new Stack<MappedItem>();
@@ -96,7 +91,10 @@ namespace Olf.GoldenHorse.Foundation.Services
 
                 if (!currentMappedItemControl.Name.IsNullOrEmpty())
                 {
-                    AutomationElement element = currentControl.GetElement(SearchCriteria.ByAutomationId(currentMappedItemControl.Name));
+                    AutomationElement element = currentControl.AutomationElement.FindFirst(TreeScope.Descendants,
+                        new PropertyCondition(AutomationElement.AutomationIdProperty, currentMappedItemControl.Name));
+                    
+                    //AutomationElement element = currentControl.GetElement(SearchCriteria.ByAutomationId(currentMappedItemControl.Name));
                     
                     currentControl = new UIItem(element, new NullActionListener());
 
@@ -111,16 +109,9 @@ namespace Olf.GoldenHorse.Foundation.Services
                     continue;
                 }
                 
+                //appWindow.AutomationElement.FindFirst(TreeScope.Descendants,new PropertyCondition() )
 
-
-                /*TreeWalker walker = TreeWalker.ControlViewWalker;
-
-                AutomationElement automationElement = walker.GetFirstChild(currentControl.AutomationElement);
-
-                Rect boundingRectangle = automationElement.Current.BoundingRectangle;
-
-                AutomationElement childControl = GetChildControl(boundingRectangle, automationElement);*/
-                //currentControl = new UIItem(childControl, new NullActionListener());
+                
 
                 /*while ((int)boundingRectangle.X != (int)currentMappedItemControl.Bounds.X)
                 {

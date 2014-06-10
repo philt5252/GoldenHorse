@@ -127,7 +127,9 @@ namespace Olf.GoldenHorse.Core.Services
 
             int delNum;
 
-            while(int.TryParse(automationElement.Current.Name, out delNum))
+            while(((string.IsNullOrEmpty(automationElement.Current.Name)
+                        && string.IsNullOrEmpty(automationElement.Current.AutomationId))
+                        || int.TryParse(automationElement.Current.AutomationId, out delNum)))
             {
                 automationElement = walker.GetParent(automationElement);
             }
@@ -164,8 +166,118 @@ namespace Olf.GoldenHorse.Core.Services
 
         public static MappedItem GetMappedItemFromUIItem(IUIItem uiItem, AppManager appManager)
         {
-            if (uiItem.AutomationElement.Current.LocalizedControlType.Equals("window"))
+            try
+            {
+                if (uiItem.AutomationElement.Current.LocalizedControlType.Equals("window"))
+                {
+                    Process process1 = Process.GetProcessById(uiItem.AutomationElement.Current.ProcessId);
+
+                    AppProcess appProcess1 = appManager.FindOrCreateProcess(process1.ProcessName);
+
+
+                    string name = uiItem.AutomationElement.Current.AutomationId;
+
+                    int num;
+                    if (int.TryParse(name, out num))
+                        name = "";
+
+                    string type = uiItem.AutomationElement.Current.ControlType.LocalizedControlType;
+                    string text = uiItem.AutomationElement.Current.Name;
+
+                    if (type == "edit")
+                        text = "";
+
+                    Rect bounds = uiItem.AutomationElement.Current.BoundingRectangle;
+                    bounds.X = 0;//;window.Current.BoundingRectangle.X;
+                    bounds.Y = 0;//window.Current.BoundingRectangle.Y;
+
+                    return appManager.FindOrCreateMappedItem(appProcess1.Id, name, bounds, type, text);
+
+                }
+
+
+                TreeWalker walker = TreeWalker.ControlViewWalker;
+                AutomationElement automationElement = uiItem.AutomationElement;
+                Stack<AutomationElement> uiElementTree = new Stack<AutomationElement>();
+
+                int delNum;
+
+                while (automationElement != AutomationElement.RootElement)
+                {
+                    if (!((string.IsNullOrEmpty(automationElement.Current.Name)
+                         && string.IsNullOrEmpty(automationElement.Current.AutomationId))
+                         || int.TryParse(automationElement.Current.AutomationId, out delNum)))
+                    {
+                        uiElementTree.Push(automationElement);
+                    }
+
+                    automationElement = walker.GetParent(automationElement);
+                }
+
+                Process process = Process.GetProcessById(uiItem.AutomationElement.Current.ProcessId);
+
+                AppProcess appProcess = appManager.FindOrCreateProcess(process.ProcessName);
+
+                string parentId = appProcess.Id;
+
+                AutomationElement window = uiElementTree.Peek();
+                MappedItem createdMappedItem = null;
+
+                /*if (endurProcesses.Contains(appProcess.Name))
+                {
+                    automationElement = uiElementTree.Pop();
+                    string name = automationElement.Current.AutomationId;
+                    string type = automationElement.Current.ControlType.LocalizedControlType;
+                    string text = automationElement.Current.Name;
+                    Rect bounds = automationElement.Current.BoundingRectangle;
+                    bounds.X -= window.Current.BoundingRectangle.X;
+                    bounds.Y -= window.Current.BoundingRectangle.Y;
+                    createdMappedItem = appManager.FindOrCreateMappedItem(parentId, name, bounds, type, text);
+
+                    mappedItem = createdMappedItem;
+
+                    return new UIItem(window, new NullActionListener());
+                }*/
+
+                while (uiElementTree.Count > 0)
+                {
+                    automationElement = uiElementTree.Pop();
+                    string name = automationElement.Current.AutomationId;
+
+                    int num;
+                    if (int.TryParse(name, out num))
+                        name = "";
+
+                    string type = automationElement.Current.ControlType.LocalizedControlType;
+                    string text = automationElement.Current.Name;
+
+                    if (type == "edit")
+                        text = "";
+
+                    Rect bounds = automationElement.Current.BoundingRectangle;
+                    bounds.X -= window.Current.BoundingRectangle.X;
+                    bounds.Y -= window.Current.BoundingRectangle.Y;
+                    createdMappedItem = appManager.FindOrCreateMappedItem(parentId, name, bounds, type, text);
+
+                    parentId = createdMappedItem.Id;
+                }
+
+                return createdMappedItem;
+            }
+            catch (Exception ex)
+            {
                 return null;
+            }
+            /*Process process = Process.GetProcessById(uiItem.AutomationElement.Current.ProcessId);
+
+            AppProcess appProcess = appManager.FindOrCreateProcess(process.ProcessName);
+
+            appManager.FindOrCreateMappedItem()
+
+            if (uiItem.AutomationElement.Current.LocalizedControlType.Equals("window"))
+            {
+                
+            }
 
             TreeWalker walker = TreeWalker.ControlViewWalker;
             AutomationElement automationElement = uiItem.AutomationElement;
@@ -176,10 +288,6 @@ namespace Olf.GoldenHorse.Core.Services
                 uiElementTree.Push(automationElement);
                 automationElement = walker.GetParent(automationElement);
             }
-
-            Process process = Process.GetProcessById(uiItem.AutomationElement.Current.ProcessId);
-
-            AppProcess appProcess = appManager.FindOrCreateProcess(process.ProcessName);
 
             string parentId = appProcess.Id;
 
@@ -200,7 +308,7 @@ namespace Olf.GoldenHorse.Core.Services
                 parentId = createdMappedItem.Id;
             }
             //baselight
-            return createdMappedItem;
+            return createdMappedItem;*/
         }
 
         public static AutomationElement GetWindowAutomationElement(IUIItem uiItem)

@@ -128,7 +128,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         public MappedItem GetWindow(MappedItem mappedItem)
         {
             if (mappedItem.Type == "window")
-                return null;
+                return mappedItem;
 
             MappedItem parent = GetMappedItem(mappedItem.ParentId);
 

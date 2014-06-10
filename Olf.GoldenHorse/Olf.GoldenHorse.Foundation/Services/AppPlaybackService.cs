@@ -63,7 +63,7 @@ namespace Olf.GoldenHorse.Foundation.Services
                 appWindow = application.GetWindow(SearchCriteria.ByAutomationId(window.Name), InitializeOption.NoCache);
             else
             {
-                appWindow = application.GetWindowWhere(w => w.AutomationElement.Current.Name == window.Text);
+                appWindow = application.GetWindowWhere(w => w.AutomationElement.Current.Name == window.Text, 45000);
                 //appWindow = windows.First(w => w.AutomationElement.Current.Name == window.Text);
             }
 

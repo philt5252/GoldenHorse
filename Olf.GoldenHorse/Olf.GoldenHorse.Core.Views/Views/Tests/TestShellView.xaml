@@ -41,7 +41,7 @@
                             x:Name="MenuDropDownButton"
                             Style="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}"
                             Focusable="False"
-                            Grid.Column="1">
+                            Grid.Column="1" Visibility="Collapsed">
                                         <xcad:DropDownButton.DropDownContextMenu>
                                             <xcad:ContextMenuEx
                                     ItemsSource="{Binding Model.ChildrenSorted, RelativeSource={RelativeSource TemplatedParent}}">
@@ -125,7 +125,8 @@
                             <views:TestOperationsView x:Name="testOperationsView" ></views:TestOperationsView>
                         </xcad:LayoutAnchorable>
                     </xcad:LayoutAnchorablePane>
-                    <xcad:LayoutDocumentPane>
+                    <xcad:LayoutDocumentPane >
+                        
                         <xcad:LayoutDocument Title="Test Details">
                            <views:TestDetailsView x:Name="testDetailsView"></views:TestDetailsView>
                         </xcad:LayoutDocument>

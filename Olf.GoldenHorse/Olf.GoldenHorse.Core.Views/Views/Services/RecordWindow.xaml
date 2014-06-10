@@ -8,7 +8,7 @@
              GlowBrush="{StaticResource AccentColorBrush}"
              mc:Ignorable="d" 
            
-             Title="Record" Height="100" Width="200" MaxHeight="100" MaxWidth="200" MinHeight="100" MinWidth="200">
+             Title="Record" Height="100" Width="200" MaxHeight="100" MaxWidth="200" MinHeight="100" MinWidth="200" Activated="WindowBase_Activated_1" Deactivated="WindowBase_Deactivated_1">
     <Window.Resources>
         
         <LinearGradientBrush x:Key="ButtonBrush"  EndPoint="1,0" StartPoint="0,1">

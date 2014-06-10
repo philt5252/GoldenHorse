@@ -88,7 +88,7 @@ namespace Olf.GoldenHorse.Core.Models
             return string.Format(description, X, Y, controlName, Text);
         }
 
-        public override void Play(MappedItem control, Log log)
+        public override bool Play(MappedItem control, Log log)
         {
             AppProcess process = AppManager.GetProcess(control);
             MappedItem window = AppManager.GetWindow(control);
@@ -115,15 +115,15 @@ namespace Olf.GoldenHorse.Core.Models
                 error = string.Format(error, expectedText, actualText);
 
                 log.CreateLogItem(LogItemCategory.Error, error, screenshot);
-                return;
+                return false;
             }
-
-            
 
             string description = "Validated that the text at ({0},{1}) on {2} is equal to \"{3}\"";
             description = string.Format(description, X, Y, control.Name, Text);
             
             log.CreateLogItem(LogItemCategory.Validation, description, screenshot);
+
+            return true;
         }
 
         private string CopyText()

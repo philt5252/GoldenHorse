@@ -18,7 +18,7 @@ namespace Olf.GoldenHorse.Core.Models
             get { return "Left Click"; }
         }
 
-        public override void Play(MappedItem mappedItem, Log log)
+        public override bool Play(MappedItem mappedItem, Log log)
         {
             AppProcess process = AppManager.GetProcess(mappedItem);
             MappedItem window = AppManager.GetWindow(mappedItem);
@@ -47,15 +47,12 @@ namespace Olf.GoldenHorse.Core.Models
 
             log.CreateLogItem(LogItemCategory.Event, description, screenshot);
 
-            
-
-            
-
             int screenshotX = globalPoint.X - (int)findWindowElement.Current.BoundingRectangle.X;
             int screenshotY = globalPoint.Y - (int)findWindowElement.Current.BoundingRectangle.Y;
 
             screenshot.Adornments.Add(new ClickAdornment { ClickX = screenshotX, ClickY = screenshotY });
-            
+
+            return true;
         }
     }
 }

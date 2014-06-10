@@ -22,13 +22,20 @@ namespace TestApp
             int num2;
 
             if (int.TryParse(input1Tbx.Text, out num1)
-                && int.TryParse(input1Tbx.Text, out num2))
+                && int.TryParse(input2Tbx.Text, out num2))
             {
                 sumTbx.Text = (num1 + num2).ToString();
                 return;
             }
 
             sumTbx.Text = "Error";
+        }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            input1Tbx.Clear();
+            input2Tbx.Clear();
+            sumTbx.Clear();
         }
     }
 }

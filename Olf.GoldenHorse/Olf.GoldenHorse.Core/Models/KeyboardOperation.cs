@@ -53,7 +53,7 @@ namespace Olf.GoldenHorse.Core.Models
             return string.Format("Enters \"{0}\" in the '{1}' object", textParam.Value, mappedItem.FriendlyName);
         }
 
-        public override void Play(MappedItem mappedItem, Log log)
+        public override bool Play(MappedItem mappedItem, Log log)
         {
             string text = textParam.GetValue();
             Keyboard.SendKeys(text);
@@ -83,6 +83,8 @@ namespace Olf.GoldenHorse.Core.Models
 
             string description = string.Format("The text '{0}' was entered in {1}", text, mappedItem.Name);
             log.CreateLogItem(LogItemCategory.Event, description, screenshot);
+
+            return true;
         }  
     }
 }

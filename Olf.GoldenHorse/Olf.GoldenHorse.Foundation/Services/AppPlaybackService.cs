@@ -59,11 +59,14 @@ namespace Olf.GoldenHorse.Foundation.Services
 
             Window appWindow;
 
+            /*IEnumerable<string> enumerable = application.GetWindows().Select(w => w.Title);
+            IEnumerable<string> list2 = application.GetWindows().Select(w => w.AutomationElement.Current.Name);
+*/
             if (!window.Name.IsNullOrEmpty())
                 appWindow = application.GetWindow(SearchCriteria.ByAutomationId(window.Name), InitializeOption.NoCache);
             else
             {
-                appWindow = application.GetWindowWhere(w => w.AutomationElement.Current.Name == window.Text);
+                appWindow = application.GetWindowWhere(w => w.AutomationElement.Current.Name == window.Text, 45000);
                 //appWindow = windows.First(w => w.AutomationElement.Current.Name == window.Text);
             }
 

@@ -32,6 +32,7 @@
             this.input1Tbx = new System.Windows.Forms.TextBox();
             this.input2Tbx = new System.Windows.Forms.TextBox();
             this.sumTbx = new System.Windows.Forms.TextBox();
+            this.clearBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // addBtn
@@ -65,11 +66,22 @@
             this.sumTbx.Size = new System.Drawing.Size(100, 20);
             this.sumTbx.TabIndex = 5;
             // 
+            // clearBtn
+            // 
+            this.clearBtn.Location = new System.Drawing.Point(12, 227);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(75, 23);
+            this.clearBtn.TabIndex = 6;
+            this.clearBtn.Text = "Clear";
+            this.clearBtn.UseVisualStyleBackColor = true;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.sumTbx);
             this.Controls.Add(this.input2Tbx);
             this.Controls.Add(this.input1Tbx);
@@ -87,6 +99,7 @@
         private System.Windows.Forms.TextBox input1Tbx;
         private System.Windows.Forms.TextBox input2Tbx;
         private System.Windows.Forms.TextBox sumTbx;
+        private System.Windows.Forms.Button clearBtn;
     }
 }
 

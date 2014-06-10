@@ -68,7 +68,7 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         public abstract string DefaultDescription(MappedItem control);
 
-        public abstract void Play(MappedItem control, Log log);
+        public abstract bool Play(MappedItem control, Log log);
 
         public OperationParameter GetParameterNamed(string name)
         {

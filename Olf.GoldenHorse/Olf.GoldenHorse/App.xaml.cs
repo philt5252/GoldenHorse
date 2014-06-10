@@ -30,6 +30,12 @@ namespace Olf.GoldenHorse
         {
             base.OnStartup(e);
 
+            Application.Current.DispatcherUnhandledException +=
+                (sender, args) =>
+                {
+                    MessageBox.Show(args.Exception.Message, "Error");
+                };
+
             ContainerBuilder builder = new ContainerBuilder();
 
             builder.RegisterModule<CoreModule>();

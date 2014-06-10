@@ -173,9 +173,18 @@ namespace Olf.GoldenHorse.Foundation.Models
                 handler(this, EventArgs.Empty);
         }
 
-        public virtual void Play(Log log)
+        public virtual bool Play(Log log)
         {
-            Operation.Play(Control, log);
+            try
+            {
+                bool result; result = Operation.Play(Control, log);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                log.CreateLogItem(LogItemCategory.Error, "An error occurred when exeuting the {0} Operation.", null);
+                return false;
+            }
         }
     }
 }

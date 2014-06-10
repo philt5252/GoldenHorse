@@ -42,7 +42,7 @@
                             x:Name="MenuDropDownButton"
                             Style="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}"
                             Focusable="False"
-                            Grid.Column="1">
+                            Grid.Column="1" Visibility="Collapsed">
                                         <avalondock:DropDownButton.DropDownContextMenu>
                                             <avalondock:ContextMenuEx
                                     ItemsSource="{Binding Model.ChildrenSorted, RelativeSource={RelativeSource TemplatedParent}}">

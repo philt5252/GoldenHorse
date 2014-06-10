@@ -32,7 +32,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         {
             get
             {
-                return "Move the mouse to the test to be validated on screen. Press Shift+Ctrl+A to select the text.";
+                return "Press the button and move the mouse to the text to be validated on screen. Press Ctrl+Shift+A to select the text.";
             }
         }
 

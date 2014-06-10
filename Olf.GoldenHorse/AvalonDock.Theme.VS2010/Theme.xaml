@@ -104,7 +104,7 @@
                                 Style="{StaticResource AvalonDock_ThemeVS2010_ToolButtonStyle}"
                                 Focusable="False"
                                 VerticalAlignment="Center"
-                                Grid.Column="1">
+                                Grid.Column="1" Visibility="Collapsed">
                                 <avalonDockControls:DropDownButton.DropDownContextMenu>
                                     <avalonDockControls:ContextMenuEx
                                         ItemsSource="{Binding Model.ChildrenSorted, RelativeSource={RelativeSource TemplatedParent}}">

@@ -77,7 +77,7 @@
                                Foreground="White" Text="Run Test"></TextBlock>
                 </StackPanel>
             </Button>
-            <Button Command="{Binding AppendCommand}"  Margin="0,0,17,0" Height="25" 
+            <Button Command="{Binding AppendToTestCommand}"  Margin="0,0,17,0" Height="25" 
                 VerticalAlignment="Top" Background="Transparent" 
                     HorizontalAlignment="Right" >
                 <StackPanel Orientation="Horizontal">

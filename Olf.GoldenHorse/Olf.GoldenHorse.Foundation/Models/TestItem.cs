@@ -101,14 +101,12 @@ namespace Olf.GoldenHorse.Foundation.Models
             }
         }
 
+        public string DescriptionOverride { get; set; }
+
+        [XmlIgnore]
         public virtual string Description
         {
-            get { return description ?? DefaultDescription(); }
-            set
-            {
-                description = value;
-                OnDescriptionChanged();
-            }
+            get { return DescriptionOverride ?? DefaultDescription(); }
         }
 
         public TestItem()

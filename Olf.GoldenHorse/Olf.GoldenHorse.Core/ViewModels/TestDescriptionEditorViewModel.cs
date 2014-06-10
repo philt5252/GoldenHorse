@@ -21,7 +21,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
             }
             set
             {
-                testItem.Description = value;
+                testItem.DescriptionOverride = value;
                 OnPropertyChanged("Description");
             }
         }

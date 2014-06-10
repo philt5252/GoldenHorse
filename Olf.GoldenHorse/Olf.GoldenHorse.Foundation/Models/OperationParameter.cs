@@ -16,6 +16,7 @@ namespace Olf.GoldenHorse.Foundation.Models
             {
                 parameterValue = value;
                 parameterValue.OwningOperationParameter = this;
+                OnValueChanged();
             }
         }
 

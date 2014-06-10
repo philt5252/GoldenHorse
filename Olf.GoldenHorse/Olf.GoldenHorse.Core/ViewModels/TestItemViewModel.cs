@@ -71,7 +71,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 description = value;
 
                 if(TestItem != null)
-                    TestItem.Description = value;
+                    TestItem.DescriptionOverride = value;
             }
         }
 

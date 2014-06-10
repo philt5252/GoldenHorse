@@ -78,6 +78,7 @@ namespace Olf.GoldenHorse.Core.Services
         {
             Task task = new Task(() =>
             {
+                Thread.Sleep(100);
                 if (currentInputType == InputType.Keyboard)
                 {
                     CreateKeyboardOnScreenAction();
@@ -89,6 +90,11 @@ namespace Olf.GoldenHorse.Core.Services
 
                 if (Process.GetCurrentProcess().Id == processId)
                     return;
+
+                if (Process.GetProcessById(processId).ProcessName.Contains("Horse"))
+                {
+                    
+                }
 
                 IUIItem whiteControl;
                 TestItem action = CreateOnScreenAction(mouseEventArgs, out whiteControl);
@@ -295,6 +301,7 @@ namespace Olf.GoldenHorse.Core.Services
         {
             
             CurrentRecorderState = RecorderState.Stopped;
+
             mouseHookListener.Enabled = false;
             keyboardHookListener.Enabled = false;
 

@@ -19,6 +19,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private readonly ILogFileManager logFileManager;
         private readonly ILogController logController;
         private readonly IAppController appController;
+        private readonly IRecordingController recordingController;
         private ITestItemViewModel selectedTestItem;
         public ObservableCollection<ITestItemViewModel> TestItems { get; protected set; }
 
@@ -36,18 +37,27 @@ namespace Olf.GoldenHorse.Core.ViewModels
         }
 
         public ICommand PlayCommand { get; protected set; }
+        public ICommand AppendToTestCommand { get; protected set; }
  
         public TestDetailsViewModel(Test test, ITestItemViewModelFactory testItemViewModelFactory,
-            ILogFileManager logFileManager, ILogController logController, IAppController appController)
+            ILogFileManager logFileManager, ILogController logController, 
+            IAppController appController, IRecordingController recordingController)
         {
             this.test = test;
             this.testItemViewModelFactory = testItemViewModelFactory;
             this.logFileManager = logFileManager;
             this.logController = logController;
             this.appController = appController;
+            this.recordingController = recordingController;
             //TestItems = new ObservableCollection<ITestItemViewModel>(test.TestItems.Select(testItemViewModelFactory.Create));
             RefreshTestItems();
             PlayCommand = new DelegateCommand(ExecutePlayCommand);
+            AppendToTestCommand = new DelegateCommand(ExecuteAppendToTestCommand);
+        }
+
+        private void ExecuteAppendToTestCommand()
+        {
+            recordingController.AppendToTest(test);
         }
 
         private void ExecutePlayCommand()

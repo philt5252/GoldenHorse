@@ -34,6 +34,7 @@ namespace Olf.GoldenHorse
                 (sender, args) =>
                 {
                     MessageBox.Show(args.Exception.Message, "Error");
+                    args.Handled = true;
                 };
 
             ContainerBuilder builder = new ContainerBuilder();

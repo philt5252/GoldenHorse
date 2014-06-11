@@ -37,6 +37,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         }
 
         public ICommand PlayCommand { get; protected set; }
+        public ICommand DeleteSelectedItemCommand { get; private set; }
         public ICommand AppendToTestCommand { get; protected set; }
  
         public TestDetailsViewModel(Test test, ITestItemViewModelFactory testItemViewModelFactory,
@@ -53,6 +54,17 @@ namespace Olf.GoldenHorse.Core.ViewModels
             RefreshTestItems();
             PlayCommand = new DelegateCommand(ExecutePlayCommand);
             AppendToTestCommand = new DelegateCommand(ExecuteAppendToTestCommand);
+            DeleteSelectedItemCommand = new DelegateCommand(ExecuteDeleteSelectedItemCommand);
+        }
+
+        private void ExecuteDeleteSelectedItemCommand()
+        {
+            if (SelectedTestItem == null)
+                return;
+
+            test.TestItems.Remove(SelectedTestItem.TestItem);
+
+            RefreshTestItems();
         }
 
         private void ExecuteAppendToTestCommand()
@@ -128,6 +140,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
             }
 
             TestItems = new ObservableCollection<ITestItemViewModel>(testItemViewModels);
+
+            OnPropertyChanged("TestItems");
         }
 
         private List<TestItem> GetTestItems(IEnumerable<ITestItemViewModel> testItemViewModels)

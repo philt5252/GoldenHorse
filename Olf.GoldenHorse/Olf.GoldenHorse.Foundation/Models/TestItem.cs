@@ -60,8 +60,6 @@ namespace Olf.GoldenHorse.Foundation.Models
         [XmlIgnore]
         public MappedItem Control { get { return control ?? (control = AppManager.GetMappedItem(ControlId)); } }
 
-        public string Id { get; set; }
-
         public string Type
         {
             get { return type; }

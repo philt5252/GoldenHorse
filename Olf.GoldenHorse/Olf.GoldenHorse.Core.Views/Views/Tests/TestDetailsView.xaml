@@ -104,8 +104,8 @@
 
             <customControls:TreeListView Name="detailsTlv"  AllowsColumnReorder="True" ItemsSource="{Binding TestItems}"
                             HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
-                            SelectedObject="{Binding SelectedTestItem, Mode=TwoWay}" Background="White"
-                                          RequestBringIntoView="HandleRequestBringIntoView">
+                            SelectedObject="{Binding SelectedTestItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="White"
+                                          RequestBringIntoView="HandleRequestBringIntoView" PreviewKeyUp="detailsTlv_PreviewKeyUp">
        
                 <!--Create an item template to specify the ItemsSource-->
             <customControls:TreeListView.ItemTemplate>

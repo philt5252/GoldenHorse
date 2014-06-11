@@ -93,9 +93,9 @@ namespace Olf.GoldenHorse.Core.ViewModels
         {
             if (args.PropertyName == "SelectedScreenshot")
             {
-                TestShellViewModel.TestDetailsViewModel.SelectedTestItem =
-                    TestShellViewModel.TestDetailsViewModel.TestItems.FirstOrDefault(
-                        t => t.TestItem == TestScreenshotsViewModel.SelectedScreenshot.Owner);
+                //TestShellViewModel.TestDetailsViewModel.SelectedTestItem =
+                //    TestShellViewModel.TestDetailsViewModel.TestItems.FirstOrDefault(
+                //        t => t.TestItem != null && t.TestItem.Id == TestScreenshotsViewModel.SelectedScreenshot.Owner.Id);
 
             }
         }

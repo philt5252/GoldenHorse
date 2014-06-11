@@ -125,6 +125,16 @@ namespace Olf.GoldenHorse.Core.Views
             e.Handled = true;
         }
 
+        private void detailsTlv_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                ITestDetailsViewModel testDetailsViewModel = DataContext as ITestDetailsViewModel;
+
+                testDetailsViewModel.DeleteSelectedItemCommand.Execute(null);
+            }
+        }
+
     }
 
     

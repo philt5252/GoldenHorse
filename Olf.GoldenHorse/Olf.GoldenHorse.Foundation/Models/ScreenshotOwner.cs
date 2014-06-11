@@ -6,6 +6,8 @@ namespace Olf.GoldenHorse.Foundation.Models
     {
         private Screenshot screenshot;
 
+        public string Id { get; set; }
+
         [XmlIgnore]
         public bool HasScreenshot { get { return Screenshot != null; } }
 

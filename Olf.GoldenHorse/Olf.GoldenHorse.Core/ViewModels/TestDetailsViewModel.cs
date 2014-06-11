@@ -63,8 +63,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 return;
 
             test.TestItems.Remove(SelectedTestItem.TestItem);
-
-            RefreshTestItems();
+            TestItems.Remove(SelectedTestItem);
         }
 
         private void ExecuteAppendToTestCommand()
@@ -108,6 +107,15 @@ namespace Olf.GoldenHorse.Core.ViewModels
                     || testItem.Type == TestItemTypes.ValidateTextAtPoint)
                 {
                     ITestItemViewModel testItemViewModel = testItemViewModelFactory.Create(testItem);
+
+                    if (testItem.Control == null)
+                    {
+                        testItemViewModels.Add(testItemViewModel);
+                        windowTestItemViewModel = null;
+                        processTestItemViewModel = null;
+                        continue;
+                    }
+                        
 
                     MappedItem window = test.Project.AppManager.GetWindow(testItem.Control);
 

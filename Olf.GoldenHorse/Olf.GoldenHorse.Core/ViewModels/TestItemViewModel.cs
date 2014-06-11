@@ -44,13 +44,13 @@ namespace Olf.GoldenHorse.Core.ViewModels
             }
         }
 
-        public IList<ITestItemViewModel> ChildItems { get; protected set; }
+        public ObservableCollection<ITestItemViewModel> ChildItems { get; protected set; }
         public Screenshot Screenshot { get { return TestItem == null ? null : TestItem.Screenshot; } }
         public bool HasScreenshot { get { return Screenshot != null; } }
 
         public virtual string Name
         {
-            get { return TestItem == null ? name : TestItem.Control.FriendlyName; }
+            get { return TestItem == null ? name : (TestItem.Control == null ? name : TestItem.Control.FriendlyName); }
             set
             {
                 name = value;

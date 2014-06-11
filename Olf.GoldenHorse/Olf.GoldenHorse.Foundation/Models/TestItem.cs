@@ -175,7 +175,8 @@ namespace Olf.GoldenHorse.Foundation.Models
         {
             try
             {
-                bool result; result = Operation.Play(Control, log);
+                bool result; 
+                result = Operation.Play(Control, log);
                 return result;
             }
             catch (Exception ex)

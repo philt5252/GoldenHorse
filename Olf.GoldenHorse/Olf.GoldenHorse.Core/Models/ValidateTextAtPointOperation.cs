@@ -154,7 +154,7 @@ namespace Olf.GoldenHorse.Core.Models
             DateTime dateTime = DateTime.Now;
             do
             {
-                if (DateTime.Now - dateTime > TimeSpan.FromSeconds(10))
+                if (DateTime.Now - dateTime > TimeSpan.FromSeconds(20))
                 {
                     throw new Exception("Could not access the clipboard");
                 }

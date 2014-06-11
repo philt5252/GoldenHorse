@@ -181,7 +181,7 @@ namespace Olf.GoldenHorse.Foundation.Models
             }
             catch (Exception ex)
             {
-                log.CreateLogItem(LogItemCategory.Error, "An error occurred when exeuting the {0} Operation.", null);
+                log.CreateLogItem(LogItemCategory.Error, string.Format("An error occurred when executing the {0} Operation.", Operation.Name), null);
                 return false;
             }
         }

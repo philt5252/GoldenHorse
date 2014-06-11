@@ -105,7 +105,7 @@ namespace Olf.GoldenHorse.Foundation.Services
             else
             {
                 List<string> windowTitles = GetWindowsForProcess(process.Name);
-                string windowName = window.Name;
+                string windowName = window.Text;
                 string closestTitle = windowTitles[0];
                 decimal toleranceLevel = windowName.Length*0.7m;
                 
@@ -119,7 +119,7 @@ namespace Olf.GoldenHorse.Foundation.Services
                     }
                 }
 
-                appWindow = application.GetWindowWhere(w => w.AutomationElement.Current.Name == closestTitle, 45000);
+                appWindow = application.GetWindowWhere(w => w.AutomationElement.Current.Name == closestTitle, 15000);
                 //appWindow = windows.First(w => w.AutomationElement.Current.Name == window.Text);
             }
 

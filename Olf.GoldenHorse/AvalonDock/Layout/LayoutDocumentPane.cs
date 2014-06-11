@@ -105,7 +105,7 @@ namespace AvalonDock.Layout
         {
             get
             {
-                if (_selectedIndex < 0)
+                if (_selectedIndex < 0 || Children.Count == 0)
                     return null;
 
                 if (_selectedIndex >= Children.Count)

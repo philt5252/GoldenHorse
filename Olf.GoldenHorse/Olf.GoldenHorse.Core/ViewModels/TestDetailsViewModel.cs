@@ -84,7 +84,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 dateTime.Hour, dateTime.Minute, dateTime.Second);
 
 
-            test.Play(log);
+            test.Play(log, SelectedTestItem.TestItem.Id);
 
             log.EndTime = DateTime.Now;
 

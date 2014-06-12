@@ -254,6 +254,7 @@ namespace Olf.GoldenHorse.Core.Services
 
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
         {
+            //identify if IsShift, IsCtrl, 
             TakePictureAndSetCurrentBitmap();
         }
 

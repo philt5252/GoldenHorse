@@ -9,5 +9,6 @@ namespace Olf.GoldenHorse.Foundation.Controllers
         void DoValidation(TestItem testItem);
         void PauseRecord();
         void ResumeRecorder();
+        void AppendToTest(Test test);
     }
 }

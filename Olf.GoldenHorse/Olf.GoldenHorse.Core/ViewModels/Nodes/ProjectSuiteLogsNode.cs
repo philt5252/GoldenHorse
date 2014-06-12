@@ -8,10 +8,17 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
 {
     public class ProjectSuiteLogsNode : DisplayNode
     {
+        public override bool IsRenamable
+        {
+            get { return false; }
+        }
+
         public override string Name
         {
             get { return "Project Suite '" + ProjectSuiteManager.CurrentProjectSuite.Name + "'  Logs"; }
+            set{}
         }
+
         public ProjectSuiteLogsNode(IProjectLogsNodeFactory projectLogsNodeFactory)
         {
             foreach (Project project in ProjectSuiteManager.CurrentProjectSuite.Projects)

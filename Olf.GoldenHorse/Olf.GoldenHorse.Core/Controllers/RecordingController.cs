@@ -65,6 +65,11 @@ namespace Olf.GoldenHorse.Core.Controllers
 
             Test test = testFileManager.CreateTestForProject(defaultProject);
 
+            ShowRecordingWindow(test);
+        }
+
+        private void ShowRecordingWindow(Test test)
+        {
             recordingWindow = recordWindowFactory.Create();
 
             recorder = recorderFactory.Create(test);
@@ -110,6 +115,11 @@ namespace Olf.GoldenHorse.Core.Controllers
         {
             if(recorder != null)
                 recorder.Record();
+        }
+
+        public void AppendToTest(Test test)
+        {
+            ShowRecordingWindow(test);
         }
     }
 }

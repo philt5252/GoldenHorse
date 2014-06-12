@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converters="clr-namespace:Olf.GoldenHorse.Core.Views.Converters"
              xmlns:converters1="clr-namespace:Olf.GoldenAutomation.Core.Views.Converters"
+             xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views.Views"
              mc:Ignorable="d" 
              Tag="Screenshots"
              d:DesignHeight="202.247" d:DesignWidth="365.169">
@@ -37,7 +38,7 @@
             </Style>
         </Grid.Resources>
         <ListBox ItemsSource="{Binding Screenshots}" SelectedItem="{Binding SelectedScreenshot, Mode=TwoWay}" 
-                 Name="listBox" >
+                 Name="listBox" IsSynchronizedWithCurrentItem="True" views:ListBoxExtenders.AutoScrollToCurrentItem="True">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -45,10 +46,10 @@
                             <RowDefinition Height="15"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Button Grid.Row="0" Height="15" Width="20" Command="{Binding ShowScreenshotComparer}">
+                        <Button Grid.Row="0" Height="0" Width="0" Command="{Binding ShowScreenshotComparer}">
                             <Button.Template>
                                 <ControlTemplate>
-                                    <Image Source="..\..\Images\log.png"></Image>
+                                    <Image ></Image>
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>

@@ -11,9 +11,15 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
 {
     public class ProjectSuiteProjectsNode : DisplayNode
     {
+        public override bool IsRenamable
+        {
+            get { return false; }
+        }
+
         public override string Name
         {
             get { return "Project Suite '" + ProjectSuiteManager.CurrentProjectSuite.Name + "' Projects"; }
+            set{}
         }
 
         public ProjectSuiteProjectsNode(IProjectNodeFactory projectNodeFactory)

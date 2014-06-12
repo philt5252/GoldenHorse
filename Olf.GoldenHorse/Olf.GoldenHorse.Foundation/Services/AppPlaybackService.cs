@@ -52,6 +52,44 @@ namespace Olf.GoldenHorse.Foundation.Services
         [DllImport("user32.dll")]
         public static extern IntPtr WindowFromPoint(POINT Point);
 
+        [DllImport("user32.dll")]
+        private static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
+
+        private static List<string> GetWindowsForProcess(string process)
+        {
+            List<string> windows = new List<string>();
+            StringBuilder builder = new StringBuilder(1024);
+
+            foreach (IntPtr myIntPtr in EnumerateProcessWindowHandles(Process.GetProcessesByName(process).First().Id))
+            {
+                GetWindowText(myIntPtr, builder, 1024);
+
+                string window = builder.ToString();
+                windows.Add(window);
+            }
+            return windows;
+        }
+
+        delegate bool EnumThreadDelegate(IntPtr hWnd, IntPtr lParam);
+
+        private static IEnumerable<IntPtr> EnumerateProcessWindowHandles(int processId)
+        {
+            var handles = new List<IntPtr>();
+
+            foreach (ProcessThread thread in Process.GetProcessById(processId).Threads)
+            {
+                EnumThreadWindows(thread.Id,
+                   (hWnd, lParam) => { handles.Add(hWnd); return true; }, IntPtr.Zero);
+            }
+               
+            return handles;
+        }
+
+        [DllImport("user32.dll")]
+        static extern bool EnumThreadWindows(int dwThreadId, EnumThreadDelegate lpfn,
+            IntPtr lParam);
+
+
         public static IUIItem GetControl(AppProcess process, MappedItem window, MappedItem control, AppManager appManager)
         {
             Process wProcess = Process.GetProcessesByName(process.Name).First();
@@ -66,7 +104,22 @@ namespace Olf.GoldenHorse.Foundation.Services
                 appWindow = application.GetWindow(SearchCriteria.ByAutomationId(window.Name), InitializeOption.NoCache);
             else
             {
-                appWindow = application.GetWindowWhere(w => w.AutomationElement.Current.Name == window.Text, 45000);
+                List<string> windowTitles = GetWindowsForProcess(process.Name);
+                string windowName = window.Text;
+                string closestTitle = windowTitles[0];
+                decimal toleranceLevel = windowName.Length*0.7m;
+                
+                foreach (string windowTitle in windowTitles)
+                {
+                    int num1 = LevenshteinDistance.GetToleranceLevel(windowTitle, windowName);
+                    if (num1 < toleranceLevel)
+                    {
+                        toleranceLevel = num1;
+                        closestTitle = windowTitle;
+                    }
+                }
+
+                appWindow = application.GetWindowWhere(w => w.AutomationElement.Current.Name == closestTitle, 15000);
                 //appWindow = windows.First(w => w.AutomationElement.Current.Name == window.Text);
             }
 

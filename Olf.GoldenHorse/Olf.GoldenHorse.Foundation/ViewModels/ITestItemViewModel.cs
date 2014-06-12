@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Olf.GoldenHorse.Foundation.Models;
 
@@ -8,7 +9,7 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
     {
         TestItem TestItem { get; set; }
         string Type { get; set; }
-        IList<ITestItemViewModel> ChildItems { get; }
+        ObservableCollection<ITestItemViewModel> ChildItems { get; }
         Screenshot Screenshot { get; }
         bool HasScreenshot { get; }
         string ControlId { get; set; }

@@ -19,6 +19,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private readonly ILogFileManager logFileManager;
         private readonly ILogController logController;
         private readonly IAppController appController;
+        private readonly IRecordingController recordingController;
         private ITestItemViewModel selectedTestItem;
         public ObservableCollection<ITestItemViewModel> TestItems { get; protected set; }
 
@@ -36,18 +37,48 @@ namespace Olf.GoldenHorse.Core.ViewModels
         }
 
         public ICommand PlayCommand { get; protected set; }
+        public ICommand DeleteSelectedItemCommand { get; private set; }
+
+        public ICommand AppendToTestCommand { get; protected set; }
  
         public TestDetailsViewModel(Test test, ITestItemViewModelFactory testItemViewModelFactory,
-            ILogFileManager logFileManager, ILogController logController, IAppController appController)
+            ILogFileManager logFileManager, ILogController logController, 
+            IAppController appController, IRecordingController recordingController)
         {
             this.test = test;
             this.testItemViewModelFactory = testItemViewModelFactory;
             this.logFileManager = logFileManager;
             this.logController = logController;
             this.appController = appController;
+            this.recordingController = recordingController;
             //TestItems = new ObservableCollection<ITestItemViewModel>(test.TestItems.Select(testItemViewModelFactory.Create));
             RefreshTestItems();
             PlayCommand = new DelegateCommand(ExecutePlayCommand);
+            AppendToTestCommand = new DelegateCommand(ExecuteAppendToTestCommand);
+            DeleteSelectedItemCommand = new DelegateCommand(ExecuteDeleteSelectedItemCommand);
+        }
+
+        private void ExecuteDeleteSelectedItemCommand()
+        {
+            if (SelectedTestItem == null)
+                return;
+
+            //int index = TestItems.IndexOf(SelectedTestItem);
+            //TestItems.RemoveAt(index);
+
+            test.TestItems.Remove(SelectedTestItem.TestItem);
+
+            RefreshTestItems();
+
+            //if (TestItems.Count <= index)
+            //    index = TestItems.Count - 1;
+
+            //SelectedTestItem = TestItems[index];
+        }
+
+        private void ExecuteAppendToTestCommand()
+        {
+            recordingController.AppendToTest(test);
         }
 
         private void ExecutePlayCommand()
@@ -63,7 +94,10 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 dateTime.Hour, dateTime.Minute, dateTime.Second);
 
 
-            test.Play(log);
+            if(SelectedTestItem == null)
+                test.Play(log);
+            else
+                test.Play(log, SelectedTestItem.TestItem.Id);
 
             log.EndTime = DateTime.Now;
 
@@ -86,6 +120,15 @@ namespace Olf.GoldenHorse.Core.ViewModels
                     || testItem.Type == TestItemTypes.ValidateTextAtPoint)
                 {
                     ITestItemViewModel testItemViewModel = testItemViewModelFactory.Create(testItem);
+
+                    if (testItem.Control == null)
+                    {
+                        testItemViewModels.Add(testItemViewModel);
+                        windowTestItemViewModel = null;
+                        processTestItemViewModel = null;
+                        continue;
+                    }
+                        
 
                     MappedItem window = test.Project.AppManager.GetWindow(testItem.Control);
 
@@ -118,6 +161,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
             }
 
             TestItems = new ObservableCollection<ITestItemViewModel>(testItemViewModels);
+
+            OnPropertyChanged("TestItems");
         }
 
         private List<TestItem> GetTestItems(IEnumerable<ITestItemViewModel> testItemViewModels)
@@ -151,6 +196,11 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 }
                 GetTestItems(testItemViewModel.ChildItems, testItems, newParentTestItem);
             }
+        }
+
+        public void Refresh()
+        {
+            RefreshTestItems();
         }
 
     }

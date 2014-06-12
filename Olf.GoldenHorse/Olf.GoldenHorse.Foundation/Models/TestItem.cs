@@ -53,14 +53,13 @@ namespace Olf.GoldenHorse.Foundation.Models
             set
             {
                 controlId = value;
+                control = null;
                 RaiseTestChanged();
             }
         }
 
         [XmlIgnore]
         public MappedItem Control { get { return control ?? (control = AppManager.GetMappedItem(ControlId)); } }
-
-        public string Id { get; set; }
 
         public string Type
         {
@@ -177,12 +176,13 @@ namespace Olf.GoldenHorse.Foundation.Models
         {
             try
             {
-                bool result; result = Operation.Play(Control, log);
+                bool result; 
+                result = Operation.Play(Control, log);
                 return result;
             }
             catch (Exception ex)
             {
-                log.CreateLogItem(LogItemCategory.Error, "An error occurred when exeuting the {0} Operation.", null);
+                log.CreateLogItem(LogItemCategory.Error, string.Format("An error occurred when executing the {0} Operation.", Operation.Name), null);
                 return false;
             }
         }

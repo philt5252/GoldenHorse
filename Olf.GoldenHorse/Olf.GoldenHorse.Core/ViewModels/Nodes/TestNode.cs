@@ -17,9 +17,15 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         private readonly ITestController testController;
         private readonly ITestFileManager testFileManager;
 
+        public override bool IsRenamable
+        {
+            get { return true; }
+        }
+
         public override string Name
         {
             get { return projectFile.Name.Replace(DefaultData.TestExtension, ""); }
+            set{}
         }
 
         public TestNode(ProjectFile projectFile, ITestController testController,

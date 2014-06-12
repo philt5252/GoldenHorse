@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace Olf.GoldenHorse.Foundation.Models
@@ -101,6 +102,16 @@ namespace Olf.GoldenHorse.Foundation.Models
             foreach (Variable variable in Variables)
             {
                 variable.Reset();
+            }
+        }
+
+        public void Play(Log log, string id)
+        {
+            ResetVariables();
+
+            foreach (TestItem testItem in TestItems.SkipWhile(t => !Equals(t.Id, id)))
+            {
+                testItem.Play(log);
             }
         }
     }

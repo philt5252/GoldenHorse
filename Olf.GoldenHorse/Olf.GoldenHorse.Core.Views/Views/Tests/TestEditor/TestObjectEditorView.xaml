@@ -6,6 +6,7 @@
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:converters="clr-namespace:Olf.GoldenHorse.Core.Views.Converters"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="440">
     <UserControl.Resources>
@@ -49,7 +50,13 @@
                      Width="415" Text="{Binding SelectedObject, Mode=OneWay}"/>
             
             <views:TreeViewSelect Margin="10,72,0,0" Height="73" Width="415" VerticalAlignment="Top" ItemsSource="{Binding Objects}"
-                                  SelectedObject="{Binding SelectedObject}" MouseDoubleClick="{Binding SetObjectCommand}" Background="Transparent" Foreground="White" HorizontalAlignment="Left"></views:TreeViewSelect>
+                                  SelectedObject="{Binding SelectedObject}" Background="Transparent" Foreground="White" HorizontalAlignment="Left">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding Path=SetObjectCommand, Mode=OneWay}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </views:TreeViewSelect>
 
         </Grid>
         </StackPanel>

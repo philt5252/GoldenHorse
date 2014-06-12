@@ -21,6 +21,8 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         public event EventHandler DescriptionChanged;
 
+        public event EventHandler ControlChanged;
+
         public Operation Operation
         {
             get { return operation; }
@@ -54,6 +56,7 @@ namespace Olf.GoldenHorse.Foundation.Models
             {
                 controlId = value;
                 control = null;
+                OnControlChanged();
                 RaiseTestChanged();
             }
         }
@@ -168,6 +171,13 @@ namespace Olf.GoldenHorse.Foundation.Models
         protected virtual void OnOperationChanged()
         {
             EventHandler handler = OperationChanged;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnControlChanged()
+        {
+            EventHandler handler = ControlChanged;
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }

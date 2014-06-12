@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:converters="clr-namespace:Olf.GoldenHorse.Core.Views.Converters"
+             xmlns:editBlockTest="clr-namespace:EditBlockTest"
              mc:Ignorable="d" 
              Tag="Project Explorer">
     <UserControl.Resources>
@@ -20,17 +21,16 @@
             </TreeView.ItemContainerStyle>
             <TreeView.ItemTemplate >
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                    
                     <StackPanel Orientation="Horizontal" MouseDown="DoubleClick" Background="Transparent">
                         <!--<i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDown">
                                 <i:InvokeCommandAction Command="{Binding Path=DefaultCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>-->
-                        <Image  Source="{Binding Type, Converter={StaticResource CategoryToImageConverter}}" Margin="5,0,0,0"  Width="16" Height="16" ></Image>
-                        <TextBlock Margin="5,3,5,3" Text="{Binding Name}" Background="Transparent"   Foreground="Black">  
-                        </TextBlock>         
+                        <Image Source="{Binding Type, Converter={StaticResource CategoryToImageConverter}}" Margin="5,0,0,0"  Width="16" Height="16" ></Image>
+                        <editBlockTest:EditableTextBlock Margin="5,3,5,3" Text="{Binding Name, Mode=TwoWay}" Background="Transparent"   Foreground="Black" IsInEditMode="false"></editBlockTest:EditableTextBlock>      
                     </StackPanel>
+                    
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>

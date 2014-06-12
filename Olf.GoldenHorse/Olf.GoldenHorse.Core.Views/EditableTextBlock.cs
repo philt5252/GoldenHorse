@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Documents;
@@ -9,13 +10,48 @@ namespace EditBlockTest
 {
     public class EditableTextBlock : TextBlock
     {
+        private EditableTextBlock previousEditableTextBlock;
         private Stopwatch stopwatch;
+
         private int count;
         public EditableTextBlock()
         {
-            count = 0;
             stopwatch = new Stopwatch();
+            this.MouseDown +=EditableTextBlock_MouseDown;
         }
+
+        private void EditableTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            EditableTextBlock editableTextBlock = sender as EditableTextBlock;
+            if (previousEditableTextBlock != null && previousEditableTextBlock != editableTextBlock)
+            {
+                count = 0;
+                previousEditableTextBlock = sender as EditableTextBlock;
+            }
+
+            if (e.MiddleButton == MouseButtonState.Pressed)
+            {
+                IsInEditMode = true;
+            }
+            else if (count == 0)
+            {
+                count++;
+                stopwatch = Stopwatch.StartNew();
+
+            }
+            else if (count == 1)
+            {
+                int elapsedMilliseconds = (int)stopwatch.ElapsedMilliseconds;
+                if (elapsedMilliseconds > 600)
+                {
+                    IsInEditMode = true;
+                    stopwatch.Reset();
+                    count = 0;
+                }
+            }
+
+        }
+
         public bool IsInEditMode
         {
             get
@@ -53,6 +89,7 @@ namespace EditBlockTest
         private static void IsInEditModeUpdate(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
             EditableTextBlock textBlock = obj as EditableTextBlock;
+           
             if (null != textBlock)
             {
                 //Get the adorner layer of the uielement (here TextBlock)
@@ -69,6 +106,7 @@ namespace EditBlockTest
                         //Events wired to exit edit mode when the user presses Enter key or leaves the control.
                         textBlock._adorner.TextBoxKeyUp += textBlock.TextBoxKeyUp;
                         textBlock._adorner.TextBoxLostFocus += textBlock.TextBoxLostFocus;
+                        
                     }
                     layer.Add(textBlock._adorner);
                 }
@@ -139,28 +177,12 @@ namespace EditBlockTest
         /// Invoked when an unhandled <see cref="E:System.Windows.Input.Mouse.MouseDown"/> attached event reaches an element in its route that is derived from this class. Implement this method to add class handling for this event.
         /// </summary>
         /// <param name="e">The <see cref="T:System.Windows.Input.MouseButtonEventArgs"/> that contains the event data. This event data reports details about the mouse button that was pressed and the handled state.</param>
-        protected override void OnMouseDown(MouseButtonEventArgs e)
+    /*    protected override void OnMouseDown(MouseButtonEventArgs e)
         {
-            if (e.MiddleButton == MouseButtonState.Pressed)
-            {
-                IsInEditMode = true;
-            }
-            else if (count == 0 )
-            {
-                count++;
-               stopwatch = Stopwatch.StartNew();
+         
+          
                 
-            }
-            else if (count == 1)
-            {
-                     int elapsedMilliseconds = (int) stopwatch.ElapsedMilliseconds;
-                if (elapsedMilliseconds > 600)
-                {
-                    IsInEditMode = true;
-                    stopwatch.Reset();
-                    count = 0;
-                }                
-            }      
-        }
+            
+        }*/
     }
 }

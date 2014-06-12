@@ -17,9 +17,14 @@ namespace Olf.GoldenHorse.Core.ViewModels
             IOperationParameterViewModelFactory operationParameterViewModelFactory)
         {
             this.testItem = testItem;
-            Parameters = testItem.Operation.Parameters
-                .Select(operationParameterViewModelFactory.Create)
-                .ToArray();
+            if (testItem.Operation != null)
+            {
+                Parameters = testItem.Operation.Parameters
+                    .Select(operationParameterViewModelFactory.Create)
+                    .ToArray();
+            }
+
+            
         }
 
         

@@ -13,6 +13,15 @@ namespace Olf.GoldenHorse.Core.Models
             get { return "Delay"; }
         }
 
+        public int Delay
+        {
+            get { return int.Parse(delayParameter.Value.ToString()); }
+            set
+            {
+                delayParameter.Value = value;
+            }
+        }
+
         public override string ParametersDescription
         {
             get { return delayParameter.Value.ToString() + " seconds"; }

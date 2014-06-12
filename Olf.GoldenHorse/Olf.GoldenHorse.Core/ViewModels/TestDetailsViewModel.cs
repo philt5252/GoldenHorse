@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.Events;
 using Olf.GoldenHorse.Foundation.Controllers;
 using Olf.GoldenHorse.Foundation.DataAccess;
+using Olf.GoldenHorse.Foundation.Events;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.ViewModels;
@@ -43,7 +45,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
  
         public TestDetailsViewModel(Test test, ITestItemViewModelFactory testItemViewModelFactory,
             ILogFileManager logFileManager, ILogController logController, 
-            IAppController appController, IRecordingController recordingController)
+            IAppController appController, IRecordingController recordingController,
+            IEventAggregator eventAggregator)
         {
             this.test = test;
             this.testItemViewModelFactory = testItemViewModelFactory;
@@ -51,11 +54,72 @@ namespace Olf.GoldenHorse.Core.ViewModels
             this.logController = logController;
             this.appController = appController;
             this.recordingController = recordingController;
+
+            eventAggregator.GetEvent<AddTestItemEvent>().Subscribe(AddTestItemEventHandler);
             //TestItems = new ObservableCollection<ITestItemViewModel>(test.TestItems.Select(testItemViewModelFactory.Create));
             RefreshTestItems();
             PlayCommand = new DelegateCommand(ExecutePlayCommand);
             AppendToTestCommand = new DelegateCommand(ExecuteAppendToTestCommand);
             DeleteSelectedItemCommand = new DelegateCommand(ExecuteDeleteSelectedItemCommand);
+        }
+
+        private void AddTestItemEventHandler(TestItem testItem)
+        {
+            
+            if (SelectedTestItem != null && SelectedTestItem.TestItem != null)
+            {
+                int index = test.TestItems.IndexOf(SelectedTestItem.TestItem);
+                test.TestItems.Insert(index, testItem);
+            }
+            else
+            {
+                test.TestItems.Add(testItem);
+            }
+
+            RefreshTestItems();
+
+            /*
+            ITestItemViewModel testitemViewModel = testItemViewModelFactory.Create(testItem);
+            testItem.Test = test;
+
+            if (SelectedTestItem == null)
+            {
+                TestItems.Add(testitemViewModel);
+                return;
+            }
+
+            int index = TestItems.IndexOf(SelectedTestItem);
+
+            if (index >=0)
+            {
+                TestItems.Insert(index, testitemViewModel);
+                return;
+            }
+
+            ITestItemViewModel testItemViewModel = GetParent(SelectedTestItem);
+
+            index = testItemViewModel.ChildItems.IndexOf(SelectedTestItem);
+
+            testItemViewModel.ChildItems.Insert(index, testitemViewModel);*/
+        }
+
+        private ITestItemViewModel GetParent(ITestItemViewModel testItemViewModel, ITestItemViewModel[] testItems=null)
+        {
+            if (testItems == null)
+                testItems = TestItems.ToArray();
+
+            foreach (ITestItemViewModel potentialParent in testItems)
+            {
+                if (potentialParent.ChildItems.Contains(testItemViewModel))
+                    return potentialParent;
+
+                ITestItemViewModel result = GetParent(testItemViewModel, potentialParent.ChildItems.ToArray());
+
+                if (result != null)
+                    return result;
+            }
+
+            return null;
         }
 
         private void ExecuteDeleteSelectedItemCommand()
@@ -94,7 +158,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 dateTime.Hour, dateTime.Minute, dateTime.Second);
 
 
-            if(SelectedTestItem == null)
+            if(SelectedTestItem == null || SelectedTestItem.TestItem == null)
                 test.Play(log);
             else
                 test.Play(log, SelectedTestItem.TestItem.Id);
@@ -116,11 +180,11 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
             foreach (TestItem testItem in test.TestItems)
             {
+                ITestItemViewModel testItemViewModel = testItemViewModelFactory.Create(testItem);
+
                 if (testItem.Type == TestItemTypes.OnScreenAction
                     || testItem.Type == TestItemTypes.ValidateTextAtPoint)
                 {
-                    ITestItemViewModel testItemViewModel = testItemViewModelFactory.Create(testItem);
-
                     if (testItem.Control == null)
                     {
                         testItemViewModels.Add(testItemViewModel);
@@ -158,8 +222,15 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
                     windowTestItemViewModel.ChildItems.Add(testItemViewModel);
                 }
-            }
+                else
+                {
+                    testItemViewModels.Add(testItemViewModel);
+                    windowTestItemViewModel = null;
+                    processTestItemViewModel = null;
+                }
 
+            }
+            
             TestItems = new ObservableCollection<ITestItemViewModel>(testItemViewModels);
 
             OnPropertyChanged("TestItems");

@@ -6,5 +6,6 @@
         public const string ValidateTextAtPoint = "ValidateTextAtPoint";
         public const string WindowGroup = "WindowGroup";
         public const string ProcessGroup = "ProcessGroup";
+        public const string Delay = "Delay";
     }
 }

@@ -29,7 +29,8 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
 
                 logFileManager.Rename(logFile, value);
 
-                log.Name = value;
+                if(log != null)
+                    log.Name = value;
             }
         }
 

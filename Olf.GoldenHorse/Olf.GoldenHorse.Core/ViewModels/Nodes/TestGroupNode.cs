@@ -11,6 +11,11 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         private readonly Project project;
         private readonly ITestNodeFactory testNodeFactory;
 
+        public override bool IsRenamable
+        {
+            get { return false; }
+        }
+
         public override string Name
         {
             get { return "Tests"; }

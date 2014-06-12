@@ -13,6 +13,11 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         private readonly ILogFileManager logFileManager;
         private readonly ILogController logController;
 
+        public override bool IsRenamable
+        {
+            get { return true; }
+        }
+
         public override string Name
         {
             get { return logFile.Name.Replace(DefaultData.LogExtension, ""); }

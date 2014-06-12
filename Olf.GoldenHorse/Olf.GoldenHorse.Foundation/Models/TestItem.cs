@@ -53,6 +53,7 @@ namespace Olf.GoldenHorse.Foundation.Models
             set
             {
                 controlId = value;
+                control = null;
                 RaiseTestChanged();
             }
         }

@@ -14,6 +14,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         public override string Name
         {
             get { return "Project Suite '" + ProjectSuiteManager.CurrentProjectSuite.Name + "' Projects"; }
+            set{}
         }
 
         public ProjectSuiteProjectsNode(IProjectNodeFactory projectNodeFactory)

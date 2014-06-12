@@ -55,7 +55,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         protected virtual void ExecutePauseCommand()
         {
-            throw new NotImplementedException();
+            recorder.Pause();
         }
 
         protected virtual bool CanExecuteStopCommand()

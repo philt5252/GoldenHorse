@@ -99,5 +99,10 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
             }
         }
+
+        public void Refresh()
+        {
+            TestShellViewModel.TestDetailsViewModel.Refresh();
+        }
     }
 }

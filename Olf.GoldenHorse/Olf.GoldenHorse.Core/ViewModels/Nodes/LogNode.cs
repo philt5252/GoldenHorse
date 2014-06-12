@@ -16,6 +16,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         public override string Name
         {
             get { return logFile.Name.Replace(DefaultData.LogExtension, ""); }
+            set{}
         }
 
         public LogNode(ProjectFile logFile, ILogFileManager logFileManager,

@@ -14,6 +14,8 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         public override string Name
         {
             get { return project.Name; }
+
+            set{}
         }
 
         public ProjectNode(Project project, ITestGroupNodeFactory testGroupNodeFactory)

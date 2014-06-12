@@ -20,6 +20,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         public override string Name
         {
             get { return projectFile.Name.Replace(DefaultData.TestExtension, ""); }
+            set{}
         }
 
         public TestNode(ProjectFile projectFile, ITestController testController,

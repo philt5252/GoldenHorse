@@ -38,6 +38,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         public ICommand PlayCommand { get; protected set; }
         public ICommand DeleteSelectedItemCommand { get; private set; }
+
         public ICommand AppendToTestCommand { get; protected set; }
  
         public TestDetailsViewModel(Test test, ITestItemViewModelFactory testItemViewModelFactory,
@@ -62,8 +63,17 @@ namespace Olf.GoldenHorse.Core.ViewModels
             if (SelectedTestItem == null)
                 return;
 
+            //int index = TestItems.IndexOf(SelectedTestItem);
+            //TestItems.RemoveAt(index);
+
             test.TestItems.Remove(SelectedTestItem.TestItem);
-            TestItems.Remove(SelectedTestItem);
+
+            RefreshTestItems();
+
+            //if (TestItems.Count <= index)
+            //    index = TestItems.Count - 1;
+
+            //SelectedTestItem = TestItems[index];
         }
 
         private void ExecuteAppendToTestCommand()
@@ -186,6 +196,11 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 }
                 GetTestItems(testItemViewModel.ChildItems, testItems, newParentTestItem);
             }
+        }
+
+        public void Refresh()
+        {
+            RefreshTestItems();
         }
 
     }

@@ -9,5 +9,6 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
         ITestScreenshotsViewModel TestScreenshotsViewModel { get; }
         ITestShellViewModel TestShellViewModel { get; }
         IVariableManagerViewModel VariableManagerViewModel { get; }
+        void Refresh();
     }
 }

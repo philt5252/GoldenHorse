@@ -13,6 +13,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         public override string Name
         {
             get { return project.Name + " Logs"; }
+            set{}
         }
 
         public ProjectLogsNode(Project project, ILogNodeFactory logNodeFactory)

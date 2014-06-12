@@ -49,7 +49,7 @@ namespace Olf.GoldenHorse.Core.Services
         private IUIItem currentUiItem;
         private MappedItem currentMappedItem;
 
-        private HashSet<Task> executingTasks = new HashSet<Task>();
+        private HashSet<Task> executingTasks = new HashSet<Task>(); 
 
         public Recorder(Test test)
         {
@@ -76,64 +76,74 @@ namespace Olf.GoldenHorse.Core.Services
 
         private void MouseHookListenerOnMouseUp(object sender, MouseEventArgs mouseEventArgs)
         {
-
-            int processId = ExternalAppInfoManager.GetControl(mouseEventArgs.Location).AutomationElement.Current.ProcessId;
-
-            if (currentInputType == InputType.Keyboard)
+            Task task = new Task(() =>
             {
-                CreateKeyboardOnScreenAction();
-            }
+                Thread.Sleep(100);
+                if (currentInputType == InputType.Keyboard)
+                {
+                    CreateKeyboardOnScreenAction();
+                }
 
-            currentInputType = InputType.Mouse;
+                currentInputType = InputType.Mouse;
 
-            if (Process.GetCurrentProcess().Id == processId)
-                return;
+                int processId = ExternalAppInfoManager.GetForegroundWindowProcessId();
 
-            
-            IUIItem whiteControl;
-            TestItem action = CreateOnScreenAction(mouseEventArgs, out whiteControl);
-            currentUiItem = whiteControl;
+                if (Process.GetCurrentProcess().Id == processId)
+                    return;
 
-            //Task task = new Task(() =>
-            //{
-                int clickX = mouseEventArgs.Location.X - (int)whiteControl.Bounds.X;
-                int clickY = mouseEventArgs.Location.Y - (int)whiteControl.Bounds.Y;
+                if (Process.GetProcessById(processId).ProcessName.Contains("Horse"))
+                {
+                    
+                }
+
+                IUIItem whiteControl;
+                TestItem action = CreateOnScreenAction(mouseEventArgs, out whiteControl);
+                currentUiItem = whiteControl;
+
+                AutomationElement findWindowElement = FindWindowElement(whiteControl);
+
+                int clickX = mouseEventArgs.Location.X - (int) whiteControl.Bounds.X;
+                int clickY = mouseEventArgs.Location.Y - (int) whiteControl.Bounds.Y;
                 ClickOperation clickOperation = CreateClickOperation(mouseEventArgs.Button, clickX, clickY);
 
                 action.Operation = clickOperation;
 
-                AutomationElement findWindowElement = FindWindowElement(whiteControl);
-                int screenshotX = mouseEventArgs.Location.X - (int)findWindowElement.Current.BoundingRectangle.X;
-                int screenshotY = mouseEventArgs.Location.Y - (int)findWindowElement.Current.BoundingRectangle.Y;
+                int screenshotX = mouseEventArgs.Location.X - (int) findWindowElement.Current.BoundingRectangle.X;
+                int screenshotY = mouseEventArgs.Location.Y - (int) findWindowElement.Current.BoundingRectangle.Y;
 
                 action.Screenshot.Adornments.Add(
                     new ControlHighlightAdornment
                     {
-                        X = (int)whiteControl.Bounds.X - (int)findWindowElement.Current.BoundingRectangle.X,
-                        Y = (int)whiteControl.Bounds.Y - (int)findWindowElement.Current.BoundingRectangle.Y,
-                        Width = (int)whiteControl.Bounds.Width,
-                        Height = (int)whiteControl.Bounds.Height
+                        X = (int) whiteControl.Bounds.X - (int) findWindowElement.Current.BoundingRectangle.X,
+                        Y = (int) whiteControl.Bounds.Y - (int) findWindowElement.Current.BoundingRectangle.Y,
+                        Width = (int) whiteControl.Bounds.Width,
+                        Height = (int) whiteControl.Bounds.Height
                     });
 
-                action.Screenshot.Adornments.Add(new ClickAdornment { ClickX = screenshotX, ClickY = screenshotY });
+                action.Screenshot.Adornments.Add(new ClickAdornment {ClickX = screenshotX, ClickY = screenshotY});
 
                 test.TestItems.Add(action);
-            //});
+            });
 
-            //AddTaskToExecutingListAndStart(task);
+            AddTaskToExecutingListAndStart(task);
         }
 
         private void AddTaskToExecutingListAndStart(Task task)
         {
+            executingTasks.Add(task);
+            task.ContinueWith(t => executingTasks.Remove(task));
+            task.Start();
+
+            /*Task last = executingTasks.LastOrDefault();
+            executingTasks.Add(task);
             task.ContinueWith(t => executingTasks.Remove(task));
 
-            Task lastTask = executingTasks.LastOrDefault();
-            executingTasks.Add(task);
-            
-            if (lastTask != null)
-                lastTask.ContinueWith(t => task.Start());
-            else 
+            if (last != null)
+                last.ContinueWith(t => task);
+            else
                 task.Start();
+
+            task.Start();*/
         }
 
         private static AutomationElement FindWindowElement(IUIItem whiteControl)
@@ -152,31 +162,26 @@ namespace Olf.GoldenHorse.Core.Services
             TestItem onScreenAction = CreateOnScreenAction();
             onScreenAction.ControlId = currentMappedItem.Id;
 
-            Task task = new Task(() =>
-            {
-                AutomationElement findWindowElement = FindWindowElement(currentUiItem);
+            AutomationElement findWindowElement = FindWindowElement(currentUiItem);
 
-                KeyboardOperation operation = new KeyboardOperation();
-                operation.Text = keys;
-                onScreenAction.Operation = operation;
-                onScreenAction.Screenshot.Adornments.Add(
-                    new ControlHighlightAdornment
-                    {
-                        X = (int) currentUiItem.Bounds.X - (int) findWindowElement.Current.BoundingRectangle.X,
-                        Y = (int) currentUiItem.Bounds.Y - (int) findWindowElement.Current.BoundingRectangle.Y,
-                        Width = (int) currentUiItem.Bounds.Width,
-                        Height = (int) currentUiItem.Bounds.Height
-                    });
+            KeyboardOperation operation = new KeyboardOperation();
+            operation.Text = keys;
+            onScreenAction.Operation = operation;
+            onScreenAction.Screenshot.Adornments.Add(
+                new ControlHighlightAdornment
+                {
+                    X = (int)currentUiItem.Bounds.X - (int)findWindowElement.Current.BoundingRectangle.X,
+                    Y = (int)currentUiItem.Bounds.Y - (int)findWindowElement.Current.BoundingRectangle.Y,
+                    Width = (int)currentUiItem.Bounds.Width,
+                    Height = (int)currentUiItem.Bounds.Height
+                });
 
-                test.TestItems.Add(onScreenAction);
-            });
-
-            AddTaskToExecutingListAndStart(task);
+            test.TestItems.Add(onScreenAction);
         }
 
         private TestItem CreateOnScreenAction()
         {
-            TestItem action = new TestItem { Type = TestItemTypes.OnScreenAction };
+            TestItem action = new TestItem{Type = TestItemTypes.OnScreenAction};
             Screenshot screenshot = CreateScreenshotFromCurrentBitmap();
 
             action.Screenshot = screenshot;
@@ -214,7 +219,7 @@ namespace Olf.GoldenHorse.Core.Services
             Screenshot screenshot = new Screenshot();
 
             string screenshotName = "ghscn_" + currentBitmapDateTime.Ticks + ".bmp";
-
+            
             screenshot.ImageFile = screenshotName;
             screenshot.DateTime = currentBitmapDateTime;
 
@@ -242,8 +247,6 @@ namespace Olf.GoldenHorse.Core.Services
 
         private void MouseHookListenerOnMouseDown(object sender, MouseEventArgs mouseEventArgs)
         {
-            //AddTaskToExecutingListAndStart(task);
-
             mouseDownMouseEventArgs = mouseEventArgs;
             //throw new NotImplementedException();
             TakePictureAndSetCurrentBitmap();
@@ -261,19 +264,25 @@ namespace Olf.GoldenHorse.Core.Services
 
         private void KeyboardHookListenerOnKeyDown(object sender, KeyEventArgs keyEventArgs)
         {
-            if (currentInputType == InputType.Mouse)
+            Task task = new Task(() =>
             {
-                keys = "";
-            }
+                if (currentInputType == InputType.Mouse)
+                {
+                    keys = "";
+                }
 
-            currentInputType = InputType.Keyboard;
+                currentInputType = InputType.Keyboard;
 
-            char keyValue = (char)keyEventArgs.KeyValue;
+                char keyValue = (char)keyEventArgs.KeyValue;
 
-            if (!keyEventArgs.Shift)
-                keyValue = char.ToLower(keyValue);
+                if (!keyEventArgs.Shift)
+                    keyValue = char.ToLower(keyValue);
 
-            keys += keyValue;
+                keys += keyValue;
+                //throw new NotImplementedException();
+            });
+
+            AddTaskToExecutingListAndStart(task);
         }
 
         public Test CurrentTest
@@ -290,7 +299,7 @@ namespace Olf.GoldenHorse.Core.Services
 
         public void Stop()
         {
-
+            
             CurrentRecorderState = RecorderState.Stopped;
 
             mouseHookListener.Enabled = false;
@@ -329,7 +338,7 @@ namespace Olf.GoldenHorse.Core.Services
 
                     AppProcess appProcess1 = appManager.FindOrCreateProcess(process1.ProcessName);
 
-
+                    
                     string name = uiItem.AutomationElement.Current.AutomationId;
 
                     int num;
@@ -346,10 +355,10 @@ namespace Olf.GoldenHorse.Core.Services
                     bounds.X = 0;//;window.Current.BoundingRectangle.X;
                     bounds.Y = 0;//window.Current.BoundingRectangle.Y;
                     mappedItem = appManager.FindOrCreateMappedItem(appProcess1.Id, name, bounds, type, text);
-
+                    
                     return uiItem;
                 }
-
+                    
 
                 TreeWalker walker = TreeWalker.ControlViewWalker;
                 AutomationElement automationElement = uiItem.AutomationElement;
@@ -365,14 +374,14 @@ namespace Olf.GoldenHorse.Core.Services
                     {
                         uiElementTree.Push(automationElement);
                     }
-
+                    
                     automationElement = walker.GetParent(automationElement);
                 }
 
                 Process process = Process.GetProcessById(uiItem.AutomationElement.Current.ProcessId);
 
                 AppProcess appProcess = appManager.FindOrCreateProcess(process.ProcessName);
-
+                
                 string parentId = appProcess.Id;
 
                 AutomationElement window = uiElementTree.Peek();

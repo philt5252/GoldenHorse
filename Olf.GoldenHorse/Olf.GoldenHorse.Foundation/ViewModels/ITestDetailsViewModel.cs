@@ -10,5 +10,6 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
         ObservableCollection<ITestItemViewModel> TestItems { get; }
         ICommand PlayCommand { get; }
         ICommand DeleteSelectedItemCommand { get; }
+        void Refresh();
     }
 }

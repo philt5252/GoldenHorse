@@ -44,24 +44,16 @@ namespace Olf.GoldenHorse.Core.Views
             {
                 count = 0;
             }
-            if (count == 0)
+            if (e.ClickCount==2)
             {
-                stopwatch = Stopwatch.StartNew();
-                count++;
-            }
-            else if (count == 1)
-            {
-                int elapsedMilliseconds = (int)stopwatch.ElapsedMilliseconds;
-                count = 0;
-                if (elapsedMilliseconds <= (int)GetDoubleClickTime())
-                {
+
                     IDisplayNode displayNode = projectExplorerTvw.SelectedItem as IDisplayNode;
                     if (displayNode.DefaultCommand == null)
                     {
                         return;
                     }
                     displayNode.DefaultCommand.Execute(null);
-                }
+                
             }
         }
 

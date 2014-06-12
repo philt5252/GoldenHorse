@@ -79,8 +79,6 @@ namespace Olf.GoldenHorse.Core.ViewModels
             RefreshTestItems();
 
             /*
-            
-
             ITestItemViewModel testitemViewModel = testItemViewModelFactory.Create(testItem);
             testItem.Test = test;
 
@@ -160,7 +158,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 dateTime.Hour, dateTime.Minute, dateTime.Second);
 
 
-            if(SelectedTestItem == null)
+            if(SelectedTestItem == null || SelectedTestItem.TestItem == null)
                 test.Play(log);
             else
                 test.Play(log, SelectedTestItem.TestItem.Id);

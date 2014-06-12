@@ -28,7 +28,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>-->
                         <Image Source="{Binding Type, Converter={StaticResource CategoryToImageConverter}}" Margin="5,0,0,0"  Width="16" Height="16" ></Image>
-                        <editBlockTest:EditableTextBlock Margin="5,3,5,3" Text="{Binding Name, Mode=TwoWay}" Background="Transparent"   Foreground="Black" IsInEditMode="false"></editBlockTest:EditableTextBlock>      
+                        <editBlockTest:EditableTextBlock IsEditable="{Binding IsRenamable}"  Margin="5,4,5,3" Text="{Binding Name, Mode=TwoWay}" Background="Transparent" Foreground="Black" IsInEditMode="false"></editBlockTest:EditableTextBlock>      
                     </StackPanel>
                     
                 </HierarchicalDataTemplate>

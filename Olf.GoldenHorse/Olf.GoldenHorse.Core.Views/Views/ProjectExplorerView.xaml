@@ -22,13 +22,9 @@
             <TreeView.ItemTemplate >
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                     <StackPanel Orientation="Horizontal" MouseDown="DoubleClick" Background="Transparent">
-                        <!--<i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDown">
-                                <i:InvokeCommandAction Command="{Binding Path=DefaultCommand}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>-->
+                      
                         <Image Source="{Binding Type, Converter={StaticResource CategoryToImageConverter}}" Margin="5,0,0,0"  Width="16" Height="16" ></Image>
-                        <editBlockTest:EditableTextBlock IsEditable="{Binding IsRenamable}"  Margin="5,4,5,3" Text="{Binding Name, Mode=TwoWay}" Background="Transparent" Foreground="Black" IsInEditMode="false"></editBlockTest:EditableTextBlock>      
+                        <editBlockTest:EditableTextBlock IsEditable="{Binding IsRenamable}" MouseLeftButtonDown="EditTextBlockName" Margin="5,4,5,3" Text="{Binding Name, Mode=TwoWay}" Background="Transparent" Foreground="Black" IsInEditMode="false"></editBlockTest:EditableTextBlock>      
                     </StackPanel>
                     
                 </HierarchicalDataTemplate>

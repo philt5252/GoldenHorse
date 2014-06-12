@@ -17,23 +17,18 @@ namespace EditBlockTest
         public EditableTextBlock()
         {
             stopwatch = new Stopwatch();
-            this.MouseDown +=EditableTextBlock_MouseDown;
+            
         }
 
-        private void EditableTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+       /* protected override void OnMouseDown(MouseButtonEventArgs e)
         {
-            EditableTextBlock editableTextBlock = sender as EditableTextBlock;
-            if (previousEditableTextBlock != null && previousEditableTextBlock != editableTextBlock)
-            {
-                count = 0;
-                previousEditableTextBlock = sender as EditableTextBlock;
-            }
 
-            if (e.MiddleButton == MouseButtonState.Pressed)
+
+            if (e.MiddleButton == MouseButtonState.Pressed || e.RightButton == MouseButtonState.Pressed)
             {
                 IsInEditMode = true;
             }
-            else if (count == 0)
+           /* else if (count == 0)
             {
                 count++;
                 stopwatch = Stopwatch.StartNew();
@@ -48,9 +43,9 @@ namespace EditBlockTest
                     stopwatch.Reset();
                     count = 0;
                 }
-            }
+            }#1#
 
-        }
+        }*/
 
         public bool IsInEditMode
         {

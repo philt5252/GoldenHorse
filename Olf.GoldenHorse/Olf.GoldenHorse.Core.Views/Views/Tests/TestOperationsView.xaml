@@ -24,7 +24,8 @@
                 AlternationCount="2" Background="White">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
+                    <StackPanel MouseDown="DoubleClick">
+                        
                         <Image Source="{Binding Icon}"></Image>
                         <TextBlock Margin="5,0,5,0" Text="{Binding Name}" Foreground="Black">
                         </TextBlock>

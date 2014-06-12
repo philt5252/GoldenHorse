@@ -43,13 +43,13 @@
             </ListBox.ItemTemplate>
         </ListBox>
         
-        <Grid Grid.Row="1">
+        <Grid >
             <TextBlock Margin="10,10,0,0" Text="Object: " Foreground="White" Width="45" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
             <TextBox IsReadOnly="False" Height="26" Margin="10,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
                      Width="415" Text="{Binding SelectedObject, Mode=OneWay}"/>
             
             <views:TreeViewSelect Margin="10,72,0,0" Height="73" Width="415" VerticalAlignment="Top" ItemsSource="{Binding Objects}"
-                                  SelectedObject="{Binding SelectedObject}" HorizontalAlignment="Left"></views:TreeViewSelect>
+                                  SelectedObject="{Binding SelectedObject}" MouseDoubleClick="{Binding SetObjectCommand}" Background="Transparent" Foreground="White" HorizontalAlignment="Left"></views:TreeViewSelect>
 
         </Grid>
         </StackPanel>

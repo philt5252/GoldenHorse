@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using EditBlockTest;
 using Olf.GoldenHorse.Foundation.ViewModels.Nodes;
 using Olf.GoldenHorse.Foundation.Views;
 
@@ -24,11 +25,15 @@ namespace Olf.GoldenHorse.Core.Views
     public partial class ProjectExplorerView : UserControl, IViewWithDataContext
     {
         private Stopwatch stopwatch;
+        private Stopwatch stopwatch2;
+        private EditableTextBlock previousTextBlock;
         private int count;
+        private int clickCount;
         public ProjectExplorerView()
         {
             InitializeComponent();
             count = 0;
+            clickCount = 0;
         }
 
         private void DoubleClick(object sender, MouseButtonEventArgs e)
@@ -67,6 +72,36 @@ namespace Olf.GoldenHorse.Core.Views
         private void HandleRequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void EditTextBlockName(object sender, MouseButtonEventArgs e)
+        {
+            EditableTextBlock editableTextBlock = sender as EditableTextBlock;
+            if (previousTextBlock == null || previousTextBlock != editableTextBlock)
+            {
+                previousTextBlock = editableTextBlock;
+                clickCount = 0;
+            }
+            if (e.MiddleButton == MouseButtonState.Pressed || e.RightButton == MouseButtonState.Pressed)
+            {
+                editableTextBlock.IsInEditMode = true;
+            }
+            else if (clickCount == 0)
+            {
+                clickCount++;
+                stopwatch2 = Stopwatch.StartNew();
+            }
+            else if (clickCount == 1)
+            {
+                int elapsedMilliseconds = (int)stopwatch2.ElapsedMilliseconds;
+                if (elapsedMilliseconds > 600)
+                {
+                    editableTextBlock.IsInEditMode = true;
+                    stopwatch2.Reset();
+                    clickCount = 0;
+                }
+            }
+
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Olf.GoldenHorse.Core.Views
 
         private void DoubleClick(object sender, MouseButtonEventArgs e)
         {
+            StackPanel stackPanel = sender as StackPanel;
             if (stopwatch != null && stopwatch.ElapsedMilliseconds > 600)
             {
                 count = 0;
@@ -48,7 +49,7 @@ namespace Olf.GoldenHorse.Core.Views
                 count = 0;
                 if (elapsedMilliseconds <= (int)GetDoubleClickTime())
                 {
-                    IOperationViewModel operationViewModel = sender as IOperationViewModel;
+                    IOperationViewModel operationViewModel = stackPanel.DataContext as IOperationViewModel;
                     if (operationViewModel.AddToTestCommand == null)
                     {
                         return;

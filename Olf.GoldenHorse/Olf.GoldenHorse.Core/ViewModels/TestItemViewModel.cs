@@ -60,8 +60,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
             }
         }
 
-        public virtual string Operation { get { return TestItem == null ? "" : TestItem.Operation.Name; } }
-        public virtual string Value { get { return TestItem == null ? "" : TestItem.Operation.ParametersDescription; } }
+        public virtual string Operation { get { return (TestItem == null || TestItem.Operation == null) ? "" : TestItem.Operation.Name; } }
+        public virtual string Value { get { return (TestItem == null || TestItem.Operation == null) ? "" : TestItem.Operation.ParametersDescription; } }
 
         public virtual string Description
         {

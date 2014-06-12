@@ -134,6 +134,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ExternalAppInfoManager.cs" />
     <Compile Include="Services\Recorder.cs" />
+    <Compile Include="ViewModels\DelayOperationViewModel.cs" />
     <Compile Include="ViewModels\EditParameterViewModel.cs" />
     <Compile Include="ViewModels\GetObjectScreenSelectionViewModel.cs" />
     <Compile Include="ViewModels\GetObjectViewModel.cs" />

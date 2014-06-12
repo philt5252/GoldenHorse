@@ -305,7 +305,7 @@ namespace Olf.GoldenHorse.Core.Services
             mouseHookListener.Enabled = false;
             keyboardHookListener.Enabled = false;
 
-            while (executingTasks.Any())
+            while (executingTasks.Count > 0)
             {
                 Task task = executingTasks.FirstOrDefault();
 

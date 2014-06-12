@@ -40,6 +40,14 @@ namespace Olf.GoldenHorse
                             if (!documentDict.ContainsKey(newView))
                             {
                                 CreateLayoutDocument(newView);
+                                object view = newView;
+                                documentDict[newView].Closed +=
+                                    (o, e) =>
+                                    {
+                                        region.Remove(view);
+                                        documentDict.Remove(view);
+                                    };
+
                             }
 
                             regionTarget.Children.Add(documentDict[newView]);
@@ -92,13 +100,14 @@ namespace Olf.GoldenHorse
 
             Binding myBinding = new Binding("Tag");
             myBinding.Source = newView;
+            myBinding.Mode = BindingMode.TwoWay;
+            myBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
             BindingOperations.SetBinding(layoutDocument, LayoutDocument.TitleProperty, myBinding);
 
 
             Binding isSelectedBinding = new Binding("IsSelected");
             isSelectedBinding.Source = newView.GetProperty("DataContext");
             BindingOperations.SetBinding(layoutDocument, LayoutDocument.IsSelectedProperty, isSelectedBinding);
-
 
             layoutDocument.Content = newView;
             documentDict[newView] = layoutDocument;

@@ -36,6 +36,14 @@ namespace Olf.GoldenHorse
                             if (!anchorableDict.ContainsKey(newView))
                             {
                                 CreateLayoutAnchorable(newView);
+
+                                object view = newView;
+                                anchorableDict[newView].Closed +=
+                                    (o, e) =>
+                                    {
+                                        region.Remove(view);
+                                        anchorableDict.Remove(view);
+                                    };
                             }
                                 //throw new Exception("Could not find view " + newItem
                                 //                    + " to activate. Add it do the Views collection before activating.");
@@ -77,6 +85,8 @@ namespace Olf.GoldenHorse
             
             Binding myBinding = new Binding("Tag");
             myBinding.Source = newView;
+            myBinding.Mode = BindingMode.TwoWay;
+            myBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
             BindingOperations.SetBinding(layoutAnchorable, LayoutAnchorable.TitleProperty, myBinding);
 
             layoutAnchorable.Content = newView;

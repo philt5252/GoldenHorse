@@ -77,5 +77,15 @@ namespace Olf.GoldenHorse.Foundation.Services
 
             return logFolder;
         }
+
+        public static string GetTestScreenshotsFolder(Project project)
+        {
+            string screenshotsFolder = Path.Combine(GetProjectFolder(project), "Tests", "Screenshots");
+
+            if (!Directory.Exists(screenshotsFolder))
+                Directory.CreateDirectory(screenshotsFolder);
+
+            return screenshotsFolder;
+        }
     }
 }

@@ -58,5 +58,25 @@ namespace Olf.GoldenHorse.Core.DataAccess
                 return log;
             }
         }
+
+        public void Rename(ProjectFile logFile, string newName)
+        {
+            
+            FileInfo fileInfo = new FileInfo(logFile.FilePath);
+            string oldDirPath = fileInfo.Directory.FullName;
+            string newDirPath = oldDirPath.Replace(logFile.Name.Replace(DefaultData.LogExtension, ""), newName);
+            string newPath = Path.Combine(newDirPath, newName + DefaultData.LogExtension);
+
+            File.Move(logFile.FilePath, newPath);
+
+            Directory.Move(oldDirPath, newDirPath);
+            
+            
+
+            Directory.Delete(oldDirPath);
+
+            logFile.FilePath = newPath;
+            logFile.Name = newName + DefaultData.LogExtension;
+        }
     }
 }

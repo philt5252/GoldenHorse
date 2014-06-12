@@ -84,5 +84,29 @@ namespace Olf.GoldenHorse.Core.DataAccess
                 return serializer.Deserialize(fileStream) as Test;
             }
         }
+
+        public void Rename(ProjectFile projectFile, string newName)
+        {
+            string newPath = projectFile.FilePath.Replace(projectFile.Name, newName + DefaultData.TestExtension);
+            string testScreenshotsFolder = ProjectSuiteManager.GetTestScreenshotsFolder(projectFile.Project);
+
+            string oldName = projectFile.Name.Replace(DefaultData.TestExtension, "");
+
+            File.Move(projectFile.FilePath, newPath);
+
+            Directory.Move(Path.Combine(testScreenshotsFolder, oldName), Path.Combine(testScreenshotsFolder, newName));
+
+            projectFile.FilePath = newPath;
+            projectFile.Name = newName + DefaultData.TestExtension;
+
+            Test test = Open(newPath);
+            test.Project = projectFile.Project;
+            test.Name = newName;
+
+
+            Save(test);
+
+            
+        }
     }
 }

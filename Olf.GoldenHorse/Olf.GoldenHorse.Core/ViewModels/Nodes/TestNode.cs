@@ -16,6 +16,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         private readonly ProjectFile projectFile;
         private readonly ITestController testController;
         private readonly ITestFileManager testFileManager;
+        private Test test;
 
         public override bool IsRenamable
         {
@@ -25,7 +26,16 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         public override string Name
         {
             get { return projectFile.Name.Replace(DefaultData.TestExtension, ""); }
-            set{}
+            set
+            {
+                if (Equals(projectFile.Name.Replace(DefaultData.TestExtension, ""), value))
+                    return;
+
+                testFileManager.Rename(projectFile, value);
+
+                if (test != null)
+                    test.Name = value;
+            }
         }
 
         public TestNode(ProjectFile projectFile, ITestController testController,
@@ -40,7 +50,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
 
         protected virtual void ExecuteDefaultCommand()
         {
-            Test test = testFileManager.Open(projectFile.FilePath);
+            test = testFileManager.Open(projectFile.FilePath);
             test.Project = projectFile.Project;
             testController.ShowTest(test);
         }

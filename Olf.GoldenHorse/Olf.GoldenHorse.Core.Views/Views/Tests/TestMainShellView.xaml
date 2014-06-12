@@ -8,7 +8,7 @@
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:themes="http://avalondock.codeplex.com"
              xmlns:variables="clr-namespace:Olf.GoldenHorse.Core.Views.Views.Variables"
-             Tag="{Binding TestName}"
+             Tag="{Binding TestName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" >
     <UserControl.InputBindings>

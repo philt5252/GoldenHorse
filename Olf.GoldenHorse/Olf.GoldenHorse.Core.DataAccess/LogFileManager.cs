@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
+using System.Security.AccessControl;
+using System.Threading;
 using System.Xml.Serialization;
 using Olf.GoldenHorse.Foundation;
 using Olf.GoldenHorse.Foundation.DataAccess;
@@ -67,16 +70,31 @@ namespace Olf.GoldenHorse.Core.DataAccess
             string newDirPath = oldDirPath.Replace(logFile.Name.Replace(DefaultData.LogExtension, ""), newName);
             string newPath = Path.Combine(newDirPath, newName + DefaultData.LogExtension);
 
-            File.Move(logFile.FilePath, newPath);
+            //if (!Directory.Exists(newDirPath))
+            //    Directory.CreateDirectory(newDirPath);
 
-            Directory.Move(oldDirPath, newDirPath);
-            
-            
+            File.Move(logFile.FilePath, Path.Combine(oldDirPath, newName + DefaultData.LogExtension));
 
-            Directory.Delete(oldDirPath);
+            try
+            {
+                Directory.Move(oldDirPath, newDirPath);
+            }
+            catch (Exception e)
+            {
+                
+            }
+            
+            //Directory.Delete(oldDirPath);
 
             logFile.FilePath = newPath;
-            logFile.Name = newName + DefaultData.LogExtension;
+            logFile.Name = newName + DefaultData.LogExtension; 
+            
+            Log log = Open(newPath);
+            log.Owner = logFile.Project;
+            log.Name = newName;
+
+
+            Save(log);
         }
     }
 }

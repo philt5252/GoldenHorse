@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Olf.GoldenHorse.Foundation.DataAccess;
 using Olf.GoldenHorse.Foundation.Factories.ViewModels.Nodes;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.ViewModels.Nodes;
@@ -13,7 +14,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
 
         public override bool IsRenamable
         {
-            get { return true; }
+            get { return false; }
         }
 
         public override string Name

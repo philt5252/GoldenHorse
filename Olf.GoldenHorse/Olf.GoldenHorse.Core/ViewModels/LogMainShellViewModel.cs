@@ -8,7 +8,7 @@ using Olf.GoldenHorse.Foundation.ViewModels;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
-    public class LogMainShellViewModel : ILogMainShellViewModel
+    public class LogMainShellViewModel : ViewModelBase, ILogMainShellViewModel
     {
         private readonly Log log;
         public ILogScreenshotsViewModel LogScreenshotsViewModel { get; protected set; }
@@ -19,12 +19,18 @@ namespace Olf.GoldenHorse.Core.ViewModels
             ILogScreenshotsViewModelFactory logScreenshotsViewModelFactory)
         {
             this.log = log;
+            log.NameChanged += LogOnNameChanged;
             LogShellViewModel = logShellViewModelFactory.Create(log);
             LogScreenshotsViewModel = logScreenshotsViewModelFactory.Create(log);
 
             LogShellViewModel.LogDetailsViewModel.PropertyChanged += LogDetailsViewModelOnPropertyChanged;
             LogScreenshotsViewModel.PropertyChanged += LogScreenshotsViewModelOnPropertyChanged;
 
+        }
+
+        private void LogOnNameChanged(object sender, EventArgs eventArgs)
+        {
+            OnPropertyChanged("LogName");
         }
 
         private void LogScreenshotsViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs args)

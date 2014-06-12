@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Forms;
+using KeyboardFormatterApp;
 using MouseKeyboardActivityMonitor;
 using MouseKeyboardActivityMonitor.WinApi;
 using Olf.GoldenHorse.Core.Models;
@@ -48,6 +49,7 @@ namespace Olf.GoldenHorse.Core.Services
         private InputType currentInputType;
         private IUIItem currentUiItem;
         private MappedItem currentMappedItem;
+        private KeyboardHelper keyboardHelper;
 
         private HashSet<Task> executingTasks = new HashSet<Task>(); 
 
@@ -71,6 +73,8 @@ namespace Olf.GoldenHorse.Core.Services
             mouseHookListener.Enabled = false;
             mouseHookListener.Enabled = false;
 
+            keyboardHelper = new KeyboardHelper();
+
             currentInputType = InputType.None;
         }
 
@@ -81,7 +85,12 @@ namespace Olf.GoldenHorse.Core.Services
                 Thread.Sleep(100);
                 if (currentInputType == InputType.Keyboard)
                 {
-                    CreateKeyboardOnScreenAction();
+                    if (keyboardHelper.KeyboardText != "")
+                    {
+                        CreateKeyboardOnScreenAction(keyboardHelper.KeyboardText);
+                        keyboardHelper.ResetKeyboardText();
+                    }
+                 
                 }
 
                 currentInputType = InputType.Mouse;
@@ -157,7 +166,7 @@ namespace Olf.GoldenHorse.Core.Services
             return findWindowElement;
         }
 
-        private void CreateKeyboardOnScreenAction()
+        private void CreateKeyboardOnScreenAction(String keys)
         {
             TestItem onScreenAction = CreateOnScreenAction();
             onScreenAction.ControlId = currentMappedItem.Id;
@@ -252,34 +261,60 @@ namespace Olf.GoldenHorse.Core.Services
             TakePictureAndSetCurrentBitmap();
         }
 
-        private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
+        private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs e)
         {
-            //identify if IsShift, IsCtrl, 
+            keyboardHelper.ManageKeysOnUp(e);
             TakePictureAndSetCurrentBitmap();
         }
 
         private int count = 0;
-        private string keys = "";
         private Bitmap currentBitmap;
         private DateTime currentBitmapDateTime;
 
-        private void KeyboardHookListenerOnKeyDown(object sender, KeyEventArgs keyEventArgs)
+        private void KeyboardHookListenerOnKeyDown(object sender, KeyEventArgs e)
         {
             Task task = new Task(() =>
             {
                 if (currentInputType == InputType.Mouse)
                 {
-                    keys = "";
+                    keyboardHelper.KeyboardText = "";
                 }
 
                 currentInputType = InputType.Keyboard;
 
-                char keyValue = (char)keyEventArgs.KeyValue;
+                if (keyboardHelper.IsFunctionKey(e))
+                {
+                    keyboardHelper.CreateKeyboardFunctionText(e);
+                    if (keyboardHelper.KeyboardText != null && keyboardHelper.KeyboardText != "")
+                    {
+                        CreateKeyboardOnScreenAction(keyboardHelper.KeyboardText);
+                        keyboardHelper.ResetKeyboardText();
+                    }
+                    CreateKeyboardOnScreenAction(keyboardHelper.KeyboardFunctionText);
+                    keyboardHelper.KeyboardFunctionText = "";
+                }
+                
+                else
+                {
+               
+                    if (keyboardHelper.IsCtrlPressed)
+                    {
+                        keyboardHelper.ManageKeysOnDown(e);
+                        if (keyboardHelper.KeyboardText != null && keyboardHelper.KeyboardText != "")
+                        {
+                            CreateKeyboardOnScreenAction(keyboardHelper.KeyboardText);
+                            keyboardHelper.ResetKeyboardText();
+                        }
+                        CreateKeyboardOnScreenAction(keyboardHelper.KeyboardFunctionText);
+                        keyboardHelper.KeyboardFunctionText = "";
+                    }
+                    else
+                    {
+                        keyboardHelper.ManageKeysOnDown(e);
+                    }
+                }
 
-                if (!keyEventArgs.Shift)
-                    keyValue = char.ToLower(keyValue);
-
-                keys += keyValue;
+                
                 //throw new NotImplementedException();
             });
 

@@ -6,5 +6,6 @@ namespace Olf.GoldenHorse.Foundation.DataAccess
     {
         void Save(Log log);
         Log Open(string filePath);
+        void Rename(ProjectFile logFile, string newName);
     }
 }

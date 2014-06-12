@@ -75,6 +75,9 @@ namespace EditBlockTest
                 else
                 {
                     //Remove the adorner from the adorner layer.
+                    if (layer == null)
+                        return;
+
                     Adorner[] adorners = layer.GetAdorners(textBlock);
                     if (adorners != null)
                     {

@@ -10,15 +10,26 @@ namespace Olf.GoldenHorse.Foundation.Models
     public class Test
     {
         private ObservableCollection<TestItem> testItems;
+        private string name;
 
         public event EventHandler TestChanged;
+        public event EventHandler NameChanged;
 
         [XmlIgnore]
         public Project Project { get; set; }
 
-        public ObservableCollection<Variable> Variables { get; set; } 
+        public ObservableCollection<Variable> Variables { get; set; }
 
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                OnNameChanged();
+                //RaiseTestChanged();
+            }
+        }
 
         public ObservableCollection<TestItem> TestItems
         {
@@ -83,6 +94,13 @@ namespace Olf.GoldenHorse.Foundation.Models
         protected virtual void OnTestChanged()
         {
             EventHandler handler = TestChanged;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnNameChanged()
+        {
+            EventHandler handler = NameChanged;
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }

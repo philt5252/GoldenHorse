@@ -61,6 +61,12 @@ namespace Olf.GoldenHorse.Core.ViewModels
             TestScreenshotsViewModel.PropertyChanged += TestScreenshotsViewModelOnPropertyChanged;
             TestShellViewModel.TestDetailsViewModel.PropertyChanged+=TestDetailsViewModelOnPropertyChanged;
             Test.TestChanged += TestOnTestChanged;
+            Test.NameChanged += TestOnNameChanged;
+        }
+
+        private void TestOnNameChanged(object sender, EventArgs eventArgs)
+        {
+            TestName = test.Name;
         }
 
         private void TestOnTestChanged(object sender, EventArgs eventArgs)

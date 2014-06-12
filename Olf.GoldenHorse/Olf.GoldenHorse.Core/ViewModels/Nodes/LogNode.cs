@@ -12,6 +12,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
         private readonly ProjectFile logFile;
         private readonly ILogFileManager logFileManager;
         private readonly ILogController logController;
+        private Log log;
 
         public override bool IsRenamable
         {
@@ -23,7 +24,12 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
             get { return logFile.Name.Replace(DefaultData.LogExtension, ""); }
             set
             {
+                if (Equals(logFile.Name.Replace(DefaultData.LogExtension, ""), value))
+                    return;
+
                 logFileManager.Rename(logFile, value);
+
+                log.Name = value;
             }
         }
 
@@ -39,7 +45,7 @@ namespace Olf.GoldenHorse.Core.ViewModels.Nodes
 
         protected virtual void ExecuteDefaultCommand()
         {
-            Log log = logFileManager.Open(logFile.FilePath);
+            log = logFileManager.Open(logFile.FilePath);
             log.Owner = logFile.Project;
             logController.ShowLog(log);
         }

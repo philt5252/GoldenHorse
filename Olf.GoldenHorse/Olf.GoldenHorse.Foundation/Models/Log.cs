@@ -9,7 +9,18 @@ namespace Olf.GoldenHorse.Foundation.Models
 {
     public class Log
     {
-        public string Name { get; set; }
+        public event EventHandler NameChanged;
+
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value; 
+                OnNameChanged();
+            }
+        }
+
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
@@ -32,6 +43,7 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         private LogItem currentLogItem;
         private ObservableCollection<LogItem> logItems;
+        private string name;
 
         public Log()
         {
@@ -57,6 +69,13 @@ namespace Olf.GoldenHorse.Foundation.Models
         public void EndLogItemChildren()
         {
             
+        }
+
+        protected virtual void OnNameChanged()
+        {
+            EventHandler handler = NameChanged;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
         public void CreateLogItem(LogItemCategory logItemCategory, string description, Screenshot screenshot = null)

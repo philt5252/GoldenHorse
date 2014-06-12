@@ -99,7 +99,13 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 TestItem.OperationChanged += TestItemOnOperationChanged;
                 TestItem.ParametersChanged += TestItemOnParametersChanged;
                 TestItem.DescriptionChanged += TestItemOnDescriptionChanged;
+                TestItem.ControlChanged += TestItemOnControlChanged;
             }
+        }
+
+        private void TestItemOnControlChanged(object sender, EventArgs eventArgs)
+        {
+            OnPropertyChanged("Name");
         }
 
         private void TestItemOnDescriptionChanged(object sender, EventArgs eventArgs)

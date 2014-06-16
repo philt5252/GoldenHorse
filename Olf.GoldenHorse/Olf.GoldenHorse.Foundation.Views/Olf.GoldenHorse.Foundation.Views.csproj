@@ -53,6 +53,7 @@
     <Compile Include="Factories\ITestItemEditorWindowFactory.cs" />
     <Compile Include="Factories\ITestShellViewFactory.cs" />
     <Compile Include="Factories\ITestMainShellViewFactory.cs" />
+    <Compile Include="Factories\IVariableTableWindowFactory.cs" />
     <Compile Include="IViewWithDataContext.cs" />
     <Compile Include="IWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

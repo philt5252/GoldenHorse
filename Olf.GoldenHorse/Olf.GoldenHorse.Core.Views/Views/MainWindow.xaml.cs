@@ -47,16 +47,3 @@ namespace Olf.GoldenHorse.Core.Views
         }
     }
 }
-
-
-            RegionManager.UpdateRegions();
-
-            Closing += OnClosing;
-        }
-
-        private void OnClosing(object sender, CancelEventArgs cancelEventArgs)
-        {
-            regionManager.Regions.Remove("MainShellViewRegion");
-        }
-    }
-}

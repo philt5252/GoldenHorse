@@ -103,6 +103,7 @@
     <Compile Include="Factories\TestItemEditorWindowFactory.cs" />
     <Compile Include="Factories\TestMainShellViewFactory.cs" />
     <Compile Include="Factories\TestShellViewFactory.cs" />
+    <Compile Include="Factories\VariableTableWindowFactory.cs" />
     <Compile Include="TreeViewSelect.cs" />
     <Compile Include="Views\MainShellView.xaml.cs">
       <DependentUpon>MainShellView.xaml</DependentUpon>
@@ -186,6 +187,9 @@
     </Compile>
     <Compile Include="Views\Variables\VariableManagerView.xaml.cs">
       <DependentUpon>VariableManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Variables\VariableTableEditView.xaml.cs">
+      <DependentUpon>VariableTableEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Variables\VariableTableWindow.xaml.cs">
       <DependentUpon>VariableTableWindow.xaml</DependentUpon>
@@ -309,6 +313,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Variables\VariableManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Variables\VariableTableEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,18 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:variables="clr-namespace:Olf.GoldenHorse.Core.Views.Views.Variables"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="300*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <ToolBar Grid.Row="0">
-            <xctk:IntegerUpDown Width="75" Name="ColumnsUpDown"  Increment="1" Value="1" Maximum="100" Minimum="0" ></xctk:IntegerUpDown>
-            <xctk:IntegerUpDown Width="75" Margin="5,0,0,0" Name="RowsUpDown" Increment="1" Value="0" Maximum="100" Minimum="0"></xctk:IntegerUpDown>
-        </ToolBar>
-        <DataGrid Name="dataGrid" Grid.Row="1"></DataGrid>
-            
+        <variables:VariableTableEditView x:Name="VaraibleTableEditView"></variables:VariableTableEditView>
     </Grid>
 </views:WindowBase>

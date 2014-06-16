@@ -26,11 +26,5 @@ namespace Olf.GoldenHorse.Core.Views.Views.Variables
             InitializeComponent();
         }
 
-        private void ColumnsUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            IntegerUpDown integerUpDown = sender as IntegerUpDown;
-
-            dataGrid.Columns.Add(new DataGridTemplateColumn()); 
-        }
     }
 }

@@ -49,10 +49,12 @@ namespace Olf.GoldenHorse.Core.Models
 
             if (!double.TryParse(delayParameter.GetValue(), out seconds))
             {
-                log.CreateLogItem(LogItemCategory.Event, "Not a valid value for seconds", null);
+                log.CreateLogItem(LogItemCategory.Error, "Not a valid value for seconds", null);
+                return false;
             }
 
             Thread.Sleep(TimeSpan.FromSeconds(seconds));
+            log.CreateLogItem(LogItemCategory.Event, string.Format("Delayed {0} second(s)", seconds));
 
             return true;
         }

@@ -49,11 +49,12 @@
             <TextBox IsReadOnly="False" Height="26" Margin="10,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
                      Width="415" Text="{Binding SelectedObject.Name, Mode=OneWay}"/>
             
-            <views:TreeViewSelect Margin="10,72,0,0" Height="73" Width="415" VerticalAlignment="Top" ItemsSource="{Binding Objects}"
-                                  SelectedObject="{Binding TempSelectedObject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" Foreground="White" HorizontalAlignment="Left">
+            <views:TreeViewSelect Margin="10,72,0,0" Height="150" Width="415" VerticalAlignment="Top" ItemsSource="{Binding Objects}"
+                                  SelectedObject="{Binding TempSelectedObject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                  Background="Transparent" Foreground="White" HorizontalAlignment="Left">
                 <views:TreeViewSelect.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                            <TextBlock Text="{Binding FriendlyName}"></TextBlock>
+                            <TextBlock Text="{Binding FriendlyName}" Foreground="White"></TextBlock>
                     </HierarchicalDataTemplate>
                 </views:TreeViewSelect.ItemTemplate>
                     <i:Interaction.Triggers>

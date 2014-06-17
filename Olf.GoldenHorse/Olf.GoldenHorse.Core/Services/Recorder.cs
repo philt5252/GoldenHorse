@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Forms;
 using KeyboardFormatterApp;
+using Microsoft.Practices.Prism;
 using MouseKeyboardActivityMonitor;
 using MouseKeyboardActivityMonitor.WinApi;
 using Olf.GoldenHorse.Core.Models;
@@ -50,8 +51,10 @@ namespace Olf.GoldenHorse.Core.Services
         private IUIItem currentUiItem;
         private MappedItem currentMappedItem;
         private KeyboardHelper keyboardHelper;
+        private HashSet<Task> executingTasks = new HashSet<Task>();
+        private List<TestItem> newTestItems = new List<TestItem>(); 
 
-        private HashSet<Task> executingTasks = new HashSet<Task>(); 
+        public int InsertPosition { get; set; }
 
         public Recorder(Test test)
         {
@@ -76,6 +79,8 @@ namespace Olf.GoldenHorse.Core.Services
             keyboardHelper = new KeyboardHelper();
 
             currentInputType = InputType.None;
+
+            InsertPosition = -1;
         }
 
         private void MouseHookListenerOnMouseUp(object sender, MouseEventArgs mouseEventArgs)
@@ -131,7 +136,8 @@ namespace Olf.GoldenHorse.Core.Services
 
                 action.Screenshot.Adornments.Add(new ClickAdornment {ClickX = screenshotX, ClickY = screenshotY});
 
-                test.TestItems.Add(action);
+                newTestItems.Add(action);
+                //test.TestItems.Add(action);
             });
 
             AddTaskToExecutingListAndStart(task);
@@ -142,17 +148,6 @@ namespace Olf.GoldenHorse.Core.Services
             executingTasks.Add(task);
             task.ContinueWith(t => executingTasks.Remove(task));
             task.Start();
-
-            /*Task last = executingTasks.LastOrDefault();
-            executingTasks.Add(task);
-            task.ContinueWith(t => executingTasks.Remove(task));
-
-            if (last != null)
-                last.ContinueWith(t => task);
-            else
-                task.Start();
-
-            task.Start();*/
         }
 
         private static AutomationElement FindWindowElement(IUIItem whiteControl)
@@ -185,7 +180,8 @@ namespace Olf.GoldenHorse.Core.Services
                     Height = (int)currentUiItem.Bounds.Height
                 });
 
-            test.TestItems.Add(onScreenAction);
+            newTestItems.Add(onScreenAction);
+            //test.TestItems.Add(onScreenAction);
         }
 
         private TestItem CreateOnScreenAction()
@@ -350,6 +346,18 @@ namespace Olf.GoldenHorse.Core.Services
 
                 task.Wait();
             }
+
+            if (InsertPosition < 0)
+            {
+                test.TestItems.AddRange(newTestItems);
+                return;
+            }
+
+            for (int i = 0; i < newTestItems.Count; i++)
+            {
+                test.TestItems.Insert(InsertPosition + i, newTestItems[0]);
+            }
+            
         }
 
         public void Pause()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -35,6 +36,27 @@ namespace Olf.GoldenHorse.Core.Views
         {
             InitializeComponent();
             
+            DataContextChanged += OnDataContextChanged;
+        }
+
+        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            ITestDetailsViewModel testDetailsViewModel = DataContext as ITestDetailsViewModel;
+
+            if (testDetailsViewModel == null)
+                return;
+
+            testDetailsViewModel.PropertyChanged += TestDetailsViewModelOnPropertyChanged;
+        }
+
+        private void TestDetailsViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            ITestDetailsViewModel testDetailsViewModel = sender as ITestDetailsViewModel;
+
+            if (args.PropertyName == "SelectedTestItem")
+            {
+                detailsTlv.SelectedObject = testDetailsViewModel.SelectedTestItem;
+            }
         }
 
         public void OpenObjectEditWindow(object sender, MouseEventArgs args)

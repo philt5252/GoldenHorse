@@ -10,5 +10,7 @@ namespace Olf.GoldenHorse.Foundation.Controllers
         void PauseRecord();
         void ResumeRecorder();
         void AppendToTest(Test test);
+        void AppendToStart(Test test);
+        void AppendAtIndex(Test test, int index);
     }
 }

@@ -41,7 +41,9 @@ namespace Olf.GoldenHorse.Core.ViewModels
         public ICommand PlayCommand { get; protected set; }
         public ICommand DeleteSelectedItemCommand { get; private set; }
 
-        public ICommand AppendToTestCommand { get; protected set; }
+        public ICommand AppendToEndOfTestCommand { get; protected set; }
+        public ICommand AppendToStartOfTestCommand { get; protected set; }
+        public ICommand AppendAfterSelectedItemCommand { get; protected set; }
  
         public TestDetailsViewModel(Test test, ITestItemViewModelFactory testItemViewModelFactory,
             ILogFileManager logFileManager, ILogController logController, 
@@ -59,8 +61,25 @@ namespace Olf.GoldenHorse.Core.ViewModels
             //TestItems = new ObservableCollection<ITestItemViewModel>(test.TestItems.Select(testItemViewModelFactory.Create));
             RefreshTestItems();
             PlayCommand = new DelegateCommand(ExecutePlayCommand);
-            AppendToTestCommand = new DelegateCommand(ExecuteAppendToTestCommand);
+            AppendToEndOfTestCommand = new DelegateCommand(ExecuteAppendToEndOfTestCommand);
+            AppendToStartOfTestCommand = new DelegateCommand(ExecuteAppendToStartOfTestCommand);
+            AppendAfterSelectedItemCommand = new DelegateCommand(ExecuteAppendAfterSelectedItemCommand);
             DeleteSelectedItemCommand = new DelegateCommand(ExecuteDeleteSelectedItemCommand);
+        }
+
+        private void ExecuteAppendAfterSelectedItemCommand()
+        {
+            if (SelectedTestItem != null && SelectedTestItem.TestItem != null)
+            {
+                int index = test.TestItems.IndexOf(SelectedTestItem.TestItem);
+
+                recordingController.AppendAtIndex(test, index+1);
+            }          
+        }
+
+        private void ExecuteAppendToStartOfTestCommand()
+        {
+            recordingController.AppendToStart(test);
         }
 
         private void AddTestItemEventHandler(TestItem testItem)
@@ -77,6 +96,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
             }
 
             RefreshTestItems();
+
+            SelectedTestItem = TestItems.FirstOrDefault(t => t.TestItem == testItem);
 
             /*
             ITestItemViewModel testitemViewModel = testItemViewModelFactory.Create(testItem);
@@ -140,7 +161,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
             //SelectedTestItem = TestItems[index];
         }
 
-        private void ExecuteAppendToTestCommand()
+        private void ExecuteAppendToEndOfTestCommand()
         {
             recordingController.AppendToTest(test);
         }

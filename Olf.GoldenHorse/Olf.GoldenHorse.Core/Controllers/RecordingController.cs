@@ -121,5 +121,17 @@ namespace Olf.GoldenHorse.Core.Controllers
         {
             ShowRecordingWindow(test);
         }
+
+        public void AppendToStart(Test test)
+        {
+            ShowRecordingWindow(test);
+            recorder.InsertPosition = 0;
+        }
+
+        public void AppendAtIndex(Test test, int index)
+        {
+            ShowRecordingWindow(test);
+            recorder.InsertPosition = index;
+        }
     }
 }

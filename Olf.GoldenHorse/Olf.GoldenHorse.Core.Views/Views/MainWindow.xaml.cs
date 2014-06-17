@@ -47,3 +47,4 @@ namespace Olf.GoldenHorse.Core.Views
         }
     }
 }
+

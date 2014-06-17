@@ -80,6 +80,7 @@
     <Compile Include="Controllers\IRecordingController.cs" />
     <Compile Include="Controllers\ITestController.cs" />
     <Compile Include="Controllers\ITestItemController.cs" />
+    <Compile Include="Controllers\IVariableController.cs" />
     <Compile Include="DefaultData.cs" />
     <Compile Include="Events\AddTestItemEvent.cs" />
     <Compile Include="Factories\Services\IRecorderFactory.cs" />

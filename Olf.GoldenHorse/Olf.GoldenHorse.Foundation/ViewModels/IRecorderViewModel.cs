@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Input;
 
 namespace Olf.GoldenHorse.Foundation.ViewModels
@@ -8,5 +9,6 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
         ICommand RecordCommand { get; }
         ICommand PauseCommand { get; }
         ICommand StopCommand { get; }
+        String State { get; set; }
     }
 }

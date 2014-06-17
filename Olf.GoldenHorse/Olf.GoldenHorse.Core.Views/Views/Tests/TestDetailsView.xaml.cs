@@ -34,8 +34,11 @@ namespace Olf.GoldenHorse.Core.Views
         public TestDetailsView()
         {
             InitializeComponent();
-            
+            //detailsTlv.IsExpanded = true;
+
         }
+
+
 
         public void OpenObjectEditWindow(object sender, MouseEventArgs args)
         {
@@ -125,6 +128,18 @@ namespace Olf.GoldenHorse.Core.Views
             e.Handled = true;
         }
 
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scv = (ScrollViewer)sender;
+            scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
+          
+        }
+
+        private void DetailsTlv_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.Delta);
+        }
+
         private void detailsTlv_PreviewKeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Delete)
@@ -133,6 +148,39 @@ namespace Olf.GoldenHorse.Core.Views
 
                 testDetailsViewModel.DeleteSelectedItemCommand.Execute(null);
             }
+        }
+
+        private void ExpandEvent(object sender, RoutedEventArgs e)
+        {
+            detailsTlv.IsExpanded = true;
+   
+
+        }
+
+        private void UnexpandEvent(object sender, RoutedEventArgs e)
+        {
+            detailsTlv.IsExpanded = false;
+        }
+
+        private void ExecuteSelectedAppendCommand(object sender, MouseButtonEventArgs e)
+        {
+            ComboBoxItem appendItem = appendCbx.SelectedItem as ComboBoxItem;
+            string content = appendItem.Content as string;
+            ITestDetailsViewModel testDetailsViewModel = DataContext as ITestDetailsViewModel;
+            if (content.Contains("End"))
+            {
+              
+                
+            }
+            else if (content.Contains("Beginning"))
+            {
+                
+            }
+            else if (content.Contains("Selected"))
+            {
+
+            }
+                
         }
 
     }

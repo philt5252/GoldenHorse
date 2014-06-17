@@ -352,6 +352,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Images\Subtract.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="WhiteImages\Addacomment_8818.png" />
     <Content Include="WhiteImages\Bubble_16xLG.png" />
     <Resource Include="WhiteImages\TestItemImages\keyboard.png">

@@ -60,10 +60,11 @@
             <Image Width="15" Height="15" Margin="0,0,-2,0" Source="../../WhiteImages/GreenCircleCheck.png"></Image>
             <CheckBox  Content="Validations" Foreground="White" IsChecked="{Binding ShowCheckpoints}" Margin="5,5,10,5"></CheckBox>
         </StackPanel>
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+        <ScrollViewer Name="scrollViewer" Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
             <customControls:TreeListView  AllowsColumnReorder="True" ItemsSource="{Binding LogItems}"
                             HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
-                            SelectedObject="{Binding SelectedLogItem, Mode=TwoWay}" Background="White" RequestBringIntoView="HandleRequestBringIntoView">
+                            SelectedObject="{Binding SelectedLogItem, Mode=TwoWay}" Background="White" 
+                                          RequestBringIntoView="HandleRequestBringIntoView" PreviewMouseWheel="DetailsTlv_PreviewMouseWheel">
                 <!--Create an item template to specify the ItemsSource-->
                 <customControls:TreeListView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Items}" />

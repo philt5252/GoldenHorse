@@ -20,6 +20,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
     {
         private readonly IRecorder recorder;
         private readonly IRecordingController recordingController;
+        private string state;
 
         public string CurrentTest
         {
@@ -34,6 +35,12 @@ namespace Olf.GoldenHorse.Core.ViewModels
         public ICommand RecordCommand { get; protected set; }
         public ICommand PauseCommand { get; protected set; }
         public ICommand StopCommand { get; protected set; }
+
+        public String State 
+        {
+            get { return state; }
+            set { state = value; }
+        }
 
         public RecorderViewModel(IRecorder recorder,
             IEnumerable<IValidationListItemViewModel> validationList,
@@ -55,7 +62,10 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         protected virtual void ExecutePauseCommand()
         {
+            State = "Pause";
             recorder.Pause();
+
+      
         }
 
         protected virtual bool CanExecuteStopCommand()
@@ -65,8 +75,11 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         protected virtual void ExecuteStopCommand()
         {
+            State = "Stopped";
             recorder.Stop();
             recordingController.StopRecord();
+        
+
         }
 
         protected virtual bool CanExecuteRecordCommand()
@@ -76,7 +89,9 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         protected virtual void ExecuteRecordCommand()
         {
+            State = "Recording";
             recorder.Record();
+      
         }
     }
 }

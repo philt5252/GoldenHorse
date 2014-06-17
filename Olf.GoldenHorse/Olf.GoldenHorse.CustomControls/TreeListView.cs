@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace Olf.GoldenHorse.CustomControls
 {
@@ -25,6 +27,8 @@ namespace Olf.GoldenHorse.CustomControls
         {
             Columns = new GridViewColumnCollection();
         }
+
+       
 
         #region Properties
         /// <summary>
@@ -66,6 +70,15 @@ namespace Olf.GoldenHorse.CustomControls
             typeof(TreeListView),
             new UIPropertyMetadata(null));
         #endregion
+
+        public static readonly DependencyProperty IsExpandedProperty = DependencyProperty.Register(
+            "IsExpanded", typeof (bool), typeof (TreeListView), new PropertyMetadata(default(bool)));
+
+        public bool IsExpanded
+        {
+            get { return (bool) GetValue(IsExpandedProperty); }
+            set { SetValue(IsExpandedProperty, value); }
+        }   
 
         public static readonly DependencyProperty SelectedObjectProperty = DependencyProperty.Register(
             "SelectedObject", typeof (object), typeof (TreeListView), new PropertyMetadata(default(object)));

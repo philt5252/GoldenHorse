@@ -164,6 +164,22 @@
                         <Style TargetType="TreeViewItem">
                             <Setter Property="Template" Value="{StaticResource TreeListViewItem}"/>
                             <Setter Property="IsExpanded" Value="True"/>
+                            
+                           <!-- <Style.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions >
+                                        <Condition Property="customControls:TreeListView.IsExpanded" Value="False"></Condition>
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="IsExpanded" Value="False" />
+                                </MultiTrigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions >
+                                        <Condition Property="customControls:TreeListView.IsExpanded" Value="True"></Condition>
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="IsExpanded" Value="True" />
+                                </MultiTrigger>
+                            </Style.Triggers>-->
+                            
                            
                         </Style>
                         <!--Apply this style to all 'TreeListViewExpander's.-->

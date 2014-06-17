@@ -82,30 +82,65 @@
                     HorizontalAlignment="Right" >
                 <StackPanel Orientation="Horizontal">
                     <Image Height="20" Width="20" Source="../../Images/EditTask_32x32.png"></Image>
+                    <ComboBox Name="appendCbx" Height="30" Width="70" MouseLeftButtonDown="ExecuteSelectedAppendCommand">
+                        <ComboBoxItem Content="Append to End of Test">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding Path=AppendToEndCommand, Mode=OneWay}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="Append to Beginning of Test">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding Path=AppendToBeginningCommand, Mode=OneWay}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="Append to Selected Item of Test">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding Path=AppendToSelectedItemCommand, Mode=OneWay}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBoxItem>
+                    </ComboBox>
                     <TextBlock Background="Transparent"
                                Foreground="White" Text="Append to Test">
                     </TextBlock>
                 </StackPanel>
             </Button>
-            <Button Command="{Binding AddVariableCommand}"  Margin="0,0,17,0" Height="25" 
+            <Button Click="ExpandEvent" Margin="0,0,17,0" Height="25" 
                 VerticalAlignment="Top" Background="Transparent" 
                     HorizontalAlignment="Right" >
                 <StackPanel Orientation="Horizontal">
                     <Image Height="20" Width="20" Source="../../Images/Add.png"></Image>
                     <TextBlock Background="Transparent"
-                               Foreground="White" Text="Add Variable"></TextBlock>
+                               Foreground="White" Text="Expand All"></TextBlock>
                 </StackPanel>
             </Button>
+            <Button Click="UnexpandEvent" Margin="0,0,17,0" Height="25" 
+                VerticalAlignment="Top" Background="Transparent" 
+                    HorizontalAlignment="Right" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="20" Width="20" Source="../../Images/Subtract.png"></Image>
+                    <TextBlock Background="Transparent"
+                               Foreground="White" Text="Unexpand All"></TextBlock>
+                </StackPanel>
+            </Button>
+            
         </ToolBar>
 
        
-        <ScrollViewer Name="scrollViewer" Grid.Row="1" HorizontalScrollBarVisibility="Visible" Background="DarkGray" VerticalScrollBarVisibility="Visible">
+        <ScrollViewer Name="scrollViewer" Grid.Row="1" HorizontalScrollBarVisibility="Visible" Background="DarkGray" 
+                      VerticalScrollBarVisibility="Visible" >
            
 
             <customControls:TreeListView Name="detailsTlv"  AllowsColumnReorder="True" ItemsSource="{Binding TestItems}"
                             HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
                             SelectedObject="{Binding SelectedTestItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="White"
-                                          RequestBringIntoView="HandleRequestBringIntoView" PreviewKeyUp="detailsTlv_PreviewKeyUp">
+                                          RequestBringIntoView="HandleRequestBringIntoView" PreviewKeyUp="detailsTlv_PreviewKeyUp"
+                                         PreviewMouseWheel="DetailsTlv_PreviewMouseWheel">
        
                 <!--Create an item template to specify the ItemsSource-->
             <customControls:TreeListView.ItemTemplate>

@@ -29,5 +29,10 @@ namespace Olf.GoldenHorse.Core.Views.Views.Logs
         {
             e.Handled = true;
         }
+
+        private void DetailsTlv_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.Delta);
+        }
     }
 }

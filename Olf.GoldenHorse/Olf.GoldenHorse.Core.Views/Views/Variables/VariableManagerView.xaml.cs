@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Olf.GoldenHorse.Foundation.Models;
+using Olf.GoldenHorse.Foundation.ViewModels;
 using Olf.GoldenHorse.Foundation.Views;
 
 namespace Olf.GoldenHorse.Core.Views.Views.Variables
@@ -25,6 +26,17 @@ namespace Olf.GoldenHorse.Core.Views.Views.Variables
         {
             InitializeComponent();
             typeColumn.ItemsSource = Enum.GetValues(typeof(VariableType)).Cast<VariableType>().ToArray();
+        }
+
+        private void EditTableVariableEvent(object sender, MouseButtonEventArgs e)
+        {
+            DataGrid dataGrid = sender as DataGrid;
+            Variable variable = dataGrid.SelectedItem as Variable;
+            if (variable.VariableType == VariableType.TableValue)
+            {
+                IVariableManagerViewModel variableManagerViewModel = DataContext as IVariableManagerViewModel;
+                variableManagerViewModel.EditTableVariableCommand.Execute(null);
+            }
         }
     }
 }

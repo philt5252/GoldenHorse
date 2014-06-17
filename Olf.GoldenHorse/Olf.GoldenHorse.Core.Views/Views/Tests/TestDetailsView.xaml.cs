@@ -191,16 +191,16 @@ namespace Olf.GoldenHorse.Core.Views
             ITestDetailsViewModel testDetailsViewModel = DataContext as ITestDetailsViewModel;
             if (content.Contains("End"))
             {
-              
+              testDetailsViewModel.AppendToEndOfTestCommand.Execute(null);
                 
             }
             else if (content.Contains("Beginning"))
             {
-                
+                testDetailsViewModel.AppendToStartOfTestCommand.Execute(null);
             }
             else if (content.Contains("Selected"))
             {
-
+                testDetailsViewModel.AppendAfterSelectedItemCommand.Execute(null);
             }
                 
         }

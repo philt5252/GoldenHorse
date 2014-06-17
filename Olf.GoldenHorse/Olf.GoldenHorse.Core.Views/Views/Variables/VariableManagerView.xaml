@@ -34,7 +34,7 @@
 
     <Grid Background="{StaticResource brush1}">
         <DataGrid Margin="10" HorizontalAlignment="Stretch" Background="Transparent" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding Variables}"
-                  RowHeight="20" ColumnHeaderHeight="24" CanUserResizeRows="True" MouseDoubleClick="EditTableVariableEvent">
+                  SelectedItem="{Binding SelectedVariable}"  RowHeight="20" ColumnHeaderHeight="24" CanUserResizeRows="True" MouseDoubleClick="EditTableVariableEvent">
             <DataGrid.Columns>
                 <DataGridComboBoxColumn x:Name="typeColumn"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"  Header="Type" Width="100" SelectedItemBinding="{Binding VariableType}" ></DataGridComboBoxColumn>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Name" Width="200" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>

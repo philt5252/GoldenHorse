@@ -118,6 +118,7 @@
     <Compile Include="Factories\ViewModels\TestScreenshotsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\TestShellViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\VariableManagerViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\VariableTableEditViewModelFactory.cs" />
     <Compile Include="Helpers\RegionHelpers.cs" />
     <Compile Include="Models\ControlHighlightAdornment.cs" />
     <Compile Include="Models\DelayOperation.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="ViewModels\ValidateTextAtPointListItemViewModel.cs" />
     <Compile Include="ViewModels\ValidationListItemViewModel.cs" />
     <Compile Include="ViewModels\VariableManagerViewModel.cs" />
+    <Compile Include="ViewModels\VariableTableEditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Olf.GoldenHorse.Foundation.DataAccess\Olf.GoldenHorse.Foundation.DataAccess.csproj">

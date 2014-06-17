@@ -29,6 +29,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<TestController>().As<ITestController>().SingleInstance();
             builder.RegisterType<LogController>().As<ILogController>().SingleInstance();
             builder.RegisterType<TestItemController>().As<ITestItemController>().SingleInstance();
+            builder.RegisterType<VariableController>().As<IVariableController>().SingleInstance();
 
             builder.RegisterType<Recorder>().As<IRecorder>();
 
@@ -61,6 +62,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<GetObjectScreenSelectionViewModel>().As<IGetObjectScreenSelectionViewModel>();
             builder.RegisterType<OperationParameterViewModel>().As<IOperationParameterViewModel>();
             builder.RegisterType<VariableManagerViewModel>().As<IVariableManagerViewModel>();
+            builder.RegisterType<VariableTableEditViewModel>().As<IVariableTableEditViewModel>();
 
             builder.RegisterType<TestNode>().AsSelf();
             builder.RegisterType<TestGroupNode>().AsSelf();
@@ -96,6 +98,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<GetObjectScreenSelectionViewModelFactory>().As<IGetObjectScreenSelectionViewModelFactory>().SingleInstance();
             builder.RegisterType<OperationParameterViewModelFactory>().As<IOperationParameterViewModelFactory>().SingleInstance();
             builder.RegisterType<VariableManagerViewModelFactory>().As<IVariableManagerViewModelFactory>().SingleInstance();
+            builder.RegisterType<VariableTableEditViewModelFactory>().As<IVariableTableEditViewModelFactory>().SingleInstance();
 
             builder.RegisterType<TestNodeFactory>().As<ITestNodeFactory>().SingleInstance();
             builder.RegisterType<TestGroupNodeFactory>().As<ITestGroupNodeFactory>().SingleInstance();

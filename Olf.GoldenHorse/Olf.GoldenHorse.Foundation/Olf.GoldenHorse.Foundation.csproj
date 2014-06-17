@@ -110,6 +110,7 @@
     <Compile Include="Factories\ViewModels\ITestScreenshotsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestShellViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\IVariableManagerViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\IVariableTableEditViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\Nodes\IProjectNodeFactory.cs" />
     <Compile Include="Factories\ViewModels\Nodes\IProjectSuiteLogsNodeFactory.cs" />
     <Compile Include="Factories\ViewModels\Nodes\IProjectSuiteProjectsNodeFactory.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="ViewModels\ITestShellViewModel.cs" />
     <Compile Include="ViewModels\IValidationListItemViewModel.cs" />
     <Compile Include="ViewModels\IVariableManagerViewModel.cs" />
+    <Compile Include="ViewModels\IVariableTableEditViewModel.cs" />
     <Compile Include="ViewModels\Nodes\IDisplayNode.cs" />
     <Compile Include="Factories\ViewModels\Nodes\ILogNodeFactory.cs" />
     <Compile Include="Factories\ViewModels\Nodes\IProjectLogsNodeFactory.cs" />

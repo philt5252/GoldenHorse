@@ -1,4 +1,6 @@
-﻿namespace Olf.GoldenHorse.Foundation.Models
+﻿using System.Data;
+
+namespace Olf.GoldenHorse.Foundation.Models
 {
     public class Variable
     {
@@ -6,6 +8,8 @@
         public string Name { get; set; }
         public VariableType VariableType { get; set; }
         public object DefaultValue { get; set; }
+
+        public DataTable DataTableValue { get; set; }
 
         public object Value
         {

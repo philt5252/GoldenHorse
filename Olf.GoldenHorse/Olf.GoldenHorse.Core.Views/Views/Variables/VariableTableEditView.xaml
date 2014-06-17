@@ -17,12 +17,14 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="300*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBox Height="30" Width="200" Grid.Row="0" Text="{Binding ColumnName, Mode=TwoWay}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBox>
         <Button Content="Add Column" Command="{Binding AddColumnCommand}" Height="30" Width="100" Grid.Row="0" Margin="215,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <DataGrid  Name="dataGrid" Margin="10" CanUserAddRows="True" AutoGenerateColumns="True" Grid.Row="1" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Variables}">
         </DataGrid>
+        <Button Height="30" Width="100" Content="Save" Command="{Binding SaveCommand}" Grid.Row="2" Margin="290,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></Button>
 
     </Grid>
 </UserControl>

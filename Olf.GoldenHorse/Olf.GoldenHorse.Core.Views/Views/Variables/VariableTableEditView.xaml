@@ -5,14 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="400">
-    <Grid>
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="brush1">
+            <SolidColorBrush.Color>
+                <Color A="255" B="67" G="67" R="67"></Color>
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource brush1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="300*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBox Height="30" Width="200" Grid.Row="0" Text="{Binding ColumnName, Mode=TwoWay}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBox>
         <Button Content="Add Column" Command="{Binding AddColumnCommand}" Height="30" Width="100" Grid.Row="0" Margin="215,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <DataGrid Name="dataGrid" Margin="10" CanUserAddRows="True" AutoGenerateColumns="True" Grid.Row="1" 
+        <DataGrid  Name="dataGrid" Margin="10" CanUserAddRows="True" AutoGenerateColumns="True" Grid.Row="1" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Variables}"></DataGrid>
 
     </Grid>

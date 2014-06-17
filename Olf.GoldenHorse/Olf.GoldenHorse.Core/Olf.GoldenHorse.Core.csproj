@@ -121,6 +121,7 @@
     <Compile Include="Helpers\RegionHelpers.cs" />
     <Compile Include="Models\ControlHighlightAdornment.cs" />
     <Compile Include="Models\DelayOperation.cs" />
+    <Compile Include="Models\LogMessageOperation.cs" />
     <Compile Include="Models\ValidateTextAtPointOperation.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -143,6 +144,7 @@
     <Compile Include="ViewModels\LogDetailsViewModel.cs" />
     <Compile Include="ViewModels\LogItemViewModel.cs" />
     <Compile Include="ViewModels\LogMainShellViewModel.cs" />
+    <Compile Include="ViewModels\LogMessageOperationViewModel.cs" />
     <Compile Include="ViewModels\LogScreenshotsViewModel.cs" />
     <Compile Include="ViewModels\LogShellViewModel.cs" />
     <Compile Include="ViewModels\MainShellViewModel.cs" />

@@ -6,6 +6,7 @@
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:variables="clr-namespace:Olf.GoldenHorse.Core.Views.Views.Variables"
+                  GlowBrush="{StaticResource AccentColorBrush2}"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>

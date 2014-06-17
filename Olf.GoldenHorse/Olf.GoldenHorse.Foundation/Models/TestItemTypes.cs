@@ -7,5 +7,6 @@
         public const string WindowGroup = "WindowGroup";
         public const string ProcessGroup = "ProcessGroup";
         public const string Delay = "Delay";
+        public const string Message = "Message";
     }
 }

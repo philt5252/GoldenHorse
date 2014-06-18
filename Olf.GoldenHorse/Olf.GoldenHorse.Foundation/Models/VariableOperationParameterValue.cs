@@ -3,11 +3,24 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
     public class VariableOperationParameterValue : OperationParameterValue
     {
+        public Variable GetVariable()
+        {
+            IEnumerable<Variable> variables = this.OwningOperationParameter.OwningTestItem.Test.Variables;
+
+            Variable variable = variables.FirstOrDefault(v => Equals(v.Name, DisplayValue));
+
+            if (variable == null)
+                throw new Exception(string.Format("Variable named {0} was not found.", DisplayValue));
+
+            return variable;
+        }
+
         public override string GetValue()
         {
             IEnumerable<Variable> variables = this.OwningOperationParameter.OwningTestItem.Test.Variables;
@@ -33,7 +46,7 @@ namespace Olf.GoldenHorse.Foundation.Models
                 if(variable == null)
                     throw new Exception(string.Format("Variable named {0} was not found.", DisplayValue));
 
-                return variable.DataTableValue.Rows[0][colName].ToString();
+                return variable.DataTableValue.Rows[variable.CurrentTableRow][colName].ToString();
             }
 
             

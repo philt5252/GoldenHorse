@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Events;
 using Olf.GoldenHorse.Foundation.Controllers;
@@ -195,11 +196,22 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         private void RefreshTestItems()
         {
+            IList<ITestItemViewModel> testItemViewModels = new List<ITestItemViewModel>();
+
+            CreateTestDetailsViewModels(test.TestItems, ref testItemViewModels);
+
+            TestItems = new ObservableCollection<ITestItemViewModel>(testItemViewModels); ;
+
+            OnPropertyChanged("TestItems");
+        }
+
+        private void CreateTestDetailsViewModels(IList<TestItem> testItems, ref IList<ITestItemViewModel> finalList )
+        {
             ITestItemViewModel processTestItemViewModel = null;
             ITestItemViewModel windowTestItemViewModel = null;
             IList<ITestItemViewModel> testItemViewModels = new List<ITestItemViewModel>();
 
-            foreach (TestItem testItem in test.TestItems)
+            foreach (TestItem testItem in testItems)
             {
                 ITestItemViewModel testItemViewModel = testItemViewModelFactory.Create(testItem);
 
@@ -213,7 +225,6 @@ namespace Olf.GoldenHorse.Core.ViewModels
                         processTestItemViewModel = null;
                         continue;
                     }
-                        
 
                     MappedItem window = test.Project.AppManager.GetWindow(testItem.Control);
 
@@ -250,11 +261,16 @@ namespace Olf.GoldenHorse.Core.ViewModels
                     processTestItemViewModel = null;
                 }
 
-            }
-            
-            TestItems = new ObservableCollection<ITestItemViewModel>(testItemViewModels);
+                if (testItem.Children != null)
+                {
+                    IList<ITestItemViewModel> childrenList = new List<ITestItemViewModel>();
+                    CreateTestDetailsViewModels(testItem.Children, ref childrenList);
 
-            OnPropertyChanged("TestItems");
+                    testItemViewModel.ChildItems.AddRange(childrenList);
+                }
+            }
+
+            finalList = testItemViewModels;
         }
 
         private List<TestItem> GetTestItems(IEnumerable<ITestItemViewModel> testItemViewModels)

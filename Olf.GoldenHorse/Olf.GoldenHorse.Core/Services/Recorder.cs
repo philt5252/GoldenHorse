@@ -331,7 +331,11 @@ namespace Olf.GoldenHorse.Core.Services
 
         public void Stop()
         {
-            
+            if (CurrentRecorderState == RecorderState.Stopped)
+            {
+                return;
+            }
+
             CurrentRecorderState = RecorderState.Stopped;
 
             mouseHookListener.Enabled = false;

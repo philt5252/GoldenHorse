@@ -70,16 +70,13 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
             foreach (Variable variable in parameter.OwningTestItem.Test.Variables)
             {
+                vars.Add(variable.Name);
                 if (variable.VariableType == VariableType.TableValue)
                 {
                     foreach (DataColumn col in variable.DataTableValue.Columns)
                     {
                         vars.Add(variable.Name + "[" + col.ColumnName + "]");
                     }
-                }
-                else
-                {
-                    vars.Add(variable.Name);
                 }
             }
 

@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Xml.Serialization;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
@@ -8,6 +9,9 @@ namespace Olf.GoldenHorse.Foundation.Models
         public string Name { get; set; }
         public VariableType VariableType { get; set; }
         public object DefaultValue { get; set; }
+
+        [XmlIgnore]
+        public int CurrentTableRow { get; set; }
 
         public DataTable DataTableValue { get; set; }
 

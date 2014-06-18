@@ -127,6 +127,7 @@
     <Compile Include="Factories\ViewModels\VariableTableEditViewModelFactory.cs" />
     <Compile Include="Helpers\RegionHelpers.cs" />
     <Compile Include="Models\ControlHighlightAdornment.cs" />
+    <Compile Include="Models\DataDrivenLoopOperation.cs" />
     <Compile Include="Models\DelayOperation.cs" />
     <Compile Include="Models\LogMessageOperation.cs" />
     <Compile Include="Models\ValidateTextAtPointOperation.cs" />

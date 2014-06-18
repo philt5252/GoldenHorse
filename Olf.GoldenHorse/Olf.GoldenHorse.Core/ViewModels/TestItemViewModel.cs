@@ -50,7 +50,28 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         public virtual string Name
         {
-            get { return TestItem == null ? name : (TestItem.Control == null ? name : TestItem.Control.FriendlyName); }
+            get
+            {
+                if (TestItem == null)
+                    return name;
+                else
+                {
+                    if (TestItem.Control == null)
+                    {
+                        if (TestItem.Operation != null)
+                        {
+                            return TestItem.Operation.Name;
+                        }
+                        else
+                        {
+                            return name;
+                        }
+                    }
+                    else
+                        return TestItem.Control.FriendlyName;
+                }
+                    
+            }
             set
             {
                 name = value;

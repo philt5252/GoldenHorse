@@ -1,6 +1,9 @@
 
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Windows.Documents;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Olf.GoldenHorse.Foundation.Controllers;
@@ -63,7 +66,24 @@ namespace Olf.GoldenHorse.Core.ViewModels
             Value = parameter.Value.ToString();
             SelectedValidationMode = parameter.Mode.ToString();
 
-            Variables = parameter.OwningTestItem.Test.Variables.Select(v => v.Name).ToArray();
+            List<string> vars = new List<string>();
+
+            foreach (Variable variable in parameter.OwningTestItem.Test.Variables)
+            {
+                if (variable.VariableType == VariableType.TableValue)
+                {
+                    foreach (DataColumn col in variable.DataTableValue.Columns)
+                    {
+                        vars.Add(variable.Name + "[" + col.ColumnName + "]");
+                    }
+                }
+                else
+                {
+                    vars.Add(variable.Name);
+                }
+            }
+
+            Variables = vars.ToArray();
         }
 
         private void ExecuteCancelParameterCommand()

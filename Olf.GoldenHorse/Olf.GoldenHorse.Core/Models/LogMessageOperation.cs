@@ -44,7 +44,7 @@ namespace Olf.GoldenHorse.Core.Models
         public override bool Play(MappedItem control, Log log)
         {
 
-            log.CreateLogItem(LogItemCategory.Event, string.Format("Message: {0}", messageParameter.GetValue()));
+            log.CreateLogItem(LogItemCategory.Message, string.Format("Message: {0}", messageParameter.GetValue()));
 
             return true;
         }

@@ -353,11 +353,13 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 if (testItemViewModel.TestItem != null )
                 {
                     testItemViewModel.TestItem.Children = new ObservableCollection<TestItem>();
+                    newParentTestItem = testItemViewModel.TestItem;
+
                     if (parentTestItem != null)
                         parentTestItem.Children.Add(testItemViewModel.TestItem);
                     else
                     {
-                        newParentTestItem = testItemViewModel.TestItem;
+                        
                         testItems.Add(newParentTestItem);
                     }
                 }

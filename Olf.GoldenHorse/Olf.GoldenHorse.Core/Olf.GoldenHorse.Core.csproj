@@ -129,6 +129,7 @@
     <Compile Include="Models\ControlHighlightAdornment.cs" />
     <Compile Include="Models\DataDrivenLoopOperation.cs" />
     <Compile Include="Models\DelayOperation.cs" />
+    <Compile Include="Models\LogGroupOperation.cs" />
     <Compile Include="Models\LogMessageOperation.cs" />
     <Compile Include="Models\ValidateTextAtPointOperation.cs" />
     <Compile Include="Resources.Designer.cs">
@@ -151,6 +152,7 @@
     <Compile Include="ViewModels\GetObjectScreenSelectionViewModel.cs" />
     <Compile Include="ViewModels\GetObjectViewModel.cs" />
     <Compile Include="ViewModels\LogDetailsViewModel.cs" />
+    <Compile Include="ViewModels\LogGroupOperationViewModel.cs" />
     <Compile Include="ViewModels\LogItemViewModel.cs" />
     <Compile Include="ViewModels\LogMainShellViewModel.cs" />
     <Compile Include="ViewModels\LogMessageOperationViewModel.cs" />

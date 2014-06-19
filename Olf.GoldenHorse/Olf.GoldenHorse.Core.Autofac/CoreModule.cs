@@ -114,6 +114,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<DelayOperationViewModel>().As<IOperationViewModel>();
             builder.RegisterType<LogMessageOperationViewModel>().As<IOperationViewModel>();
             builder.RegisterType<DataDrivenLoopOperationViewModel>().As<IOperationViewModel>();
+            builder.RegisterType<LogGroupOperationViewModel>().As<IOperationViewModel>();
         }
     }
 }

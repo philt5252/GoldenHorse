@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace Olf.GoldenHorse.Foundation.Models
@@ -38,6 +39,9 @@ namespace Olf.GoldenHorse.Foundation.Models
             }
         }
 
+        private IList<LogItem> currentLogItems;
+        private Stack<IList<LogItem>> logItemsStack = new Stack<IList<LogItem>>();
+        
         [XmlIgnore]
         public ILogOwner Owner { get; set; }
 
@@ -48,6 +52,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         public Log()
         {
             LogItems = new ObservableCollection<LogItem>();
+            currentLogItems = LogItems;
         }
 
         private void LogItemsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
@@ -63,12 +68,13 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         public void StartLogItemChildren()
         {
-            
+            logItemsStack.Push(currentLogItems);
+            currentLogItems = currentLogItems.Last().Children;
         }
 
         public void EndLogItemChildren()
         {
-            
+            currentLogItems = logItemsStack.Pop();
         }
 
         protected virtual void OnNameChanged()
@@ -86,7 +92,7 @@ namespace Olf.GoldenHorse.Foundation.Models
             logItem.Category = logItemCategory;
             logItem.Screenshot = screenshot;
 
-            LogItems.Add(logItem);
+            currentLogItems.Add(logItem);
         }
     }
 }

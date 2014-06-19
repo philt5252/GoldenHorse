@@ -9,5 +9,6 @@
         public const string Delay = "Delay";
         public const string Message = "Message";
         public const string DataDrivenLoop = "DataDrivenLoop";
+        public const string LogGroup = "LogGroup";
     }
 }

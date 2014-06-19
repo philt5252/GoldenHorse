@@ -102,6 +102,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         public ICommand EditOperationCommand { get; protected set; }
         public ICommand EditParameterCommand { get; protected set; }
         public ICommand EditDescriptionCommand { get; protected set; }
+        public bool SupportsChildren { get { return TestItem == null ? false : TestItem.SupportsChildren; } }
 
         public TestItemViewModel(TestItem testItem, ITestItemController testItemController)
         {

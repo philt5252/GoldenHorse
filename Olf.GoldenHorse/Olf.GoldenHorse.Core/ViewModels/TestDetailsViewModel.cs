@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Practices.Prism;
@@ -24,7 +25,62 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private readonly IAppController appController;
         private readonly IRecordingController recordingController;
         private ITestItemViewModel selectedTestItem;
-        public ObservableCollection<ITestItemViewModel> TestItems { get; protected set; }
+        private ObservableCollection<ITestItemViewModel> testItems;
+
+        public ObservableCollection<ITestItemViewModel> TestItems
+        {
+            get { return testItems; }
+            protected set
+            {
+                if (testItems != null)
+                {
+                    testItems.CollectionChanged -= TestItemsOnCollectionChanged;
+
+                    UnsubscribeTestItems(testItems);
+                }
+                
+                testItems = value; 
+
+                testItems.CollectionChanged += TestItemsOnCollectionChanged;
+
+                SubscribeTestItems(testItems);
+
+                foreach (ITestItemViewModel testItemViewModel in testItems)
+                {
+                    testItemViewModel.ChildItems.CollectionChanged += TestItemsOnCollectionChanged;
+                }
+            }
+        }
+
+        private void SubscribeTestItems(IList<ITestItemViewModel> testItemViewModels )
+        {
+            foreach (var testItemViewModel in testItemViewModels)
+            {
+                testItemViewModel.ChildItems.CollectionChanged += TestItemsOnCollectionChanged;
+                SubscribeTestItems(testItemViewModel.ChildItems);
+            }
+        }
+
+        private void UnsubscribeTestItems(IList<ITestItemViewModel> testItemViewModels)
+        {
+            foreach (var testItemViewModel in testItemViewModels)
+            {
+                testItemViewModel.ChildItems.CollectionChanged -= TestItemsOnCollectionChanged;
+                UnsubscribeTestItems(testItemViewModel.ChildItems);
+            }
+        }
+
+        private void TestItemsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+        {
+            foreach (ITestItemViewModel testItemViewModel in sender as IList<ITestItemViewModel>)
+            {
+                testItemViewModel.ChildItems.CollectionChanged -= TestItemsOnCollectionChanged;
+                testItemViewModel.ChildItems.CollectionChanged += TestItemsOnCollectionChanged;
+            }
+
+            test.TestItems = new ObservableCollection<TestItem>(GetTestItems(TestItems));
+            //RefreshTestItems();
+        }
 
         public ITestItemViewModel SelectedTestItem
         {
@@ -45,6 +101,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         public ICommand AppendToEndOfTestCommand { get; protected set; }
         public ICommand AppendToStartOfTestCommand { get; protected set; }
         public ICommand AppendAfterSelectedItemCommand { get; protected set; }
+        public ICommand RefreshCommand { get; protected set; }
  
         public TestDetailsViewModel(Test test, ITestItemViewModelFactory testItemViewModelFactory,
             ILogFileManager logFileManager, ILogController logController, 
@@ -66,6 +123,12 @@ namespace Olf.GoldenHorse.Core.ViewModels
             AppendToStartOfTestCommand = new DelegateCommand(ExecuteAppendToStartOfTestCommand);
             AppendAfterSelectedItemCommand = new DelegateCommand(ExecuteAppendAfterSelectedItemCommand);
             DeleteSelectedItemCommand = new DelegateCommand(ExecuteDeleteSelectedItemCommand);
+            RefreshCommand = new DelegateCommand(ExecuteRefresh);
+        }
+
+        private void ExecuteRefresh()
+        {
+            RefreshTestItems();
         }
 
         private void ExecuteAppendAfterSelectedItemCommand()
@@ -284,10 +347,10 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         private void GetTestItems(IEnumerable<ITestItemViewModel> testItemViewModels, List<TestItem> testItems, TestItem parentTestItem)
         {
-            TestItem newParentTestItem = null;
+            TestItem newParentTestItem = parentTestItem;
             foreach (ITestItemViewModel testItemViewModel in testItemViewModels)
             {
-                if (testItemViewModel.TestItem != null)
+                if (testItemViewModel.TestItem != null )
                 {
                     testItemViewModel.TestItem.Children = new ObservableCollection<TestItem>();
                     if (parentTestItem != null)
@@ -300,7 +363,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
                 }
                 else
                 {
-                    newParentTestItem = null;
+                    //newParentTestItem = null;
                 }
                 GetTestItems(testItemViewModel.ChildItems, testItems, newParentTestItem);
             }

@@ -6,30 +6,46 @@ using Olf.GoldenHorse.Core.Models;
 using Olf.GoldenHorse.Foundation.Events;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.ViewModels;
+using TestStack.White.Recording;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
     public class LogMessageOperationViewModel : IOperationViewModel
     {
+        private readonly Test test;
         private AddTestItemEvent addTestItemEvent;
         public Bitmap Icon { get { return null; } }
         public string Name { get { return "Log Message"; }}
          public ICommand AddToTestCommand { get; protected set; }
+        
 
-         public LogMessageOperationViewModel(IEventAggregator eventAggregator)
+        public LogMessageOperationViewModel(Test test, IEventAggregator eventAggregator)
         {
+            this.test = test;
             AddToTestCommand = new DelegateCommand(ExecuteAddToTestCommand);
 
             addTestItemEvent = eventAggregator.GetEvent<AddTestItemEvent>();
         }
 
+        public TestItem GetNewTestItem()
+        {
+            return CreateTestItem();
+        }
+
         private void ExecuteAddToTestCommand()
+        {
+            var testItem = CreateTestItem();
+
+            addTestItemEvent.Publish(testItem);
+        }
+
+        private TestItem CreateTestItem()
         {
             TestItem testItem = new TestItem();
             testItem.Type = TestItemTypes.Message;
-            testItem.Operation = new LogMessageOperation{Message = "Default Message"};
-
-            addTestItemEvent.Publish(testItem);
+            testItem.Operation = new LogMessageOperation {Message = "Default Message"};
+            testItem.Test = test;
+            return testItem;
         }
     }
 }

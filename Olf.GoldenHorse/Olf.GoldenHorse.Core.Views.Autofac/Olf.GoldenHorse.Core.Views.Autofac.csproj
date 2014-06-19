@@ -61,6 +61,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GongSolutions.Wpf.DragDrop\GongSolutions.Wpf.DragDrop %28NET4%29.csproj">
+      <Project>{0C6674CC-6D49-414A-9B41-D4E175028FFB}</Project>
+      <Name>GongSolutions.Wpf.DragDrop %28NET4%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Olf.GoldenHorse.Core.Views\Olf.GoldenHorse.Core.Views.csproj">
       <Project>{721B2B6F-D044-4169-8521-9D34DEABFCCA}</Project>
       <Name>Olf.GoldenHorse.Core.Views</Name>

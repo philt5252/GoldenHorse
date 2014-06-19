@@ -98,7 +98,12 @@ namespace Olf.GoldenHorse.CustomControls
         {
             try
             {
+                
+
                 var tvi = GetContainerFromItem(this, item);
+
+                if (Equals(this.SelectedItem, tvi.Header))
+                    return;
 
                 tvi.Focus();
                 tvi.IsSelected = true;
@@ -114,6 +119,9 @@ namespace Olf.GoldenHorse.CustomControls
 
         private TreeViewItem GetContainerFromItem(ItemsControl parent, object item)
         {
+            if (parent == null)
+                return null;
+
             var found = parent.ItemContainerGenerator.ContainerFromItem(item);
             if (found == null)
             {

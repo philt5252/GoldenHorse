@@ -63,6 +63,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<OperationParameterViewModel>().As<IOperationParameterViewModel>();
             builder.RegisterType<VariableManagerViewModel>().As<IVariableManagerViewModel>();
             builder.RegisterType<VariableTableEditViewModel>().As<IVariableTableEditViewModel>();
+            
 
             builder.RegisterType<TestNode>().AsSelf();
             builder.RegisterType<TestGroupNode>().AsSelf();
@@ -112,6 +113,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<OnScreenActionOperationViewModel>().As<IOperationViewModel>();
             builder.RegisterType<DelayOperationViewModel>().As<IOperationViewModel>();
             builder.RegisterType<LogMessageOperationViewModel>().As<IOperationViewModel>();
+            builder.RegisterType<DataDrivenLoopOperationViewModel>().As<IOperationViewModel>();
         }
     }
 }

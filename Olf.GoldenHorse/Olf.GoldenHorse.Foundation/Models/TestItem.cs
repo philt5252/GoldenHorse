@@ -127,10 +127,13 @@ namespace Olf.GoldenHorse.Foundation.Models
             get { return DescriptionOverride ?? DefaultDescription(); }
         }
 
+        public bool SupportsChildren { get; set; }
+
         public TestItem()
         {
             Children = new ObservableCollection<TestItem>();
             Id = Guid.NewGuid().ToString();
+            SupportsChildren = false;
         }
 
         public override string GetScreenshotFolder()

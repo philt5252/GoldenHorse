@@ -343,12 +343,20 @@ namespace Olf.GoldenHorse.Core.Services
 
             while (executingTasks.Count > 0)
             {
-                Task task = executingTasks.FirstOrDefault();
+                try
+                {
+                    Task task = executingTasks.FirstOrDefault();
 
-                if (task == null)
-                    continue;
+                    if (task == null)
+                        continue;
 
-                task.Wait();
+                    task.Wait();
+                }
+                catch (Exception e)
+                {
+                    
+                }
+                
             }
 
             if (InsertPosition < 0)

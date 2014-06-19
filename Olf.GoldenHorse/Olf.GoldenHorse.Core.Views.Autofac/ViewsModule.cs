@@ -35,6 +35,8 @@ namespace Olf.GoldenHorse.Core.Views.Autofac
             builder.RegisterType<EditParameterWindow>().AsSelf();
             builder.RegisterType<VariableTableWindow>().AsSelf();
 
+            builder.RegisterType<OperationDragHandler>().AsSelf();
+
             builder.RegisterType<MainWindowFactory>().As<IMainWindowFactory>().SingleInstance();
             builder.RegisterType<MainShellViewFactory>().As<IMainShellViewFactory>().SingleInstance();
             builder.RegisterType<NewProjectWindowFactory>().As<INewProjectWindowFactory>().SingleInstance();

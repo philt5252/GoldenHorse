@@ -6,6 +6,7 @@
              xmlns:views="clr-namespace:Olf.GoldenHorse.Core.Views"
              xmlns:treeview="clr-namespace:Olf.GoldenHorse.Core.Views.Themes"
              xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls"
+               xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
              xmlns:converters="clr-namespace:Olf.GoldenHorse.Core.Views.Converters"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
     <UserControl.Resources>
@@ -128,7 +129,16 @@
                                Foreground="White" Text="Unexpand All"></TextBlock>
                 </StackPanel>
             </Button>
-            
+
+            <Button Command="{Binding RefreshCommand}" Margin="0,0,17,0" Height="25" 
+                VerticalAlignment="Top" Background="Transparent" 
+                    HorizontalAlignment="Right" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Background="Transparent"
+                               Foreground="White" Text="Refresh"></TextBlock>
+                </StackPanel>
+            </Button>
+
         </ToolBar>
 
        
@@ -140,7 +150,9 @@
                             HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
                             SelectedObject="{Binding SelectedTestItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="White"
                                           RequestBringIntoView="HandleRequestBringIntoView" PreviewKeyUp="detailsTlv_PreviewKeyUp"
-                                         PreviewMouseWheel="DetailsTlv_PreviewMouseWheel">
+                                         PreviewMouseWheel="DetailsTlv_PreviewMouseWheel"  dd:DragDrop.IsDragSource="True"
+                      dd:DragDrop.IsDropTarget="True"
+                      dd:DragDrop.UseDefaultDragAdorner="True">
        
                 <!--Create an item template to specify the ItemsSource-->
             <customControls:TreeListView.ItemTemplate>

@@ -38,6 +38,7 @@ namespace Olf.GoldenHorse.Core.Views
             //detailsTlv.IsExpanded = true;
 
             DataContextChanged += OnDataContextChanged;
+            
         }
 
         private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
@@ -204,7 +205,6 @@ namespace Olf.GoldenHorse.Core.Views
             }
                 
         }
-
     }
 
     

@@ -7,7 +7,8 @@
              xmlns:treeview="clr-namespace:Olf.GoldenHorse.Core.Views.Themes"
              xmlns:customControls="clr-namespace:Olf.GoldenHorse.CustomControls;assembly=Olf.GoldenHorse.CustomControls"
              xmlns:converters="clr-namespace:Olf.GoldenHorse.Core.Views.Converters"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
     <UserControl.Resources>
 
         <SolidColorBrush x:Key="MyBorderBrush" Color="LightGoldenrodYellow"></SolidColorBrush>
@@ -77,39 +78,36 @@
                                Foreground="White" Text="Run Test"></TextBlock>
                 </StackPanel>
             </Button>
-            <Button Command="{Binding AppendToTestCommand}"  Margin="0,0,17,0" Height="25" 
-                VerticalAlignment="Top" Background="Transparent" 
-                    HorizontalAlignment="Right" >
-                <StackPanel Orientation="Horizontal">
-                    <Image Height="20" Width="20" Source="../../Images/EditTask_32x32.png"></Image>
-                    <ComboBox Name="appendCbx" Height="30" Width="70" MouseLeftButtonDown="ExecuteSelectedAppendCommand">
-                        <ComboBoxItem Content="Append to End of Test">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonDown">
-                                    <i:InvokeCommandAction Command="{Binding Path=AppendToEndCommand, Mode=OneWay}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </ComboBoxItem>
-                        <ComboBoxItem Content="Append to Beginning of Test">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonDown">
-                                    <i:InvokeCommandAction Command="{Binding Path=AppendToBeginningCommand, Mode=OneWay}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </ComboBoxItem>
-                        <ComboBoxItem Content="Append to Selected Item of Test">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonDown">
-                                    <i:InvokeCommandAction Command="{Binding Path=AppendToSelectedItemCommand, Mode=OneWay}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </ComboBoxItem>
-                    </ComboBox>
-                    <TextBlock Background="Transparent"
-                               Foreground="White" Text="Append to Test">
-                    </TextBlock>
-                </StackPanel>
-            </Button>
+           
+          
+            <xctk:DropDownButton x:Name="dropDownButton"  HorizontalAlignment="Left" Margin="3,0,0,0" 
+                                         VerticalAlignment="Top" 
+                                         Width="130" Height="25" Click="ClickMainCommand" >
+                <Grid>
+                    <TextBlock Text="Append to Test"  HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+                      
+
+                <xctk:DropDownButton.DropDownContent>
+                            <StackPanel>
+                                <Button Name="appendEndBtn" Command ="{Binding AppendToEndOfTestCommand}" Click="Content1Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Background="Transparent" Foreground="White" Text="Append to End of Test"></TextBlock>
+                                    </StackPanel>
+                                </Button> 
+                                <Button Command ="{Binding AppendToStartOfTestCommand}" Click="Content1Click">
+                                    <StackPanel Orientation="Horizontal">
+                                         <TextBlock Background="Transparent" Foreground="White" Text="Append to Start of Test"></TextBlock>
+                                    </StackPanel>
+                                </Button>   
+                                <Button  Command ="{Binding AppendAfterSelectedItemCommand}" Click="Content1Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Background="Transparent" Foreground="White" Text="Append after Selected Item"></TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </xctk:DropDownButton.DropDownContent>
+                </xctk:DropDownButton>
             <Button Click="ExpandEvent" Margin="0,0,17,0" Height="25" 
                 VerticalAlignment="Top" Background="Transparent" 
                     HorizontalAlignment="Right" >
@@ -168,21 +166,21 @@
 
                 </GridViewColumn>
                 <!--Create the first column containing the expand button and the type name.-->
-                <GridViewColumn Header="Item" Width="200">
+                    <GridViewColumn Header="Item" Width="200">
 
-                    <GridViewColumn.CellTemplate >
+                        <GridViewColumn.CellTemplate >
                         
                         <DataTemplate >
                             <Border Name="ObjectBorder"  Style="{StaticResource BorderStyle}" Margin="-6,0,-6,0">
-                                <StackPanel Orientation="Horizontal" >
-                                    <Grid >
-                                        <customControls:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1" IsChecked="True" />
-                                        <!-- <TreeViewItem Template="{StaticResource TreeViewItemLines}"></TreeViewItem>-->
-                                    </Grid>
                                     <StackPanel Orientation="Horizontal" >
-                                        <!--The Expander Button (can be used in any column (typically the first one))-->
+                                        <Grid >
+                                            <customControls:TreeListViewExpander Margin="0,1,0,0" Canvas.ZIndex="1" IsChecked="True" />
+                                            <!-- <TreeViewItem Template="{StaticResource TreeViewItemLines}"></TreeViewItem>-->
+                                        </Grid>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <!--The Expander Button (can be used in any column (typically the first one))-->
                                             <Image Width ="20" Height ="20"  Source="{Binding Converter={StaticResource TestItemImageConverter} }"></Image>
-                                   
+
                                             <Label Content="{Binding Name, Mode=OneWay}" HorizontalAlignment="Left" >
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseDoubleClick">
@@ -191,8 +189,8 @@
                                                 </i:Interaction.Triggers>
                                             </Label>
                                         </StackPanel>
-                                </StackPanel>
-                            </Border>
+                                    </StackPanel>
+                                </Border>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>

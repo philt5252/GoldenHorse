@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AvalonDock.Controls;
 using Olf.GoldenHorse.Foundation.ViewModels;
 using Olf.GoldenHorse.Foundation.Views;
 
@@ -38,6 +39,10 @@ namespace Olf.GoldenHorse.Core.Views
             //detailsTlv.IsExpanded = true;
 
             DataContextChanged += OnDataContextChanged;
+
+            dropDownButton.Command = null;
+
+
         }
 
         private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
@@ -184,27 +189,37 @@ namespace Olf.GoldenHorse.Core.Views
             detailsTlv.IsExpanded = false;
         }
 
-        private void ExecuteSelectedAppendCommand(object sender, MouseButtonEventArgs e)
+        private void Content1Click(object sender, RoutedEventArgs e)
         {
-            ComboBoxItem appendItem = appendCbx.SelectedItem as ComboBoxItem;
-            string content = appendItem.Content as string;
-            ITestDetailsViewModel testDetailsViewModel = DataContext as ITestDetailsViewModel;
-            if (content.Contains("End"))
-            {
-              testDetailsViewModel.AppendToEndOfTestCommand.Execute(null);
-                
-            }
-            else if (content.Contains("Beginning"))
-            {
-                testDetailsViewModel.AppendToStartOfTestCommand.Execute(null);
-            }
-            else if (content.Contains("Selected"))
-            {
-                testDetailsViewModel.AppendAfterSelectedItemCommand.Execute(null);
-            }
-                
+            Button button = sender as Button;
+
+            if (button == null)
+                return;
+
+            dropDownButton.IsOpen = false;
+            dropDownButton.Content = button.Content;
+            dropDownButton.Command = button.Command;
         }
 
+        private void ClickMainCommand(object sender, RoutedEventArgs e)
+        {
+            Xceed.Wpf.Toolkit.DropDownButton button = sender as Xceed.Wpf.Toolkit.DropDownButton;
+            Point position = Mouse.GetPosition(button);
+            if (position.X > (.8*button.ActualWidth))
+            {
+                dropDownButton.Command = null;
+            }
+            else
+            {
+                
+            }
+        }
+
+        
+
+      
+
+        
     }
 
     

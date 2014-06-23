@@ -32,6 +32,8 @@ namespace Olf.GoldenHorse.Core.Views.Views.Variables
         {
             DataGrid dataGrid = sender as DataGrid;
             Variable variable = dataGrid.SelectedItem as Variable;
+           
+            Point position = e.GetPosition(defaultValueColumn as IInputElement);
             if (variable.VariableType == VariableType.TableValue)
             {
                 IVariableManagerViewModel variableManagerViewModel = DataContext as IVariableManagerViewModel;

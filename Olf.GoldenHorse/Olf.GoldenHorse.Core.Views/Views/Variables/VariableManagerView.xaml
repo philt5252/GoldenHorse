@@ -38,7 +38,7 @@
             <DataGrid.Columns>
                 <DataGridComboBoxColumn x:Name="typeColumn"  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"  Header="Type" Width="100" SelectedItemBinding="{Binding VariableType}" ></DataGridComboBoxColumn>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Name" Width="200" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Default Value" Width="200" Binding="{Binding DefaultValue, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                <DataGridTextColumn x:Name="defaultValueColumn" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Default Value" Width="200" Binding="{Binding DefaultValue, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Description" Width="150*" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged}">
                        
                 </DataGridTextColumn>

@@ -11,24 +11,39 @@ namespace Olf.GoldenHorse.Core.ViewModels
 {
     public class OnScreenActionOperationViewModel : IOperationViewModel
     {
+        private readonly Test test;
         private AddTestItemEvent addTestItemEvent;
         public Bitmap Icon { get { return null; } }
         public string Name { get { return "On Screen Action"; } }
         public ICommand AddToTestCommand { get; protected set; }
+        
 
-        public OnScreenActionOperationViewModel(IEventAggregator eventAggregator)
+        public OnScreenActionOperationViewModel(Test test, IEventAggregator eventAggregator)
         {
+            this.test = test;
             AddToTestCommand = new DelegateCommand(ExecuteAddToTestCommand);
 
             addTestItemEvent = eventAggregator.GetEvent<AddTestItemEvent>();
         }
 
+        public TestItem GetNewTestItem()
+        {
+            return CreateTestItem();
+        }
+
         private void ExecuteAddToTestCommand()
+        {
+            var testItem = CreateTestItem();
+
+            addTestItemEvent.Publish(testItem);
+        }
+
+        private TestItem CreateTestItem()
         {
             TestItem testItem = new TestItem();
             testItem.Type = TestItemTypes.OnScreenAction;
-
-            addTestItemEvent.Publish(testItem);
+            testItem.Test = test;
+            return testItem;
         }
     }
 }

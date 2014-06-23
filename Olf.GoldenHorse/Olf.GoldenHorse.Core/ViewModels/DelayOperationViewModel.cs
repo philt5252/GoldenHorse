@@ -11,13 +11,16 @@ namespace Olf.GoldenHorse.Core.ViewModels
 {
     public class DelayOperationViewModel : IOperationViewModel
     {
+        private readonly Test test;
         private AddTestItemEvent addTestItemEvent;
         public Bitmap Icon { get { return null; } }
         public string Name { get { return "Delay"; } }
         public ICommand AddToTestCommand { get; protected set; }
+        
 
-        public DelayOperationViewModel(IEventAggregator eventAggregator)
+        public DelayOperationViewModel(Test test, IEventAggregator eventAggregator)
         {
+            this.test = test;
             AddToTestCommand = new DelegateCommand(ExecuteAddToTestCommand);
 
             addTestItemEvent = eventAggregator.GetEvent<AddTestItemEvent>();
@@ -25,11 +28,23 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         private void ExecuteAddToTestCommand()
         {
-            TestItem testItem = new TestItem();
-            testItem.Type = TestItemTypes.Delay;
-            testItem.Operation = new DelayOperation{Delay = 5};
+            var testItem = CreateTestItem();
 
             addTestItemEvent.Publish(testItem);
+        }
+
+        public TestItem GetNewTestItem()
+        {
+            return CreateTestItem();
+        }
+
+        private TestItem CreateTestItem()
+        {
+            TestItem testItem = new TestItem();
+            testItem.Type = TestItemTypes.Delay;
+            testItem.Operation = new DelayOperation {Delay = 5};
+            testItem.Test = test;
+            return testItem;
         }
     }
 }

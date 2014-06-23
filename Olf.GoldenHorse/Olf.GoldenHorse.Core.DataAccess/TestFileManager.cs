@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -35,6 +36,8 @@ namespace Olf.GoldenHorse.Core.DataAccess
                         || t.IsSubclassOf(typeof(OperationParameterValue))
                         || t.IsSubclassOf(typeof(ScreenshotAdornment))));
             }
+
+            types.Add(typeof(DataTable));
 
             serializer = new XmlSerializer(typeof(Test), types.ToArray());
         }

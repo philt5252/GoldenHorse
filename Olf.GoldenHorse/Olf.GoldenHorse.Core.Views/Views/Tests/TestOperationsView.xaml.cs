@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Practices.ServiceLocation;
 using Olf.GoldenHorse.Foundation.ViewModels;
 using Olf.GoldenHorse.Foundation.Views;
 
@@ -29,6 +30,8 @@ namespace Olf.GoldenHorse.Core.Views
         {
             InitializeComponent();
             count = 0;
+            OperationDragHandler operationDragHandler = ServiceLocator.Current.GetInstance<OperationDragHandler>();
+            operationLbx.SetValue(GongSolutions.Wpf.DragDrop.DragDrop.DragHandlerProperty, operationDragHandler);
         }
 
         private void DoubleClick(object sender, MouseButtonEventArgs e)

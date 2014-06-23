@@ -39,7 +39,7 @@ namespace Olf.GoldenHorse.Core.Views
             //detailsTlv.IsExpanded = true;
 
             DataContextChanged += OnDataContextChanged;
-
+            
             dropDownButton.Command = null;
 
 

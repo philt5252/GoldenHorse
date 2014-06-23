@@ -22,5 +22,6 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
         ICommand EditOperationCommand { get; }
         ICommand EditParameterCommand { get; }
         ICommand EditDescriptionCommand { get; }
+        bool SupportsChildren { get; }
     }
 }

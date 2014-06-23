@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             
+               xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
              d:DesignHeight="300" d:DesignWidth="300" Tag="Test Operations" >
 
     <UserControl.Resources>
@@ -20,8 +20,10 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-       <ListBox ItemsSource="{Binding Operations}" SelectedItem="{Binding SelectedOperation}" 
-                AlternationCount="2" Background="White">
+       <ListBox x:Name="operationLbx" ItemsSource="{Binding Operations}" SelectedItem="{Binding SelectedOperation}" 
+                AlternationCount="2" Background="White" dd:DragDrop.IsDragSource="True"
+                      dd:DragDrop.IsDropTarget="True"
+                      dd:DragDrop.UseDefaultDragAdorner="True">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel MouseDown="DoubleClick">

@@ -67,7 +67,7 @@
                                           RequestBringIntoView="HandleRequestBringIntoView" PreviewMouseWheel="DetailsTlv_PreviewMouseWheel">
                 <!--Create an item template to specify the ItemsSource-->
                 <customControls:TreeListView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding Items}" />
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}" />
                 </customControls:TreeListView.ItemTemplate>
                 <customControls:TreeListView.Columns >
                     <GridViewColumn Header="" Width="30">

@@ -14,6 +14,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         private Operation operation;
         private string controlId;
         private string type;
+        private Test test;
 
         public event EventHandler OperationChanged;
 
@@ -75,7 +76,22 @@ namespace Olf.GoldenHorse.Foundation.Models
         }
 
         [XmlIgnore]
-        public Test Test { get; set; }
+        public Test Test
+        {
+            get { return test; }
+            set
+            {
+                test = value;
+
+                if (Children != null)
+                {
+                    foreach (TestItem testItem in Children)
+                    {
+                        testItem.Test = test;
+                    }
+                }
+            }
+        }
 
         [XmlIgnore]
         public AppManager AppManager {get { return Test.Project.AppManager; } }
@@ -111,10 +127,13 @@ namespace Olf.GoldenHorse.Foundation.Models
             get { return DescriptionOverride ?? DefaultDescription(); }
         }
 
+        public bool SupportsChildren { get; set; }
+
         public TestItem()
         {
             Children = new ObservableCollection<TestItem>();
             Id = Guid.NewGuid().ToString();
+            SupportsChildren = false;
         }
 
         public override string GetScreenshotFolder()

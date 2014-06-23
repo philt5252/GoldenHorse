@@ -20,7 +20,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
             this.testOperationsViewModelFactory = testOperationsViewModelFactory;
 
             TestDetailsViewModel = testDetailsViewModelFactory.Create(test);
-            TestOperationsViewModel = testOperationsViewModelFactory.Create();
+            TestOperationsViewModel = testOperationsViewModelFactory.Create(test);
         }
     }
 }

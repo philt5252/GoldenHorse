@@ -81,11 +81,25 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         protected virtual void ExecuteFinishCommand()
         {
-            if(!testItem.Test.TestItems.Contains(testItem))
+            if (!TestItemsContains(testItem.Test.TestItems, testItem))
                 testItem.Test.TestItems.Add(testItem);
 
             testItemController.CloseTestItemEditorWindow();
             recordingController.ResumeRecorder();
+        }
+
+        bool TestItemsContains(IList<TestItem> testItems, TestItem testItem)
+        {
+            if (testItems.Contains(testItem))
+                return true;
+
+            foreach (var item in testItems)
+            {
+                if (TestItemsContains(item.Children, testItem))
+                    return true;
+            }
+
+            return false;
         }
     }
 }

@@ -87,6 +87,7 @@
     <Compile Include="Converters\HeightConverter.cs" />
     <Compile Include="Converters\ImageConverter.cs" />
     <Compile Include="Converters\TestItemImageConverter.cs" />
+    <Compile Include="Converters\TrainingItemImageConverter.cs" />
     <Compile Include="EditableTextBlock.cs" />
     <Compile Include="EditableTextBlockAdorner.cs" />
     <Compile Include="Factories\EditParameterWindowFactory.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Factories\TestItemEditorWindowFactory.cs" />
     <Compile Include="Factories\TestMainShellViewFactory.cs" />
     <Compile Include="Factories\TestShellViewFactory.cs" />
+    <Compile Include="Factories\TrainingMainWindowFactory.cs" />
     <Compile Include="Factories\VariableTableWindowFactory.cs" />
     <Compile Include="OperationDragHandler.cs" />
     <Compile Include="TreeViewSelect.cs" />
@@ -185,6 +187,9 @@
     </Compile>
     <Compile Include="Views\Tests\TestEditor\TestItemEditorWindow.xaml.cs">
       <DependentUpon>TestItemEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Training\TrainingMainWindow.xaml.cs">
+      <DependentUpon>TrainingMainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Variables\VariableManagerView.xaml.cs">
       <DependentUpon>VariableManagerView.xaml</DependentUpon>
@@ -312,6 +317,10 @@
     <Page Include="Views\Tests\TestEditor\TestItemEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Training\TrainingMainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Variables\VariableManagerView.xaml">
       <SubType>Designer</SubType>

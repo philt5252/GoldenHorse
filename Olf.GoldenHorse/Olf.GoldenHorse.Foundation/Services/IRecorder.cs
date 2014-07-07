@@ -6,6 +6,7 @@ namespace Olf.GoldenHorse.Foundation.Services
     {
         Test CurrentTest { get; }
         int InsertPosition { get; set; }
+        TestItem[] NewTestItems { get; }
         void Record();
         void Stop();
         void Pause();

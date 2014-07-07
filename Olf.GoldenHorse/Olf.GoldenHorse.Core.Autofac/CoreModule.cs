@@ -30,6 +30,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<LogController>().As<ILogController>().SingleInstance();
             builder.RegisterType<TestItemController>().As<ITestItemController>().SingleInstance();
             builder.RegisterType<VariableController>().As<IVariableController>().SingleInstance();
+            builder.RegisterType<TrainingController>().As<ITrainingController>().SingleInstance();
 
             builder.RegisterType<Recorder>().As<IRecorder>();
 
@@ -63,7 +64,8 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<OperationParameterViewModel>().As<IOperationParameterViewModel>();
             builder.RegisterType<VariableManagerViewModel>().As<IVariableManagerViewModel>();
             builder.RegisterType<VariableTableEditViewModel>().As<IVariableTableEditViewModel>();
-            
+            builder.RegisterType<TrainingMainViewModel>().As<ITrainingMainViewModel>();
+            builder.RegisterType<TrainingItemViewModel>().As<ITrainingItemViewModel>();
 
             builder.RegisterType<TestNode>().AsSelf();
             builder.RegisterType<TestGroupNode>().AsSelf();
@@ -100,6 +102,8 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<OperationParameterViewModelFactory>().As<IOperationParameterViewModelFactory>().SingleInstance();
             builder.RegisterType<VariableManagerViewModelFactory>().As<IVariableManagerViewModelFactory>().SingleInstance();
             builder.RegisterType<VariableTableEditViewModelFactory>().As<IVariableTableEditViewModelFactory>().SingleInstance();
+            builder.RegisterType<TrainingMainViewModelFactory>().As<ITrainingMainViewModelFactory>().SingleInstance();
+            builder.RegisterType<TrainingItemViewModelFactory>().As<ITrainingItemViewModelFactory>().SingleInstance();
 
             builder.RegisterType<TestNodeFactory>().As<ITestNodeFactory>().SingleInstance();
             builder.RegisterType<TestGroupNodeFactory>().As<ITestGroupNodeFactory>().SingleInstance();

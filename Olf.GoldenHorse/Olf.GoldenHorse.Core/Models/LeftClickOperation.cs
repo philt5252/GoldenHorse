@@ -41,7 +41,6 @@ namespace Olf.GoldenHorse.Core.Models
                 });
 
             Cursor.LeftClick(globalPoint);
-           
 
             string description = string.Format("The {0} was clicked with the left mouse button", mappedItem.Type);
 

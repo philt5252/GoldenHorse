@@ -24,6 +24,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private readonly ILogController logController;
         private readonly IAppController appController;
         private readonly IRecordingController recordingController;
+        private readonly ITrainingController trainingController;
         private ITestItemViewModel selectedTestItem;
         private ObservableCollection<ITestItemViewModel> testItems;
 
@@ -97,6 +98,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
         public ICommand PlayCommand { get; protected set; }
         public ICommand DeleteSelectedItemCommand { get; private set; }
+        public ICommand RunAsTrainingCommand { get; protected set; }
 
         public ICommand AppendToEndOfTestCommand { get; protected set; }
         public ICommand AppendToStartOfTestCommand { get; protected set; }
@@ -106,6 +108,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         public TestDetailsViewModel(Test test, ITestItemViewModelFactory testItemViewModelFactory,
             ILogFileManager logFileManager, ILogController logController, 
             IAppController appController, IRecordingController recordingController,
+            ITrainingController trainingController,
             IEventAggregator eventAggregator)
         {
             this.test = test;
@@ -114,6 +117,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
             this.logController = logController;
             this.appController = appController;
             this.recordingController = recordingController;
+            this.trainingController = trainingController;
 
             eventAggregator.GetEvent<AddTestItemEvent>().Subscribe(AddTestItemEventHandler);
             //TestItems = new ObservableCollection<ITestItemViewModel>(test.TestItems.Select(testItemViewModelFactory.Create));
@@ -124,6 +128,12 @@ namespace Olf.GoldenHorse.Core.ViewModels
             AppendAfterSelectedItemCommand = new DelegateCommand(ExecuteAppendAfterSelectedItemCommand);
             DeleteSelectedItemCommand = new DelegateCommand(ExecuteDeleteSelectedItemCommand);
             RefreshCommand = new DelegateCommand(ExecuteRefresh);
+            RunAsTrainingCommand = new DelegateCommand(EecuteRunAsTrainingCommand);
+        }
+
+        private void EecuteRunAsTrainingCommand()
+        {
+            trainingController.Start(test);
         }
 
         private void ExecuteRefresh()

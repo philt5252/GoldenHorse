@@ -44,6 +44,7 @@ namespace Olf.GoldenHorse.Core.Services
         private readonly Test test;
         private AppManager appManager { get { return test.Project.AppManager; } }
         private GlobalHooker globalHooker;
+        private GlobalHooker globalHooker2;
         private KeyboardHookListener keyboardHookListener;
         private MouseHookListener mouseHookListener;
         private RecorderState CurrentRecorderState;
@@ -56,15 +57,23 @@ namespace Olf.GoldenHorse.Core.Services
 
         public int InsertPosition { get; set; }
 
+        public string CurrentText { get { return keyboardHelper.KeyboardText; } }
+
+        public bool ScreenshotsEnabled { get; set; }
+
+        public TestItem[] NewTestItems{ get { return newTestItems.ToArray(); } }
+
         public Recorder(Test test)
         {
             this.test = test;
 
+            ScreenshotsEnabled = true;
             CurrentRecorderState = RecorderState.Stopped;
 
             globalHooker = new GlobalHooker();
+            globalHooker2 = new GlobalHooker();
 
-            keyboardHookListener = new KeyboardHookListener(globalHooker);
+            keyboardHookListener = new KeyboardHookListener(globalHooker2);
             mouseHookListener = new MouseHookListener(globalHooker);
 
             keyboardHookListener.KeyDown += KeyboardHookListenerOnKeyDown;
@@ -105,11 +114,6 @@ namespace Olf.GoldenHorse.Core.Services
                 if (Process.GetCurrentProcess().Id == processId)
                     return;
 
-                if (Process.GetProcessById(processId).ProcessName.Contains("Horse"))
-                {
-                    
-                }
-
                 IUIItem whiteControl;
                 TestItem action = CreateOnScreenAction(mouseEventArgs, out whiteControl);
                 currentUiItem = whiteControl;
@@ -122,20 +126,23 @@ namespace Olf.GoldenHorse.Core.Services
 
                 action.Operation = clickOperation;
 
-                int screenshotX = mouseEventArgs.Location.X - (int) findWindowElement.Current.BoundingRectangle.X;
-                int screenshotY = mouseEventArgs.Location.Y - (int) findWindowElement.Current.BoundingRectangle.Y;
+                if (ScreenshotsEnabled)
+                {
+                    int screenshotX = mouseEventArgs.Location.X - (int) findWindowElement.Current.BoundingRectangle.X;
+                    int screenshotY = mouseEventArgs.Location.Y - (int) findWindowElement.Current.BoundingRectangle.Y;
 
-                action.Screenshot.Adornments.Add(
-                    new ControlHighlightAdornment
-                    {
-                        X = (int) whiteControl.Bounds.X - (int) findWindowElement.Current.BoundingRectangle.X,
-                        Y = (int) whiteControl.Bounds.Y - (int) findWindowElement.Current.BoundingRectangle.Y,
-                        Width = (int) whiteControl.Bounds.Width,
-                        Height = (int) whiteControl.Bounds.Height
-                    });
+                    action.Screenshot.Adornments.Add(
+                        new ControlHighlightAdornment
+                        {
+                            X = (int) whiteControl.Bounds.X - (int) findWindowElement.Current.BoundingRectangle.X,
+                            Y = (int) whiteControl.Bounds.Y - (int) findWindowElement.Current.BoundingRectangle.Y,
+                            Width = (int) whiteControl.Bounds.Width,
+                            Height = (int) whiteControl.Bounds.Height
+                        });
 
-                action.Screenshot.Adornments.Add(new ClickAdornment {ClickX = screenshotX, ClickY = screenshotY});
-
+                    action.Screenshot.Adornments.Add(new ClickAdornment {ClickX = screenshotX, ClickY = screenshotY});
+                }
+                action.Test = test;
                 newTestItems.Add(action);
                 //test.TestItems.Add(action);
             });
@@ -147,7 +154,9 @@ namespace Olf.GoldenHorse.Core.Services
         {
             executingTasks.Add(task);
             task.ContinueWith(t => executingTasks.Remove(task));
+            task.RunSynchronously();
             task.Start();
+            
         }
 
         private static AutomationElement FindWindowElement(IUIItem whiteControl)
@@ -171,14 +180,18 @@ namespace Olf.GoldenHorse.Core.Services
             KeyboardOperation operation = new KeyboardOperation();
             operation.Text = keys;
             onScreenAction.Operation = operation;
-            onScreenAction.Screenshot.Adornments.Add(
-                new ControlHighlightAdornment
-                {
-                    X = (int)currentUiItem.Bounds.X - (int)findWindowElement.Current.BoundingRectangle.X,
-                    Y = (int)currentUiItem.Bounds.Y - (int)findWindowElement.Current.BoundingRectangle.Y,
-                    Width = (int)currentUiItem.Bounds.Width,
-                    Height = (int)currentUiItem.Bounds.Height
-                });
+
+            if (ScreenshotsEnabled)
+            {
+                onScreenAction.Screenshot.Adornments.Add(
+                    new ControlHighlightAdornment
+                    {
+                        X = (int) currentUiItem.Bounds.X - (int) findWindowElement.Current.BoundingRectangle.X,
+                        Y = (int) currentUiItem.Bounds.Y - (int) findWindowElement.Current.BoundingRectangle.Y,
+                        Width = (int) currentUiItem.Bounds.Width,
+                        Height = (int) currentUiItem.Bounds.Height
+                    });
+            }
 
             newTestItems.Add(onScreenAction);
             //test.TestItems.Add(onScreenAction);
@@ -187,9 +200,13 @@ namespace Olf.GoldenHorse.Core.Services
         private TestItem CreateOnScreenAction()
         {
             TestItem action = new TestItem{Type = TestItemTypes.OnScreenAction};
-            Screenshot screenshot = CreateScreenshotFromCurrentBitmap();
 
-            action.Screenshot = screenshot;
+            if (ScreenshotsEnabled)
+            {
+                Screenshot screenshot = CreateScreenshotFromCurrentBitmap();
+
+                action.Screenshot = screenshot;
+            }
 
             return action;
         }
@@ -198,12 +215,18 @@ namespace Olf.GoldenHorse.Core.Services
         {
             TestItem action = new TestItem { Type = TestItemTypes.OnScreenAction };
             MappedItem mappedItem = null;
-            Screenshot screenshot = CreateNewScreenshot();
+            
 
             whiteControl = CreateWhiteControl(mouseEventArgs.Location, ref mappedItem);
             currentMappedItem = mappedItem;
             action.ControlId = mappedItem.Id;
-            action.Screenshot = screenshot;
+
+            if (ScreenshotsEnabled)
+            {
+                Screenshot screenshot = CreateNewScreenshot();
+                action.Screenshot = screenshot;
+            }
+            
             return action;
         }
 
@@ -260,7 +283,9 @@ namespace Olf.GoldenHorse.Core.Services
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs e)
         {
             keyboardHelper.ManageKeysOnUp(e);
-            TakePictureAndSetCurrentBitmap();
+
+            if(ScreenshotsEnabled)
+                TakePictureAndSetCurrentBitmap();
         }
 
         private int count = 0;
@@ -349,6 +374,9 @@ namespace Olf.GoldenHorse.Core.Services
 
                     if (task == null)
                         continue;
+
+                    if (task.IsCompleted)
+                        executingTasks.Remove(task);
 
                     task.Wait();
                 }

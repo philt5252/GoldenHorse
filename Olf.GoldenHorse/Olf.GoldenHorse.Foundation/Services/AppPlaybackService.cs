@@ -95,7 +95,7 @@ namespace Olf.GoldenHorse.Foundation.Services
             Process wProcess = Process.GetProcessesByName(process.Name).First();
             Application application = Application.Attach(wProcess);
 
-            Window appWindow;
+            Window appWindow = null;
 
             /*IEnumerable<string> enumerable = application.GetWindows().Select(w => w.Title);
             IEnumerable<string> list2 = application.GetWindows().Select(w => w.AutomationElement.Current.Name);
@@ -104,22 +104,35 @@ namespace Olf.GoldenHorse.Foundation.Services
                 appWindow = application.GetWindow(SearchCriteria.ByAutomationId(window.Name), InitializeOption.NoCache);
             else
             {
-                List<string> windowTitles = GetWindowsForProcess(process.Name);
-                string windowName = window.Text;
-                string closestTitle = windowTitles[0];
-                decimal toleranceLevel = windowName.Length*0.7m;
-                
-                foreach (string windowTitle in windowTitles)
+                for (int i = 0; i < 5; i++)
                 {
-                    int num1 = LevenshteinDistance.GetToleranceLevel(windowTitle, windowName);
-                    if (num1 < toleranceLevel)
-                    {
-                        toleranceLevel = num1;
-                        closestTitle = windowTitle;
-                    }
-                }
+                    List<string> windowTitles = GetWindowsForProcess(process.Name);
+                    string windowName = window.Text;
+                    string closestTitle = windowTitles[0];
+                    decimal toleranceLevel = windowName.Length * 0.7m;
 
-                appWindow = application.GetWindowWhere(w => w.AutomationElement.Current.Name == closestTitle, 15000);
+                    foreach (string windowTitle in windowTitles)
+                    {
+                        int num1 = LevenshteinDistance.GetToleranceLevel(windowTitle, windowName);
+                        if (num1 < toleranceLevel)
+                        {
+                            toleranceLevel = num1;
+                            closestTitle = windowTitle;
+                        }
+                    }
+
+                    try
+                    {
+                        appWindow = application.GetWindowWhere(w => w.AutomationElement.Current.Name == closestTitle, 3000);
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                    }
+                    
+                }
+                
                 //appWindow = windows.First(w => w.AutomationElement.Current.Name == window.Text);
             }
 

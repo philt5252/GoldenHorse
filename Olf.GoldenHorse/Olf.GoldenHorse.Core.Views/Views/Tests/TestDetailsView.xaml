@@ -79,8 +79,18 @@
                                Foreground="White" Text="Run Test"></TextBlock>
                 </StackPanel>
             </Button>
-           
-          
+
+            <Button Command="{Binding RunAsTrainingCommand}" Margin="0,0,17,0" Height="25" 
+                VerticalAlignment="Top" Background="Transparent" 
+                    HorizontalAlignment="Right" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="20" Width="20" Source="../../Images/Run.png"></Image>
+                    <TextBlock Background="Transparent"
+                               Foreground="White" Text="Run As Training"></TextBlock>
+                </StackPanel>
+            </Button>
+
+
             <xctk:DropDownButton x:Name="dropDownButton"  HorizontalAlignment="Left" Margin="3,0,0,0" 
                                          VerticalAlignment="Top" 
                                          Width="130" Height="25" Click="ClickMainCommand" >

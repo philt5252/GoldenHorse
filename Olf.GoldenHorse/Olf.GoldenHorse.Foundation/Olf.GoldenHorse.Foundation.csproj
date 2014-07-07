@@ -80,6 +80,7 @@
     <Compile Include="Controllers\IRecordingController.cs" />
     <Compile Include="Controllers\ITestController.cs" />
     <Compile Include="Controllers\ITestItemController.cs" />
+    <Compile Include="Controllers\ITrainingController.cs" />
     <Compile Include="Controllers\IVariableController.cs" />
     <Compile Include="DefaultData.cs" />
     <Compile Include="Events\AddTestItemEvent.cs" />
@@ -109,6 +110,8 @@
     <Compile Include="Factories\ViewModels\ITestParameterEditorViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestScreenshotsViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\ITestShellViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\ITrainingItemViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\ITrainingMainViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\IVariableManagerViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\IVariableTableEditViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\Nodes\IProjectNodeFactory.cs" />
@@ -175,6 +178,8 @@
     <Compile Include="ViewModels\ITestParameterEditorViewModel.cs" />
     <Compile Include="ViewModels\ITestScreenshotsViewModel.cs" />
     <Compile Include="ViewModels\ITestShellViewModel.cs" />
+    <Compile Include="ViewModels\ITrainingItemViewModel.cs" />
+    <Compile Include="ViewModels\ITrainingMainViewModel.cs" />
     <Compile Include="ViewModels\IValidationListItemViewModel.cs" />
     <Compile Include="ViewModels\IVariableManagerViewModel.cs" />
     <Compile Include="ViewModels\IVariableTableEditViewModel.cs" />

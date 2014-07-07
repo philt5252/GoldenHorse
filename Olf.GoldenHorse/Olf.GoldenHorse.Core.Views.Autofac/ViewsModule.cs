@@ -34,6 +34,7 @@ namespace Olf.GoldenHorse.Core.Views.Autofac
             builder.RegisterType<TestItemEditorWindow>().AsSelf();
             builder.RegisterType<EditParameterWindow>().AsSelf();
             builder.RegisterType<VariableTableWindow>().AsSelf();
+            builder.RegisterType<TrainingMainWindow>().AsSelf();
 
             builder.RegisterType<OperationDragHandler>().AsSelf();
 
@@ -52,6 +53,7 @@ namespace Olf.GoldenHorse.Core.Views.Autofac
             builder.RegisterType<TestItemEditorWindowFactory>().As<ITestItemEditorWindowFactory>().SingleInstance();
             builder.RegisterType<EditParameterWindowFactory>().As<IEditParameterWindowFactory>().SingleInstance();
             builder.RegisterType<VariableTableWindowFactory>().As<IVariableTableWindowFactory>().SingleInstance();
+            builder.RegisterType<TrainingMainWindowFactory>().As<ITrainingMainWindowFactory>().SingleInstance();
         }
     }
 }

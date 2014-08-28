@@ -134,6 +134,8 @@
     <Compile Include="Models\DelayOperation.cs" />
     <Compile Include="Models\LogGroupOperation.cs" />
     <Compile Include="Models\LogMessageOperation.cs" />
+    <Compile Include="Models\SetVariableFromPointOperation.cs" />
+    <Compile Include="Models\SetVariableOperation.cs" />
     <Compile Include="Models\ValidateTextAtPointOperation.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -176,6 +178,8 @@
     <Compile Include="ViewModels\ProjectExplorerViewModel.cs" />
     <Compile Include="ViewModels\RecentFileViewModel.cs" />
     <Compile Include="ViewModels\RecorderViewModel.cs" />
+    <Compile Include="ViewModels\SetVariableFromPointOperationViewModel.cs" />
+    <Compile Include="ViewModels\SetVariableOperationViewModel.cs" />
     <Compile Include="ViewModels\StartPageViewModel.cs" />
     <Compile Include="ViewModels\TestDescriptionEditorViewModel.cs" />
     <Compile Include="ViewModels\TestDetailsViewModel.cs" />

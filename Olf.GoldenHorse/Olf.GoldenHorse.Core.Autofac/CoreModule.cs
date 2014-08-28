@@ -119,6 +119,8 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<LogMessageOperationViewModel>().As<IOperationViewModel>();
             builder.RegisterType<DataDrivenLoopOperationViewModel>().As<IOperationViewModel>();
             builder.RegisterType<LogGroupOperationViewModel>().As<IOperationViewModel>();
+            builder.RegisterType<SetVariableOperationViewModel>().As<IOperationViewModel>();
+            builder.RegisterType<SetVariableFromPointOperationViewModel>().As<IOperationViewModel>();
         }
     }
 }

@@ -10,5 +10,6 @@
         public const string Message = "Message";
         public const string DataDrivenLoop = "DataDrivenLoop";
         public const string LogGroup = "LogGroup";
+        public const string BackgroundAction = "BackgroundAction";
     }
 }

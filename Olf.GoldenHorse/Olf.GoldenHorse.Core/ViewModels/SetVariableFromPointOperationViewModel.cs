@@ -6,20 +6,19 @@ using Olf.GoldenHorse.Core.Models;
 using Olf.GoldenHorse.Foundation.Events;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.ViewModels;
-using TestStack.White.Recording;
 
 namespace Olf.GoldenHorse.Core.ViewModels
 {
-    public class LogMessageOperationViewModel : IOperationViewModel
+    public class SetVariableFromPointOperationViewModel : IOperationViewModel
     {
         private readonly Test test;
         private AddTestItemEvent addTestItemEvent;
         public Bitmap Icon { get { return null; } }
-        public string Name { get { return "Log Message"; }}
-         public ICommand AddToTestCommand { get; protected set; }
-        
+        public string Name { get { return "Set Variable From Point"; } }
+        public ICommand AddToTestCommand { get; protected set; }
 
-        public LogMessageOperationViewModel(Test test, IEventAggregator eventAggregator)
+
+        public SetVariableFromPointOperationViewModel(Test test, IEventAggregator eventAggregator)
         {
             this.test = test;
             AddToTestCommand = new DelegateCommand(ExecuteAddToTestCommand);
@@ -42,8 +41,8 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private TestItem CreateTestItem()
         {
             TestItem testItem = new TestItem();
-            testItem.Type = TestItemTypes.Message;
-            testItem.Operation = new LogMessageOperation {Message = "Default Message"};
+            testItem.Type = TestItemTypes.OnScreenAction;
+            testItem.Operation = new SetVariableFromPointOperation();
             testItem.Test = test;
             return testItem;
         }

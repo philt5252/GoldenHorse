@@ -38,7 +38,7 @@ namespace Olf.GoldenHorse.Core.Models
             set
             {
                 clickXParam.Value = value;
-                textParam.Mode = OperationParameterValueMode.Constant;
+                clickXParam.Mode = OperationParameterValueMode.Constant;
             }
         }
 
@@ -48,7 +48,7 @@ namespace Olf.GoldenHorse.Core.Models
             set
             {
                 clickYParam.Value = value;
-                textParam.Mode = OperationParameterValueMode.Constant;
+                clickYParam.Mode = OperationParameterValueMode.Constant;
             }
         }
 

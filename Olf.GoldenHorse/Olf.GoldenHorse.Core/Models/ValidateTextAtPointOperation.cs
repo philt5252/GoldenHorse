@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using WindowsInput;
@@ -7,6 +8,8 @@ using Olf.Automation;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.Services;
 using TestStack.White.UIItems;
+using Expression = NCalc.Expression;
+using Operation = Olf.GoldenHorse.Foundation.Models.Operation;
 using Point = System.Drawing.Point;
 
 namespace Olf.GoldenHorse.Core.Models
@@ -108,6 +111,28 @@ namespace Olf.GoldenHorse.Core.Models
 
             if (expectedText == null)
                 expectedText = "";
+
+            string originalExpectedText = expectedText;
+
+            foreach (Variable v in this.TestItem.Test.Variables.OrderBy(v => v.Name.Length))
+            {
+                expectedText = expectedText.Replace(v.Name, v.Value.ToString());
+            }
+            
+
+            Expression e = new Expression(expectedText);
+
+            try
+            {
+                expectedText = e.Evaluate().ToString();
+            }
+            catch (Exception ex)
+            {
+                //e.Evaluate() errored out.  Probably not an expression
+
+                expectedText = originalExpectedText;
+            }
+            
 
             if(!Equals(actualText, expectedText))
             {

@@ -59,13 +59,15 @@ namespace Olf.GoldenHorse.Core.Models
             var param2 = new OperationParameter
             {
                 Name = "ClientX",
-                Mode = OperationParameterValueMode.Constant
+                Mode = OperationParameterValueMode.Constant,
+                Value=5
             };
 
             var param3 = new OperationParameter
             {
                 Name = "ClientY",
-                Mode = OperationParameterValueMode.Constant
+                Mode = OperationParameterValueMode.Constant,
+                Value=5
             };
 
             return new[] { param1, param2, param3 };

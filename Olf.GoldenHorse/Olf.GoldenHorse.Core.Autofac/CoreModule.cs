@@ -3,6 +3,7 @@ using Olf.GoldenHorse.Core.Controllers;
 using Olf.GoldenHorse.Core.Factories.Services;
 using Olf.GoldenHorse.Core.Factories.ViewModels;
 using Olf.GoldenHorse.Core.Factories.ViewModels.Nodes;
+using Olf.GoldenHorse.Core.Models;
 using Olf.GoldenHorse.Core.Services;
 using Olf.GoldenHorse.Core.ViewModels;
 using Olf.GoldenHorse.Core.ViewModels.Nodes;
@@ -121,6 +122,10 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<LogGroupOperationViewModel>().As<IOperationViewModel>();
             builder.RegisterType<SetVariableOperationViewModel>().As<IOperationViewModel>();
             builder.RegisterType<SetVariableFromPointOperationViewModel>().As<IOperationViewModel>();
+            builder.RegisterType<SetTableVariableFromFileOperationViewModel>().As<IOperationViewModel>();
+            builder.RegisterType<RunTestOperationViewModel>().As<IOperationViewModel>();
+
+            builder.RegisterType<RunTestOperation>().AsSelf();
         }
     }
 }

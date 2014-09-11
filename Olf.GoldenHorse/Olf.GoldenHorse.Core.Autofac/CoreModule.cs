@@ -124,6 +124,8 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<SetVariableFromPointOperationViewModel>().As<IOperationViewModel>();
             builder.RegisterType<SetTableVariableFromFileOperationViewModel>().As<IOperationViewModel>();
             builder.RegisterType<RunTestOperationViewModel>().As<IOperationViewModel>();
+            builder.RegisterType<IfOperationViewModel>().As<IOperationViewModel>();
+            builder.RegisterType<ElseOperationViewModel>().As<IOperationViewModel>();
 
             builder.RegisterType<RunTestOperation>().AsSelf();
         }

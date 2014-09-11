@@ -43,7 +43,7 @@ namespace Olf.GoldenHorse.Core.Models
             log.CreateLogItem(LogItemCategory.Event, nameParameter.GetValue());
             log.StartLogItemChildren();
 
-            foreach (TestItem testItem in TestItem.Children)
+            foreach (TestItem testItem in TestItem.TestItems)
             {
                 if (!testItem.Play(log))
                     return false;

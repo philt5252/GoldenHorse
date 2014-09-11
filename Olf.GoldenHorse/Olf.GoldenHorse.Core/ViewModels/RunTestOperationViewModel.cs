@@ -44,7 +44,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private TestItem CreateTestItem()
         {
             TestItem testItem = new TestItem();
-            testItem.Type = TestItemTypes.Delay;
+            testItem.Type = TestItemTypes.BackgroundAction;
             testItem.Operation = createOpFunc();//new RunTestOperation();
             testItem.Test = test;
             return testItem;

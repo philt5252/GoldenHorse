@@ -40,7 +40,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         private TestItem CreateTestItem()
         {
             TestItem testItem = new TestItem();
-            testItem.Type = TestItemTypes.OnScreenAction;
+            testItem.Type = TestItemTypes.BackgroundAction;
             testItem.Operation = new SetTableVariableFromFileOperation();
             testItem.Test = test;
             return testItem;

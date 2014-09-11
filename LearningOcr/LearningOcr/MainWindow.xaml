@@ -1,0 +1,12 @@
+﻿<Window x:Class="LearningOcr.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button Content="Find" Height="23" HorizontalAlignment="Left" Margin="344,156,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="308,197,0,0" Name="pointTbx" Text="Point" VerticalAlignment="Top" Width="111" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="311,233,0,0" Name="timeTbx" Text="Time" VerticalAlignment="Top" Width="97" />
+        <Button Content="OCR" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" Name="button2" VerticalAlignment="Top" Width="75" Click="button2_Click" />
+        <Button Content="OCR Training" Height="23" HorizontalAlignment="Left" Margin="12,41,0,0" Name="button3" VerticalAlignment="Top" Width="90" Click="button3_Click" />
+    </Grid>
+</Window>

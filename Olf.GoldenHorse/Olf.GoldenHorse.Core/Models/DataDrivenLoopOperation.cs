@@ -42,7 +42,7 @@ namespace Olf.GoldenHorse.Core.Models
 
             for (int i = 0; i < variable.DataTableValue.Rows.Count; i++)
             {
-                foreach (TestItem testItem in TestItem.Children)
+                foreach (TestItem testItem in TestItem.TestItems)
                 {
                     if (!testItem.Play(log))
                         return false;

@@ -334,10 +334,10 @@ namespace Olf.GoldenHorse.Core.ViewModels
                     processTestItemViewModel = null;
                 }
 
-                if (testItem.Children != null)
+                if (testItem.TestItems != null)
                 {
                     IList<ITestItemViewModel> childrenList = new List<ITestItemViewModel>();
-                    CreateTestDetailsViewModels(testItem.Children, ref childrenList);
+                    CreateTestDetailsViewModels(testItem.TestItems, ref childrenList);
 
                     testItemViewModel.ChildItems.AddRange(childrenList);
                 }
@@ -362,11 +362,11 @@ namespace Olf.GoldenHorse.Core.ViewModels
             {
                 if (testItemViewModel.TestItem != null )
                 {
-                    testItemViewModel.TestItem.Children = new ObservableCollection<TestItem>();
+                    testItemViewModel.TestItem.TestItems = new ObservableCollection<TestItem>();
                     newParentTestItem = testItemViewModel.TestItem;
 
                     if (parentTestItem != null)
-                        parentTestItem.Children.Add(testItemViewModel.TestItem);
+                        parentTestItem.TestItems.Add(testItemViewModel.TestItem);
                     else
                     {
                         

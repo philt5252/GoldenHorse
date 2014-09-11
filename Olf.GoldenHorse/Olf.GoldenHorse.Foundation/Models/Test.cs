@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
-    public class Test
+    public class Test : ITestItemOwner
     {
         private ObservableCollection<TestItem> testItems;
         private string name;
@@ -47,6 +47,7 @@ namespace Olf.GoldenHorse.Foundation.Models
                 foreach (var testItem in testItems)
                 {
                     testItem.Test = this;
+                    testItem.Parent = this;
                 }
 
                 testItems.CollectionChanged += TestItemsOnCollectionChanged;
@@ -71,6 +72,7 @@ namespace Olf.GoldenHorse.Foundation.Models
                 foreach (TestItem testItem in args.NewItems)
                 {
                     testItem.Test = this;
+                    testItem.Parent = this;
                     OnTestChanged();
                 }
             }
@@ -80,6 +82,9 @@ namespace Olf.GoldenHorse.Foundation.Models
                 {
                     if (testItem.Test == this)
                         testItem.Test = null;
+
+                    if (testItem.Parent == this)
+                        testItem.Parent = null;
 
                     RaiseTestChanged();
                 }

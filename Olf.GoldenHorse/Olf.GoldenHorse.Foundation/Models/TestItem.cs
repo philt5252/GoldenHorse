@@ -6,9 +6,9 @@ using Olf.GoldenHorse.Foundation.Services;
 
 namespace Olf.GoldenHorse.Foundation.Models
 {
-    public class TestItem : ScreenshotOwner
+    public class TestItem : ScreenshotOwner, ITestItemOwner
     {
-        private ObservableCollection<TestItem> children;
+        private ObservableCollection<TestItem> testItems;
         private MappedItem control;
         private string description;
         private Operation operation;
@@ -83,9 +83,9 @@ namespace Olf.GoldenHorse.Foundation.Models
             {
                 test = value;
 
-                if (Children != null)
+                if (TestItems != null)
                 {
-                    foreach (TestItem testItem in Children)
+                    foreach (TestItem testItem in TestItems)
                     {
                         testItem.Test = test;
                     }
@@ -96,25 +96,29 @@ namespace Olf.GoldenHorse.Foundation.Models
         [XmlIgnore]
         public AppManager AppManager {get { return Test.Project.AppManager; } }
 
-        public ObservableCollection<TestItem> Children
+        [XmlIgnore]
+        public ITestItemOwner Parent { get; set; }
+
+        public ObservableCollection<TestItem> TestItems
         {
-            get { return children; }
+            get { return testItems; }
             set
             {
-                if (Equals(children, value))
+                if (Equals(testItems, value))
                     return;
 
-                if (children != null)
-                    children.CollectionChanged -= ChildrenOnCollectionChanged;
+                if (testItems != null)
+                    testItems.CollectionChanged -= TestItemsOnCollectionChanged;
 
-                children = value;
+                testItems = value;
 
-                foreach (var testItem in children)
+                foreach (var testItem in testItems)
                 {
                     testItem.Test = Test;
+                    testItem.Parent = this;
                 }
 
-                children.CollectionChanged += ChildrenOnCollectionChanged;
+                testItems.CollectionChanged += TestItemsOnCollectionChanged;
                 RaiseTestChanged();
             }
         }
@@ -131,7 +135,7 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         public TestItem()
         {
-            Children = new ObservableCollection<TestItem>();
+            TestItems = new ObservableCollection<TestItem>();
             Id = Guid.NewGuid().ToString();
             SupportsChildren = false;
         }
@@ -147,13 +151,14 @@ namespace Olf.GoldenHorse.Foundation.Models
                 Test.RaiseTestChanged();
         }
 
-        private void ChildrenOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+        private void TestItemsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
             if (args.Action == NotifyCollectionChangedAction.Add)
             {
                 foreach (TestItem testItem in args.NewItems)
                 {
                     testItem.Test = Test;
+                    testItem.Parent = this;
                 }
             }
             else if (args.Action == NotifyCollectionChangedAction.Remove)
@@ -162,6 +167,9 @@ namespace Olf.GoldenHorse.Foundation.Models
                 {
                     if (testItem.Test == Test)
                         testItem.Test = null;
+
+                    if (testItem.Parent == this)
+                        testItem.Parent = null;
                 }
             }
 
@@ -215,5 +223,10 @@ namespace Olf.GoldenHorse.Foundation.Models
                 return false;
             }
         }
+    }
+
+    public interface ITestItemOwner
+    {
+        ObservableCollection<TestItem> TestItems { get; set; }
     }
 }

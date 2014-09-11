@@ -32,12 +32,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Castle.Core.3.2.2\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Excel">
       <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net20\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ExpressionEvaluator">
+      <HintPath>..\packages\ExpressionEvaluator.2.0.1.0\lib\net40\ExpressionEvaluator.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -138,6 +144,8 @@
     <Compile Include="Models\ControlHighlightAdornment.cs" />
     <Compile Include="Models\DataDrivenLoopOperation.cs" />
     <Compile Include="Models\DelayOperation.cs" />
+    <Compile Include="Models\ElseOperation.cs" />
+    <Compile Include="Models\IfOperation.cs" />
     <Compile Include="Models\LogGroupOperation.cs" />
     <Compile Include="Models\LogMessageOperation.cs" />
     <Compile Include="Models\RunTestOperation.cs" />
@@ -162,8 +170,10 @@
     <Compile Include="ViewModels\DataDrivenLoopOperationViewModel.cs" />
     <Compile Include="ViewModels\DelayOperationViewModel.cs" />
     <Compile Include="ViewModels\EditParameterViewModel.cs" />
+    <Compile Include="ViewModels\ElseOperationViewModel.cs" />
     <Compile Include="ViewModels\GetObjectScreenSelectionViewModel.cs" />
     <Compile Include="ViewModels\GetObjectViewModel.cs" />
+    <Compile Include="ViewModels\IfOperationViewModel.cs" />
     <Compile Include="ViewModels\LogDetailsViewModel.cs" />
     <Compile Include="ViewModels\LogGroupOperationViewModel.cs" />
     <Compile Include="ViewModels\LogItemViewModel.cs" />
@@ -210,6 +220,10 @@
     <Compile Include="ViewModels\VariableTableEditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\LearningOcr\LearningOcr.Core\LearningOcr.Core.csproj">
+      <Project>{FF34E530-7ABD-44DE-A0F0-3AEA9841EE29}</Project>
+      <Name>LearningOcr.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Olf.GoldenHorse.Foundation.DataAccess\Olf.GoldenHorse.Foundation.DataAccess.csproj">
       <Project>{6CF0308D-395D-482C-BE4D-16F8DF3ECFB0}</Project>
       <Name>Olf.GoldenHorse.Foundation.DataAccess</Name>

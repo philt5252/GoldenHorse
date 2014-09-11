@@ -95,7 +95,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
             foreach (var item in testItems)
             {
-                if (TestItemsContains(item.Children, testItem))
+                if (TestItemsContains(item.TestItems, testItem))
                     return true;
             }
 

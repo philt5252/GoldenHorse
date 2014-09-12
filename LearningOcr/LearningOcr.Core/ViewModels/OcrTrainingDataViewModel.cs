@@ -168,13 +168,18 @@ namespace LearningOcr.Core.ViewModels
             }
         }
 
+        public void AddCharacterImage(Bitmap bitmap)
+        {
+            CharacterData characterData = new CharacterData(selectedCharacterDataSet.Letter, bitmap);
+
+            SelectedCharacterDataSet.CharacterDatas.Add(characterData);
+        }
+
         public void AddImageFile(string fileName)
         {
             Bitmap bitmap = new Bitmap(fileName);
 
-            CharacterData characterData = new CharacterData(selectedCharacterDataSet.Letter, bitmap);
-
-            SelectedCharacterDataSet.CharacterDatas.Add(characterData);
+            AddCharacterImage(bitmap);
         }
 
         public void Save()

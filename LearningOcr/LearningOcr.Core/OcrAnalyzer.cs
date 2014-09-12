@@ -60,6 +60,11 @@ namespace LearningOcr.Core
                 || y + characterData.Difference.GetLength(0) >= searchDifferences.GetLength(0))
                 return false;
 
+            if (x == 31 && y == 140)
+            {
+
+            }
+
             for (int charY = 0; charY < characterData.Difference.GetLength(0); charY++)
             {
                 for (int charX = 0; charX < characterData.Difference.GetLength(1); charX++)
@@ -91,13 +96,13 @@ namespace LearningOcr.Core
                     
                     if (characterDifference.IsPartOfChar
                         &&((!characterDifference.HasUp
-                         && Math.Abs(searchDifference.Up) < 0.2)
+                         && Math.Abs(searchDifference.Up) < 0.05)
                         || (!characterDifference.HasDown
-                         && Math.Abs(searchDifference.Down) < 0.2)
+                         && Math.Abs(searchDifference.Down) < 0.05)
                         || (!characterDifference.HasLeft
-                         && Math.Abs(searchDifference.Left) < 0.2)
+                         && Math.Abs(searchDifference.Left) < 0.05)
                         || (!characterDifference.HasRight
-                         && Math.Abs(searchDifference.Right) < 0.2)))
+                         && Math.Abs(searchDifference.Right) < 0.05)))
                     {
                         return false;
                     }
@@ -164,6 +169,7 @@ namespace LearningOcr.Core
                 maxY = startY + characterDataSet.MaxHeight * 2;
             }
 
+            List<FoundCharacterData> foundCharacterDatas = new List<FoundCharacterData>();
 
             for (int y = startY; y < maxY; y++)
             {
@@ -173,11 +179,15 @@ namespace LearningOcr.Core
 
                     if (characterData != null)
                     {
-                        yield return new FoundCharacterData
+                        FoundCharacterData foundCharacterData = new FoundCharacterData
                         {
                             Point = new Point(x, y),
                             CharacterData = characterData
                         };
+
+                        if(!foundCharacterDatas.Any(f => f.Bounds.IntersectsWith(foundCharacterData.Bounds)))
+                            yield return foundCharacterData;
+                        
                     }
                 }
             }

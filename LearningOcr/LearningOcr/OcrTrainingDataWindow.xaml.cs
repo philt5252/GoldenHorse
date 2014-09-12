@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,6 +28,9 @@ namespace LearningOcr
     public partial class OcrTrainingDataWindow : Window
     {
         private OcrTrainingDataViewModel viewModel;
+        private Point topLeft = new Point();
+        private Point bottomRight = new Point();
+        private bool firstPointSet = false;
 
         public OcrTrainingDataWindow()
         {
@@ -37,6 +41,34 @@ namespace LearningOcr
             Loaded += OnLoaded;
 
             listBox2.SelectionChanged += ListBox2OnSelectionChanged;
+
+            image2.MouseRightButtonUp += Image2OnMouseRightButtonUp;
+        }
+
+        private void Image2OnMouseRightButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
+        {
+            Point position = mouseButtonEventArgs.GetPosition(image2);
+
+            if (!firstPointSet)
+            {
+                topLeft = position;
+                firstPointSet = true;
+            }
+            else
+            {
+                bottomRight = position;
+                firstPointSet = false;
+
+                Bitmap bitmap = BitmapSourceToBitmap2(image2.Source as BitmapSource);
+                Bitmap letterBitmap =
+                    bitmap.Clone(
+                        new System.Drawing.Rectangle((int)topLeft.X, (int)topLeft.Y,(int) bottomRight.X - (int) topLeft.X+1,
+                            (int) bottomRight.Y - (int) topLeft.Y+1), bitmap.PixelFormat);
+
+
+                viewModel.AddCharacterImage(letterBitmap);
+            }
+                
         }
 
         private void ListBox2OnSelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
@@ -226,18 +258,21 @@ namespace LearningOcr
 
             if (image1.Source == null)
                 return;
-            
+
             double width = image1.Source.Width;
             double height = image1.Source.Height;
+
+            int widthInt = (int) Math.Round(height);
+            int heightInt = (int) Math.Round(width);
 
             double widthPixelSize = image1.ActualWidth / width;
             double heightPixelSize = image1.ActualHeight / height;
 
-            xRects = new Rectangle[(int)height, (int)width];
+            xRects = new Rectangle[widthInt, heightInt];
 
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < (int)widthInt; y++)
             {
-                for (int x = 0; x < width; x++)
+                for (int x = 0; x < (int)heightInt; x++)
                 {
                     Rectangle rectangle = new Rectangle();
                     rectangle.Height = heightPixelSize;
@@ -338,6 +373,30 @@ namespace LearningOcr
         private void button7_Click_1(object sender, RoutedEventArgs e)
         {
             viewModel.AnalyzePicture(searchBitmap);
+        }
+
+        public static System.Drawing.Bitmap BitmapSourceToBitmap2(BitmapSource srs)
+        {
+            int width = srs.PixelWidth;
+            int height = srs.PixelHeight;
+            int stride = width * ((srs.Format.BitsPerPixel + 7) / 8);
+            IntPtr ptr = IntPtr.Zero;
+            try
+            {
+                ptr = Marshal.AllocHGlobal(height * stride);
+                srs.CopyPixels(new Int32Rect(0, 0, width, height), ptr, height * stride, stride);
+                using (var btm = new System.Drawing.Bitmap(width, height, stride, System.Drawing.Imaging.PixelFormat.Format32bppRgb, ptr))
+                {
+                    // Clone the bitmap so that we can dispose it and
+                    // release the unmanaged memory at ptr
+                    return new System.Drawing.Bitmap(btm);
+                }
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Marshal.FreeHGlobal(ptr);
+            }
         }
     }
 }

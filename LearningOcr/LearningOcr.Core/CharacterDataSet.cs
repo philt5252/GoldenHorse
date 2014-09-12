@@ -17,6 +17,8 @@ namespace LearningOcr.Core
             protected set { letter = value; }
         }
 
+        public static CharacterDataSet SpaceCharacterDataSet = new CharacterDataSet(' ');
+
         public ObservableCollection<CharacterData> CharacterDatas { get; protected set; }
 
         public int MaxHeight

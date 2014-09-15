@@ -96,7 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Olf.GoldenHorse.Foundation\Olf.GoldenHorse.Foundation.csproj">
-      <Project>{B020B22A-4677-42BC-9E9A-A2EDFAB0DBC8}</Project>
+      <Project>{b020b22a-4677-42bc-9e9a-a2edfab0dbc8}</Project>
       <Name>Olf.GoldenHorse.Foundation</Name>
     </ProjectReference>
   </ItemGroup>

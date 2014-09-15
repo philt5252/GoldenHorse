@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olf.GoldenHorse", "Olf.GoldenHorse\Olf.GoldenHorse.csproj", "{18BEAE07-7148-493D-A731-B9F6C805CE7D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A3AC23E0-E6F1-4E1D-9321-880BFE8A4860}"
@@ -344,8 +344,5 @@ Global
 		{572FEE05-EB6C-4802-A162-CB8521A6564D} = {8B4DACE6-1B30-4A5F-BFCB-CEA02FC28F75}
 		{C94BD386-4F0A-4CD0-9AA5-82469CF451B4} = {5914D5D9-6FFC-4586-A45C-F6AE273C5E58}
 		{FF34E530-7ABD-44DE-A0F0-3AEA9841EE29} = {5914D5D9-6FFC-4586-A45C-F6AE273C5E58}
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

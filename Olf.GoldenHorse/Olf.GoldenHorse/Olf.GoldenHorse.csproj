@@ -63,7 +63,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac">
@@ -85,7 +85,7 @@
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Olf.Common.Extensions">
-      <HintPath>..\packages\Olf.Common.Extensions.1.0.0\lib\net40\Olf.Common.Extensions.dll</HintPath>
+      <HintPath>..\SharedLibs\Olf.Common.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Olf.Prism.Autofac">
       <HintPath>..\packages\Olf.Prism.Autofac.1.0.0\lib\net40\Olf.Prism.Autofac.dll</HintPath>

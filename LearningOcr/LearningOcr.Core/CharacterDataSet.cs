@@ -17,7 +17,15 @@ namespace LearningOcr.Core
             protected set { letter = value; }
         }
 
-        public static CharacterDataSet SpaceCharacterDataSet = new CharacterDataSet(' ');
+        public static CharacterDataSet SpaceCharacterDataSet;// = new CharacterDataSet(' ');
+
+        static CharacterDataSet()
+        {
+            CharacterDataSet space = new CharacterDataSet(' ');
+            space.CharacterDatas.Add(new CharacterData(' ', new Bitmap(3, 8)));
+
+            SpaceCharacterDataSet = space;
+        }
 
         public ObservableCollection<CharacterData> CharacterDatas { get; protected set; }
 

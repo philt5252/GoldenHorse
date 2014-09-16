@@ -66,6 +66,9 @@ namespace LearningOcr.Core
         {
             get
             {
+                if (ch == ' ')
+                    return CharacterDataSet.SpaceCharacterDataSet;
+
                 return characterDataDict[ch];
             }
         }

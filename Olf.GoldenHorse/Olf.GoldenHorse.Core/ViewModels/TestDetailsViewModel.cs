@@ -300,6 +300,10 @@ namespace Olf.GoldenHorse.Core.ViewModels
                     }
 
                     MappedItem window = test.Project.AppManager.GetWindow(testItem.Control);
+                    if (window == null)
+                    {
+
+                    }
 
                     if (windowTestItemViewModel == null
                         || windowTestItemViewModel.ControlId != window.Id)

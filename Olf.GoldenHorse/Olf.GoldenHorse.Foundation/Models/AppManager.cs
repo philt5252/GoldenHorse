@@ -131,16 +131,16 @@ namespace Olf.GoldenHorse.Foundation.Models
                 return mappedItem;
 
             MappedItem parent = GetMappedItem(mappedItem.ParentId);
-
+            MappedItem previousParent = null;
             while (parent != null)
             {
                 if (parent.Type == "window")
                     return parent;
-
+                previousParent = parent;
                 parent = GetMappedItem(parent.ParentId);
             }
 
-            return null;
+            return previousParent;
         }
     }
 }

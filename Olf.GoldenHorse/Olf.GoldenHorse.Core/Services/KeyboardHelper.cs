@@ -227,8 +227,7 @@ namespace KeyboardFormatterApp
                 functionDictionary.Add(120, "{F9}");
                 functionDictionary.Add(121, "{F10}");
                 functionDictionary.Add(122, "{F11}");
-                functionDictionary.Add(123, "{F11}");
-                functionDictionary.Add(124, "{F12}");
+                functionDictionary.Add(123, "{F12}");
                 functionDictionary.Add(13, "{ENTER}");
                 functionDictionary.Add(162, "{CTRL} + ");
             }

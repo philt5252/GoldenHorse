@@ -197,6 +197,11 @@ namespace LearningOcr.Core
 
         private CharacterData CharacterMatchAtPoint(int x, int y, CharacterDataSet characterDataSet, float tolerance)
         {
+            if (characterDataSet == CharacterDataSet.SpaceCharacterDataSet)
+            {
+                return CharacterDataSet.SpaceCharacterDataSet.CharacterDatas[0];
+            }
+
             foreach (CharacterData characterData in characterDataSet.CharacterDatas)
             {
                 if (IsCharacterMatchAtPoint(x, y, neighborDifferences, characterData, tolerance))

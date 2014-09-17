@@ -158,16 +158,18 @@ namespace Olf.GoldenHorse.Core.Services
             task.Start();
             
         }
-
+        
+     
         private static AutomationElement FindWindowElement(IUIItem whiteControl)
         {
             AutomationElement findWindowElement = whiteControl.AutomationElement;
-
-            while (whiteControl.AutomationElement.Current.LocalizedControlType != "window")
+            AutomationElement previousFindWindowElement = null;
+            while (findWindowElement != null && findWindowElement.Current.LocalizedControlType != "window")
             {
-                findWindowElement = TreeWalker.ControlViewWalker.GetParent(whiteControl.AutomationElement);
+                previousFindWindowElement = findWindowElement;
+                findWindowElement = TreeWalker.ControlViewWalker.GetParent(findWindowElement);
             }
-            return findWindowElement;
+            return findWindowElement ?? previousFindWindowElement;
         }
 
         private void CreateKeyboardOnScreenAction(String keys)

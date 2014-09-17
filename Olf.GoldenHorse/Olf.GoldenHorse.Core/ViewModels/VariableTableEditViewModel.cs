@@ -33,6 +33,20 @@ namespace Olf.GoldenHorse.Core.ViewModels
             }
         }
 
+        public void DeleteColumn(string colName)
+        {
+            dataTable.Columns.Remove(colName);
+
+            OnPropertyChanged("Variables");
+        }
+
+        public void RenameColumn(string origColName, string newColName)
+        {
+            dataTable.Columns[origColName].ColumnName = newColName;
+
+            OnPropertyChanged("Variables");
+        }
+
         public VariableTableEditViewModel(Variable variable, IVariableController variableController)
         {
             this.variable = variable;

@@ -72,7 +72,7 @@ namespace Olf.GoldenHorse.Core.Models
 
             DataTable dataTable = variable.DataTableValue;
 
-            string[] columnNames = variable.DataTableValue.Columns.OfType<DataColumn>().Select(c => c.ColumnName).ToArray();
+            //string[] columnNames = variable.DataTableValue.Columns.OfType<DataColumn>().Select(c => c.ColumnName).ToArray();
 
             dataTable.Clear();
 

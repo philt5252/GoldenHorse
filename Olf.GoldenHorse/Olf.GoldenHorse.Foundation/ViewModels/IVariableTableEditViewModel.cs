@@ -12,5 +12,7 @@ namespace Olf.GoldenHorse.Foundation.ViewModels
         ICommand ImportCommand { get; }
         string ColumnName { get; set; }
         DataView Variables { get; set; }
+        void DeleteColumn(string colName);
+        void RenameColumn(string origColName, string newColName);
     }
 }

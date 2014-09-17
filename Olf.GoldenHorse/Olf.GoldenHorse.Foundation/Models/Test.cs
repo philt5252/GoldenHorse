@@ -116,7 +116,8 @@ namespace Olf.GoldenHorse.Foundation.Models
 
             foreach (TestItem testItem in TestItems)
             {
-                testItem.Play(log);
+                if (!testItem.Play(log))
+                    break;
             }
         }
 

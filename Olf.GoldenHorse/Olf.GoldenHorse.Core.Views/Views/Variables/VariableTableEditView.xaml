@@ -26,6 +26,22 @@
                 Margin="215,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <DataGrid  Name="dataGrid" Margin="10" CanUserAddRows="True" AutoGenerateColumns="True" Grid.Row="1" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Variables}">
+            <DataGrid.Resources>
+                <ContextMenu x:Key="DataGridColumnHeaderContextMenu">
+                    <MenuItem Header="Delete" Click="MenuItem_OnClick"></MenuItem>
+                    <MenuItem Header="Rename">
+                        <StackPanel>
+                            <TextBox Text="{Binding Content, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridColumnHeader}}, Mode=OneTime}"></TextBox>
+                            <Button Content="Save" Click="ButtonBase_OnClick"></Button>
+                        </StackPanel>
+                    </MenuItem>
+                </ContextMenu>
+
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="ContextMenu"
+                    Value="{StaticResource DataGridColumnHeaderContextMenu}" />
+                </Style>
+            </DataGrid.Resources>
         </DataGrid>
         <Button Height="30" Width="100" Content="Save" Command="{Binding SaveCommand}" Grid.Row="2" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right"></Button>
 

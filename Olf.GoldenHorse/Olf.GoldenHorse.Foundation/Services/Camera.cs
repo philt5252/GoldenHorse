@@ -23,7 +23,7 @@ namespace Olf.GoldenHorse.Foundation.Services
             public int Bottom;
         }
 
-        public static Bitmap Capture(ScreenCaptureMode screenCaptureMode = ScreenCaptureMode.Window)
+        public static Bitmap Capture(int handle = 0, ScreenCaptureMode screenCaptureMode = ScreenCaptureMode.Window)
         {
             Rectangle bounds;
             var rect = new Rect();
@@ -35,7 +35,7 @@ namespace Olf.GoldenHorse.Foundation.Services
             else
             {
 
-                IntPtr foregroundWindowsHandle = (IntPtr)0;
+                IntPtr foregroundWindowsHandle = (IntPtr)handle;
                 DateTime dateTime = DateTime.Now;
 
                 while (foregroundWindowsHandle == (IntPtr)0)

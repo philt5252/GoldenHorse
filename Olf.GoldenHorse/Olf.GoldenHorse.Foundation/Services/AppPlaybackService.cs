@@ -14,6 +14,7 @@ using Olf.GoldenHorse.Foundation.Models;
 using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.ScreenMap;
+using TestStack.White.Sessions;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.Actions;
 using TestStack.White.UIItems.Finders;
@@ -100,6 +101,8 @@ namespace Olf.GoldenHorse.Foundation.Services
             /*IEnumerable<string> enumerable = application.GetWindows().Select(w => w.Title);
             IEnumerable<string> list2 = application.GetWindows().Select(w => w.AutomationElement.Current.Name);
 */
+            List<string> windowTitles2 = GetWindowsForProcess(process.Name);
+
             if (!window.Name.IsNullOrEmpty())
                 appWindow = application.GetWindow(SearchCriteria.ByAutomationId(window.Name), InitializeOption.NoCache);
             else
@@ -123,7 +126,33 @@ namespace Olf.GoldenHorse.Foundation.Services
 
                     try
                     {
-                        appWindow = application.GetWindowWhere(w => w.AutomationElement.Current.Name == closestTitle, 3000);
+                        List<Window> windows = application.GetWindows();
+
+                        
+                        appWindow = application.GetWindows().FirstOrDefault(w => w.AutomationElement.Current.Name.Equals(closestTitle));
+
+                        if (appWindow == null)
+                        {
+                            List<IntPtr> handles = EnumerateProcessWindowHandles(wProcess.Id).ToList();
+
+                            Dictionary<string, IntPtr> windowHandleDict = new Dictionary<string, IntPtr>();
+
+                            StringBuilder builder = new StringBuilder(1024);
+
+                            foreach (IntPtr myIntPtr in handles)
+                            {
+                                GetWindowText(myIntPtr, builder, 1024);
+
+                                string windowTitle = builder.ToString();
+                                windowHandleDict[windowTitle] = myIntPtr;
+                            }
+
+                            AutomationElement element = AutomationElement.FromHandle(windowHandleDict[closestTitle]);
+
+                            appWindow = new Win32Window(element, WindowFactory.Desktop, InitializeOption.NoCache,
+                                new NullWindowSession());
+                        }
+
                         break;
                     }
                     catch (Exception ex)
@@ -132,14 +161,12 @@ namespace Olf.GoldenHorse.Foundation.Services
                     }
                     
                 }
-                
-                //appWindow = windows.First(w => w.AutomationElement.Current.Name == window.Text);
             }
 
             BringWindowToFront(appWindow.AutomationElement.Current.NativeWindowHandle);
 
 
-            if (control == null || control.Type == "window")
+            if (control == null || control.Type == "window" || control.Type == "pane")
                 return appWindow;
 
             Stack<MappedItem> mappedItemTree = new Stack<MappedItem>();

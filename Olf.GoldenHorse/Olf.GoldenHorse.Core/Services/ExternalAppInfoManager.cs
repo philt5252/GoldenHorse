@@ -315,7 +315,7 @@ namespace Olf.GoldenHorse.Core.Services
         {
             AutomationElement findWindowElement = uiItem.AutomationElement;
 
-            while (findWindowElement.Current.LocalizedControlType != "window")
+            while (findWindowElement.Current.LocalizedControlType != "window" && findWindowElement.Current.LocalizedControlType != "pane")
             {
                 findWindowElement = TreeWalker.ControlViewWalker.GetParent(findWindowElement);
             }

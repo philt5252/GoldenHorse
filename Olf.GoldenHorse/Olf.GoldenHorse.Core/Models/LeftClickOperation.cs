@@ -30,7 +30,7 @@ namespace Olf.GoldenHorse.Core.Models
             Cursor.Position = globalPoint;
 
             AutomationElement findWindowElement = ExternalAppInfoManager.GetWindowAutomationElement(uiItem);
-            Screenshot screenshot = CreateScreenshot(log);
+            Screenshot screenshot = CreateScreenshot(log, findWindowElement.Current.NativeWindowHandle);
             screenshot.Adornments.Add(
                 new ControlHighlightAdornment
                 {

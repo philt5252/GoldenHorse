@@ -192,7 +192,7 @@ namespace Olf.GoldenHorse.Core.Services
                         Height = (int) currentUiItem.Bounds.Height
                     });
             }
-
+            onScreenAction.Test = test;
             newTestItems.Add(onScreenAction);
             //test.TestItems.Add(onScreenAction);
         }
@@ -279,18 +279,6 @@ namespace Olf.GoldenHorse.Core.Services
         {
             mouseDownMouseEventArgs = mouseEventArgs;
 
-            if (currentInputType == InputType.Keyboard)
-            {
-                if (keyboardHelper.KeyboardText != "")
-                {
-                    CreateKeyboardOnScreenAction(keyboardHelper.KeyboardText);
-                    keyboardHelper.ResetKeyboardText();
-                }
-
-            }
-
-            currentInputType = InputType.Mouse;
-
             IUIItem whiteControl;
             TestItem action = CreateOnScreenAction(mouseEventArgs, out whiteControl, false);
 
@@ -304,12 +292,26 @@ namespace Olf.GoldenHorse.Core.Services
                 mouseActionFromDown = null;
                 return;
             }
-                
+
 
             mouseActionFromDown = action;
             currentUiItem = whiteControl;
 
             action.Screenshot = CreateNewScreenshot(findWindowElement.Current.NativeWindowHandle);
+
+            if (currentInputType == InputType.Keyboard)
+            {
+                if (keyboardHelper.KeyboardText != "")
+                {
+                    CreateKeyboardOnScreenAction(keyboardHelper.KeyboardText);
+                    keyboardHelper.ResetKeyboardText();
+                }
+
+            }
+
+            currentInputType = InputType.Mouse;
+
+            
 
             //throw new NotImplementedException();
         }

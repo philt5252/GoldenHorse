@@ -57,19 +57,24 @@ namespace Olf.GoldenHorse.Core.Models
         {
             string text = textParam.GetValue();
             Keyboard.SendKeys(text);
-            Screenshot screenshot = CreateScreenshot(log);
+            
 
             AppProcess process = AppManager.GetProcess(mappedItem);
             MappedItem window = AppManager.GetWindow(mappedItem);
 
             IUIItem uiItem = AppPlaybackService.GetControl(process, window, mappedItem, AppManager);
 
+
+
             AutomationElement findWindowElement = uiItem.AutomationElement;
 
-            while (findWindowElement.Current.LocalizedControlType != "window")
+            while (findWindowElement.Current.LocalizedControlType != "window"
+                && findWindowElement.Current.LocalizedControlType != "pane")
             {
                 findWindowElement = TreeWalker.ControlViewWalker.GetParent(findWindowElement);
             }
+
+            Screenshot screenshot = CreateScreenshot(log, findWindowElement.Current.NativeWindowHandle);
 
             screenshot.Adornments.Add(
                 new ControlHighlightAdornment

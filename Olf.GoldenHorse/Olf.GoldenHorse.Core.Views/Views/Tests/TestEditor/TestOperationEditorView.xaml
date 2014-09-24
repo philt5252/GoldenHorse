@@ -33,7 +33,7 @@
                 <DataTemplate>
                     <Grid >
                         <Image Height="20" Width="20" Source="{Binding Name, Converter={StaticResource CategoryToImageConverter} }"></Image>
-                        <TextBlock Background="Transparent" Foreground="White" Text="{Binding Name}" FontSize="14"></TextBlock>
+                        <TextBlock Background="Transparent" Foreground="White" Text="{Binding }" FontSize="14"></TextBlock>
                         <TextBlock Background="Transparent" Foreground="White" Text="{Binding Description}" FontSize="11"></TextBlock>
                     </Grid>
                 </DataTemplate>

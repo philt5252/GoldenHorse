@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Events;
+using Olf.GoldenHorse.Core.Models;
 using Olf.GoldenHorse.Foundation.Events;
 using Olf.GoldenHorse.Foundation.Models;
 using Olf.GoldenHorse.Foundation.ViewModels;
@@ -42,6 +43,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
         {
             TestItem testItem = new TestItem();
             testItem.Type = TestItemTypes.OnScreenAction;
+            testItem.Operation = new LeftClickOperation();
             testItem.Test = test;
             return testItem;
         }

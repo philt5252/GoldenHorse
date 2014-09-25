@@ -14,6 +14,7 @@ namespace Olf.GoldenHorse.Core.Models
         private OperationParameter clickXParam { get { return Parameters[0]; } }
         private OperationParameter clickYParam { get { return Parameters[1]; } }
         private OperationParameter textParam { get { return Parameters[2]; } }
+        private OperationParameter imageParam { get { return Parameters[2]; } }
 
         public override string ParametersDescription
         {
@@ -74,13 +75,20 @@ namespace Olf.GoldenHorse.Core.Models
                 Mode = OperationParameterValueMode.Constant
             };
 
-            var param3 = new OperationParameter()
+            var param3 = new OperationParameter
             {
                 Name = "Text",
                 Mode = OperationParameterValueMode.Constant
             };
 
-            return new[] { param1, param2, param3 };
+            var param4 = new OperationParameter
+            {
+                Name = "Image",
+                TypeIdentifier="Image",
+                Mode = OperationParameterValueMode.Constant
+            };
+
+            return new[] { param1, param2, param3, param4 };
         }
     }
 }

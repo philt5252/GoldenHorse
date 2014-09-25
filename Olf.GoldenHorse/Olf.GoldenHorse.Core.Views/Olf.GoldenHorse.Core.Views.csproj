@@ -143,6 +143,9 @@
     <Compile Include="Views\Tests\TestDetailsView.xaml.cs">
       <DependentUpon>TestDetailsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Tests\TestEditor\EditImageParameterWindow.xaml.cs">
+      <DependentUpon>EditImageParameterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tests\TestEditor\EditParameterWindow.xaml.cs">
       <DependentUpon>EditParameterWindow.xaml</DependentUpon>
     </Compile>
@@ -251,6 +254,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tests\TestDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tests\TestEditor\EditImageParameterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

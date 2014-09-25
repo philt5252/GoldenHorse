@@ -60,6 +60,7 @@ namespace Olf.GoldenHorse.Core.Autofac
             builder.RegisterType<TestParameterEditorViewModel>().As<ITestParameterEditorViewModel>();
             builder.RegisterType<TestDescriptionEditorViewModel>().As<ITestDescriptionEditorViewModel>();
             builder.RegisterType<EditParameterViewModel>().As<IEditParameterViewModel>();
+            builder.RegisterType<EditImageParameterViewModel>().As<IEditImageParameterViewModel>();
             builder.RegisterType<ValidateTextAtPointListItemViewModel>().As<IValidationListItemViewModel>().SingleInstance();
             builder.RegisterType<GetObjectScreenSelectionViewModel>().As<IGetObjectScreenSelectionViewModel>();
             builder.RegisterType<OperationParameterViewModel>().As<IOperationParameterViewModel>();

@@ -2,6 +2,6 @@
 {
     public interface IEditParameterWindowFactory
     {
-        IWindow Create();
+        IWindow Create(string paramType);
     }
 }

@@ -7,6 +7,13 @@ namespace Olf.GoldenHorse.Foundation.Models
     {
         private OperationParameterValueMode mode;
         private OperationParameterValue parameterValue;
+        private string typeIdentifier = "String";
+
+        public string TypeIdentifier
+        {
+            get { return typeIdentifier; }
+            set { typeIdentifier = value; }
+        }
 
 
         public OperationParameterValue ParameterValue

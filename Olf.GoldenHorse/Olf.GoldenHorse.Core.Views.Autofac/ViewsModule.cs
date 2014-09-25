@@ -33,6 +33,7 @@ namespace Olf.GoldenHorse.Core.Views.Autofac
             builder.RegisterType<StartView>().AsSelf();
             builder.RegisterType<TestItemEditorWindow>().AsSelf();
             builder.RegisterType<EditParameterWindow>().AsSelf();
+            builder.RegisterType<EditImageParameterWindow>().AsSelf();
             builder.RegisterType<VariableTableWindow>().AsSelf();
             builder.RegisterType<TrainingMainWindow>().AsSelf();
 

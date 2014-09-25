@@ -52,7 +52,7 @@ namespace Olf.GoldenHorse.Core.Controllers
 
         public void EditParameter(OperationParameter parameter)
         {
-            editParameterWindow = editParameterWindowFactory.Create();
+            editParameterWindow = editParameterWindowFactory.Create(parameter.TypeIdentifier);
             IEditParameterViewModel editParameterViewModel = editParameterViewModelFactory.Create(parameter);
 
             editParameterWindow.DataContext = editParameterViewModel;

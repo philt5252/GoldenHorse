@@ -2,7 +2,9 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Windows;
 using System.Windows.Forms;
+using Point = System.Drawing.Point;
 
 namespace Olf.GoldenHorse.Foundation.Services
 {
@@ -30,7 +32,11 @@ namespace Olf.GoldenHorse.Foundation.Services
 
             if (screenCaptureMode == ScreenCaptureMode.Screen)
             {
-                bounds = Screen.GetBounds(Point.Empty);
+                bounds = new Rectangle(int.MaxValue, int.MaxValue, int.MinValue, int.MinValue);
+
+                foreach (Screen screen in Screen.AllScreens)
+                    bounds = Rectangle.Union(bounds, screen.Bounds);
+
             }
             else
             {

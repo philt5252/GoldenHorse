@@ -98,6 +98,11 @@ namespace Olf.GoldenHorse.Foundation.Services
 
             Window appWindow = null;
 
+            if (control.Type == "pane")
+            {
+                
+            }
+
             /*IEnumerable<string> enumerable = application.GetWindows().Select(w => w.Title);
             IEnumerable<string> list2 = application.GetWindows().Select(w => w.AutomationElement.Current.Name);
 */
@@ -166,11 +171,16 @@ namespace Olf.GoldenHorse.Foundation.Services
             BringWindowToFront(appWindow.AutomationElement.Current.NativeWindowHandle);
 
 
-            if (control == null || control.Type == "window" || control.Type == "pane")
+            if (control == null || control.Type == "window" || control.Equals(window))
                 return appWindow;
 
             Stack<MappedItem> mappedItemTree = new Stack<MappedItem>();
             MappedItem currentMappedItem = control;
+
+            if (window == null)
+            {
+                
+            }
 
             while (currentMappedItem != window)
             {
@@ -205,31 +215,9 @@ namespace Olf.GoldenHorse.Foundation.Services
                     continue;
                 }
                 
-                //appWindow.AutomationElement.FindFirst(TreeScope.Descendants,new PropertyCondition() )
-
-                
-
-                /*while ((int)boundingRectangle.X != (int)currentMappedItemControl.Bounds.X)
-                {
-                    automationElement = walker.GetNextSibling(automationElement);
-                    boundingRectangle = automationElement.Current.BoundingRectangle;
-                }*/
-
-                //.FirstOrDefault(i => Equals(i.AutomationElement.Current.AutomationId, control.Name));
-
-                /*IUIItem[] uiItems = appWindow.Items
-                    .Where(i => i.AutomationElement.Current.Name == control.Text
-                    && i.AutomationElement.Current.LocalizedControlType == control.Type).ToArray();*/
             }
 
-            //appWindow.Items.FirstOrDefault(i => Equals(i.AutomationElement.Current.AutomationId, mappedItemTree.Pop()));
-
             return currentControl;
-
-            //if (uiItems.Length == 1)
-            //    return uiItems[0];
-                
-           // return appWindow.Items.FirstOrDefault(i => Equals(control.Bounds, i.Bounds));
         }
 
         private static AutomationElement GetChildControl(Rect bounds, AutomationElement automationElement)

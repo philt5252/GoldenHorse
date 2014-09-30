@@ -4,12 +4,12 @@ namespace Olf.GoldenHorse.Foundation.Models
 {
     public abstract class OperationParameterValue
     {
-        private string displayValue;
+        private object displayValue;
 
         [XmlIgnore]
         public OperationParameter OwningOperationParameter { get; set; }
 
-        public string DisplayValue
+        public object DisplayValue
         {
             get { return displayValue; }
             set { displayValue = value; }

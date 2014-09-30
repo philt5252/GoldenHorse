@@ -4,7 +4,7 @@
     {
         public override string GetValue()
         {
-            return DisplayValue;
+            return DisplayValue.ToString();
         }
     }
 }

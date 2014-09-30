@@ -127,14 +127,16 @@ namespace Olf.GoldenHorse.Foundation.Models
 
         public MappedItem GetWindow(MappedItem mappedItem)
         {
-            if (mappedItem.Type == "window" || mappedItem.Type == "pane")
+            MappedItem parent = GetMappedItem(mappedItem.ParentId);
+
+            if (mappedItem.Type == "window" || (mappedItem.Type == "pane" && parent.Type == "process"))
                 return mappedItem;
 
-            MappedItem parent = GetMappedItem(mappedItem.ParentId);
+           
             MappedItem previousParent = null;
             while (parent != null)
             {
-                if (parent.Type == "window" || parent.Type == "pane")
+                if (parent.Type == "window" || (parent.Type == "pane" && GetMappedItem(parent.ParentId).Type == "process"))
                     return parent;
                 previousParent = parent;
                 parent = GetMappedItem(parent.ParentId);

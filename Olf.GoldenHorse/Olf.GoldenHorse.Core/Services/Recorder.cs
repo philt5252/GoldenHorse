@@ -98,6 +98,8 @@ namespace Olf.GoldenHorse.Core.Services
             if (currentUiItem == null)
                 return;
 
+            
+
             IUIItem whiteControl;
             //TestItem action = CreateOnScreenAction(mouseEventArgs, out whiteControl);
 
@@ -107,6 +109,8 @@ namespace Olf.GoldenHorse.Core.Services
 
             if (Process.GetCurrentProcess().Id == processId)
                 return;
+
+            
 
             Task task = new Task(() =>
             {
@@ -134,6 +138,12 @@ namespace Olf.GoldenHorse.Core.Services
 
                     mouseActionFromDown.Screenshot.Adornments.Add(new ClickAdornment { ClickX = screenshotX, ClickY = screenshotY });
                 }
+
+                if (currentUiItem.AutomationElement.Current.LocalizedControlType == "pane")
+                {
+
+                }
+
                 mouseActionFromDown.Test = test;
                 newTestItems.Add(mouseActionFromDown);
                 //test.TestItems.Add(action);
@@ -156,15 +166,12 @@ namespace Olf.GoldenHorse.Core.Services
         {
             AutomationElement findWindowElement = whiteControl.AutomationElement;
             AutomationElement previousFindWindowElement = null;
-            while (findWindowElement != null && findWindowElement.Current.LocalizedControlType != "window" && findWindowElement.Current.LocalizedControlType != "pane")
+            while (findWindowElement != null && findWindowElement.Current.LocalizedControlType != "window" 
+                && !(findWindowElement.Current.LocalizedControlType == "pane"
+                && (TreeWalker.ControlViewWalker.GetParent(findWindowElement) == null || TreeWalker.ControlViewWalker.GetParent(findWindowElement).Current.LocalizedControlType == "process")))
             {
                 previousFindWindowElement = findWindowElement;
                 findWindowElement = TreeWalker.ControlViewWalker.GetParent(findWindowElement);
-            }
-
-            if (findWindowElement.Current.LocalizedControlType != "window")
-            {
-                
             }
 
             return findWindowElement ?? previousFindWindowElement;
@@ -452,8 +459,10 @@ namespace Olf.GoldenHorse.Core.Services
             {
                 UIItem uiItem = ExternalAppInfoManager.GetControl(point);
 
+                //work with pane as window here???
                 if (uiItem.AutomationElement.Current.LocalizedControlType.Equals("window")
-                    || uiItem.AutomationElement.Current.LocalizedControlType.Equals("pane"))
+                    || (uiItem.AutomationElement.Current.LocalizedControlType.Equals("pane") 
+                        && TreeWalker.ControlViewWalker.GetParent(uiItem.AutomationElement).Current.LocalizedControlType.Equals("process")))
                 {
                     Process process1 = Process.GetProcessById(uiItem.AutomationElement.Current.ProcessId);
 
@@ -479,6 +488,7 @@ namespace Olf.GoldenHorse.Core.Services
 
                     if (uiItem.AutomationElement.Current.LocalizedControlType.Equals("pane"))
                     {
+                        
                     }
 
                     return uiItem;
@@ -511,22 +521,6 @@ namespace Olf.GoldenHorse.Core.Services
 
                 AutomationElement window = uiElementTree.Peek();
                 MappedItem createdMappedItem = null;
-
-                /*if (endurProcesses.Contains(appProcess.Name))
-                {
-                    automationElement = uiElementTree.Pop();
-                    string name = automationElement.Current.AutomationId;
-                    string type = automationElement.Current.ControlType.LocalizedControlType;
-                    string text = automationElement.Current.Name;
-                    Rect bounds = automationElement.Current.BoundingRectangle;
-                    bounds.X -= window.Current.BoundingRectangle.X;
-                    bounds.Y -= window.Current.BoundingRectangle.Y;
-                    createdMappedItem = appManager.FindOrCreateMappedItem(parentId, name, bounds, type, text);
-
-                    mappedItem = createdMappedItem;
-
-                    return new UIItem(window, new NullActionListener());
-                }*/
 
                 while (uiElementTree.Count > 0)
                 {

@@ -21,12 +21,14 @@ namespace Olf.GoldenHorse.Core.Models
             MappedItem window = AppManager.GetWindow(mappedItem);
 
             IUIItem uiItem = AppPlaybackService.GetControl(process, window, mappedItem, AppManager);
-            Point clickPoint = this.GetClickPoint();
+            AutomationElement findWindowElement = ExternalAppInfoManager.GetWindowAutomationElement(uiItem);
+
+            Point clickPoint = this.GetClickPoint(CreateScreenshot(log, findWindowElement.Current.NativeWindowHandle, false));
             Point globalPoint = new Point((int)uiItem.Bounds.X + clickPoint.X, (int)uiItem.Bounds.Y + clickPoint.Y);
 
             Cursor.Position = globalPoint;
 
-            AutomationElement findWindowElement = ExternalAppInfoManager.GetWindowAutomationElement(uiItem);
+            
             Screenshot screenshot = CreateScreenshot(log, findWindowElement.Current.NativeWindowHandle);
             screenshot.Adornments.Add(
                 new ControlHighlightAdornment

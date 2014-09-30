@@ -25,7 +25,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         {
             IEnumerable<Variable> variables = this.OwningOperationParameter.OwningTestItem.Test.Variables;
 
-            Match match = Regex.Match(DisplayValue, @"(.+)\[(.+)\]");
+            Match match = Regex.Match(DisplayValue.ToString(), @"(.+)\[(.+)\]");
 
             if (!match.Success)
             {

@@ -268,54 +268,16 @@ namespace Olf.GoldenHorse.Core.Services
             {
                 return null;
             }
-            /*Process process = Process.GetProcessById(uiItem.AutomationElement.Current.ProcessId);
 
-            AppProcess appProcess = appManager.FindOrCreateProcess(process.ProcessName);
-
-            appManager.FindOrCreateMappedItem()
-
-            if (uiItem.AutomationElement.Current.LocalizedControlType.Equals("window"))
-            {
-                
-            }
-
-            TreeWalker walker = TreeWalker.ControlViewWalker;
-            AutomationElement automationElement = uiItem.AutomationElement;
-            Stack<AutomationElement> uiElementTree = new Stack<AutomationElement>();
-
-            while (automationElement != AutomationElement.RootElement)
-            {
-                uiElementTree.Push(automationElement);
-                automationElement = walker.GetParent(automationElement);
-            }
-
-            string parentId = appProcess.Id;
-
-            AutomationElement window = uiElementTree.Peek();
-            MappedItem createdMappedItem = null;
-
-            while (uiElementTree.Count > 0)
-            {
-                automationElement = uiElementTree.Pop();
-                string name = automationElement.Current.AutomationId;
-                string type = automationElement.Current.ControlType.LocalizedControlType;
-                string text = automationElement.Current.Name;
-                Rect bounds = automationElement.Current.BoundingRectangle;
-                bounds.X -= window.Current.BoundingRectangle.X;
-                bounds.Y -= window.Current.BoundingRectangle.Y;
-                createdMappedItem = appManager.FindOrCreateMappedItem(parentId, name, bounds, type, text);
-
-                parentId = createdMappedItem.Id;
-            }
-            //baselight
-            return createdMappedItem;*/
         }
 
         public static AutomationElement GetWindowAutomationElement(IUIItem uiItem)
         {
             AutomationElement findWindowElement = uiItem.AutomationElement;
 
-            while (findWindowElement.Current.LocalizedControlType != "window" && findWindowElement.Current.LocalizedControlType != "pane")
+            while (findWindowElement.Current.LocalizedControlType != "window" 
+                && !(findWindowElement.Current.LocalizedControlType == "pane"
+                    && ( TreeWalker.ControlViewWalker.GetParent(findWindowElement) == null || TreeWalker.ControlViewWalker.GetParent(findWindowElement).Current.LocalizedControlType == "process")))
             {
                 findWindowElement = TreeWalker.ControlViewWalker.GetParent(findWindowElement);
             }

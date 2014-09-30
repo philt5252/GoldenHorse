@@ -64,12 +64,11 @@ namespace Olf.GoldenHorse.Core.Models
 
             IUIItem uiItem = AppPlaybackService.GetControl(process, window, mappedItem, AppManager);
 
-
-
             AutomationElement findWindowElement = uiItem.AutomationElement;
 
             while (findWindowElement.Current.LocalizedControlType != "window"
-                && findWindowElement.Current.LocalizedControlType != "pane")
+                && !(findWindowElement.Current.LocalizedControlType == "pane" 
+                 && TreeWalker.ControlViewWalker.GetParent(findWindowElement).Current.LocalizedControlType == "process"))
             {
                 findWindowElement = TreeWalker.ControlViewWalker.GetParent(findWindowElement);
             }

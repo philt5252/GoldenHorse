@@ -16,6 +16,7 @@ namespace Olf.GoldenHorse.Foundation.Models
         public ScreenshotOwner Owner { get; set; }
 
         public string ImageFile { get; set; }
+        private Bitmap image = null;
 
         public ObservableCollection<ScreenshotAdornment> Adornments
         {
@@ -47,7 +48,11 @@ namespace Olf.GoldenHorse.Foundation.Models
         [XmlIgnore]
         public Bitmap Image
         {
-            get { return RenderImage(); }
+            get { return image ?? RenderImage(); }
+            set
+            {
+                image = value;
+            }
         }
 
         public Screenshot()

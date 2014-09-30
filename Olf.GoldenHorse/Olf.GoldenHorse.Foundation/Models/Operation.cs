@@ -75,17 +75,26 @@ namespace Olf.GoldenHorse.Foundation.Models
             return Parameters.FirstOrDefault(p => Equals(name, p.Name));
         }
 
-        protected Screenshot CreateScreenshot(Log log, int handle=0)
+        protected Screenshot CreateScreenshot(Log log, int handle=0, bool save=true)
         {
             Bitmap bitmap = Camera.Capture(handle);
-            DateTime dateTime = DateTime.Now;
-            string screenshotName = "ghscn_" + dateTime.Ticks + ".bmp";
-            bitmap.Save(Path.Combine(ProjectSuiteManager.GetScreenshotsFolder(log), screenshotName));
-
             Screenshot screenshot = new Screenshot();
 
+            DateTime dateTime = DateTime.Now;
+            string screenshotName = "ghscn_" + dateTime.Ticks + ".bmp";
+            
             screenshot.ImageFile = screenshotName;
             screenshot.DateTime = dateTime;
+
+            if (save)
+            {
+                bitmap.Save(Path.Combine(ProjectSuiteManager.GetScreenshotsFolder(log), screenshotName));
+            }
+            else
+            {
+                screenshot.Image = bitmap;
+            }
+
             return screenshot;
         }
 

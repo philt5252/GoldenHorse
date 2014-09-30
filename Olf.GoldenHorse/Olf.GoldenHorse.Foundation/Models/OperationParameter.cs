@@ -37,7 +37,7 @@ namespace Olf.GoldenHorse.Foundation.Models
             get { return ParameterValue.DisplayValue; }
             set
             {
-                this.ParameterValue.DisplayValue = value == null ? "" : value.ToString();
+                this.ParameterValue.DisplayValue = value ?? "";
                 OnValueChanged();
             }
         }

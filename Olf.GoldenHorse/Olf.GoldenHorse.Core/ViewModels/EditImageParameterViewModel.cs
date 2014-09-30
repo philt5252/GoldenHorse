@@ -82,13 +82,10 @@ namespace Olf.GoldenHorse.Core.ViewModels
             rectangle.Width = 0;
             Canvas.SetTop(rectangle, 0);
             Canvas.SetLeft(rectangle, 0);
-            UIItem currentUIItem = null;
             System.Drawing.Point point = new System.Drawing.Point();
 
             GlobalHooker hooker = new GlobalHooker();
             MouseHookListener listener = new MouseHookListener(hooker);
-
-         
 
             bool isMouseDown = false;
             bool isComplete = false;
@@ -99,7 +96,6 @@ namespace Olf.GoldenHorse.Core.ViewModels
             {
                 isMouseDown = true;
                 topLeft = System.Windows.Forms.Cursor.Position;
-                //drawRectTask.Start();
             };
 
             listener.MouseUp += (o, args) =>
@@ -152,9 +148,7 @@ namespace Olf.GoldenHorse.Core.ViewModels
 
             BitmapImage bitmapImage = new BitmapImage();
 
-            
-            //window.Topmost = true;
-
+            window.Topmost = true;
 
             Task waitTask = new Task(() =>
             {
@@ -174,36 +168,14 @@ namespace Olf.GoldenHorse.Core.ViewModels
                     }
 
                     window.Background = new ImageBrush(bitmapImage);
-                    
 
                     window.Show();
                 }));
 
             });
-            
-            
-            //task.Start();
 
             task.ContinueWith(t =>
             {
-                /*UIItem UIItem= currentUIItem;
-
-                TestItem onScreenValidation = testItemController.CurrentTestItem;
-
-                if (onScreenValidation.Operation != null)
-                {
-                    OperationParameter operationParameterX = onScreenValidation.Operation.GetParameterNamed("ClientX");
-                    OperationParameter operationParameterY = onScreenValidation.Operation.GetParameterNamed("ClientY");
-
-                    if (operationParameterX != null && operationParameterY != null)
-                    {
-                        operationParameterX.Value = point.X - UIItem.Bounds.X;
-                        operationParameterY.Value = point.Y - UIItem.Bounds.Y;
-                    }
-                }*/
-
-               
-
                 System.Drawing.Rectangle systemRect = new System.Drawing.Rectangle(topLeft.X, topLeft.Y, 
                     bottomRight.X-topLeft.X, bottomRight.Y-topLeft.Y);
 
